@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b3ej0x7lucjyx"]
+
+[ext_resource type="Script" uid="uid://cpidfp2van0lo" path="res://Scripts/Small_Experiments/conductorTest.gd" id="1_ihcqy"]
+[ext_resource type="Texture2D" uid="uid://4rt87a2x31oj" path="res://Assets/Sprites/Record.png" id="2_jpgoa"]
+
+[node name="Node2D" type="Node2D" unique_id=284133310]
+script = ExtResource("1_ihcqy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=760444828]
+texture = ExtResource("2_jpgoa")
+
+[node name="ScratchAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=993461350]
+bus = &"Scratch Track"
+
+[node name="BGAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=772236761]
+bus = &"BG Track"

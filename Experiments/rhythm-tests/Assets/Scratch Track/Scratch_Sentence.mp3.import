@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cqm52f1od1gfy"
+path="res://.godot/imported/Scratch_Sentence.mp3-a14eea53dd2f6b7272cc48ac4ef167d2.mp3str"
+
+[deps]
+
+source_file="res://Assets/Scratch Track/Scratch_Sentence.mp3"
+dest_files=["res://.godot/imported/Scratch_Sentence.mp3-a14eea53dd2f6b7272cc48ac4ef167d2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

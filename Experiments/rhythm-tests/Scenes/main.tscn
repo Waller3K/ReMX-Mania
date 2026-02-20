@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://0oolkm44yp0h"]
+
+[ext_resource type="Script" uid="uid://hew20iy5dps" path="res://Scripts/Small_Experiments/main.gd" id="1_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://hhh88k0ah4ht" path="res://Assets/Sprites/icon.svg" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://cbm4ua73tvjqw" path="res://Scripts/Small_Experiments/rhythm_graphic.gd" id="2_8gbba"]
+
+[node name="Main" type="Node2D" unique_id=792981031]
+script = ExtResource("1_bo1nx")
+
+[node name="RhythmGraphic" type="Node2D" parent="." unique_id=261348719]
+script = ExtResource("2_8gbba")
+
+[node name="Sprite2D" type="Sprite2D" parent="RhythmGraphic" unique_id=1276195226]
+texture = ExtResource("1_jjgbg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=768055679]
+
+[node name="SoundStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=407057523]
+
+[connection signal="noteEarly" from="." to="." method="_on_note_early"]
+[connection signal="noteLate" from="." to="." method="_on_note_late"]
+[connection signal="noteMiss" from="." to="." method="_on_note_miss"]
+[connection signal="notePerfect" from="." to="." method="_on_note_perfect"]
+[connection signal="notePlay" from="." to="." method="_on_note_play"]
+[connection signal="notePlay" from="." to="RhythmGraphic" method="_on_main_note_play"]
