@@ -1,0 +1,11 @@
+{
+	"Metadata" : {
+		"path" : "res://Assets/Music/Test_Song_Stems/BG_Track.ogg",
+		"BPM" : 180,
+		"name" : "Test Song",
+		"artist" : "Waller3K",
+		"charter" : "Waller3K",
+		"difficulty" : 1.0,
+		"track1Path" : ""
+	}
+}

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dehik2lcm358e"
+path="res://.godot/imported/Track 2.ogg-26f2f2d9f599bb504af96ad1684e4f8e.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Test_Song_Stems/Track 2.ogg"
+dest_files=["res://.godot/imported/Track 2.ogg-26f2f2d9f599bb504af96ad1684e4f8e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

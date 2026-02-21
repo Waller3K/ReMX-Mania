@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://kouehva0cah4"
+path="res://.godot/imported/Track 4.ogg-fd686676507dff2ffd24cef4ddc4d4e7.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Test_Song_Stems/Track 4.ogg"
+dest_files=["res://.godot/imported/Track 4.ogg-fd686676507dff2ffd24cef4ddc4d4e7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
