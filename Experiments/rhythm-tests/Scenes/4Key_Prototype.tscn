@@ -1,7 +1,19 @@
 [gd_scene format=3 uid="uid://cu7fsegneydwy"]
 
+[ext_resource type="Script" uid="uid://ggs1c0rly15e" path="res://Scripts/4Key_Prototype/composer.gd" id="1_jjbr5"]
+[ext_resource type="Script" uid="uid://c6pcw2jnnj4d6" path="res://Scripts/4Key_Prototype/audio.gd" id="2_wd6nd"]
+[ext_resource type="Script" uid="uid://buy7vjumb168" path="res://Scripts/4Key_Prototype/input.gd" id="3_hgpwj"]
+
 [node name="4KeyPrototype" type="Node2D" unique_id=1665818793]
 
 [node name="Composer" type="Node" parent="." unique_id=577367256]
+script = ExtResource("1_jjbr5")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=67550213]
+[node name="BGStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=67550213]
+script = ExtResource("2_wd6nd")
+
+[node name="Input" type="Node" parent="." unique_id=1090828223]
+script = ExtResource("3_hgpwj")
+
+[connection signal="chartCreated" from="Composer" to="BGStreamPlayer" method="_onChartCreation"]
+[connection signal="testButton" from="Input" to="BGStreamPlayer" method="_onTestButton"]

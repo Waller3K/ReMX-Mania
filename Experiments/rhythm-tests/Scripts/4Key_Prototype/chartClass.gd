@@ -1,25 +1,24 @@
-extends Node
-
 class_name Chart
+extends Resource
 
 # Song Metadata Variables
 
-var bpm: 		float
-var songPath: 	String
-var songName: 	String
-var songArtist:	String
-var charter: String
-var difficulty:	float
+@export var bpm: 		float
+@export var songPath: 	String
+@export var songName: 	String
+@export var songArtist:	String
+@export var charter: 	String
+@export var difficulty:	float
 
 # Chart Metadata Variables
-var track1Path: String # the paths to the stems controlled by each track
-var track2Path: String
-var track3Path: String
-var track4Path: String
-var scratchTrackPaths = [] # an array of sample paths used by scratch track
+@export var track1Path: String # the paths to the stems controlled by each track
+@export var track2Path: String
+@export var track3Path: String
+@export var track4Path: String
+@export var scratchTrackPaths = [] # an array of sample paths used by scratch track
 
 # Note dictionary which will contain the individual track's notes in arrays
-var notes = {
+@export var notes = {
 	track1 = [],
 	track2 = [],
 	track3 = [],
@@ -55,7 +54,23 @@ func load(path: String) -> bool:
 		print("Error: JSON data could not be parsed!")
 		return false
 	
+	# Sets the chart variables using the JSON chart data
 	
+	bpm 			= chartData["Metadata"]["BPM"]
+	songPath 		= chartData["Metadata"]["path"]
+	songName		= chartData["Metadata"]["name"]
+	songArtist		= chartData["Metadata"]["artist"]
+	charter			= chartData["Metadata"]["charter"]
+	difficulty		= chartData["Metadata"]["difficulty"]
+	track1Path		= chartData["Metadata"]["track1Path"]
+	track2Path		= chartData["Metadata"]["track2Path"]
+	track3Path		= chartData["Metadata"]["track3Path"]
+	track4Path		= chartData["Metadata"]["track4Path"]
+	notes.track1 	= chartData["Notes"]["Track 1"]
+	notes.track2 	= chartData["Notes"]["Track 2"]
+	notes.track3 	= chartData["Notes"]["Track 3"]
+	notes.track4 	= chartData["Notes"]["Track 4"]
 	
+	print("Chart loaded successfully")
 	
 	return true
