@@ -35,4 +35,27 @@ var notes = {
 # and false on failure
 ##########################################################
 func load(path: String) -> bool:
+	
+	# Checks if the file path is valid
+	if not FileAccess.file_exists(path):
+		print("Error: File path invalid")
+		return false
+	
+	# Opens Json file and parses it
+	var jsonStream: FileAccess = FileAccess.open(path, FileAccess.READ)
+	
+	var jsonString: String = jsonStream.get_as_text()
+	
+	jsonStream.close()
+	
+	var chartData = JSON.parse_string(jsonString)
+	
+	# Checking if JSON string was properly parsed
+	if chartData == null:
+		print("Error: JSON data could not be parsed!")
+		return false
+	
+	
+	
+	
 	return true
