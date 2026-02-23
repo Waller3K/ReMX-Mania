@@ -13,7 +13,7 @@ signal goodLate(offset: float)
 signal okLate(offset: float)
 signal miss # The miss signal is the only one that won't have an offset
 
-var noteData
+var noteData: Dictionary
 
 #Iterators for each track
 var track1NextNoteIndex = 0
@@ -36,8 +36,10 @@ var track4NextNoteHit = false
 #############################################
 
 func _onRhythmUpdate(timeStampInBeats):
-	if timeStampInBeats >= noteData["Track 1"][track1NextNoteIndex]["Pos"] and track1NextNoteHit == false:
+	if timeStampInBeats >= noteData.track1[track1NextNoteIndex]["Pos"] and track1NextNoteHit == false:
 		print("Miss!")
+		if track1NextNoteIndex+1 < noteData.track1.size():
+			track1NextNoteIndex+=1
 
 
 func _onChartCreation(chart):
