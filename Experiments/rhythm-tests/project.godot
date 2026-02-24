@@ -23,6 +23,10 @@ config/icon="res://Assets/Sprites/icon.svg"
 
 buses/default_bus_layout="uid://cd2i8lnxrhhmd"
 
+[autoload]
+
+GE="*uid://umj8ntdvt62x"
+
 [dotnet]
 
 project/assembly_name="Rhythm Tests"

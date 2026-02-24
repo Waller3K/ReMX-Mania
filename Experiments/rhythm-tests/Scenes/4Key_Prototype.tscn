@@ -11,7 +11,7 @@
 [node name="Composer" type="Node" parent="." unique_id=577367256]
 script = ExtResource("1_jjbr5")
 
-[node name="BGStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=67550213]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=67550213]
 script = ExtResource("2_wd6nd")
 
 [node name="Input" type="Node" parent="." unique_id=1090828223]
@@ -23,9 +23,15 @@ script = ExtResource("4_8fqod")
 [node name="Judge" type="Node" parent="." unique_id=1704462345]
 script = ExtResource("5_75w05")
 
-[connection signal="chartCreated" from="Composer" to="BGStreamPlayer" method="_onChartCreation"]
+[connection signal="chartCreated" from="Composer" to="AudioStreamPlayer" method="_onChartCreation"]
 [connection signal="chartCreated" from="Composer" to="Conductor" method="_onChartCreation"]
 [connection signal="chartCreated" from="Composer" to="Judge" method="_onChartCreation"]
-[connection signal="songUpdate" from="BGStreamPlayer" to="Conductor" method="_onSongUpdate"]
-[connection signal="testButton" from="Input" to="BGStreamPlayer" method="_onTestButton"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_onFinished"]
+[connection signal="songUpdate" from="AudioStreamPlayer" to="Conductor" method="_onSongUpdate"]
+[connection signal="btn1" from="Input" to="Judge" method="_onBTN_1"]
+[connection signal="btn2" from="Input" to="Judge" method="_onBTN_2"]
+[connection signal="btn3" from="Input" to="Judge" method="_onBTN_3"]
+[connection signal="btn4" from="Input" to="Judge" method="_onBTN_4"]
+[connection signal="btnFX" from="Input" to="Judge" method="_onBTN_FX"]
+[connection signal="testButton" from="Input" to="AudioStreamPlayer" method="_onTestButton"]
 [connection signal="rhythmUpdate" from="Conductor" to="Judge" method="_onRhythmUpdate"]

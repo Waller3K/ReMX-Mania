@@ -56,9 +56,9 @@ func load(path: String) -> bool:
 	
 	# Sets the chart variables using the JSON chart data
 	
-	bpm 			= chartData["Metadata"]["BPM"]
+	bpm 				= chartData["Metadata"]["BPM"]
 	songPath 		= chartData["Metadata"]["path"]
-	songName		= chartData["Metadata"]["name"]
+	songName			= chartData["Metadata"]["name"]
 	songArtist		= chartData["Metadata"]["artist"]
 	charter			= chartData["Metadata"]["charter"]
 	difficulty		= chartData["Metadata"]["difficulty"]

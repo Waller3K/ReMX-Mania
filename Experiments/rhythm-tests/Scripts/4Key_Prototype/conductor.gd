@@ -5,7 +5,7 @@ var songSPB: float # The seconds per beat of the song
 var songMSPB: float # The milliseconds per beat of the song
 var songPosInBeats: float
 
-signal rhythmUpdate(timeStampInBeats: float)
+signal rhythmUpdate(timeStampInBeats: float, secondsPerBeat: float)
 
 func _onChartCreation(chart):
 	bpm = chart.bpm
@@ -14,4 +14,4 @@ func _onChartCreation(chart):
 
 func _onSongUpdate(timeStamp):
 	songPosInBeats = timeStamp / songSPB
-	rhythmUpdate.emit(songPosInBeats)
+	rhythmUpdate.emit(songPosInBeats, songSPB)
