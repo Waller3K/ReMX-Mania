@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://shine1hjcssr"
+path="res://.godot/imported/Track 2.ogg-3a084bf2ba8e156fa0b30ebb2c2d13bc.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Sink_to_a_Deep_Sea_World/Track 2.ogg"
+dest_files=["res://.godot/imported/Track 2.ogg-3a084bf2ba8e156fa0b30ebb2c2d13bc.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

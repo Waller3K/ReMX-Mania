@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://cu7fsegneydwy"]
 
+[ext_resource type="Script" uid="uid://umj8ntdvt62x" path="res://Scripts/4Key_Prototype/globalEnums.gd" id="1_c2nwg"]
 [ext_resource type="Script" uid="uid://ggs1c0rly15e" path="res://Scripts/4Key_Prototype/composer.gd" id="1_jjbr5"]
 [ext_resource type="Script" uid="uid://c6pcw2jnnj4d6" path="res://Scripts/4Key_Prototype/audio.gd" id="2_wd6nd"]
 [ext_resource type="Script" uid="uid://buy7vjumb168" path="res://Scripts/4Key_Prototype/input.gd" id="3_hgpwj"]
 [ext_resource type="Script" uid="uid://dptmbr5dbvj1" path="res://Scripts/4Key_Prototype/conductor.gd" id="4_8fqod"]
 [ext_resource type="Script" uid="uid://xg6f6xhxb344" path="res://Scripts/4Key_Prototype/judge.gd" id="5_75w05"]
+[ext_resource type="Script" uid="uid://crjc8ar4h20cd" path="res://Scripts/4Key_Prototype/gameManager.gd" id="7_nkauc"]
+[ext_resource type="Texture2D" uid="uid://hhh88k0ah4ht" path="res://Assets/Sprites/icon.svg" id="8_g4dpr"]
+[ext_resource type="Script" uid="uid://dmysu5m6ub541" path="res://Scripts/4Key_Prototype/gameObjects/judementLine.gd" id="9_n46i8"]
 
 [node name="4KeyPrototype" type="Node2D" unique_id=1665818793]
+script = ExtResource("1_c2nwg")
 
 [node name="Composer" type="Node" parent="." unique_id=577367256]
 script = ExtResource("1_jjbr5")
@@ -23,15 +28,31 @@ script = ExtResource("4_8fqod")
 [node name="Judge" type="Node" parent="." unique_id=1704462345]
 script = ExtResource("5_75w05")
 
+[node name="GameManager" type="Node" parent="." unique_id=202422349]
+script = ExtResource("7_nkauc")
+
+[node name="JudgementLine" type="Sprite2D" parent="." unique_id=266882042]
+scale = Vector2(10, 1)
+texture = ExtResource("8_g4dpr")
+script = ExtResource("9_n46i8")
+
 [connection signal="chartCreated" from="Composer" to="AudioStreamPlayer" method="_onChartCreation"]
 [connection signal="chartCreated" from="Composer" to="Conductor" method="_onChartCreation"]
 [connection signal="chartCreated" from="Composer" to="Judge" method="_onChartCreation"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_onFinished"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Conductor" method="_onSongUpdate"]
+[connection signal="songUpdate" from="AudioStreamPlayer" to="Judge" method="_onSongUpdate"]
 [connection signal="btn1" from="Input" to="Judge" method="_onBTN_1"]
 [connection signal="btn2" from="Input" to="Judge" method="_onBTN_2"]
 [connection signal="btn3" from="Input" to="Judge" method="_onBTN_3"]
 [connection signal="btn4" from="Input" to="Judge" method="_onBTN_4"]
 [connection signal="btnFX" from="Input" to="Judge" method="_onBTN_FX"]
 [connection signal="testButton" from="Input" to="AudioStreamPlayer" method="_onTestButton"]
-[connection signal="rhythmUpdate" from="Conductor" to="Judge" method="_onRhythmUpdate"]
+[connection signal="goodEarly" from="Judge" to="GameManager" method="_onGoodEarly"]
+[connection signal="goodLate" from="Judge" to="GameManager" method="_onGoodLate"]
+[connection signal="miss" from="Judge" to="GameManager" method="_onMiss"]
+[connection signal="okEarly" from="Judge" to="GameManager" method="_onOkEarly"]
+[connection signal="okLate" from="Judge" to="GameManager" method="_onOkLate"]
+[connection signal="perfect" from="Judge" to="GameManager" method="_onPerfect"]
+[connection signal="perfectEarly" from="Judge" to="GameManager" method="_onPerfectEarly"]
+[connection signal="perfectLate" from="Judge" to="GameManager" method="_onPerfectLate"]

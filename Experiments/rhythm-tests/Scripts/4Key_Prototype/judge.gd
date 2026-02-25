@@ -17,8 +17,8 @@ signal miss(trackIndex: int) # The miss signal is the only one that won't have a
 
 var noteData: Dictionary
 
-var songSPB: float #Song seconds per beat
-var songPosInBeats: float
+#var songSPB: float #Song seconds per beat
+var songPos: float
 
 #Iterators for each track
 var track1NextNoteIndex = 0
@@ -65,15 +65,15 @@ var okTiming: float				= 200.00
 # Helper function that converts a timestamp 
 # in beats to a timestamp seconds
 #############################################
-func beatToSeconds(beat: float) -> float:
-	return beat * songSPB
+#func beatToSeconds(beat: float) -> float:
+	#return beat * songSPB
 
 #############################################
 # Helper function that converts a timestamp
 # in seconds to a timestamp in beats
 #############################################
-func secondsToBeat(seconds: float) -> float:
-	return seconds / songSPB
+#func secondsToBeat(seconds: float) -> float:
+	#return seconds / songSPB
 
 #############################################
 # The functionality of this component would 
@@ -82,11 +82,11 @@ func secondsToBeat(seconds: float) -> float:
 # rhythmUpdate() signal
 #############################################
 
-func _onRhythmUpdate(timeStampInBeats, secondsPerBeat):
-	songSPB = secondsPerBeat
-	songPosInBeats = timeStampInBeats
+func _onSongUpdate(timeStamp):
+	#songSPB = secondsPerBeat
+	songPos = timeStamp
 	
-	updateNextNote(timeStampInBeats)
+	updateNextNote(timeStamp)
 	
 	#############################################
 	# If the note is not hit before the end of the
@@ -94,73 +94,78 @@ func _onRhythmUpdate(timeStampInBeats, secondsPerBeat):
 	# miss signal
 	# TODO: Clean up this section its kinda ugly
 	#############################################
+	
 	if track1LastNoteIndex < 0:
 		if track1NextNoteIndex > 1:
 			track1LastNoteIndex+=1
-	elif timeStampInBeats > noteData.track1[track1LastNoteIndex]["Pos"] + secondsToBeat(okTiming/1000) :
+	
+	elif timeStamp > noteData.track1[track1LastNoteIndex]["Pos"] + okTiming/1000 :
 		if track1LastNoteHit == false :
 			if not track1Ended:
-				print("Miss! Track 1")
 				miss.emit(GE.inputEnum.TRACK1)
 				track1LastNoteIndex+=1
 	
 	if track2LastNoteIndex < 0:
 		if track2NextNoteIndex > 1:
 			track2LastNoteIndex+=1
-	elif timeStampInBeats > noteData.track2[track2LastNoteIndex]["Pos"] + secondsToBeat(okTiming/1000):
+	elif timeStamp > noteData.track2[track2LastNoteIndex]["Pos"] + okTiming/1000:
 		if track2LastNoteHit == false :
 			if not track2Ended :
-				print("Miss! Track 2")
 				miss.emit(GE.inputEnum.TRACK2)
 				track2LastNoteIndex+=1
 	
 	if track3LastNoteIndex < 0:
 		if track3NextNoteIndex > 1:
 			track3LastNoteIndex+=1
-	elif timeStampInBeats > noteData.track3[track3LastNoteIndex]["Pos"] + secondsToBeat(okTiming/1000):
+	elif timeStamp > noteData.track3[track3LastNoteIndex]["Pos"] + okTiming/1000:
 		if track3LastNoteHit == false :
 			if not track3Ended :
-				print("Miss! Track 3")
 				miss.emit(GE.inputEnum.TRACK3)
 				track3LastNoteIndex+=1
 	
 	if track4LastNoteIndex < 0:
 		if track4NextNoteIndex > 1:
 			track4LastNoteIndex+=1
-	elif timeStampInBeats > noteData.track4[track4LastNoteIndex]["Pos"] + secondsToBeat(okTiming/1000):
+	elif timeStamp > noteData.track4[track4LastNoteIndex]["Pos"] + okTiming/1000:
 		if track4LastNoteHit == false :
 			if not track4Ended :
-				print("Miss! Track 4")
 				miss.emit(GE.inputEnum.TRACK4)
 				track4LastNoteIndex+=1
-	
-	
+
 #############################################
 # Updates the next note index when we pass
 # a note and sets the variables for ending the 
 # tracks
 #############################################
-func updateNextNote(timeStampInBeats: float) -> void:
+func updateNextNote(timeStamp: float) -> void:
 	# Track 1
-	if timeStampInBeats >= noteData.track1[track1NextNoteIndex]["Pos"]:
+	if noteData.track1.is_empty():
+		track1Ended = true;
+	elif timeStamp >= noteData.track1[track1NextNoteIndex]["Pos"]:
 		if track1NextNoteIndex + 1 < noteData.track1.size():
 			track1NextNoteIndex += 1
 		else:
 			track1Ended = true
 	# Track 2
-	if timeStampInBeats >= noteData.track2[track2NextNoteIndex]["Pos"]:
+	if noteData.track2.is_empty():
+		track2Ended = true;
+	elif timeStamp >= noteData.track2[track2NextNoteIndex]["Pos"]:
 		if track2NextNoteIndex + 1 < noteData.track2.size():
 			track2NextNoteIndex += 1
 		else:
 			track2Ended = true
 	# Track 3
-	if timeStampInBeats >= noteData.track3[track3NextNoteIndex]["Pos"]:
+	if noteData.track3.is_empty():
+		track3Ended = true;
+	elif timeStamp >= noteData.track3[track3NextNoteIndex]["Pos"]:
 		if track3NextNoteIndex + 1 < noteData.track3.size():
 			track3NextNoteIndex += 1
 		else:
 			track3Ended = true
 	# Track 4
-	if timeStampInBeats >= noteData.track4[track4NextNoteIndex]["Pos"]:
+	if noteData.track4.is_empty():
+		track4Ended = true;
+	elif timeStamp >= noteData.track4[track4NextNoteIndex]["Pos"]:
 		if track4NextNoteIndex + 1 < noteData.track4.size():
 			track4NextNoteIndex += 1
 		else:
@@ -209,41 +214,51 @@ func judge(inputIndex: int) -> void:
 			nextNoteIndex = 0 # TODO: Change later for FX button note array
 			track = noteData.trackFX
 	
+	if track.is_empty():
+		return
+	
+	if nextNoteIndex == track.size() - 1:
+		return
+	
 	#############################################
 	# Checks to see if this is an early hit.
 	#############################################
-	if songPosInBeats >= track[nextNoteIndex]["Pos"] - secondsToBeat(perfectTiming/1000) : #Divided by 1000 to convert from ms to sec	
+	if songPos >= track[nextNoteIndex]["Pos"] - perfectTiming/1000 : #Divided by 1000 to convert from ms to sec	
 		if input == true: #If the key is currently being held down
 			#############################################
 			# This line emits the perfect signal and with
 			# it how far off from the next note's 
 			# timestamp the input occured
 			#############################################
-			perfect.emit(songPosInBeats - track[nextNoteIndex]["Pos"], inputIndex)
-	elif songPosInBeats >= track[nextNoteIndex]["Pos"] - secondsToBeat(almostPerfectTiming/1000) :
+			perfect.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			nextNoteIndex += 1
+	elif songPos >= track[nextNoteIndex]["Pos"] - almostPerfectTiming/1000 :
 		if input == true: #If the key is currently being held down
 			#############################################
 			# This line emits the perfect signal and with
 			# it how far off from the next note's 
 			# timestamp the input occured
 			#############################################
-			perfectEarly.emit(songPosInBeats - track[nextNoteIndex]["Pos"], inputIndex)
-	elif songPosInBeats >= track[nextNoteIndex]["Pos"] - secondsToBeat(goodTiming/1000) :
+			perfectEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			nextNoteIndex += 1
+	elif songPos >= track[nextNoteIndex]["Pos"] - goodTiming/1000 :
 		if input == true: #If the key is currently being held down
 			#############################################
 			# This line emits the perfect signal and with
 			# it how far off from the next note's 
 			# timestamp the input occured
 			#############################################
-			goodEarly.emit(songPosInBeats - track[nextNoteIndex]["Pos"], inputIndex)
-	elif songPosInBeats >= track[nextNoteIndex]["Pos"] - secondsToBeat(okTiming/1000) :
+			goodEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			nextNoteIndex += 1
+	elif songPos >= track[nextNoteIndex]["Pos"] - okTiming/1000 :
 		if input == true: #If the key is currently being held down
 			#############################################
 			# This line emits the perfect signal and with
 			# it how far off from the next note's 
 			# timestamp the input occured
 			#############################################
-			okEarly.emit(songPosInBeats - track[nextNoteIndex]["Pos"], inputIndex)
+			okEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			nextNoteIndex += 1
 	
 	#############################################
 	# Checks to see if this is a late hit. 
@@ -251,8 +266,49 @@ func judge(inputIndex: int) -> void:
 	# prioritized over an on time hit of a nearby
 	# next note!
 	#############################################
-	if nextNoteIndex - 1 >= 0:
-		pass
+	if nextNoteIndex - 1 < 0:
+		return
+	
+	var lastNoteIndex = nextNoteIndex - 1
+	
+	if songPos >= track[lastNoteIndex]["Pos"] + perfectTiming/1000 : #Divided by 1000 to convert from ms to sec	
+		if input == true: #If the key is currently being held down
+			#############################################
+			# This line emits the perfect signal and with
+			# it how far off from the next note's 
+			# timestamp the input occured
+			#############################################
+			perfect.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			lastNoteIndex += 1
+	elif songPos >= track[lastNoteIndex]["Pos"] + almostPerfectTiming/1000 :
+		if input == true: #If the key is currently being held down
+			#############################################
+			# This line emits the perfect signal and with
+			# it how far off from the next note's 
+			# timestamp the input occured
+			#############################################
+			perfectLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			lastNoteIndex += 1
+	elif songPos >= track[lastNoteIndex]["Pos"] + goodTiming/1000 :
+		if input == true: #If the key is currently being held down
+			#############################################
+			# This line emits the perfect signal and with
+			# it how far off from the next note's 
+			# timestamp the input occured
+			#############################################
+			goodLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			lastNoteIndex += 1
+	elif songPos >= track[lastNoteIndex]["Pos"] + okTiming/1000 :
+		if input == true: #If the key is currently being held down
+			#############################################
+			# This line emits the perfect signal and with
+			# it how far off from the next note's 
+			# timestamp the input occured
+			#############################################
+			okLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			lastNoteIndex += 1
+	
+	
 	
 	
 	

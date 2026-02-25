@@ -15,7 +15,7 @@ signal btn4(isDown: bool)
 signal btnFX(isDown: bool)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("mainButton"):
+	if event.is_action_pressed("testButton"):
 		testButton.emit()
 	elif event.is_action_pressed("Track 1"):
 		btn1.emit(true)

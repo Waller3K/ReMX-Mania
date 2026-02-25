@@ -13,5 +13,6 @@ func _onChartCreation(chart):
 	songMSPB = 60 / bpm * 1000
 
 func _onSongUpdate(timeStamp):
-	songPosInBeats = timeStamp / songSPB
+	#songPosInBeats = timeStamp / songSPB
 	rhythmUpdate.emit(songPosInBeats, songSPB)
+	pass
