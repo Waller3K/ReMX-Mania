@@ -61,19 +61,6 @@ var perfectTiming: float			= 16.67
 var almostPerfectTiming: float	= 33.00
 var goodTiming: float			= 92.00
 var okTiming: float				= 200.00
-#############################################
-# Helper function that converts a timestamp 
-# in beats to a timestamp seconds
-#############################################
-#func beatToSeconds(beat: float) -> float:
-	#return beat * songSPB
-
-#############################################
-# Helper function that converts a timestamp
-# in seconds to a timestamp in beats
-#############################################
-#func secondsToBeat(seconds: float) -> float:
-	#return seconds / songSPB
 
 #############################################
 # The functionality of this component would 

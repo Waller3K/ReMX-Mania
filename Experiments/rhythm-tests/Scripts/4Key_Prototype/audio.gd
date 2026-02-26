@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 		songUpdate.emit(songPos)
 
 
-func _onTestButton() -> void:
+func _onSongStart() -> void:
 	musicPlayer.play()
 	isPlaying = true
 

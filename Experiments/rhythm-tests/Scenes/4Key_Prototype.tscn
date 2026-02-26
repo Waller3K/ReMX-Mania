@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dptmbr5dbvj1" path="res://Scripts/4Key_Prototype/conductor.gd" id="4_8fqod"]
 [ext_resource type="Script" uid="uid://xg6f6xhxb344" path="res://Scripts/4Key_Prototype/judge.gd" id="5_75w05"]
 [ext_resource type="Script" uid="uid://crjc8ar4h20cd" path="res://Scripts/4Key_Prototype/gameManager.gd" id="7_nkauc"]
-[ext_resource type="Texture2D" uid="uid://hhh88k0ah4ht" path="res://Assets/Sprites/icon.svg" id="8_g4dpr"]
+[ext_resource type="Script" uid="uid://cwjwy4pyay6ej" path="res://Scripts/4Key_Prototype/noteManager.gd" id="9_g4dpr"]
 [ext_resource type="Script" uid="uid://dmysu5m6ub541" path="res://Scripts/4Key_Prototype/gameObjects/judementLine.gd" id="9_n46i8"]
 
 [node name="4KeyPrototype" type="Node2D" unique_id=1665818793]
@@ -31,14 +31,24 @@ script = ExtResource("5_75w05")
 [node name="GameManager" type="Node" parent="." unique_id=202422349]
 script = ExtResource("7_nkauc")
 
-[node name="JudgementLine" type="Sprite2D" parent="." unique_id=266882042]
+[node name="MetronomePlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1731606645]
+
+[node name="JudgementLine" type="ColorRect" parent="." unique_id=1450108197]
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 10.0
 scale = Vector2(10, 1)
-texture = ExtResource("8_g4dpr")
+color = Color(0, 0, 0, 1)
 script = ExtResource("9_n46i8")
+
+[node name="NoteManager" type="Node" parent="." unique_id=1799345126]
+script = ExtResource("9_g4dpr")
 
 [connection signal="chartCreated" from="Composer" to="AudioStreamPlayer" method="_onChartCreation"]
 [connection signal="chartCreated" from="Composer" to="Conductor" method="_onChartCreation"]
 [connection signal="chartCreated" from="Composer" to="Judge" method="_onChartCreation"]
+[connection signal="chartCreated" from="Composer" to="GameManager" method="_onChartCreation"]
+[connection signal="chartCreated" from="Composer" to="NoteManager" method="_onChartCreation"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_onFinished"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Conductor" method="_onSongUpdate"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Judge" method="_onSongUpdate"]
@@ -56,3 +66,4 @@ script = ExtResource("9_n46i8")
 [connection signal="perfect" from="Judge" to="GameManager" method="_onPerfect"]
 [connection signal="perfectEarly" from="Judge" to="GameManager" method="_onPerfectEarly"]
 [connection signal="perfectLate" from="Judge" to="GameManager" method="_onPerfectLate"]
+[connection signal="startSong" from="GameManager" to="AudioStreamPlayer" method="_onSongStart"]
