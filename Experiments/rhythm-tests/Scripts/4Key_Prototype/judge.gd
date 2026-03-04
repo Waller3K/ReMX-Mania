@@ -126,6 +126,7 @@ func updateNextNote(timeStamp: float) -> void:
 	elif timeStamp >= noteData.track1[track1NextNoteIndex]["Pos"]:
 		if track1NextNoteIndex + 1 < noteData.track1.size():
 			track1NextNoteIndex += 1
+			track1LastNoteIndex += 1
 		else:
 			track1Ended = true
 	# Track 2
@@ -134,6 +135,7 @@ func updateNextNote(timeStamp: float) -> void:
 	elif timeStamp >= noteData.track2[track2NextNoteIndex]["Pos"]:
 		if track2NextNoteIndex + 1 < noteData.track2.size():
 			track2NextNoteIndex += 1
+			track2LastNoteIndex += 1
 		else:
 			track2Ended = true
 	# Track 3
@@ -142,6 +144,7 @@ func updateNextNote(timeStamp: float) -> void:
 	elif timeStamp >= noteData.track3[track3NextNoteIndex]["Pos"]:
 		if track3NextNoteIndex + 1 < noteData.track3.size():
 			track3NextNoteIndex += 1
+			track3LastNoteIndex += 1
 		else:
 			track3Ended = true
 	# Track 4
@@ -150,6 +153,7 @@ func updateNextNote(timeStamp: float) -> void:
 	elif timeStamp >= noteData.track4[track4NextNoteIndex]["Pos"]:
 		if track4NextNoteIndex + 1 < noteData.track4.size():
 			track4NextNoteIndex += 1
+			track4LastNoteIndex += 1
 		else:
 			track4Ended = true
 

@@ -14,6 +14,9 @@ signal btn4(isDown: bool)
 # FX button signal
 signal btnFX(isDown: bool)
 
+func _ready() -> void:
+	Input.use_accumulated_input = false
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("testButton"):
 		testButton.emit()
