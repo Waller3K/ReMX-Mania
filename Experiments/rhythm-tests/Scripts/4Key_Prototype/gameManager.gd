@@ -24,31 +24,39 @@ func _onChartCreation(chart: Chart) -> void:
 
 func _onGoodEarly(offset, trackIndex):
 	print("Good Early! " + str(offset))
+	pass
 
 
 func _onGoodLate(offset, trackIndex):
 	print("Good Late! " + str(offset))
+	pass
 
 
 func _onMiss(trackIndex):
 	print("Miss!") # Replace with function body.
+	pass
 
 
 func _onOkEarly(offset, trackIndex):
 	print("OK Early! " + str(offset)) # Replace with function body.
+	pass
 
 
 func _onOkLate(offset, trackIndex):
 	print("OK Late! " + str(offset))
+	pass
 
 
 func _onPerfect(offset, trackIndex):
 	print("Perfect! " + str(offset))
+	pass
 
 
 func _onPerfectEarly(offset, trackIndex):
 	print("Perfect Early! " + str(offset))
+	pass
 
 
 func _onPerfectLate(offset, trackIndex):
 	print("Perfect Late! " + str(offset))
+	pass

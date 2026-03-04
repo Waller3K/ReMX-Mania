@@ -71,6 +71,20 @@ func load(path: String) -> bool:
 	notes.track3 	= chartData["Notes"]["Track 3"]
 	notes.track4 	= chartData["Notes"]["Track 4"]
 	
+	# Adds a has been hit bool to each note on each track
+	
+	for note in notes.track1:
+		note.set("beenHit", false)
+	
+	for note in notes.track2:
+		note.set("beenHit", false)
+	
+	for note in notes.track3:
+		note.set("beenHit", false)
+	
+	for note in notes.track4:
+		note.set("beenHit", false)
+	
 	print("Chart loaded successfully")
 	
 	return true

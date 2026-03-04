@@ -33,16 +33,6 @@ var track3LastNoteIndex = -1
 var track4NextNoteIndex = 0
 var track4LastNoteIndex = -1
 
-#############################################
-# Note Hit bools:
-# These are made true when the previous note
-# wasn't missed.
-#############################################
-var track1LastNoteHit = false
-var track2LastNoteHit = false
-var track3LastNoteHit = false
-var track4LastNoteHit = false
-
 #Track ended booleans
 var track1Ended = false
 var track2Ended = false
@@ -75,6 +65,8 @@ func _onSongUpdate(timeStamp):
 	
 	updateNextNote(timeStamp)
 	
+	#print("Track 1, Note : " + str(track1LastNoteIndex) + " " + str(noteData.track1[track1LastNoteIndex]["beenHit"]));
+	
 	#############################################
 	# If the note is not hit before the end of the
 	# note's timing window the funciton emits the
@@ -85,39 +77,42 @@ func _onSongUpdate(timeStamp):
 	if track1LastNoteIndex < 0:
 		if track1NextNoteIndex > 1:
 			track1LastNoteIndex+=1
-	
 	elif timeStamp > noteData.track1[track1LastNoteIndex]["Pos"] + okTiming/1000 :
-		if track1LastNoteHit == false :
+		if noteData.track1[track1LastNoteIndex]["beenHit"] == false :
 			if not track1Ended:
 				miss.emit(GE.inputEnum.TRACK1)
-				track1LastNoteIndex+=1
+		if track1LastNoteIndex != noteData.track1.size() - 1:
+			track1LastNoteIndex+=1
 	
 	if track2LastNoteIndex < 0:
 		if track2NextNoteIndex > 1:
 			track2LastNoteIndex+=1
 	elif timeStamp > noteData.track2[track2LastNoteIndex]["Pos"] + okTiming/1000:
-		if track2LastNoteHit == false :
+		if noteData.track2[track2LastNoteIndex]["beenHit"] == false :
 			if not track2Ended :
 				miss.emit(GE.inputEnum.TRACK2)
-				track2LastNoteIndex+=1
+		if track2LastNoteIndex != noteData.track2.size() - 1:
+			track2LastNoteIndex+=1
 	
 	if track3LastNoteIndex < 0:
 		if track3NextNoteIndex > 1:
 			track3LastNoteIndex+=1
 	elif timeStamp > noteData.track3[track3LastNoteIndex]["Pos"] + okTiming/1000:
-		if track3LastNoteHit == false :
+		if noteData.track3[track3LastNoteIndex]["beenHit"] == false :
 			if not track3Ended :
 				miss.emit(GE.inputEnum.TRACK3)
-				track3LastNoteIndex+=1
+		if track3LastNoteIndex != noteData.track3.size() - 1:
+			track3LastNoteIndex+=1
 	
 	if track4LastNoteIndex < 0:
 		if track4NextNoteIndex > 1:
 			track4LastNoteIndex+=1
 	elif timeStamp > noteData.track4[track4LastNoteIndex]["Pos"] + okTiming/1000:
-		if track4LastNoteHit == false :
+		if noteData.track4[track4LastNoteIndex]["beenHit"] == false :
 			if not track4Ended :
 				miss.emit(GE.inputEnum.TRACK4)
-				track4LastNoteIndex+=1
+		if track4LastNoteIndex != noteData.track4.size() - 1:
+			track4LastNoteIndex+=1
 
 #############################################
 # Updates the next note index when we pass
@@ -159,47 +154,7 @@ func updateNextNote(timeStamp: float) -> void:
 			track4Ended = true
 
 # The main judgement logic will be done here.
-func judge(inputIndex: int) -> void:
-	var input: bool
-	var nextNoteIndex: int
-	var track: Array
-	
-	#############################################
-	# This section sets our temp input variable 
-	# to be equal to which ever button was 
-	# pressed or released to avoid having to copy
-	# paste code later in this function
-	#############################################
-	match inputIndex:
-		# BTN_1
-		GE.inputEnum.TRACK1:
-			input = BTN_1
-			nextNoteIndex = track1NextNoteIndex
-			track = noteData.track1
-		
-		#BTN_2
-		GE.inputEnum.TRACK2:
-			input = BTN_2
-			nextNoteIndex = track2NextNoteIndex
-			track = noteData.track2
-		
-		#BTN_3
-		GE.inputEnum.TRACK3:
-			input = BTN_3
-			nextNoteIndex = track3NextNoteIndex
-			track = noteData.track3
-		
-		#BTN_4
-		GE.inputEnum.TRACK4:
-			input = BTN_4
-			nextNoteIndex = track4NextNoteIndex
-			track = noteData.track4
-		
-		#BTN_FX
-		GE.inputEnum.FX_TRACK:
-			input = BTN_FX
-			nextNoteIndex = 0 # TODO: Change later for FX button note array
-			track = noteData.trackFX
+func judge(inputIndex: int,input: bool, nextNoteIndex: int, track: Array) -> void:
 	
 	if track.is_empty():
 		return
@@ -218,33 +173,22 @@ func judge(inputIndex: int) -> void:
 			# timestamp the input occured
 			#############################################
 			perfect.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			track[nextNoteIndex]["beenHit"] = true
 			nextNoteIndex += 1
 	elif songPos >= track[nextNoteIndex]["Pos"] - almostPerfectTiming/1000 :
 		if input == true: #If the key is currently being held down
-			#############################################
-			# This line emits the perfect signal and with
-			# it how far off from the next note's 
-			# timestamp the input occured
-			#############################################
 			perfectEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			track[nextNoteIndex]["beenHit"] = true
 			nextNoteIndex += 1
 	elif songPos >= track[nextNoteIndex]["Pos"] - goodTiming/1000 :
 		if input == true: #If the key is currently being held down
-			#############################################
-			# This line emits the perfect signal and with
-			# it how far off from the next note's 
-			# timestamp the input occured
-			#############################################
 			goodEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			track[nextNoteIndex]["beenHit"] = true
 			nextNoteIndex += 1
 	elif songPos >= track[nextNoteIndex]["Pos"] - okTiming/1000 :
 		if input == true: #If the key is currently being held down
-			#############################################
-			# This line emits the perfect signal and with
-			# it how far off from the next note's 
-			# timestamp the input occured
-			#############################################
 			okEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			track[nextNoteIndex]["beenHit"] = true
 			nextNoteIndex += 1
 	
 	#############################################
@@ -262,37 +206,26 @@ func judge(inputIndex: int) -> void:
 		if input == true: #If the key is currently being held down
 			#############################################
 			# This line emits the perfect signal and with
-			# it how far off from the next note's 
+			# it how far off from the last note's 
 			# timestamp the input occured
 			#############################################
 			perfect.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			track[lastNoteIndex]["beenHit"] = true
 			lastNoteIndex += 1
 	elif songPos >= track[lastNoteIndex]["Pos"] + almostPerfectTiming/1000 :
 		if input == true: #If the key is currently being held down
-			#############################################
-			# This line emits the perfect signal and with
-			# it how far off from the next note's 
-			# timestamp the input occured
-			#############################################
 			perfectLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			track[lastNoteIndex]["beenHit"] = true
 			lastNoteIndex += 1
 	elif songPos >= track[lastNoteIndex]["Pos"] + goodTiming/1000 :
 		if input == true: #If the key is currently being held down
-			#############################################
-			# This line emits the perfect signal and with
-			# it how far off from the next note's 
-			# timestamp the input occured
-			#############################################
 			goodLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			track[lastNoteIndex]["beenHit"] = true
 			lastNoteIndex += 1
 	elif songPos >= track[lastNoteIndex]["Pos"] + okTiming/1000 :
 		if input == true: #If the key is currently being held down
-			#############################################
-			# This line emits the perfect signal and with
-			# it how far off from the next note's 
-			# timestamp the input occured
-			#############################################
 			okLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			track[lastNoteIndex]["beenHit"] = true
 			lastNoteIndex += 1
 	
 	
@@ -307,24 +240,23 @@ func _onChartCreation(chart):
 # Signal functions from input component
 func _onBTN_1(isDown):
 	BTN_1 = isDown
-	judge(GE.inputEnum.TRACK1)
+	judge(GE.inputEnum.TRACK1, BTN_1, track1NextNoteIndex, noteData.track1)
 
 
 func _onBTN_2(isDown):
 	BTN_2 = isDown
-	judge(GE.inputEnum.TRACK2)
-
+	judge(GE.inputEnum.TRACK2, BTN_2, track2NextNoteIndex, noteData.track2)
 
 func _onBTN_3(isDown):
 	BTN_3 = isDown
-	judge(GE.inputEnum.TRACK3)
+	judge(GE.inputEnum.TRACK3, BTN_3, track3NextNoteIndex, noteData.track3)
 
 
 func _onBTN_4(isDown):
 	BTN_4 = isDown
-	judge(GE.inputEnum.TRACK4)
+	judge(GE.inputEnum.TRACK1, BTN_4, track4NextNoteIndex, noteData.track4)
 
 
 func _onBTN_FX(isDown):
 	BTN_FX = isDown
-	judge(GE.inputEnum.FX_TRACK)
+	#judge(GE.inputEnum.TRACK1, BTN_FX, trackFXNextNoteIndex, noteData.trackFX)
