@@ -18,6 +18,12 @@ func INIT(track: int, note: int, target: float, sOffset: float, sp: Vector2i, ju
 	judgementLinePos =  judgeLnPos
 	spawnOffset = sOffset
 
+func getTrack() -> int:
+	return trackID
+
+func getNote() -> int:
+	return noteID
+
 func _onSongUpdate(timestamp: float):
 	
 	timeTillHit =  targetTime - timestamp

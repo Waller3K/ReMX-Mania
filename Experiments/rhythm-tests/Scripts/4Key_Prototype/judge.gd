@@ -258,7 +258,7 @@ func _onBTN_3(isDown):
 
 func _onBTN_4(isDown):
 	BTN_4 = isDown
-	judge(GE.inputEnum.TRACK1, BTN_4, track4NextNoteIndex, noteData.track4)
+	judge(GE.inputEnum.TRACK4, BTN_4, track4NextNoteIndex, noteData.track4)
 
 
 func _onBTN_FX(isDown):
