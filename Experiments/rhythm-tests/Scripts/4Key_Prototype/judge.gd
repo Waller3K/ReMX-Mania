@@ -6,14 +6,14 @@ extends Node
 # they are "offset"
 #############################################
 
-signal okEarly(offset: float, trackIndex: int)
-signal goodEarly(offset: float, trackIndex: int)
-signal perfectEarly(offset: float, trackIndex: int)
-signal perfect(offset: float, trackIndex: int)
-signal perfectLate(offset: float, trackIndex: int)
-signal goodLate(offset: float, trackIndex: int)
-signal okLate(offset: float, trackIndex: int)
-signal miss(trackIndex: int) # The miss signal is the only one that won't have an offset
+signal okEarly(offset: float, trackIndex: int, noteIndex: int)
+signal goodEarly(offset: float, trackIndex: int, noteIndex: int)
+signal perfectEarly(offset: float, trackIndex: int, noteIndex: int)
+signal perfect(offset: float, trackIndex: int, noteIndex: int)
+signal perfectLate(offset: float, trackIndex: int, noteIndex: int)
+signal goodLate(offset: float, trackIndex: int, noteIndex: int)
+signal okLate(offset: float, trackIndex: int, noteIndex: int)
+signal miss(trackIndex: int, noteIndex: int) # The miss signal is the only one that won't have an offset
 
 var noteData: Dictionary
 
@@ -80,7 +80,7 @@ func _onSongUpdate(timeStamp):
 	elif timeStamp > noteData.track1[track1LastNoteIndex]["Pos"] + okTiming/1000 :
 		if noteData.track1[track1LastNoteIndex]["beenHit"] == false :
 			if not track1Ended:
-				miss.emit(GE.inputEnum.TRACK1)
+				miss.emit(GE.inputEnum.TRACK1, track1LastNoteIndex)
 		if track1LastNoteIndex != noteData.track1.size() - 1:
 			track1LastNoteIndex+=1
 	
@@ -90,7 +90,7 @@ func _onSongUpdate(timeStamp):
 	elif timeStamp > noteData.track2[track2LastNoteIndex]["Pos"] + okTiming/1000:
 		if noteData.track2[track2LastNoteIndex]["beenHit"] == false :
 			if not track2Ended :
-				miss.emit(GE.inputEnum.TRACK2)
+				miss.emit(GE.inputEnum.TRACK2, track2LastNoteIndex)
 		if track2LastNoteIndex != noteData.track2.size() - 1:
 			track2LastNoteIndex+=1
 	
@@ -100,7 +100,7 @@ func _onSongUpdate(timeStamp):
 	elif timeStamp > noteData.track3[track3LastNoteIndex]["Pos"] + okTiming/1000:
 		if noteData.track3[track3LastNoteIndex]["beenHit"] == false :
 			if not track3Ended :
-				miss.emit(GE.inputEnum.TRACK3)
+				miss.emit(GE.inputEnum.TRACK3, track3LastNoteIndex)
 		if track3LastNoteIndex != noteData.track3.size() - 1:
 			track3LastNoteIndex+=1
 	
@@ -110,7 +110,7 @@ func _onSongUpdate(timeStamp):
 	elif timeStamp > noteData.track4[track4LastNoteIndex]["Pos"] + okTiming/1000:
 		if noteData.track4[track4LastNoteIndex]["beenHit"] == false :
 			if not track4Ended :
-				miss.emit(GE.inputEnum.TRACK4)
+				miss.emit(GE.inputEnum.TRACK4, track4LastNoteIndex)
 		if track4LastNoteIndex != noteData.track4.size() - 1:
 			track4LastNoteIndex+=1
 
@@ -176,22 +176,22 @@ func judge(inputIndex: int,input: bool, nextNoteIndex: int, track: Array) -> voi
 			# it how far off from the next note's 
 			# timestamp the input occured
 			#############################################
-			perfect.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			perfect.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex, nextNoteIndex)
 			track[nextNoteIndex]["beenHit"] = true
 			nextNoteIndex += 1
 	elif songPos >= track[nextNoteIndex]["Pos"] - almostPerfectTiming/1000 :
 		if input == true: #If the key is currently being held down
-			perfectEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			perfectEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex, nextNoteIndex)
 			track[nextNoteIndex]["beenHit"] = true
 			nextNoteIndex += 1
 	elif songPos >= track[nextNoteIndex]["Pos"] - goodTiming/1000 :
 		if input == true: #If the key is currently being held down
-			goodEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			goodEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex, nextNoteIndex)
 			track[nextNoteIndex]["beenHit"] = true
 			nextNoteIndex += 1
 	elif songPos >= track[nextNoteIndex]["Pos"] - okTiming/1000 :
 		if input == true: #If the key is currently being held down
-			okEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex)
+			okEarly.emit(songPos - track[nextNoteIndex]["Pos"], inputIndex, nextNoteIndex)
 			track[nextNoteIndex]["beenHit"] = true
 			nextNoteIndex += 1
 	
@@ -213,22 +213,22 @@ func judge(inputIndex: int,input: bool, nextNoteIndex: int, track: Array) -> voi
 			# it how far off from the last note's 
 			# timestamp the input occured
 			#############################################
-			perfect.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			perfect.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex, nextNoteIndex)
 			track[lastNoteIndex]["beenHit"] = true
 			lastNoteIndex += 1
 	elif songPos >= track[lastNoteIndex]["Pos"] + almostPerfectTiming/1000 :
 		if input == true: #If the key is currently being held down
-			perfectLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			perfectLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex, nextNoteIndex)
 			track[lastNoteIndex]["beenHit"] = true
 			lastNoteIndex += 1
 	elif songPos >= track[lastNoteIndex]["Pos"] + goodTiming/1000 :
 		if input == true: #If the key is currently being held down
-			goodLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			goodLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex, nextNoteIndex)
 			track[lastNoteIndex]["beenHit"] = true
 			lastNoteIndex += 1
 	elif songPos >= track[lastNoteIndex]["Pos"] + okTiming/1000 :
 		if input == true: #If the key is currently being held down
-			okLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex)
+			okLate.emit(songPos - track[lastNoteIndex]["Pos"], inputIndex, nextNoteIndex)
 			track[lastNoteIndex]["beenHit"] = true
 			lastNoteIndex += 1
 	

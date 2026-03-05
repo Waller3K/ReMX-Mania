@@ -9,7 +9,7 @@ var timeTillHit: float
 var t: float #Weight for lerping the note's position
 var spawnOffset: float
 
-func INI(track: int, note: int, target: float, sOffset: float, sp: Vector2i, judgeLnPos: Vector2i) -> void:
+func INIT(track: int, note: int, target: float, sOffset: float, sp: Vector2i, judgeLnPos: Vector2i) -> void:
 	targetTime = target
 	trackID = track
 	noteID = note

@@ -18,24 +18,27 @@ func _onChartCreation(chart: Chart) -> void:
 	# Preload the first bit of the map
 	for i in range(noteData.track1.size()):
 		var newNote = noteScene.instantiate()
-		newNote.INIT(noteData.track1[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 - 150 * 2), -100), $"../JudgementLine".position)
+		newNote.INIT(0, i, noteData.track1[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 - 150 * 2), -100), $"../JudgementLine".position)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
 		add_child(newNote)
 	
 	for i in range(noteData.track2.size()):
 		var newNote = noteScene.instantiate()
-		newNote.INIT(noteData.track2[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 - 150), -100), $"../JudgementLine".position)
+		newNote.INIT(1, i, noteData.track2[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 - 150), -100), $"../JudgementLine".position)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
 		add_child(newNote)
 	
 	for i in range(noteData.track3.size()):
 		var newNote = noteScene.instantiate()
-		newNote.INIT(noteData.track3[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 + 150), -100), $"../JudgementLine".position)
+		newNote.INIT(2, i, noteData.track3[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 + 150), -100), $"../JudgementLine".position)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
 		add_child(newNote)
 	
 	for i in range(noteData.track4.size()):
 		var newNote = noteScene.instantiate()
-		newNote.INIT(noteData.track4[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 + 150 * 2), -100), $"../JudgementLine".position)
+		newNote.INIT(3, i, noteData.track4[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 + 150 * 2), -100), $"../JudgementLine".position)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
 		add_child(newNote)
+
+func _onNoteHit(track, note):
+	pass # Replace with function body.

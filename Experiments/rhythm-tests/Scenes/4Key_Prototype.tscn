@@ -66,4 +66,5 @@ script = ExtResource("9_g4dpr")
 [connection signal="perfect" from="Judge" to="GameManager" method="_onPerfect"]
 [connection signal="perfectEarly" from="Judge" to="GameManager" method="_onPerfectEarly"]
 [connection signal="perfectLate" from="Judge" to="GameManager" method="_onPerfectLate"]
+[connection signal="noteHit" from="GameManager" to="NoteManager" method="_onNoteHit"]
 [connection signal="startSong" from="GameManager" to="AudioStreamPlayer" method="_onSongStart"]

@@ -2,6 +2,8 @@ extends Node
 
 signal startSong
 
+signal noteHit(track: int, note: int)
+
 #################################################
 # When the chart is created this function plays 
 # a metronome for 4 beats before starting the song
@@ -22,41 +24,49 @@ func _onChartCreation(chart: Chart) -> void:
 	startSong.emit()
 	
 
-func _onGoodEarly(offset, trackIndex):
+func _onGoodEarly(offset, trackIndex, noteIndex):
 	print("Good Early! " + str(offset))
+	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
-func _onGoodLate(offset, trackIndex):
+func _onGoodLate(offset, trackIndex, noteIndex):
 	print("Good Late! " + str(offset))
+	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
-func _onMiss(trackIndex):
+func _onMiss(trackIndex, noteIndex):
 	print("Miss!") # Replace with function body.
+	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
-func _onOkEarly(offset, trackIndex):
+func _onOkEarly(offset, trackIndex, noteIndex):
 	print("OK Early! " + str(offset)) # Replace with function body.
+	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
-func _onOkLate(offset, trackIndex):
+func _onOkLate(offset, trackIndex, noteIndex):
 	print("OK Late! " + str(offset))
+	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
-func _onPerfect(offset, trackIndex):
+func _onPerfect(offset, trackIndex, noteIndex):
 	print("Perfect! " + str(offset))
+	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
-func _onPerfectEarly(offset, trackIndex):
+func _onPerfectEarly(offset, trackIndex, noteIndex):
 	print("Perfect Early! " + str(offset))
+	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
-func _onPerfectLate(offset, trackIndex):
+func _onPerfectLate(offset, trackIndex, noteIndex):
 	print("Perfect Late! " + str(offset))
+	noteHit.emit(trackIndex, noteIndex)
 	pass
