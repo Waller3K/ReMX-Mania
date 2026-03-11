@@ -38,10 +38,9 @@ func _process(_delta: float) -> void:
 		songUpdate.emit(songPos)
 
 
-func _onSongStart() -> void:
+func _onSongStart(_songStartTime: float) -> void:
 	musicPlayer.play()
 	isPlaying = true
-
 
 func _onFinished():
 	isPlaying = false

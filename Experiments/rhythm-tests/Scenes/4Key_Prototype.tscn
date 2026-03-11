@@ -50,6 +50,7 @@ script = ExtResource("9_g4dpr")
 [connection signal="chartCreated" from="Composer" to="GameManager" method="_onChartCreation"]
 [connection signal="chartCreated" from="Composer" to="NoteManager" method="_onChartCreation"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_onFinished"]
+[connection signal="songUpdate" from="AudioStreamPlayer" to="Input" method="_onSongUpdate"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Conductor" method="_onSongUpdate"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Judge" method="_onSongUpdate"]
 [connection signal="btn1" from="Input" to="Judge" method="_onBTN_1"]
