@@ -25,48 +25,48 @@ func _onChartCreation(chart: Chart) -> void:
 	
 
 func _onGoodEarly(offset, trackIndex, noteIndex):
-	#print("Good Early! " + str(offset))
+	print("Good Early! " + str(offset))
 	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
 func _onGoodLate(offset, trackIndex, noteIndex):
-	#print("Good Late! " + str(offset))
+	print("Good Late! " + str(offset))
 	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
 func _onMiss(trackIndex, noteIndex):
-	#print("Miss!") # Replace with function body.
+	print("Miss!") # Replace with function body.
 	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
 func _onOkEarly(offset, trackIndex, noteIndex):
-	#print("OK Early! " + str(offset)) # Replace with function body.
+	print("OK Early! " + str(offset)) # Replace with function body.
 	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
 func _onOkLate(offset, trackIndex, noteIndex):
-	#print("OK Late! " + str(offset))
+	print("OK Late! " + str(offset))
 	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
 func _onPerfect(offset, trackIndex, noteIndex):
-	#print("Perfect! " + str(offset))
+	print("Perfect! " + str(offset))
 	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
 func _onPerfectEarly(offset, trackIndex, noteIndex):
-	#print("Perfect Early! " + str(offset))
+	print("Perfect Early! " + str(offset))
 	noteHit.emit(trackIndex, noteIndex)
 	pass
 
 
 func _onPerfectLate(offset, trackIndex, noteIndex):
-	#print("Perfect Late! " + str(offset))
+	print("Perfect Late! " + str(offset))
 	noteHit.emit(trackIndex, noteIndex)
 	pass

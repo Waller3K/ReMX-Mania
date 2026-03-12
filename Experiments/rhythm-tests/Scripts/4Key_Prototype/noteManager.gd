@@ -52,19 +52,19 @@ func _onChartCreation(chart: Chart) -> void:
 
 func _onNoteHit(track, note):
 	match track:
-		0:
+		GE.inputEnum.TRACK1:
 			if notes.track1.get(note) != null:
 				notes.track1.get(note).queue_free()
 				notes.track1[note] = null
-		1:
+		GE.inputEnum.TRACK2:
 			if notes.track2.get(note) != null:
 				notes.track2.get(note).queue_free()
 				notes.track2[note] = null
-		2:
+		GE.inputEnum.TRACK3:
 			if notes.track3.get(note) != null:
 				notes.track3.get(note).queue_free()
 				notes.track3[note] = null
-		3:
+		GE.inputEnum.TRACK4:
 			if notes.track4.get(note) != null:
 				notes.track4.get(note).queue_free()
 				notes.track4[note] = null

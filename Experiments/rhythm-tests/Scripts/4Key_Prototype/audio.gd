@@ -44,3 +44,34 @@ func _onSongStart(_songStartTime: float) -> void:
 
 func _onFinished():
 	isPlaying = false
+
+
+func _onGoodEarly(offset: float, trackIndex: int, noteIndex: int) -> void:
+	musicPlayer.stream.set_sync_stream_volume(trackIndex + 1, 0)
+
+
+func _onGoodLate(offset: float, trackIndex: int, noteIndex: int) -> void:
+	musicPlayer.stream.set_sync_stream_volume(trackIndex + 1, 0)
+
+
+func _onMiss(trackIndex: int, noteIndex: int) -> void:
+	musicPlayer.stream.set_sync_stream_volume(trackIndex + 1, -50)
+
+
+func _onOkEarly(offset: float, trackIndex: int, noteIndex: int) -> void:
+	musicPlayer.stream.set_sync_stream_volume(trackIndex + 1, 0)
+
+
+func _onOkLate(offset: float, trackIndex: int, noteIndex: int) -> void:
+	musicPlayer.stream.set_sync_stream_volume(trackIndex + 1, 0)
+
+
+func _onPerfect(offset: float, trackIndex: int, noteIndex: int) -> void:
+	musicPlayer.stream.set_sync_stream_volume(trackIndex + 1, 0)
+
+
+func _onPerfectEarly(offset: float, trackIndex: int, noteIndex: int) -> void:
+	musicPlayer.stream.set_sync_stream_volume(trackIndex + 1, 0)
+
+func _onPerfectLate(offset: float, trackIndex: int, noteIndex: int) -> void:
+	musicPlayer.stream.set_sync_stream_volume(trackIndex + 1, 0)
