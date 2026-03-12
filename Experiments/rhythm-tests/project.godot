@@ -35,6 +35,10 @@ window/size/always_on_top=true
 
 project/assembly_name="Rhythm Tests"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/waltl/Desktop/Code_n_stuff/Godot/Projects/ReMX Mania/Experiments/rhythm-tests/Showcases/Test.avi"
+
 [input]
 
 testButton={

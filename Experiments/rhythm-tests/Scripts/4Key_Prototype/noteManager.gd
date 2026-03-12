@@ -16,36 +16,72 @@ var notes: Dictionary = {
 	trackFX = []
 }
 
+@export var judegementLine : ColorRect
+
 var noteScene = preload("res://Scenes/Game_Objects/Note.tscn")
 
 func _onChartCreation(chart: Chart) -> void:
 	noteData = chart.notes
 	
+	var trackWidth = judegementLine.size.x/4
+	
 	# Preload the first bit of the map
 	for i in range(noteData.track1.size()):
 		var newNote = noteScene.instantiate()
-		newNote.INIT(0, i, noteData.track1[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 - 150 * 2), -100), $"../JudgementLine".position)
+		var noteXOffset = newNote.texture.get_width()/2
+		newNote.INIT(
+			GE.inputEnum.TRACK1, 
+			i, 
+			noteData.track1[i]["Pos"], 
+			spawningOffset, 
+			Vector2i(judegementLine.position.x + noteXOffset, -100), 
+			Vector2(judegementLine.position.x, judegementLine.position.y + judegementLine.size.y * 0.5)
+		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
 		add_child(newNote)
 		notes.track1.append(newNote)
 	
 	for i in range(noteData.track2.size()):
 		var newNote = noteScene.instantiate()
-		newNote.INIT(1, i, noteData.track2[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 - 150), -100), $"../JudgementLine".position)
+		var noteXOffset = newNote.texture.get_width()/2
+		newNote.INIT(
+			GE.inputEnum.TRACK2, 
+			i, 
+			noteData.track2[i]["Pos"], 
+			spawningOffset, 
+			Vector2i(judegementLine.position.x + trackWidth + noteXOffset, -100),  
+			Vector2(judegementLine.position.x, judegementLine.position.y + judegementLine.size.y * 0.5)
+		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
 		add_child(newNote)
 		notes.track2.append(newNote)
 	
 	for i in range(noteData.track3.size()):
 		var newNote = noteScene.instantiate()
-		newNote.INIT(2, i, noteData.track3[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 + 150), -100), $"../JudgementLine".position)
+		var noteXOffset = newNote.texture.get_width()/2
+		newNote.INIT(
+			GE.inputEnum.TRACK3, 
+			i, 
+			noteData.track3[i]["Pos"], 
+			spawningOffset, 
+			Vector2i(judegementLine.position.x + trackWidth * 2 + noteXOffset, -100),  
+			Vector2(judegementLine.position.x, judegementLine.position.y + judegementLine.size.y * 0.5)
+		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
 		add_child(newNote)
 		notes.track3.append(newNote)
 	
 	for i in range(noteData.track4.size()):
 		var newNote = noteScene.instantiate()
-		newNote.INIT(3, i, noteData.track4[i]["Pos"], spawningOffset, Vector2i(floori(get_window().size.x/2 + 150 * 2), -100), $"../JudgementLine".position)
+		var noteXOffset = newNote.texture.get_width()/2
+		newNote.INIT(
+			GE.inputEnum.TRACK4, 
+			i, 
+			noteData.track4[i]["Pos"], 
+			spawningOffset, 
+			Vector2i(judegementLine.position.x + trackWidth * 3 + noteXOffset, -100),  
+			Vector2(judegementLine.position.x, judegementLine.position.y + judegementLine.size.y * 0.5)
+		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
 		add_child(newNote)
 		notes.track4.append(newNote)

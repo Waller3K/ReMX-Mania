@@ -7,3 +7,14 @@ enum inputEnum {
 	TRACK4,
 	FX_TRACK
 }
+
+enum judgementEnum {
+	OKLATE,
+	GOODLATE,
+	PERFECTLATE,
+	PERFECT,
+	PERFECTEARLY,
+	GOODEARLY,
+	OKEARLY,
+	MISS
+}
