@@ -30,68 +30,70 @@ script = ExtResource("5_75w05")
 
 [node name="GameManager" type="Node" parent="." unique_id=202422349 node_paths=PackedStringArray("scoreText", "comboText", "hitText")]
 script = ExtResource("7_nkauc")
-scoreText = NodePath("../UI/ScoreText")
-comboText = NodePath("../UI/ComboText")
-hitText = NodePath("../UI/HitText")
+scoreText = NodePath("../CanvasLayer/UI/ScoreText")
+comboText = NodePath("../CanvasLayer/UI/ComboText")
+hitText = NodePath("../CanvasLayer/UI/HitText")
 
 [node name="MetronomePlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1731606645]
 
 [node name="NoteManager" type="Node" parent="." unique_id=1799345126 node_paths=PackedStringArray("judegementLine")]
 script = ExtResource("9_g4dpr")
-judegementLine = NodePath("../UI/JudgementLine")
+judegementLine = NodePath("../CanvasLayer/UI/JudgementLine")
 
-[node name="UI" type="Control" parent="." unique_id=905261337]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1135291016]
+layer = 0
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=905261337]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="JudgementLine" type="ColorRect" parent="UI" unique_id=1450108197]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 300.0
-offset_top = -75.0
-offset_right = -300.0
-offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JudgementLine" type="ColorRect" parent="CanvasLayer/UI" unique_id=1450108197]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.8
+anchor_right = 0.7
+anchor_bottom = 0.85
 color = Color(0, 0, 0, 1)
 
-[node name="PlayfieldBG" type="PanelContainer" parent="UI/JudgementLine" unique_id=162260970]
+[node name="PlayfieldBG" type="PanelContainer" parent="CanvasLayer/UI/JudgementLine" unique_id=162260970]
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -22.995
 anchor_right = 1.0
 
-[node name="Tracks" type="HBoxContainer" parent="UI/JudgementLine" unique_id=725436462]
+[node name="Tracks" type="HBoxContainer" parent="CanvasLayer/UI/JudgementLine" unique_id=725436462]
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 2.9620001
+anchor_bottom = 4.0
 script = ExtResource("9_n46i8")
 inactiveColor = Color(0.19550002, 0.23, 0.22885, 1)
 activeColor = Color(0.71441996, 0.2604, 0.84, 1)
 
-[node name="Track1" type="ColorRect" parent="UI/JudgementLine/Tracks" unique_id=1514278333]
+[node name="Track1" type="ColorRect" parent="CanvasLayer/UI/JudgementLine/Tracks" unique_id=1514278333]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Track2" type="ColorRect" parent="UI/JudgementLine/Tracks" unique_id=1415675278]
+[node name="Track2" type="ColorRect" parent="CanvasLayer/UI/JudgementLine/Tracks" unique_id=1415675278]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Track3" type="ColorRect" parent="UI/JudgementLine/Tracks" unique_id=1295507378]
+[node name="Track3" type="ColorRect" parent="CanvasLayer/UI/JudgementLine/Tracks" unique_id=1295507378]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Track4" type="ColorRect" parent="UI/JudgementLine/Tracks" unique_id=1332052506]
+[node name="Track4" type="ColorRect" parent="CanvasLayer/UI/JudgementLine/Tracks" unique_id=1332052506]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ScoreText" type="RichTextLabel" parent="UI" unique_id=630236349]
+[node name="ScoreText" type="RichTextLabel" parent="CanvasLayer/UI" unique_id=630236349]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.26200002
@@ -100,7 +102,7 @@ offset_bottom = -0.1760025
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ComboText" type="RichTextLabel" parent="UI" unique_id=829680276]
+[node name="ComboText" type="RichTextLabel" parent="CanvasLayer/UI" unique_id=829680276]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -117,10 +119,19 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HitText" type="RichTextLabel" parent="UI" unique_id=1012325815]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HitText" type="RichTextLabel" parent="CanvasLayer/UI" unique_id=1012325815]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.5
+offset_left = 0.19998169
+offset_top = 0.08798218
+offset_right = -0.2000122
+offset_bottom = -0.088012695
+grow_horizontal = 2
+grow_vertical = 2
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -135,13 +146,13 @@ vertical_alignment = 1
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Conductor" method="_onSongUpdate"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Judge" method="_onSongUpdate"]
 [connection signal="btn1" from="Input" to="Judge" method="_onBTN_1"]
-[connection signal="btn1" from="Input" to="UI/JudgementLine/Tracks" method="_onBTN1"]
+[connection signal="btn1" from="Input" to="CanvasLayer/UI/JudgementLine/Tracks" method="_onBTN1"]
 [connection signal="btn2" from="Input" to="Judge" method="_onBTN_2"]
-[connection signal="btn2" from="Input" to="UI/JudgementLine/Tracks" method="_onBTN2"]
+[connection signal="btn2" from="Input" to="CanvasLayer/UI/JudgementLine/Tracks" method="_onBTN2"]
 [connection signal="btn3" from="Input" to="Judge" method="_onBTN_3"]
-[connection signal="btn3" from="Input" to="UI/JudgementLine/Tracks" method="_onBTN3"]
+[connection signal="btn3" from="Input" to="CanvasLayer/UI/JudgementLine/Tracks" method="_onBTN3"]
 [connection signal="btn4" from="Input" to="Judge" method="_onBTN_4"]
-[connection signal="btn4" from="Input" to="UI/JudgementLine/Tracks" method="_onBTN4"]
+[connection signal="btn4" from="Input" to="CanvasLayer/UI/JudgementLine/Tracks" method="_onBTN4"]
 [connection signal="btnFX" from="Input" to="Judge" method="_onBTN_FX"]
 [connection signal="testButton" from="Input" to="AudioStreamPlayer" method="_onTestButton"]
 [connection signal="goodEarly" from="Judge" to="AudioStreamPlayer" method="_onGoodEarly"]
