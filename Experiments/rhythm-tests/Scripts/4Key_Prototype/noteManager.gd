@@ -33,6 +33,7 @@ func _onChartCreation(chart: Chart) -> void:
 	# Their positions are now RELATIVE to the track!
 	for i in range(noteData.track1.size()):
 		var newNote = noteScene.instantiate()
+		UITracks[0].add_child(newNote)
 		newNote.INIT(
 			GE.inputEnum.TRACK1, 
 			i, 
@@ -43,11 +44,11 @@ func _onChartCreation(chart: Chart) -> void:
 			noteData.track1[i]["End"] if noteData.track1[i].get("End") else -1 
 		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
-		UITracks[0].add_child(newNote)
 		notes.track1.append(newNote)
 	
 	for i in range(noteData.track2.size()):
 		var newNote = noteScene.instantiate()
+		UITracks[1].add_child(newNote)
 		newNote.INIT(
 			GE.inputEnum.TRACK2, 
 			i, 
@@ -58,11 +59,11 @@ func _onChartCreation(chart: Chart) -> void:
 			noteData.track2[i]["End"] if noteData.track2[i].get("End") else -1
 		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
-		UITracks[1].add_child(newNote)
 		notes.track2.append(newNote)
 	
 	for i in range(noteData.track3.size()):
 		var newNote = noteScene.instantiate()
+		UITracks[2].add_child(newNote)
 		newNote.INIT(
 			GE.inputEnum.TRACK3, 
 			i, 
@@ -73,11 +74,11 @@ func _onChartCreation(chart: Chart) -> void:
 			noteData.track3[i]["End"] if noteData.track3[i].get("End") else -1
 		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
-		UITracks[2].add_child(newNote)
 		notes.track3.append(newNote)
 	
 	for i in range(noteData.track4.size()):
 		var newNote = noteScene.instantiate()
+		UITracks[3].add_child(newNote)
 		newNote.INIT(
 			GE.inputEnum.TRACK4, 
 			i, 
@@ -88,24 +89,36 @@ func _onChartCreation(chart: Chart) -> void:
 			noteData.track4[i]["End"] if noteData.track4[i].get("End") else -1
 		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
-		UITracks[3].add_child(newNote)
 		notes.track4.append(newNote)
 
 func _onNoteHit(track, note):
+
 	match track:
 		GE.inputEnum.TRACK1:
 			if notes.track1.get(note) != null:
-				notes.track1.get(note).queue_free()
-				notes.track1[note] = null
+				if(notes.track1.get(note).endTargetTime != -1):
+					pass
+				else:
+					notes.track1.get(note).queue_free()
+					notes.track1[note] = null
 		GE.inputEnum.TRACK2:
 			if notes.track2.get(note) != null:
-				notes.track2.get(note).queue_free()
-				notes.track2[note] = null
+				if(notes.track2.get(note).endTargetTime != -1):
+					pass
+				else:
+					notes.track2.get(note).queue_free()
+					notes.track2[note] = null
 		GE.inputEnum.TRACK3:
 			if notes.track3.get(note) != null:
-				notes.track3.get(note).queue_free()
-				notes.track3[note] = null
+				if(notes.track3.get(note).endTargetTime != -1):
+					pass
+				else:
+					notes.track3.get(note).queue_free()
+					notes.track3[note] = null
 		GE.inputEnum.TRACK4:
 			if notes.track4.get(note) != null:
-				notes.track4.get(note).queue_free()
-				notes.track4[note] = null
+				if(notes.track4.get(note).endTargetTime != -1):
+					pass
+				else:
+					notes.track4.get(note).queue_free()
+					notes.track4[note] = null

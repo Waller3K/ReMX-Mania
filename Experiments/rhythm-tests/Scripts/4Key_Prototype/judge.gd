@@ -15,6 +15,19 @@ signal goodLate(offset: float, trackIndex: int, noteIndex: int)
 signal okLate(offset: float, trackIndex: int, noteIndex: int)
 signal miss(trackIndex: int, noteIndex: int) # The miss signal is the only one that won't have an offset
 
+#############################################
+# These signals are for held notes. They
+# say weather or not the held note was hit,
+# ended or broken. As well as giving the
+# track and note indexes. These would be
+# used along side the normal judgement
+# signls
+#############################################
+
+signal holdStarted(trackIndex: int, noteIndex: int)
+signal holdEnded(trackIndex: int, noteIndex: int)
+signal holdBroken(trackIndex: int, noteIndex: int)
+
 var noteData: Dictionary
 
 var songPos: float
@@ -139,50 +152,52 @@ func judge(inputTime:float, inputIndex: int, input: bool, nextNoteIndex: int, tr
 	# Checks to see if the note was hit early or
 	# Late
 	#############################################
-	
-	if inputTime - nextNotePosition > 0:
-		isLate = true
-	
-	if input == false:
-		return nextNoteIndex
-	
-	if abs(inputTime - nextNotePosition) <= perfectTiming:
-		perfect.emit(offset, inputIndex, nextNoteIndex)	
-		if trackEnded:
-			lastNoteHit(inputIndex)
-		#############################################
-		# This line only increments the next note
-		# if the track hasn't ended
-		#############################################
-		return nextNoteIndex if trackEnded else nextNoteIndex + 1
-	
-	elif abs(inputTime - nextNotePosition) <= almostPerfectTiming:
-		if isLate:
-			perfectLate.emit(offset, inputIndex, nextNoteIndex)
-		else:
-			perfectEarly.emit(offset, inputIndex, nextNoteIndex)
-		if trackEnded:
-			lastNoteHit(inputIndex)
-		return nextNoteIndex if trackEnded else nextNoteIndex + 1
+	if ("End" in track[nextNoteIndex]):
+		print(track[nextNoteIndex]["End"])
+	else:
+		if inputTime - nextNotePosition > 0:
+			isLate = true
 		
-	elif abs(inputTime - nextNotePosition) <= goodTiming:
-		if isLate:
-			goodLate.emit(offset, inputIndex, nextNoteIndex)
-		else:
-			goodEarly.emit(offset, inputIndex, nextNoteIndex)
-		if trackEnded:
-			lastNoteHit(inputIndex)
-		return nextNoteIndex if trackEnded else nextNoteIndex + 1
-	
-	elif abs(inputTime - nextNotePosition) <= okTiming:
-		if isLate:
-			okLate.emit(offset, inputIndex, nextNoteIndex)
-		else:
-			okEarly.emit(offset, inputIndex, nextNoteIndex)
-		if trackEnded:
-			lastNoteHit(inputIndex)
-		return nextNoteIndex if trackEnded else nextNoteIndex + 1
-	
+		if input == false:
+			return nextNoteIndex
+		
+		if abs(inputTime - nextNotePosition) <= perfectTiming:
+			perfect.emit(offset, inputIndex, nextNoteIndex)	
+			if trackEnded:
+				lastNoteHit(inputIndex)
+			#############################################
+			# This line only increments the next note
+			# if the track hasn't ended
+			#############################################
+			return nextNoteIndex if trackEnded else nextNoteIndex + 1
+		
+		elif abs(inputTime - nextNotePosition) <= almostPerfectTiming:
+			if isLate:
+				perfectLate.emit(offset, inputIndex, nextNoteIndex)
+			else:
+				perfectEarly.emit(offset, inputIndex, nextNoteIndex)
+			if trackEnded:
+				lastNoteHit(inputIndex)
+			return nextNoteIndex if trackEnded else nextNoteIndex + 1
+			
+		elif abs(inputTime - nextNotePosition) <= goodTiming:
+			if isLate:
+				goodLate.emit(offset, inputIndex, nextNoteIndex)
+			else:
+				goodEarly.emit(offset, inputIndex, nextNoteIndex)
+			if trackEnded:
+				lastNoteHit(inputIndex)
+			return nextNoteIndex if trackEnded else nextNoteIndex + 1
+		
+		elif abs(inputTime - nextNotePosition) <= okTiming:
+			if isLate:
+				okLate.emit(offset, inputIndex, nextNoteIndex)
+			else:
+				okEarly.emit(offset, inputIndex, nextNoteIndex)
+			if trackEnded:
+				lastNoteHit(inputIndex)
+			return nextNoteIndex if trackEnded else nextNoteIndex + 1
+		
 	return nextNoteIndex
 
 func lastNoteHit(trackIndex: int):

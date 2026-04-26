@@ -22,22 +22,24 @@ func INIT(track: int, note: int, target: float, sOffset: float, sp: Vector2i, ju
 	self.position = sp
 	judgementLinePos =  judgeLnPos
 	spawnOffset = sOffset
+
+	var parent = self.get_parent()
 	
 	if (endTargetTime != -1):
 		# Creates the body of the hold note
 		var noteBody: ColorRect = ColorRect.new()
 		noteBody.color = Color(0.5,0.3,0.8)
 		noteBody.size = self.size
-		noteBody.position = Vector2(spawnPos.x, spawnPos.y)
-		add_child(noteBody)
+		noteBody.position = self.position
+		parent.add_child(noteBody)
 		noteBodyNode = noteBody
 
 		# Creates the tail of the hold note
 		var noteTail: TextureRect = TextureRect.new()
 		noteTail.texture = self.texture
-		noteTail.size = Vector2(self.size.x, self.size.y)
-		noteTail.position = Vector2(spawnPos.x, spawnPos.y)
-		add_child(noteTail)
+		noteTail.scale = self.scale
+		noteTail.position = self.position
+		parent.add_child(noteTail)
 		noteTailNode = noteTail
 
 func getTrack() -> int:
@@ -48,20 +50,22 @@ func getNote() -> int:
 
 func _onSongUpdate(timestamp: float):
 	
-	# Logic for note head
+	# In Osu!Mania the way the note's position is calculated with this formula
+	# y = hitPosition + (noteTime - currentTime) * scrollSpeed * scale
+	# I'm gonna be stealing this bar for bar
 
-	var timeTillStart = targetTime - timestamp # The time until the start of the note
-	var headT = clamp(1.0 - (timeTillStart / spawnOffset), 0.0, 1.0) # The scaler for the lerp
-	var headY = lerp(spawnPos.y, judgementLinePos.y, headT)
+	var headY = judgementLinePos.y - (targetTime - timestamp) * 10.0 * 100
+
 	self.position.y = headY
 
 	if (endTargetTime != -1):
-		var timeTillEnd = endTargetTime - timestamp # The time until the end of the held note
-		var tailT = clamp(1.0 - (timeTillEnd / spawnOffset), 0.0, 1.0) # The scaler for the lerp
-		var tailY = lerp(spawnPos.y, judgementLinePos.y, tailT)
-		noteTailNode.position.y = tailY - headY
 
-		var bodyLength = headY - tailY
-		noteBodyNode.position.y = tailY - headY 
-		noteBodyNode.size = Vector2(self.size.x, bodyLength)
-		print(bodyLength)
+		var tailY = judgementLinePos.y - (endTargetTime - timestamp) * 10.0 * 100
+		
+		# noteTailNode.position.y = tailY - headY
+		noteTailNode.position = Vector2(self.position.x, tailY)
+
+		var length = abs(tailY - headY)
+
+		noteBodyNode.position = Vector2(self.position.x, noteTailNode.position.y)
+		noteBodyNode.size.y = length
