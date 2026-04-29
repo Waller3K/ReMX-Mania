@@ -56,9 +56,9 @@ func load(path: String) -> bool:
 	
 	# Sets the chart variables using the JSON chart data
 	
-	bpm 				= chartData["Metadata"]["BPM"]
+	bpm 			= chartData["Metadata"]["BPM"]
 	songPath 		= chartData["Metadata"]["path"]
-	songName			= chartData["Metadata"]["name"]
+	songName		= chartData["Metadata"]["name"]
 	songArtist		= chartData["Metadata"]["artist"]
 	charter			= chartData["Metadata"]["charter"]
 	difficulty		= chartData["Metadata"]["difficulty"]
@@ -70,6 +70,7 @@ func load(path: String) -> bool:
 	notes.track2 	= chartData["Notes"]["Track 2"]
 	notes.track3 	= chartData["Notes"]["Track 3"]
 	notes.track4 	= chartData["Notes"]["Track 4"]
+	notes.trackFX	= chartData["Notes"]["Track FX"]
 	
 	# Adds a has been hit bool to each note on each track
 	
@@ -85,6 +86,9 @@ func load(path: String) -> bool:
 	for note in notes.track4:
 		note.set("beenHit", false)
 	
+	for note in notes.trackFX:
+		note.set("beenHit", false)
+
 	print("Chart loaded successfully")
 	
 	return true

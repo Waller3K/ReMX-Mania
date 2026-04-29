@@ -113,14 +113,14 @@ func _onGoodLate(offset, trackIndex, noteIndex):
 
 
 func _onMiss(trackIndex, noteIndex):
-	print("Miss!") # Replace with function body.
+	print("Miss!") 
 	noteHit.emit(trackIndex, noteIndex)
 	updateScore(GE.judgementEnum.MISS)
 	pass
 
 
 func _onOkEarly(offset, trackIndex, noteIndex):
-	print("OK Early! " + str(offset)) # Replace with function body.
+	print("OK Early! " + str(offset)) 
 	noteHit.emit(trackIndex, noteIndex)
 	updateScore(GE.judgementEnum.OKEARLY)
 	pass
@@ -152,3 +152,16 @@ func _onPerfectLate(offset, trackIndex, noteIndex):
 	noteHit.emit(trackIndex, noteIndex)
 	updateScore(GE.judgementEnum.PERFECTLATE)
 	pass
+
+
+func _onHoldBroken(trackIndex, noteIndex):
+	print("Hold Broken!")
+	updateScore(GE.judgementEnum.MISS)
+
+
+func _onHoldEnded(trackIndex, noteIndex):
+	print("Hold Ended!")
+
+
+func _onHoldStarted(trackIndex, noteIndex):
+	print("Hold Started")

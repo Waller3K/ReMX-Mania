@@ -38,11 +38,17 @@ var track2NextNoteIndex = 0
 var track3NextNoteIndex = 0
 var track4NextNoteIndex = 0
 
-#Track ended booleans
+#Track Ended Booleans
 var track1Ended = false
 var track2Ended = false
 var track3Ended = false
 var track4Ended = false
+
+#Track Held Booleans
+var track1Held = false
+var track2Held = false
+var track3Held = false
+var track4Held = false
 
 #Track Button States
 var BTN_1 = false
@@ -76,7 +82,7 @@ func _onSongUpdate(timeStamp):
 #############################################
 # Updates the next note index when we pass
 # a note and sets the variables for ending the 
-# tracks
+# tracks, also sends out miss signals
 #############################################
 func updateNextNote(timeStamp: float) -> void:
 	
@@ -85,39 +91,73 @@ func updateNextNote(timeStamp: float) -> void:
 		pass
 	elif noteData.track1.is_empty():
 		track1Ended = true;
+	elif "End" in noteData.track1[track1NextNoteIndex]:
+		if timeStamp > noteData.track1[track1NextNoteIndex]["End"] * 1000 + okTiming and track1LNH != true:
+			miss.emit(GE.inputEnum.TRACK1, track1NextNoteIndex)
+			print("Hold Missed!")
+			if track1NextNoteIndex + 1 < noteData.track1.size():
+				track1NextNoteIndex += 1
+			else:
+				track1Ended = true
 	elif timeStamp > noteData.track1[track1NextNoteIndex]["Pos"] * 1000 + okTiming and track1LNH != true:
 		miss.emit(GE.inputEnum.TRACK1, track1NextNoteIndex)
 		if track1NextNoteIndex + 1 < noteData.track1.size():
 			track1NextNoteIndex += 1
 		else:
 			track1Ended = true
+	
 	# Track 2
 	if track2Ended:
 		pass
 	elif noteData.track2.is_empty():
 		track2Ended = true;
-	elif timeStamp >= noteData.track2[track2NextNoteIndex]["Pos"] * 1000 + okTiming and track2LNH != true:
+	elif "End" in noteData.track2[track2NextNoteIndex]:
+		if timeStamp > noteData.track2[track2NextNoteIndex]["End"] * 1000 + okTiming and track2LNH != true:
+			miss.emit(GE.inputEnum.TRACK2, track2NextNoteIndex)
+			print("Hold Missed!")
+			if track2NextNoteIndex + 1 < noteData.track2.size():
+				track2NextNoteIndex += 1
+			else:
+				track2Ended = true
+	elif timeStamp > noteData.track2[track2NextNoteIndex]["Pos"] * 1000 + okTiming and track2LNH != true:
 		miss.emit(GE.inputEnum.TRACK2, track2NextNoteIndex)
 		if track2NextNoteIndex + 1 < noteData.track2.size():
 			track2NextNoteIndex += 1
 		else:
 			track2Ended = true
+	
 	# Track 3
 	if track3Ended:
 		pass
 	elif noteData.track3.is_empty():
 		track3Ended = true;
-	elif timeStamp >= noteData.track3[track3NextNoteIndex]["Pos"] * 1000 + okTiming and track3LNH != true:
+	elif "End" in noteData.track3[track3NextNoteIndex]:
+		if timeStamp > noteData.track3[track3NextNoteIndex]["End"] * 1000 + okTiming and track3LNH != true:
+			miss.emit(GE.inputEnum.TRACK3, track3NextNoteIndex)
+			print("Hold Missed!")
+			if track3NextNoteIndex + 1 < noteData.track3.size():
+				track3NextNoteIndex += 1
+			else:
+				track3Ended = true
+	elif timeStamp > noteData.track3[track3NextNoteIndex]["Pos"] * 1000 + okTiming and track3LNH != true:
 		miss.emit(GE.inputEnum.TRACK3, track3NextNoteIndex)
 		if track3NextNoteIndex + 1 < noteData.track3.size():
 			track3NextNoteIndex += 1
 		else:
 			track3Ended = true
+	
 	# Track 4
 	if track4Ended:
 		pass
 	elif noteData.track4.is_empty():
 		track4Ended = true;
+	elif "End" in noteData.track4[track4NextNoteIndex]:
+		if timeStamp > noteData.track4[track4NextNoteIndex]["End"] * 1000 + okTiming and track4LNH != true:
+			miss.emit(GE.inputEnum.TRACK4, track4NextNoteIndex)
+			if track4NextNoteIndex + 1 < noteData.track4.size():
+				track4NextNoteIndex += 1
+			else:
+				track4Ended = true
 	elif timeStamp > noteData.track4[track4NextNoteIndex]["Pos"] * 1000 + okTiming and track4LNH != true:
 		miss.emit(GE.inputEnum.TRACK4, track4NextNoteIndex)
 		if track4NextNoteIndex + 1 < noteData.track4.size():
@@ -131,74 +171,143 @@ func updateNextNote(timeStamp: float) -> void:
 # This is a workaround due to Godot copying ints by 
 # value and not by reference
 ####################################################
+
 func judge(inputTime:float, inputIndex: int, input: bool, nextNoteIndex: int, track: Array) -> int:
 	
-	var isLate: bool
-	
 	var trackEnded: bool = false
-	
+
+	var judgement: int = -1
+
+	var offset: float
+
 	if track.is_empty():
 		return nextNoteIndex
 	
 	if nextNoteIndex == track.size() - 1:
 		trackEnded = true
 		
+	var nextNotePosition = track[nextNoteIndex]["Pos"] * 1000 # Multiplied by 1000 to convert from sec - ms
+
+	var isHold = "End" in track[nextNoteIndex]
 	
-	var nextNotePosition = track[nextNoteIndex]["Pos"] * 1000 #Multiplied by 1000 to convert from sec - ms
-	
-	var offset: float = inputTime - nextNotePosition
-	
-	#############################################
-	# Checks to see if the note was hit early or
-	# Late
-	#############################################
-	if ("End" in track[nextNoteIndex]):
-		print(track[nextNoteIndex]["End"])
-	else:
-		if inputTime - nextNotePosition > 0:
-			isLate = true
-		
-		if input == false:
+	if input == false:
+		# Checks if there is a tail to judge for
+		if isHold:
+			var tailPosition = track[nextNoteIndex]["End"] * 1000
+			offset = inputTime - tailPosition
+			judgement = inputReconciler(inputTime, tailPosition)
+		else:
 			return nextNoteIndex
-		
-		if abs(inputTime - nextNotePosition) <= perfectTiming:
-			perfect.emit(offset, inputIndex, nextNoteIndex)	
-			if trackEnded:
-				lastNoteHit(inputIndex)
-			#############################################
-			# This line only increments the next note
-			# if the track hasn't ended
-			#############################################
-			return nextNoteIndex if trackEnded else nextNoteIndex + 1
-		
-		elif abs(inputTime - nextNotePosition) <= almostPerfectTiming:
-			if isLate:
-				perfectLate.emit(offset, inputIndex, nextNoteIndex)
-			else:
-				perfectEarly.emit(offset, inputIndex, nextNoteIndex)
-			if trackEnded:
-				lastNoteHit(inputIndex)
-			return nextNoteIndex if trackEnded else nextNoteIndex + 1
-			
-		elif abs(inputTime - nextNotePosition) <= goodTiming:
-			if isLate:
-				goodLate.emit(offset, inputIndex, nextNoteIndex)
-			else:
-				goodEarly.emit(offset, inputIndex, nextNoteIndex)
-			if trackEnded:
-				lastNoteHit(inputIndex)
-			return nextNoteIndex if trackEnded else nextNoteIndex + 1
-		
-		elif abs(inputTime - nextNotePosition) <= okTiming:
-			if isLate:
-				okLate.emit(offset, inputIndex, nextNoteIndex)
-			else:
-				okEarly.emit(offset, inputIndex, nextNoteIndex)
-			if trackEnded:
-				lastNoteHit(inputIndex)
-			return nextNoteIndex if trackEnded else nextNoteIndex + 1
-		
-	return nextNoteIndex
+
+	else:
+		# Positive is LATE negative is EARLY
+		offset = inputTime - nextNotePosition
+		judgement = inputReconciler(inputTime, nextNotePosition)
+
+	# Remove infinite frontend of taps and hold head notes
+	if offset < okTiming * -1.5:
+		# Checks if we are inside a really long hold note
+		if inputTime > nextNotePosition and !input:
+			pass
+		else:
+			return nextNoteIndex
+	
+	match judgement:
+		GE.judgementEnum.PERFECT:
+			perfect.emit(offset, inputIndex, nextNoteIndex)
+		GE.judgementEnum.PERFECTEARLY:
+			perfectEarly.emit(offset, inputIndex, nextNoteIndex)
+		GE.judgementEnum.PERFECTLATE:
+			perfectLate.emit(offset, inputIndex, nextNoteIndex)
+		GE.judgementEnum.GOODEARLY:
+			goodEarly.emit(offset, inputIndex, nextNoteIndex)
+		GE.judgementEnum.GOODLATE:
+			goodLate.emit(offset, inputIndex, nextNoteIndex)
+		GE.judgementEnum.OKEARLY:
+			okEarly.emit(offset, inputIndex, nextNoteIndex)
+		GE.judgementEnum.OKLATE:
+			okLate.emit(offset, inputIndex, nextNoteIndex)
+		GE.judgementEnum.MISS:
+			miss.emit(inputIndex, nextNoteIndex)
+	
+	####################################################
+	# Hold Note Tail Specific Logic
+	####################################################
+
+	if isHold and input == false:
+		if judgement != GE.judgementEnum.MISS:
+			holdEnded.emit(inputIndex, nextNoteIndex)
+		else:
+			holdBroken.emit(inputIndex, nextNoteIndex)
+
+		match inputIndex:
+			GE.inputEnum.TRACK1:
+				track1Held = false
+			GE.inputEnum.TRACK2:
+				track2Held = false
+			GE.inputEnum.TRACK3:
+				track3Held = false
+			GE.inputEnum.TRACK4:
+				track4Held = false
+
+		if trackEnded:
+			lastNoteHit(inputIndex)
+		return nextNoteIndex if trackEnded else nextNoteIndex + 1
+
+
+
+
+	####################################################
+	# Hold Note Head Specific Logic
+	####################################################
+
+	if isHold:
+		holdStarted.emit(inputIndex, nextNoteIndex)
+		match inputIndex:
+			GE.inputEnum.TRACK1:
+				track1Held = true
+			GE.inputEnum.TRACK2:
+				track2Held = true
+			GE.inputEnum.TRACK3:
+				track3Held = true
+			GE.inputEnum.TRACK4:
+				track4Held = true
+		# 'nextNoteIndex' not incremented until hold tail
+		return nextNoteIndex
+
+	####################################################
+	# Tapped Note Specific Logic
+	####################################################
+	
+	if judgement != GE.judgementEnum.MISS and trackEnded:
+		lastNoteHit(inputIndex)
+
+	return nextNoteIndex if trackEnded else nextNoteIndex + 1
+
+####################################################
+# Takes in the target timestamp and the input
+# timestamp, and returns a value from the global
+# enum representing its judgement
+####################################################
+func inputReconciler(inputTime: float, targetTime: float) -> int:
+	var isLate = inputTime > targetTime
+
+	var timingOffset = abs(targetTime - inputTime)
+
+	if timingOffset <= perfectTiming:
+		return GE.judgementEnum.PERFECT
+	
+	elif timingOffset <= almostPerfectTiming:
+		return GE.judgementEnum.PERFECTLATE if isLate else GE.judgementEnum.PERFECTEARLY
+	
+	elif timingOffset <= goodTiming:
+		return GE.judgementEnum.GOODLATE if isLate else GE.judgementEnum.GOODEARLY
+	
+	elif timingOffset <= okTiming:
+		return GE.judgementEnum.OKLATE if isLate else GE.judgementEnum.OKEARLY
+	
+	else:
+		return GE.judgementEnum.MISS
 
 func lastNoteHit(trackIndex: int):
 	match trackIndex:
