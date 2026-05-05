@@ -18,3 +18,11 @@ enum judgementEnum {
 	OKEARLY,
 	MISS
 }
+
+enum effectEnum {
+	CHORUS,
+	HIPASS,
+	LOWPASS,
+	PHASER,
+	REVERB
+}

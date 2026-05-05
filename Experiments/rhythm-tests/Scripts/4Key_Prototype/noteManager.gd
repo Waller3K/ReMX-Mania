@@ -63,14 +63,14 @@ func _onChartCreation(chart: Chart) -> void:
 	
 	for i in range(noteData.track3.size()):
 		var newNote = noteScene.instantiate()
-		UITracks[2].add_child(newNote)
+		UITracks[3].add_child(newNote)
 		newNote.INIT(
 			GE.inputEnum.TRACK3, 
 			i, 
 			noteData.track3[i]["Pos"], 
 			spawningOffset, 
 			Vector2i(0, -100), 
-			Vector2(0, UITracks[2].size.y),
+			Vector2(0, UITracks[3].size.y),
 			noteData.track3[i]["End"] if noteData.track3[i].get("End") else -1
 		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
@@ -78,18 +78,33 @@ func _onChartCreation(chart: Chart) -> void:
 	
 	for i in range(noteData.track4.size()):
 		var newNote = noteScene.instantiate()
-		UITracks[3].add_child(newNote)
+		UITracks[4].add_child(newNote)
 		newNote.INIT(
 			GE.inputEnum.TRACK4, 
 			i, 
 			noteData.track4[i]["Pos"], 
 			spawningOffset, 
 			Vector2i(0, -100), 
-			Vector2(0, UITracks[3].size.y),
+			Vector2(0, UITracks[4].size.y),
 			noteData.track4[i]["End"] if noteData.track4[i].get("End") else -1
 		)
 		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
 		notes.track4.append(newNote)
+	
+	for i in range(noteData.trackFX.size()):
+		var newNote = noteScene.instantiate()
+		UITracks[2].add_child(newNote)
+		newNote.INIT(
+			GE.inputEnum.FX_TRACK, 
+			i, 
+			noteData.trackFX[i]["Pos"], 
+			spawningOffset, 
+			Vector2i(0, -100), 
+			Vector2(0, UITracks[2].size.y),
+			noteData.trackFX[i]["End"] if noteData.trackFX[i].get("End") else -1 
+		)
+		$"../AudioStreamPlayer".connect("songUpdate", newNote._onSongUpdate)
+		notes.trackFX.append(newNote)
 
 func _onNoteHit(track, note):
 
@@ -122,3 +137,10 @@ func _onNoteHit(track, note):
 				else:
 					notes.track4.get(note).queue_free()
 					notes.track4[note] = null
+		GE.inputEnum.FX_TRACK:
+			if notes.trackFX.get(note) != null:
+				if(notes.trackFX.get(note).endTargetTime != -1):
+					pass
+				else:
+					notes.trackFX.get(note).queue_free()
+					notes.trackFX[note] = null

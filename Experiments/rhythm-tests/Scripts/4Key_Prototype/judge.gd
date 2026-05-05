@@ -24,9 +24,9 @@ signal miss(trackIndex: int, noteIndex: int) # The miss signal is the only one t
 # signls
 #############################################
 
-signal holdStarted(trackIndex: int, noteIndex: int)
-signal holdEnded(trackIndex: int, noteIndex: int)
-signal holdBroken(trackIndex: int, noteIndex: int)
+signal holdStarted(trackIndex: int, noteIndex: int, FX: int)
+signal holdEnded(trackIndex: int, noteIndex: int, FX: int)
+signal holdBroken(trackIndex: int, noteIndex: int, FX: int)
 
 var noteData: Dictionary
 
@@ -37,18 +37,21 @@ var track1NextNoteIndex = 0
 var track2NextNoteIndex = 0
 var track3NextNoteIndex = 0
 var track4NextNoteIndex = 0
+var trackFXNextNoteIndex = 0
 
 #Track Ended Booleans
 var track1Ended = false
 var track2Ended = false
 var track3Ended = false
 var track4Ended = false
+var trackFXEnded = false
 
 #Track Held Booleans
 var track1Held = false
 var track2Held = false
 var track3Held = false
 var track4Held = false
+var trackFXHeld = false
 
 #Track Button States
 var BTN_1 = false
@@ -62,6 +65,7 @@ var track1LNH = false
 var track2LNH = false
 var track3LNH = false
 var track4LNH = false
+var trackFXLNH = false
 
 #The timing window variables (Hard coded for now) in ms
 var perfectTiming: float		= 16.67
@@ -164,6 +168,26 @@ func updateNextNote(timeStamp: float) -> void:
 			track4NextNoteIndex += 1
 		else:
 			track4Ended = true
+	
+
+	# Track FX
+	if trackFXEnded:
+		pass
+	elif noteData.trackFX.is_empty():
+		trackFXEnded = true;
+	elif "End" in noteData.trackFX[trackFXNextNoteIndex]:
+		if timeStamp > noteData.trackFX[trackFXNextNoteIndex]["End"] * 1000 + okTiming and trackFXLNH != true:
+			miss.emit(GE.inputEnum.FX_TRACK, trackFXNextNoteIndex)
+			if trackFXNextNoteIndex + 1 < noteData.trackFX.size():
+				trackFXNextNoteIndex += 1
+			else:
+				trackFXEnded = true
+	elif timeStamp > noteData.trackFX[trackFXNextNoteIndex]["Pos"] * 1000 + okTiming and trackFXLNH != true:
+		miss.emit(GE.inputEnum.FX_TRACK, trackFXNextNoteIndex)
+		if trackFXNextNoteIndex + 1 < noteData.trackFX.size():
+			trackFXNextNoteIndex += 1
+		else:
+			trackFXEnded = true
 
 ####################################################
 # The main judgement logic will be done here.
@@ -172,13 +196,16 @@ func updateNextNote(timeStamp: float) -> void:
 # value and not by reference
 ####################################################
 
-func judge(inputTime:float, inputIndex: int, input: bool, nextNoteIndex: int, track: Array) -> int:
+func judge(inputTime:float, inputIndex: int, input: bool, nextNoteIndex: int, track: Array, FX: int = -1) -> int:
 	
 	var trackEnded: bool = false
 
 	var judgement: int = -1
 
 	var offset: float
+	
+	# -1 is no effect
+	var effect: int = FX
 
 	if track.is_empty():
 		return nextNoteIndex
@@ -236,9 +263,9 @@ func judge(inputTime:float, inputIndex: int, input: bool, nextNoteIndex: int, tr
 
 	if isHold and input == false:
 		if judgement != GE.judgementEnum.MISS:
-			holdEnded.emit(inputIndex, nextNoteIndex)
+			holdEnded.emit(inputIndex, nextNoteIndex, effect)
 		else:
-			holdBroken.emit(inputIndex, nextNoteIndex)
+			holdBroken.emit(inputIndex, nextNoteIndex, effect)
 
 		match inputIndex:
 			GE.inputEnum.TRACK1:
@@ -249,6 +276,8 @@ func judge(inputTime:float, inputIndex: int, input: bool, nextNoteIndex: int, tr
 				track3Held = false
 			GE.inputEnum.TRACK4:
 				track4Held = false
+			GE.inputEnum.FX_TRACK:
+				trackFXHeld = false
 
 		if trackEnded:
 			lastNoteHit(inputIndex)
@@ -262,7 +291,7 @@ func judge(inputTime:float, inputIndex: int, input: bool, nextNoteIndex: int, tr
 	####################################################
 
 	if isHold:
-		holdStarted.emit(inputIndex, nextNoteIndex)
+		holdStarted.emit(inputIndex, nextNoteIndex, effect)
 		match inputIndex:
 			GE.inputEnum.TRACK1:
 				track1Held = true
@@ -272,6 +301,8 @@ func judge(inputTime:float, inputIndex: int, input: bool, nextNoteIndex: int, tr
 				track3Held = true
 			GE.inputEnum.TRACK4:
 				track4Held = true
+			GE.inputEnum.FX_TRACK:
+				trackFXHeld = true
 		# 'nextNoteIndex' not incremented until hold tail
 		return nextNoteIndex
 
@@ -319,6 +350,8 @@ func lastNoteHit(trackIndex: int):
 			track3LNH = true
 		GE.inputEnum.TRACK4:
 			track4LNH = true
+		GE.inputEnum.FX_TRACK:
+			trackFXLNH = true
 
 func _onChartCreation(chart):
 	noteData = chart.notes
@@ -343,6 +376,6 @@ func _onBTN_4(inputTime, isDown):
 	track4NextNoteIndex = judge(inputTime, GE.inputEnum.TRACK4, BTN_4, track4NextNoteIndex, noteData.track4)
 
 
-func _onBTN_FX(_inputTime, isDown):
+func _onBTN_FX(inputTime, isDown):
 	BTN_FX = isDown
-	#judge(GE.inputEnum.TRACK1, BTN_FX, trackFXNextNoteIndex, noteData.trackFX)
+	trackFXNextNoteIndex = judge(inputTime, GE.inputEnum.FX_TRACK, BTN_FX, trackFXNextNoteIndex, noteData.trackFX, noteData.trackFX[trackFXNextNoteIndex]["Effect"])

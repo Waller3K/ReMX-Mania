@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Rhythm Tests"
-run/main_scene="uid://0oolkm44yp0h"
+run/main_scene="uid://npnbsbebxnuq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Assets/Sprites/icon.svg"
 

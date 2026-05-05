@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://npnbsbebxnuq"]
+
+[ext_resource type="AudioStream" uid="uid://ch775v3bh3ban" path="res://Assets/Music/ReMX-Mania-Theme.wav" id="1_ni661"]
+[ext_resource type="Script" uid="uid://ho3qddq0oily" path="res://Scripts/4Key_Prototype/MainMenu.gd" id="1_wne0t"]
+
+[node name="MainMenu" type="Control" unique_id=1175561564]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wne0t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1413403825]
+stream = ExtResource("1_ni661")
+autoplay = true
+bus = &"BG Track"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=412470936]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -50.5
+offset_right = 48.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SongSelect" type="Button" parent="VBoxContainer" unique_id=261475515]
+layout_mode = 2
+text = "Song Select"
+
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=506019868]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=1403017733]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/SongSelect" to="." method="_onSongSelectPressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_onOptionsPressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_onQuitPressed"]

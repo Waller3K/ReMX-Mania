@@ -16,6 +16,8 @@ var audioPath: String
 var songPos: float = 0.0
 var isPlaying = false
 
+var masterTrackIndex = AudioServer.get_bus_index("Master")
+
 # This songUpdate signal will be used in other scripts to trigger updates in place of the _process function
 signal songUpdate(timeStamp: float)
 
@@ -75,3 +77,19 @@ func _onPerfectEarly(offset: float, trackIndex: int, noteIndex: int) -> void:
 
 func _onPerfectLate(offset: float, trackIndex: int, noteIndex: int) -> void:
 	musicPlayer.stream.set_sync_stream_volume(trackIndex + 1, 0)
+
+
+
+func _onHoldBroken(trackIndex, noteIndex, FX):
+	if FX != -1:
+		AudioServer.set_bus_effect_enabled(masterTrackIndex, FX, false)
+
+
+func _onHoldEnded(trackIndex, noteIndex, FX):
+	if FX != -1:
+		AudioServer.set_bus_effect_enabled(masterTrackIndex, FX, false)
+
+
+func _onHoldStarted(trackIndex, noteIndex, FX):
+	if FX != -1:
+		AudioServer.set_bus_effect_enabled(masterTrackIndex, FX, true)

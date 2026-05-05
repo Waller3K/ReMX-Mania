@@ -16,7 +16,7 @@ signal btn3(inputTimestamp: float, isDown: bool)
 signal btn4(inputTimestamp: float, isDown: bool)
 
 # FX button signal
-signal btnFX(isDown: bool)
+signal btnFX(inputTimestamp: float, isDown: bool)
 
 func _ready() -> void:
 	Input.use_accumulated_input = false

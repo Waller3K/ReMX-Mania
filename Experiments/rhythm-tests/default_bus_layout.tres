@@ -1,6 +1,47 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://cd2i8lnxrhhmd"]
 
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_j3pel"]
+resource_name = "Chorus"
+voice_count = 4
+dry = 0.5
+voice/2/level_db = -4.6
+voice/3/delay_ms = 12.0
+voice/3/rate_hz = 1.0
+voice/3/depth_ms = 0.0
+voice/3/level_db = -12.9
+voice/3/cutoff_hz = 16000.0
+voice/3/pan = 0.0
+voice/4/delay_ms = 12.0
+voice/4/rate_hz = 1.0
+voice/4/depth_ms = 0.0
+voice/4/level_db = -16.7
+voice/4/cutoff_hz = 16000.0
+voice/4/pan = 0.0
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
+resource_name = "HighPassFilter"
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_j3pel"]
+resource_name = "Phaser"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+wet = 0.2
+
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectChorus_j3pel")
+bus/0/effect/0/enabled = false
+bus/0/effect/1/effect = SubResource("AudioEffectHighPassFilter_j3pel")
+bus/0/effect/1/enabled = false
+bus/0/effect/2/effect = SubResource("AudioEffectLowPassFilter_j3pel")
+bus/0/effect/2/enabled = false
+bus/0/effect/3/effect = SubResource("AudioEffectPhaser_j3pel")
+bus/0/effect/3/enabled = false
+bus/0/effect/4/effect = SubResource("AudioEffectReverb_j3pel")
+bus/0/effect/4/enabled = false
 bus/1/name = &"BG Track"
 bus/1/solo = false
 bus/1/mute = false

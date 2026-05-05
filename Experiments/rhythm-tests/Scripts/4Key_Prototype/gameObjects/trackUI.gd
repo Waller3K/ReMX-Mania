@@ -7,6 +7,9 @@ extends HBoxContainer
 @export var inactiveColor : Color
 @export var activeColor : Color
 
+@export var FXInactiveColor: Color
+@export var FXActiveColor: Color
+
 func _ready() -> void:
 	for child in get_children():
 		trackUIElems.append(child)
@@ -29,13 +32,19 @@ func _onBTN2(_inputTimestamp: float, isDown: bool) -> void:
 
 func _onBTN3(_inputTimestamp: float, isDown: bool) -> void:
 	if isDown:
-		trackUIElems[2].color = activeColor
-	else:
-		trackUIElems[2].color = inactiveColor
-
-
-func _onBTN4(_inputTimestamp: float, isDown: bool) -> void:
-	if isDown:
 		trackUIElems[3].color = activeColor
 	else:
 		trackUIElems[3].color = inactiveColor
+
+func _onBTN4(_inputTimestamp: float, isDown: bool) -> void:
+	if isDown:
+		trackUIElems[4].color = activeColor
+	else:
+		trackUIElems[4].color = inactiveColor
+
+
+func _onBTNFX(_inputTimestamp: float, isDown: bool) -> void:
+	if isDown:
+		trackUIElems[2].color = FXActiveColor
+	else:
+		trackUIElems[2].color = FXInactiveColor
