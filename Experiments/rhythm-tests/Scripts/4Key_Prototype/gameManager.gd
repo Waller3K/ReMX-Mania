@@ -167,5 +167,11 @@ func _onHoldStarted(trackIndex, noteIndex):
 	print("Hold Started")
 
 
-func _onChartEnded():
-	print("End of Chart!")
+func _onFinished() -> void:
+	print("End of chart")
+	# Updates the currentScore global Variable
+	GlobalStates.currentScore = score
+	GlobalStates.maxCombo = maxCombo
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/Prototype_Build/Results.tscn")
+	

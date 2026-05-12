@@ -1,7 +1,7 @@
 extends Node
 
 var chartData: Chart = Chart.new()
-var chartPath: String = "res://Assets/Charts/4_Key_Charts/Sink_to_a_deep_Sea_World.json"
+var chartPath: String = GlobalStates.currentChartPath
 
 signal chartCreated(chart: Chart)
 

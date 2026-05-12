@@ -28,9 +28,6 @@ signal holdStarted(trackIndex: int, noteIndex: int, FX: int)
 signal holdEnded(trackIndex: int, noteIndex: int, FX: int)
 signal holdBroken(trackIndex: int, noteIndex: int, FX: int)
 
-#Chart ended signal
-signal chartEnded()
-
 var noteData: Dictionary
 
 var songPos: float
@@ -88,9 +85,6 @@ var chartDone: bool = false
 func _onSongUpdate(timeStamp):
 	songPos = timeStamp * 1000
 	updateNextNote(songPos)
-	if track1Ended and track2Ended and track3Ended and track4Ended and trackFXEnded and !chartDone:
-		chartEnded.emit()
-		chartDone = true
 
 
 #############################################

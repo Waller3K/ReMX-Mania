@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://c5561jpk3n24f"]
 
-[node name="Results" type="Control" unique_id=2021439837]
+[ext_resource type="Script" uid="uid://6ceepvocirj8" path="res://Scripts/4Key_Prototype/results.gd" id="1_3vqyf"]
+
+[node name="Results" type="Control" unique_id=2021439837 node_paths=PackedStringArray("SongTitleText", "DifficultyText", "FinalScoreText", "MaxComboText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3vqyf")
+SongTitleText = NodePath("Panel/VBoxContainer/SongTitileText")
+DifficultyText = NodePath("Panel/VBoxContainer/DifficultyText")
+FinalScoreText = NodePath("Panel/VBoxContainer/FinalScoreText")
+MaxComboText = NodePath("Panel/VBoxContainer/MaxComboText")
 
 [node name="Panel" type="Panel" parent="." unique_id=1736764276]
 layout_mode = 1
@@ -37,6 +44,14 @@ text = "DIFFICULTY TITLE"
 layout_mode = 2
 text = "SCORE HERE"
 
+[node name="MaxComboText" type="Label" parent="Panel/VBoxContainer" unique_id=1688347173]
+layout_mode = 2
+text = "MAX COMBO HERE"
+
+[node name="ReturnButton" type="Button" parent="Panel/VBoxContainer" unique_id=2015114409]
+layout_mode = 2
+text = "Return to Song Select"
+
 [node name="Panel2" type="Panel" parent="." unique_id=657865316]
 layout_mode = 1
 anchors_preset = -1
@@ -44,3 +59,5 @@ anchor_right = 0.3
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="pressed" from="Panel/VBoxContainer/ReturnButton" to="." method="_onReturnButtonPressed"]

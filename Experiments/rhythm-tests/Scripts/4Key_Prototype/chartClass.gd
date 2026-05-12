@@ -74,6 +74,11 @@ func load(path: String) -> bool:
 	notes.track4 	= chartData["Notes"]["Track 4"]
 	notes.trackFX	= chartData["Notes"]["Track FX"]
 	
+	# Updates global state for current chart path and metadata
+	GlobalStates.currentChartPath = path
+	GlobalStates.currentChartMetadata = chartData["Metadata"]
+	GlobalStates.currentScore = 0
+	
 	# Adds a has been hit bool to each note on each track
 	
 	for note in notes.track1:

@@ -1,0 +1,41 @@
+{
+	"Metadata" : {
+		"BPM" : 185,
+		"Title" : "Sink to a Deep Test World",
+		"Artist" : "Waller3K",
+		"Charter" : "Waller3K",
+		"Difficulty" : 2.0,
+		"DifficultyName" : "Easy",
+		"BGMPath" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/BG_Track.ogg",
+		"Track1Path" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/Track 1.ogg",
+		"Track2Path" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/Track 2.ogg",
+		"Track3Path" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/Track 3.ogg",
+		"Track4Path" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/Track 4.ogg",
+		"Version" : 0.1
+	},
+	"Notes" : {
+		"Track 1" : [
+			{"Pos" : 1.621622, "End" : 3.891892},
+			{"Pos" : 9.081081, "End" : 10.378378}
+		],
+		"Track 2" : [
+			{"Pos" : 4.540541},
+			{"Pos" : 5.189189},
+			{"Pos" : 12.972973}
+		],
+		"Track 3" : [
+			{"Pos" : 6.486486},
+			{"Pos" : 7.783784},
+			{"Pos" : 13.297297}
+		],
+		"Track 4" : [
+			{"Pos" : 5.837838},
+			{"Pos" : 11.675676, "End" : 12.972973}
+		],
+		"Track FX" : [
+			{"Pos" : 2.594595, "End" : 3.891892, "Effect" : 3},
+			{"Pos" : 10.378378, "End" : 11.675676, "Effect" : 1}
+		]
+		
+	}
+}
