@@ -11,22 +11,28 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6ps4i")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2074588410]
+[node name="Panel" type="Panel" parent="." unique_id=966441951]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -46.0
-offset_top = -20.0
-offset_right = 46.0
-offset_bottom = 20.0
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=1511498770]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="VBoxContainer" unique_id=2037066442]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=2074588410]
 layout_mode = 2
-text = "Test Chart!"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_onButtonPressed"]
+[node name="TestChartButton" type="Button" parent="Panel/ScrollContainer/VBoxContainer" unique_id=425295215]
+layout_mode = 2
+text = "Test_Chart"
+
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/TestChartButton" to="." method="_onTestChartButtonPressed"]

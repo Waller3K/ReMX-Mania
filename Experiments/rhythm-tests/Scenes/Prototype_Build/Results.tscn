@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c5561jpk3n24f"]
+
+[node name="Results" type="Control" unique_id=2021439837]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1736764276]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1477296836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SongTitileText" type="Label" parent="Panel/VBoxContainer" unique_id=7721304]
+layout_mode = 2
+text = "SONG TITLE"
+
+[node name="DifficultyText" type="Label" parent="Panel/VBoxContainer" unique_id=41497399]
+layout_mode = 2
+text = "DIFFICULTY TITLE"
+
+[node name="FinalScoreText" type="Label" parent="Panel/VBoxContainer" unique_id=949107195]
+layout_mode = 2
+text = "SCORE HERE"
+
+[node name="Panel2" type="Panel" parent="." unique_id=657865316]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.3
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

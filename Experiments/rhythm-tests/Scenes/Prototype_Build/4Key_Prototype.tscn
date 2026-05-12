@@ -193,6 +193,7 @@ judegementLine = NodePath("../CanvasLayer/UI/JudgementLine")
 [connection signal="btnFX" from="Input" to="Judge" method="_onBTN_FX"]
 [connection signal="btnFX" from="Input" to="CanvasLayer/UI/JudgementLine/TracksButtons" method="_onBTNFX"]
 [connection signal="testButton" from="Input" to="AudioStreamPlayer" method="_onTestButton"]
+[connection signal="chartEnded" from="Judge" to="GameManager" method="_onChartEnded"]
 [connection signal="goodEarly" from="Judge" to="AudioStreamPlayer" method="_onGoodEarly"]
 [connection signal="goodEarly" from="Judge" to="GameManager" method="_onGoodEarly"]
 [connection signal="goodLate" from="Judge" to="AudioStreamPlayer" method="_onGoodLate"]

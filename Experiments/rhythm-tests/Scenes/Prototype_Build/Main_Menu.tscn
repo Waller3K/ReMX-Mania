@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://npnbsbebxnuq"]
 
-[ext_resource type="AudioStream" uid="uid://ch775v3bh3ban" path="res://Assets/Music/ReMX-Mania-Theme.wav" id="1_ni661"]
 [ext_resource type="Script" uid="uid://ho3qddq0oily" path="res://Scripts/4Key_Prototype/MainMenu.gd" id="1_wne0t"]
+[ext_resource type="AudioStream" uid="uid://ealpd8kqigtc" path="res://Assets/Music/ReMX-Mania-Theme.ogg" id="2_wne0t"]
 
 [node name="MainMenu" type="Control" unique_id=1175561564]
 layout_mode = 3
@@ -13,7 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_wne0t")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1413403825]
-stream = ExtResource("1_ni661")
+stream = ExtResource("2_wne0t")
 autoplay = true
 bus = &"BG Track"
 

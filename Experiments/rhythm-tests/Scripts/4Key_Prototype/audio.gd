@@ -22,11 +22,11 @@ var masterTrackIndex = AudioServer.get_bus_index("Master")
 signal songUpdate(timeStamp: float)
 
 func _onChartCreation(chart: Chart) -> void:
-	audioPath = chart.songPath
+	audioPath = chart.BGMPath
 	syncStream = AudioStreamSynchronized.new()
 	syncStream.stream_count = 5
 	
-	syncStream.set_sync_stream(0, load(chart.songPath))
+	syncStream.set_sync_stream(0, load(chart.BGMPath))
 	syncStream.set_sync_stream(1, load(chart.track1Path))
 	syncStream.set_sync_stream(2, load(chart.track2Path))
 	syncStream.set_sync_stream(3, load(chart.track3Path))

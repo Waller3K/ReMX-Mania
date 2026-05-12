@@ -14,6 +14,8 @@ func _ready() -> void:
 	for child in get_children():
 		trackUIElems.append(child)
 		child.color = inactiveColor
+	
+	get_child(2).color = FXInactiveColor
 
 
 func _onBTN1(_inputTimestamp: float, isDown: bool) -> void:

@@ -165,3 +165,7 @@ func _onHoldEnded(trackIndex, noteIndex):
 
 func _onHoldStarted(trackIndex, noteIndex):
 	print("Hold Started")
+
+
+func _onChartEnded():
+	print("End of Chart!")

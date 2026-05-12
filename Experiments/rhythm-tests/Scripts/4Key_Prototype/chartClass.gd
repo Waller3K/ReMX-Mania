@@ -3,12 +3,13 @@ extends Resource
 
 # Song Metadata Variables
 
-@export var bpm: 		float
-@export var songPath: 	String
-@export var songName: 	String
-@export var songArtist:	String
-@export var charter: 	String
-@export var difficulty:	float
+@export var bpm: 			float
+@export var BGMPath: 		String
+@export var songName: 		String
+@export var songArtist:		String
+@export var charter: 		String
+@export var difficultyName: String
+@export var difficulty:		float
 
 # Chart Metadata Variables
 @export var track1Path: String # the paths to the stems controlled by each track
@@ -57,15 +58,16 @@ func load(path: String) -> bool:
 	# Sets the chart variables using the JSON chart data
 	
 	bpm 			= chartData["Metadata"]["BPM"]
-	songPath 		= chartData["Metadata"]["path"]
-	songName		= chartData["Metadata"]["name"]
-	songArtist		= chartData["Metadata"]["artist"]
-	charter			= chartData["Metadata"]["charter"]
-	difficulty		= chartData["Metadata"]["difficulty"]
-	track1Path		= chartData["Metadata"]["track1Path"]
-	track2Path		= chartData["Metadata"]["track2Path"]
-	track3Path		= chartData["Metadata"]["track3Path"]
-	track4Path		= chartData["Metadata"]["track4Path"]
+	BGMPath 		= chartData["Metadata"]["BGMPath"]
+	songName		= chartData["Metadata"]["Title"]
+	songArtist		= chartData["Metadata"]["Artist"]
+	charter			= chartData["Metadata"]["Charter"]
+	difficultyName	= chartData["Metadata"]["Charter"]
+	difficulty		= chartData["Metadata"]["Difficulty"]
+	track1Path		= chartData["Metadata"]["Track1Path"]
+	track2Path		= chartData["Metadata"]["Track2Path"]
+	track3Path		= chartData["Metadata"]["Track3Path"]
+	track4Path		= chartData["Metadata"]["Track4Path"]
 	notes.track1 	= chartData["Notes"]["Track 1"]
 	notes.track2 	= chartData["Notes"]["Track 2"]
 	notes.track3 	= chartData["Notes"]["Track 3"]

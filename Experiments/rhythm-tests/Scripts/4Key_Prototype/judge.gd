@@ -28,6 +28,9 @@ signal holdStarted(trackIndex: int, noteIndex: int, FX: int)
 signal holdEnded(trackIndex: int, noteIndex: int, FX: int)
 signal holdBroken(trackIndex: int, noteIndex: int, FX: int)
 
+#Chart ended signal
+signal chartEnded()
+
 var noteData: Dictionary
 
 var songPos: float
@@ -73,6 +76,8 @@ var almostPerfectTiming: float	= 33.00
 var goodTiming: float			= 92.00
 var okTiming: float				= 200.00
 
+var chartDone: bool = false
+
 #############################################
 # The functionality of this component would 
 # all happen within this onRhythmUpdate() 
@@ -83,6 +88,11 @@ var okTiming: float				= 200.00
 func _onSongUpdate(timeStamp):
 	songPos = timeStamp * 1000
 	updateNextNote(songPos)
+	if track1Ended and track2Ended and track3Ended and track4Ended and trackFXEnded and !chartDone:
+		chartEnded.emit()
+		chartDone = true
+
+
 #############################################
 # Updates the next note index when we pass
 # a note and sets the variables for ending the 
