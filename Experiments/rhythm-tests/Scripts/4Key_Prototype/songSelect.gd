@@ -2,14 +2,19 @@ extends Control
 
 
 func _onTestChartButtonPressed():
-	GlobalStates.currentChartPath = "res://Assets/Charts/4_Key_Charts/Sink_to_a_deep_Sea_World-Easy.json"
+	GlobalStates.currentChartPath = "res://Charts/Sink to a deep test world - Waller3K/Easy.json"
 	get_tree().change_scene_to_file("res://Scenes/Prototype_Build/4Key_Prototype.tscn")
 
 
 func _onTestChartButton2Pressed() -> void:
-	GlobalStates.currentChartPath = "res://Assets/Charts/4_Key_Charts/Sink_to_a_deep_Sea_World-Medium.json"
+	GlobalStates.currentChartPath = "res://Charts/Sink to a deep test world - Waller3K/Medium.json"
 	get_tree().change_scene_to_file("res://Scenes/Prototype_Build/4Key_Prototype.tscn")
 
 
 func _onMainMenuButtonPressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Prototype_Build/Main_Menu.tscn")
+
+
+func _onTestChartButton3Pressed() -> void:
+	GlobalStates.currentChartPath = "res://Charts/Sink to a deep test world - Waller3K/Beginner.json"
+	get_tree().change_scene_to_file("res://Scenes/Prototype_Build/4Key_Prototype.tscn")

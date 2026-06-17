@@ -9,6 +9,16 @@
 [ext_resource type="Script" uid="uid://crjc8ar4h20cd" path="res://Scripts/4Key_Prototype/gameManager.gd" id="7_nkauc"]
 [ext_resource type="Script" uid="uid://cwjwy4pyay6ej" path="res://Scripts/4Key_Prototype/noteManager.gd" id="9_g4dpr"]
 [ext_resource type="Script" uid="uid://bcayds6887gid" path="res://Scripts/4Key_Prototype/gameObjects/trackUI.gd" id="9_n46i8"]
+[ext_resource type="Script" uid="uid://blx4tkxdeqyn1" path="res://Scripts/4Key_Prototype/gameObjects/fpsLabel.gd" id="9_sf3te"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_11o4b"]
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_51ynm"]
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="4KeyPrototype" type="Node2D" unique_id=1665818793]
 script = ExtResource("1_c2nwg")
@@ -30,11 +40,12 @@ script = ExtResource("5_75w05")
 
 [node name="GameManager" type="Node" parent="." unique_id=202422349 node_paths=PackedStringArray("scoreText", "comboText", "hitText")]
 script = ExtResource("7_nkauc")
-scoreText = NodePath("../CanvasLayer/UI/ScoreText")
+scoreText = NodePath("../CanvasLayer/VBoxContainer/ScoreText")
 comboText = NodePath("../CanvasLayer/UI/ComboText")
 hitText = NodePath("../CanvasLayer/UI/HitText")
 
 [node name="MetronomePlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1731606645]
+volume_db = -10.119
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1135291016]
 layer = 0
@@ -109,29 +120,110 @@ FXActiveColor = Color(1, 0, 0.18431373, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Label" type="Label" parent="CanvasLayer/UI/JudgementLine/TracksButtons/Track1" unique_id=728081928]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "A"
+label_settings = SubResource("LabelSettings_11o4b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Track2" type="ColorRect" parent="CanvasLayer/UI/JudgementLine/TracksButtons" unique_id=1415675278]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/JudgementLine/TracksButtons/Track2" unique_id=2056291446]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "S"
+label_settings = SubResource("LabelSettings_11o4b")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Track5" type="ColorRect" parent="CanvasLayer/UI/JudgementLine/TracksButtons" unique_id=1617803876]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.9999997, 0.36755478, 0.096630566, 1)
 
+[node name="Label" type="Label" parent="CanvasLayer/UI/JudgementLine/TracksButtons/Track5" unique_id=1144964195]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "_"
+label_settings = SubResource("LabelSettings_11o4b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Track3" type="ColorRect" parent="CanvasLayer/UI/JudgementLine/TracksButtons" unique_id=1295507378]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/JudgementLine/TracksButtons/Track3" unique_id=1508104463]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "L"
+label_settings = SubResource("LabelSettings_11o4b")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Track4" type="ColorRect" parent="CanvasLayer/UI/JudgementLine/TracksButtons" unique_id=1332052506]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ScoreText" type="RichTextLabel" parent="CanvasLayer/UI" unique_id=630236349]
+[node name="Label" type="Label" parent="CanvasLayer/UI/JudgementLine/TracksButtons/Track4" unique_id=1766673027]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.26200002
-anchor_bottom = 0.062000003
-offset_bottom = -0.1760025
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = ";"
+label_settings = SubResource("LabelSettings_11o4b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -169,6 +261,22 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=684277747]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreText" type="RichTextLabel" parent="CanvasLayer/VBoxContainer" unique_id=630236349]
+layout_mode = 2
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FPSLabel" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1469189548]
+layout_mode = 2
+text = "FPS Label"
+label_settings = SubResource("LabelSettings_51ynm")
+script = ExtResource("9_sf3te")
+
 [node name="NoteManager" type="Node" parent="." unique_id=1799345126 node_paths=PackedStringArray("judegementLine")]
 script = ExtResource("9_g4dpr")
 judegementLine = NodePath("../CanvasLayer/UI/JudgementLine")
@@ -191,6 +299,7 @@ judegementLine = NodePath("../CanvasLayer/UI/JudgementLine")
 [connection signal="btn3" from="Input" to="CanvasLayer/UI/JudgementLine/TracksButtons" method="_onBTN3"]
 [connection signal="btn4" from="Input" to="Judge" method="_onBTN_4"]
 [connection signal="btn4" from="Input" to="CanvasLayer/UI/JudgementLine/TracksButtons" method="_onBTN4"]
+[connection signal="btnFX" from="Input" to="AudioStreamPlayer" method="onInputBtnFX"]
 [connection signal="btnFX" from="Input" to="Judge" method="_onBTN_FX"]
 [connection signal="btnFX" from="Input" to="CanvasLayer/UI/JudgementLine/TracksButtons" method="_onBTNFX"]
 [connection signal="testButton" from="Input" to="AudioStreamPlayer" method="_onTestButton"]

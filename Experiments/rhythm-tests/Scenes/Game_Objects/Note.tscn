@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://hhh88k0ah4ht" path="res://Assets/Sprites/icon.svg" id="1_neeg5"]
 
 [node name="Note" type="TextureRect" unique_id=754815465]
+offset_right = 200.0
+offset_bottom = 200.0
 scale = Vector2(1, 0.2)
 texture = ExtResource("1_neeg5")
 script = ExtResource("1_hku03")

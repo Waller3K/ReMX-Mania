@@ -7,7 +7,7 @@ func _onSongSelectPressed():
 
 
 func _onOptionsPressed():
-	print("Options")
+	get_tree().change_scene_to_file("res://Scenes/Prototype_Build/Options_Menu.tscn")
 
 
 func _onQuitPressed():

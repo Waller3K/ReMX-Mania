@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b54s7rgxe4lwg"]
+
+[ext_resource type="Script" uid="uid://chvjolnv7uf27" path="res://Scripts/4Key_Prototype/optionsMenu.gd" id="1_16stt"]
+[ext_resource type="PackedScene" uid="uid://bhnjxi7qft3fk" path="res://Scenes/Game_Objects/Volume_Slider.tscn" id="2_17bwm"]
+[ext_resource type="Script" uid="uid://bwer8ijo8oxpr" path="res://Scripts/4Key_Prototype/gameObjects/offsetBox.gd" id="2_v2dxj"]
+[ext_resource type="AudioStream" uid="uid://ealpd8kqigtc" path="res://Assets/Music/ReMX-Mania-Theme.ogg" id="3_3pbp3"]
+[ext_resource type="Script" uid="uid://ju77yjtcdf7c" path="res://Scripts/4Key_Prototype/gameObjects/scrollSpeedBox.gd" id="4_5od1t"]
+
+[node name="OptionsMenu" type="Control" unique_id=1999979347]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_16stt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1224119387]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.45524693
+anchor_right = 0.7
+anchor_bottom = 0.5447531
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=690098009]
+layout_mode = 2
+tooltip_text = "In milleseconds! Set positive for to push the notes back, set negative to push the notes forward"
+mouse_filter = 0
+text = "Offset"
+horizontal_alignment = 1
+
+[node name="offsetBox" type="SpinBox" parent="VBoxContainer" unique_id=1641807219]
+layout_mode = 2
+min_value = -2000.0
+max_value = 2000.0
+step = 0.1
+alignment = 1
+script = ExtResource("2_v2dxj")
+
+[node name="VolumeLabel" type="Label" parent="VBoxContainer" unique_id=1669220714]
+layout_mode = 2
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="VolumeSlider" parent="VBoxContainer" unique_id=1836534610 instance=ExtResource("2_17bwm")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=693900772]
+layout_mode = 2
+tooltip_text = "In milleseconds! Set positive for to push the notes back, set negative to push the notes forward"
+mouse_filter = 0
+text = "Scroll Speed"
+horizontal_alignment = 1
+
+[node name="scrollSpeedBox" type="SpinBox" parent="VBoxContainer" unique_id=2062971858]
+layout_mode = 2
+min_value = 1.0
+max_value = 20.0
+step = 0.1
+value = 1.0
+alignment = 1
+script = ExtResource("4_5od1t")
+
+[node name="ReturnButton" type="Button" parent="VBoxContainer" unique_id=1654418723]
+layout_mode = 2
+text = "Return"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1915696580]
+stream = ExtResource("3_3pbp3")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="onReturnButtonPressed"]

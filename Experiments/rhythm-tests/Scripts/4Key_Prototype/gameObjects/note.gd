@@ -38,6 +38,7 @@ func INIT(track: int, note: int, target: float, sOffset: float, sp: Vector2i, ju
 		var noteTail: TextureRect = TextureRect.new()
 		noteTail.texture = self.texture
 		noteTail.scale = self.scale
+		noteTail.size = self.size
 		noteTail.position = self.position
 		parent.add_child(noteTail)
 		noteTailNode = noteTail
@@ -54,13 +55,13 @@ func _onSongUpdate(timestamp: float):
 	# y = hitPosition + (noteTime - currentTime) * scrollSpeed * scale
 	# I'm gonna be stealing this bar for bar
 
-	var headY = judgementLinePos.y - (targetTime - timestamp) * 10.0 * 100
+	var headY = judgementLinePos.y - (targetTime - timestamp) * GlobalStates.scrollSpd * 100
 
 	self.position.y = headY
 
 	if (endTargetTime != -1):
 
-		var tailY = judgementLinePos.y - (endTargetTime - timestamp) * 10.0 * 100
+		var tailY = judgementLinePos.y - (endTargetTime - timestamp) * GlobalStates.scrollSpd * 100
 		
 		# noteTailNode.position.y = tailY - headY
 		noteTailNode.position = Vector2(self.position.x, tailY)

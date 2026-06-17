@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bcc5imy5ekn6m"
+path="res://.godot/imported/Track 1.ogg-6d88eaa49d69d8c0a4e5bb2196cd7699.oggvorbisstr"
+
+[deps]
+
+source_file="res://Charts/Sink to a deep test world - Waller3K/Track 1.ogg"
+dest_files=["res://.godot/imported/Track 1.ogg-6d88eaa49d69d8c0a4e5bb2196cd7699.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

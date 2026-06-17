@@ -6,11 +6,11 @@
 		"Charter" : "Waller3K",
 		"Difficulty" : 5.0,
 		"DifficultyName" : "Medium",
-		"BGMPath" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/BG_Track.ogg",
-		"Track1Path" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/Track 1.ogg",
-		"Track2Path" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/Track 2.ogg",
-		"Track3Path" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/Track 3.ogg",
-		"Track4Path" : "res://Assets/Music/Sink_to_a_Deep_Sea_World/Track 4.ogg",
+		"BGMPath" : "res://Charts/Sink to a deep test world - Waller3K/BG_Track.ogg",
+		"Track1Path" : "res://Charts/Sink to a deep test world - Waller3K/Track 1.ogg",
+		"Track2Path" : "res://Charts/Sink to a deep test world - Waller3K/Track 2.ogg",
+		"Track3Path" : "res://Charts/Sink to a deep test world - Waller3K/Track 3.ogg",
+		"Track4Path" : "res://Charts/Sink to a deep test world - Waller3K/Track 4.ogg",
 		"Version" : 0.1
 	},
 	"Notes" : {
