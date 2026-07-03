@@ -41,7 +41,7 @@ text = "Test_Chart Easy"
 
 [node name="TestChartButton2" type="Button" parent="Panel/ScrollContainer/VBoxContainer" unique_id=619650216]
 layout_mode = 2
-text = "Test_Chart Medium"
+text = "Test_Chart Hard"
 
 [node name="MainMenuButton" type="Button" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1279860025]
 layout_mode = 2

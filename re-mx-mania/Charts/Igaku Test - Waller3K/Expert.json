@@ -1,0 +1,42 @@
+{
+	"Metadata" : {
+		"BPM" : 120,
+		"Title" : "Igaku Test",
+		"Artist" : "Waller3K",
+		"Charter" : "Waller3K",
+		"Difficulty" : 10.0,
+		"DifficultyName" : "Expert",
+		"TrackCount" : 4,
+		"BGMPath" : "res://Charts/Igaku Test - Waller3K/BG_Track.ogg",
+		"Track1Path" : "res://Charts/Igaku Test - Waller3K/Track 1.ogg",
+		"Track2Path" : "res://Charts/Igaku Test - Waller3K/Track 2.ogg",
+		"Track3Path" : "res://Charts/Igaku Test - Waller3K/Track 3.ogg",
+		"Track4Path" : "res://Charts/Igaku Test - Waller3K/Track 4.ogg",
+		"ScratchPath" : "res://Charts/Igaku Test - Waller3K/Scratch.ogg",
+		"Version" : 1.0
+	},
+	"Notes" : {
+		"Track FX" : [
+			{"Pos" : 0.0, "End" : 1.5, "Effect" : 1},
+			{"Pos" : 17.5, "End" : 17.75, "Effect" : 2}
+		],
+		"Track 1" : [
+			{"Pos" : 2.25},
+			{"Pos" : 3.75},
+			{"Pos" : 5.25},
+			{"Pos" : 6.25},
+			{"Pos" : 7.75},
+			{"Pos" : 9.375},
+			{"Pos" : 10.25},
+			{"Pos" : 12.5},
+			{"Pos" : 13.25},
+			{"Pos" : 14.0},
+			{"Pos" : 15.25}
+			
+		],
+		"Track 2" : [],
+		"Track 3" : [],
+		"Track 4" : [],
+		"Scratch" : []
+	}
+}

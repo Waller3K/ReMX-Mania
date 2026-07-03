@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="ReMX Mania"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalEnums="*uid://mwc7efyleiiv"
+GlobalStates="*uid://kr3a6onv3r1n"
 
 [display]
 

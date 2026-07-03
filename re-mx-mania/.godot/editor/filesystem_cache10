@@ -1,5 +1,19 @@
-63f7b34db8d8cdea90c76aacccf841ec
-::res://::1775592149
-icon.svg::CompressedTexture2D::5603300852668577369::1775592147::1775592150::1::::<><><>0<>0<>4aac5d3884dedba9a7cc77d2fc320a37<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-::res://Scenes/::0
-Gameplay.tscn::PackedScene::5538786362363920892::1775592196::0::1::::<><><>0<>0<><>::
+78098b89c88a74ebe8c20117b8754620
+::res://::1783106900
+icon.svg::CompressedTexture2D::5603300852668577369::1778591865::1782521036::1::::<><><>0<>0<>4aac5d3884dedba9a7cc77d2fc320a37<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://Assets/::1782526271
+::res://Charts/::1783048320
+::res://Charts/Igaku Test/::1783048393
+::res://Charts/Sink to a New Test World/::1783035720
+Beginner.json::JSON::-1::1783029794::0::1::::<><><>0<>0<><>::
+::res://Scenes/::1783036000
+Gameplay.tscn::PackedScene::5538786362363920892::1783107123::0::1::::<><><>0<>0<><>::uid://rmwyx8je2wcv::::res://Scripts/Components/Composer.gd<>uid://c3ln82f48renc::::res://Scripts/Components/Audio.gd
+::res://Scripts/::1783019456
+::res://Scripts/Autoloads/::1783027945
+GlobalEnums.gd::GDScript::887861232558932565::1783018714::0::1::::<>Node<><>0<>0<><>::
+GlobalStates.gd::GDScript::738684584467761941::1783027945::0::1::::<>Node<><>0<>0<><>::
+::res://Scripts/Classes/::1783035632
+ChartClass.gd::GDScript::4380945922393844680::1783035632::0::1::::Chart<>Resource<><>0<>0<><>::
+::res://Scripts/Components/::1783029999
+Audio.gd::GDScript::6761686823867467588::1783019859::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
+Composer.gd::GDScript::1219362767220797481::1783029999::0::1::::<>Node<><>0<>0<><>::
