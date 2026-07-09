@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://det3njcxw8vod"
+path="res://.godot/imported/Track_4.ogg-6447645aa5a99b335146826418e3baec.oggvorbisstr"
+
+[deps]
+
+source_file="res://Charts/Igaku Test/Track_4.ogg"
+dest_files=["res://.godot/imported/Track_4.ogg-6447645aa5a99b335146826418e3baec.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

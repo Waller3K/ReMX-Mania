@@ -1,17 +1,17 @@
 {
 	"Metadata": {
 		"Artist": "Waller3K",
-		"BGMPath": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/BGM_Track.ogg",
+		"BGMPath": "res://Charts/Igaku Test/BGM_Track.ogg",
 		"BPM": 120.0,
 		"Charter": "Waller3K",
 		"Difficulty": 10.0,
 		"DifficultyName": "Expert",
-		"ScratchPath": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Scratch_Track.ogg",
+		"ScratchPath": "res://Charts/Igaku Test/Scratch_Track.ogg",
 		"Title": "Igaku",
-		"Track1Path": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Track_1.ogg",
-		"Track2Path": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Track_2.ogg",
-		"Track3Path": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Track_3.ogg",
-		"Track4Path": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Track_4.ogg",
+		"Track1Path": "res://Charts/Igaku Test/Track_1.ogg",
+		"Track2Path": "res://Charts/Igaku Test/Track_2.ogg",
+		"Track3Path": "res://Charts/Igaku Test/Track_3.ogg",
+		"Track4Path": "res://Charts/Igaku Test/Track_4.ogg",
 		"TrackCount": 4
 	},
 	"Notes": {

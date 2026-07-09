@@ -18,3 +18,8 @@ func _onMainMenuButtonPressed() -> void:
 func _onTestChartButton3Pressed() -> void:
 	GlobalStates.currentChartPath = "res://Charts/Sink to a deep test world - Waller3K/Beginner.json"
 	get_tree().change_scene_to_file("res://Scenes/Prototype_Build/4Key_Prototype.tscn")
+
+
+func _onIgakuButtonPressed() -> void:
+	GlobalStates.currentChartPath = "res://Charts/Igaku Test/Expert.json"
+	get_tree().change_scene_to_file("res://Scenes/Prototype_Build/4Key_Prototype.tscn")

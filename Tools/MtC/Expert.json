@@ -1,0 +1,397 @@
+{
+    "Metadata": {
+        "Artist": "Waller3K",
+        "BGMPath": "c:\\Users\\waltl\\Desktop\\My music\\FL Studio\\2026\\Igaku-Test\\BGM_Track.ogg",
+        "BPM": 120.0,
+        "Charter": "Waller3K",
+        "Difficulty": 10.0,
+        "DifficultyName": "Expert",
+        "ScratchPath": "c:\\Users\\waltl\\Desktop\\My music\\FL Studio\\2026\\Igaku-Test\\Scratch_Track.ogg",
+        "Title": "Igaku",
+        "Track1Path": "c:\\Users\\waltl\\Desktop\\My music\\FL Studio\\2026\\Igaku-Test\\Track_1.ogg",
+        "Track2Path": "c:\\Users\\waltl\\Desktop\\My music\\FL Studio\\2026\\Igaku-Test\\Track_2.ogg",
+        "Track3Path": "c:\\Users\\waltl\\Desktop\\My music\\FL Studio\\2026\\Igaku-Test\\Track_3.ogg",
+        "Track4Path": "c:\\Users\\waltl\\Desktop\\My music\\FL Studio\\2026\\Igaku-Test\\Track_4.ogg",
+        "TrackCount": 4
+    },
+    "Notes": {
+        "Scratch Track": [
+            {
+                "End": 1.875040054321289,
+                "Pos": 1.5
+            },
+            {
+                "End": 10.0,
+                "Pos": 9.625
+            },
+            {
+                "End": 15.0,
+                "Pos": 14.5
+            },
+            {
+                "End": 25.875,
+                "Pos": 25.5
+            },
+            {
+                "End": 31.5,
+                "Pos": 31.0
+            }
+        ],
+        "Track 1": [
+            {
+                "Pos": 2.25
+            },
+            {
+                "Pos": 3.75
+            },
+            {
+                "Pos": 5.25
+            },
+            {
+                "Pos": 6.25
+            },
+            {
+                "Pos": 7.75
+            },
+            {
+                "Pos": 9.375
+            },
+            {
+                "Pos": 10.25
+            },
+            {
+                "Pos": 12.5
+            },
+            {
+                "Pos": 13.25
+            },
+            {
+                "Pos": 14.0
+            },
+            {
+                "Pos": 15.25
+            },
+            {
+                "Pos": 16.25
+            },
+            {
+                "Pos": 17.0
+            },
+            {
+                "Pos": 18.0
+            },
+            {
+                "End": 19.0,
+                "Pos": 18.5
+            },
+            {
+                "Pos": 22.0
+            },
+            {
+                "Pos": 24.25
+            },
+            {
+                "Pos": 24.75
+            },
+            {
+                "Pos": 27.75
+            },
+            {
+                "Pos": 30.5
+            },
+            {
+                "Pos": 32.25
+            },
+            {
+                "End": 33.25,
+                "Pos": 32.75
+            }
+        ],
+        "Track 2": [
+            {
+                "Pos": 2.5
+            },
+            {
+                "Pos": 4.0
+            },
+            {
+                "Pos": 5.0
+            },
+            {
+                "End": 6.0,
+                "Pos": 5.5
+            },
+            {
+                "Pos": 6.5
+            },
+            {
+                "Pos": 8.0
+            },
+            {
+                "Pos": 8.75
+            },
+            {
+                "Pos": 9.25
+            },
+            {
+                "Pos": 9.625
+            },
+            {
+                "Pos": 10.5
+            },
+            {
+                "Pos": 12.25
+            },
+            {
+                "Pos": 13.0
+            },
+            {
+                "Pos": 14.0
+            },
+            {
+                "End": 16.25,
+                "Pos": 15.75
+            },
+            {
+                "End": 17.0,
+                "Pos": 16.75
+            },
+            {
+                "Pos": 17.25
+            },
+            {
+                "Pos": 18.0
+            },
+            {
+                "Pos": 18.5
+            },
+            {
+                "End": 19.75,
+                "Pos": 19.25
+            },
+            {
+                "End": 21.5,
+                "Pos": 21.0
+            },
+            {
+                "Pos": 21.75
+            },
+            {
+                "Pos": 24.5
+            },
+            {
+                "Pos": 26.0
+            },
+            {
+                "Pos": 26.5
+            },
+            {
+                "Pos": 27.0
+            },
+            {
+                "Pos": 27.5
+            },
+            {
+                "Pos": 28.0
+            },
+            {
+                "Pos": 28.5
+            },
+            {
+                "Pos": 29.0
+            },
+            {
+                "Pos": 29.5
+            },
+            {
+                "Pos": 30.0
+            },
+            {
+                "End": 31.0,
+                "Pos": 30.5
+            },
+            {
+                "Pos": 31.75
+            },
+            {
+                "Pos": 32.25
+            },
+            {
+                "End": 33.25,
+                "Pos": 32.75
+            }
+        ],
+        "Track 3": [
+            {
+                "Pos": 2.75
+            },
+            {
+                "Pos": 4.25
+            },
+            {
+                "Pos": 4.75
+            },
+            {
+                "Pos": 6.75
+            },
+            {
+                "Pos": 8.5
+            },
+            {
+                "Pos": 9.125
+            },
+            {
+                "Pos": 9.5
+            },
+            {
+                "Pos": 11.0
+            },
+            {
+                "Pos": 12.0
+            },
+            {
+                "Pos": 12.75
+            },
+            {
+                "End": 14.0,
+                "Pos": 13.5
+            },
+            {
+                "Pos": 15.25
+            },
+            {
+                "Pos": 16.25
+            },
+            {
+                "Pos": 17.0
+            },
+            {
+                "Pos": 18.0
+            },
+            {
+                "Pos": 19.75
+            },
+            {
+                "Pos": 20.75
+            },
+            {
+                "Pos": 21.5
+            },
+            {
+                "End": 24.25,
+                "Pos": 23.75
+            },
+            {
+                "End": 27.0,
+                "Pos": 26.5
+            },
+            {
+                "End": 28.75,
+                "Pos": 28.25
+            },
+            {
+                "Pos": 29.0
+            },
+            {
+                "Pos": 29.5
+            },
+            {
+                "Pos": 30.0
+            },
+            {
+                "Pos": 30.5
+            },
+            {
+                "Pos": 31.75
+            },
+            {
+                "Pos": 32.25
+            },
+            {
+                "End": 33.25,
+                "Pos": 32.75
+            }
+        ],
+        "Track 4": [
+            {
+                "Pos": 3.0
+            },
+            {
+                "Pos": 4.5
+            },
+            {
+                "Pos": 7.0
+            },
+            {
+                "Pos": 8.25
+            },
+            {
+                "Pos": 9.0
+            },
+            {
+                "Pos": 10.75
+            },
+            {
+                "Pos": 11.75
+            },
+            {
+                "Pos": 14.0
+            },
+            {
+                "End": 16.25,
+                "Pos": 15.75
+            },
+            {
+                "End": 17.0,
+                "Pos": 16.75
+            },
+            {
+                "Pos": 17.25
+            },
+            {
+                "Pos": 18.0
+            },
+            {
+                "End": 20.75,
+                "Pos": 20.25
+            },
+            {
+                "Pos": 22.5
+            },
+            {
+                "Pos": 23.25
+            },
+            {
+                "Pos": 25.0
+            },
+            {
+                "Pos": 26.0
+            },
+            {
+                "Pos": 27.25
+            },
+            {
+                "Pos": 28.75
+            },
+            {
+                "Pos": 31.75
+            },
+            {
+                "End": 33.25,
+                "Pos": 32.75
+            }
+        ],
+        "Track FX": [
+            {
+                "Effect": 1,
+                "End": 1.5,
+                "Pos": 0.0
+            },
+            {
+                "Effect": 2,
+                "End": 17.75,
+                "Pos": 17.5
+            }
+        ]
+    }
+}

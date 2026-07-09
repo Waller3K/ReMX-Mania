@@ -1,13 +1,14 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1783106900
+::res://::1783395635
 icon.svg::CompressedTexture2D::5603300852668577369::1778591865::1782521036::1::::<><><>0<>0<>4aac5d3884dedba9a7cc77d2fc320a37<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1782526271
-::res://Charts/::1783048320
-::res://Charts/Igaku Test/::1783048393
+::res://Charts/::1783107173
+::res://Charts/Igaku Test - Waller3K/::1783107665
+Expert.json::JSON::-1::1783107665::0::1::::<><><>0<>0<><>::
 ::res://Charts/Sink to a New Test World/::1783035720
 Beginner.json::JSON::-1::1783029794::0::1::::<><><>0<>0<><>::
-::res://Scenes/::1783036000
-Gameplay.tscn::PackedScene::5538786362363920892::1783107123::0::1::::<><><>0<>0<><>::uid://rmwyx8je2wcv::::res://Scripts/Components/Composer.gd<>uid://c3ln82f48renc::::res://Scripts/Components/Audio.gd
+::res://Scenes/::1783107665
+Gameplay.tscn::PackedScene::5538786362363920892::1783107665::0::1::::<><><>0<>0<><>::uid://rmwyx8je2wcv::::res://Scripts/Components/Composer.gd<>uid://c3ln82f48renc::::res://Scripts/Components/Audio.gd
 ::res://Scripts/::1783019456
 ::res://Scripts/Autoloads/::1783027945
 GlobalEnums.gd::GDScript::887861232558932565::1783018714::0::1::::<>Node<><>0<>0<><>::

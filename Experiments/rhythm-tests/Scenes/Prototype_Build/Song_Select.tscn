@@ -43,6 +43,10 @@ text = "Test_Chart Easy"
 layout_mode = 2
 text = "Test_Chart Hard"
 
+[node name="Igaku" type="Button" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1195514764]
+layout_mode = 2
+text = "Igaku_Test Expert"
+
 [node name="MainMenuButton" type="Button" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1279860025]
 layout_mode = 2
 text = "Back To Main Menu"
@@ -50,4 +54,5 @@ text = "Back To Main Menu"
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/TestChartButton3" to="." method="_onTestChartButton3Pressed"]
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/TestChartButton" to="." method="_onTestChartButtonPressed"]
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/TestChartButton2" to="." method="_onTestChartButton2Pressed"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/Igaku" to="." method="_onIgakuButtonPressed"]
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/MainMenuButton" to="." method="_onMainMenuButtonPressed"]
