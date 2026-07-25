@@ -17,10 +17,7 @@ extends Resource
 # There should always be 4 main audio tracks!
 #################################################
 @export var trackCount: int
-@export var track1Path: String
-@export var track2Path: String
-@export var track3Path: String
-@export var track4Path: String
+@export var trackPaths: Array[String] = []
 @export var scratchTrackPath: String
 
 #####################################################
@@ -28,10 +25,7 @@ extends Resource
 # the tracks and their notes. The tracks are 
 # the same way as they are in GlobalEnums.trackIDs
 #####################################################
-@export var mainNotes : Array[Array]
-
-# Scratch Track Note Array. 
-@export var scratchNotes : Array[Dictionary]
+@export var notes : Array[Array]
 
 func load(path: String) -> bool:
 	
@@ -55,17 +49,19 @@ func load(path: String) -> bool:
 		return false
 	
 	# sets the song metadata
-	bpm				= chartData["Metadata"]["BPM"]
-	BGMPath			= chartData["Metadata"]["BGMPath"]
-	songName		= chartData["Metadata"]["Title"]
-	songArtist		= chartData["Metadata"]["Artist"]
-	charter			= chartData["Metadata"]["Charter"]
-	difficultyName	= chartData["Metadata"]["DifficultyName"]
-	difficulty		= chartData["Metadata"]["Difficulty"]
-	track1Path		= chartData["Metadata"]["Track1Path"]
-	track2Path		= chartData["Metadata"]["Track2Path"]
-	track3Path		= chartData["Metadata"]["Track3Path"]
-	track4Path		= chartData["Metadata"]["Track4Path"]
+	bpm				 = chartData["Metadata"]["BPM"]
+	BGMPath			 = chartData["Metadata"]["BGMPath"]
+	songName		 = chartData["Metadata"]["Title"]
+	songArtist		 = chartData["Metadata"]["Artist"]
+	charter			 = chartData["Metadata"]["Charter"]
+	difficultyName	 = chartData["Metadata"]["DifficultyName"]
+	difficulty		 = chartData["Metadata"]["Difficulty"]
+	scratchTrackPath = chartData["Metadata"]["ScratchPath"]
+	trackPaths.append(chartData["Metadata"]["Track1Path"]) 
+	trackPaths.append(chartData["Metadata"]["Track2Path"]) 
+	trackPaths.append(chartData["Metadata"]["Track3Path"]) 
+	trackPaths.append(chartData["Metadata"]["Track4Path"]) 
+	
 	
 	#The trackCount is the number of main tracks in this chart!
 	if (chartData["Metadata"]["TrackCount"] > GlobalStates.MAX_TRACK_COUNT or 
@@ -76,11 +72,15 @@ func load(path: String) -> bool:
 		return false
 	trackCount		= chartData["Metadata"]["TrackCount"]
 	
+	GlobalStates.TRACK_COUNT = trackCount
+	
 	var trackNames : Array = chartData["Notes"].keys()
 	
 	# This section adds the main track notes and the FX notes to the 2D array
-	# Plus 1 because the FX track isn't counted in the trackCount
-	for track in trackCount + 1:
-		mainNotes.push_back(chartData["Notes"][trackNames[track]])
+	# Plus 2 because the FX track isn't counted in the trackCount and neither
+	# is Scratch Track
+	# THE TRACKS SHOULD ALWAYS BE IN THE SAME ORDER AS THE TRACKIDS
+	for track in trackCount + 2:
+		notes.push_back(chartData["Notes"][trackNames[track]])
 	
 	return true

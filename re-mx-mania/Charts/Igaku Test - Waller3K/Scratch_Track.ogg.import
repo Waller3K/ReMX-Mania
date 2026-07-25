@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://k3tn4tvm30w4"
+path="res://.godot/imported/Scratch_Track.ogg-70c0dcc52e3b446e4e42d02b3b11059f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Charts/Igaku Test - Waller3K/Scratch_Track.ogg"
+dest_files=["res://.godot/imported/Scratch_Track.ogg-70c0dcc52e3b446e4e42d02b3b11059f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

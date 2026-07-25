@@ -1,2 +1,4 @@
 res://Scenes/Gameplay.tscn
-res://Charts/Igaku Test - Waller3K/Expert.json
+res://Scripts/GameObjects/judgementSprite.gd
+res://Scripts/GameObjects/noteButtonNode.gd
+res://Scripts/Components/Audio.gd

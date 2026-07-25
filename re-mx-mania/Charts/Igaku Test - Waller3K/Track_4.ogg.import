@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b5e25ye21lxgd"
+path="res://.godot/imported/Track_4.ogg-0ced4c66158cb67fd0a10ad2ba1697fe.oggvorbisstr"
+
+[deps]
+
+source_file="res://Charts/Igaku Test - Waller3K/Track_4.ogg"
+dest_files=["res://.godot/imported/Track_4.ogg-0ced4c66158cb67fd0a10ad2ba1697fe.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

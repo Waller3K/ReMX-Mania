@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://ck6bacq7io06k"]
+
+[ext_resource type="Script" uid="uid://rmwyx8je2wcv" path="res://Scripts/Components/Composer.gd" id="1_r5ka5"]
+[ext_resource type="Script" uid="uid://c3ln82f48renc" path="res://Scripts/Components/Audio.gd" id="1_yijg0"]
+[ext_resource type="Script" uid="uid://bj4e13klm24ri" path="res://Scripts/Components/Input.gd" id="3_ovofm"]
+[ext_resource type="Script" uid="uid://dn71f65o0hyv4" path="res://Scripts/Components/GameManager.gd" id="3_tdndw"]
+[ext_resource type="Script" uid="uid://dqda3qh26ho4p" path="res://Scripts/Components/Judge.gd" id="4_mofsa"]
+[ext_resource type="Script" uid="uid://drdta1y1ly8so" path="res://Scripts/Components/NoteManager.gd" id="6_2aia5"]
+[ext_resource type="Texture2D" uid="uid://c7eefjsuqi0px" path="res://Assets/Textures/Record Texture.png" id="6_u8j7u"]
+[ext_resource type="PackedScene" uid="uid://nl75x2wcgsxu" path="res://Scenes/GameObjects/MainNote.tscn" id="7_buxyy"]
+[ext_resource type="PlaneMesh" uid="uid://b63pg3r4aunfx" path="res://Assets/Meshes/MainTrackMesh.tres" id="7_uotjs"]
+[ext_resource type="Script" uid="uid://dl075op7bljat" path="res://Scripts/GameObjects/noteButtonNode.gd" id="7_xwjbm"]
+[ext_resource type="BoxMesh" uid="uid://bdbijs85vv8gh" path="res://Assets/Meshes/NoteButtonMesh.tres" id="9_vu60g"]
+[ext_resource type="Script" uid="uid://bjhd5eiot3vmv" path="res://Scripts/GameObjects/GameButton.gd" id="10_cfeic"]
+[ext_resource type="PlaneMesh" uid="uid://c1hjsygce82gi" path="res://Assets/Meshes/ScratchTrackMesh.tres" id="10_vu60g"]
+[ext_resource type="BoxMesh" uid="uid://baq1i7u8rriqq" path="res://Assets/Meshes/FXButtonMesh.tres" id="11_w5l26"]
+[ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="12_7wr7o"]
+[ext_resource type="Script" uid="uid://cuwgkwvv5v555" path="res://Scripts/GameObjects/RecordNode.gd" id="13_5klrq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txxkg"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.85, 0.2635, 0.2635, 1)
+albedo_texture = ExtResource("6_u8j7u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5klrq"]
+albedo_texture = ExtResource("12_7wr7o")
+uv1_scale = Vector3(1.39, 1.39, 1.39)
+uv1_offset = Vector3(0.15, 0.455, 0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5pscq"]
+material = SubResource("StandardMaterial3D_5klrq")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao0qo"]
+albedo_color = Color(0.018393984, 0.07841488, 0.100059934, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_txxkg"]
+size = Vector2(8, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cijmt"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node3D" unique_id=751108881]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1718501891]
+transform = Transform3D(-1, -7.1054274e-15, 8.742279e-08, 5.8917546e-08, 0.7387878, 0.6739383, -6.458688e-08, 0.6739383, -0.7387878, 0, 4.5391345, -3.2908804)
+
+[node name="Composer" type="Node" parent="." unique_id=1523553492]
+script = ExtResource("1_r5ka5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2068876085]
+script = ExtResource("1_yijg0")
+
+[node name="Input" type="Node" parent="." unique_id=1332626918]
+script = ExtResource("3_ovofm")
+
+[node name="Conductor" type="Node" parent="." unique_id=1136633594]
+
+[node name="Judge" type="Node" parent="." unique_id=1845091284]
+script = ExtResource("4_mofsa")
+
+[node name="GameManager" type="Node" parent="." unique_id=2085287651]
+script = ExtResource("3_tdndw")
+
+[node name="MetronomePlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1835186390]
+
+[node name="NoteManager" type="Node" parent="." unique_id=670084951 node_paths=PackedStringArray("judgementLine")]
+script = ExtResource("6_2aia5")
+judgementLine = NodePath("../GameObjects/JudgementLine")
+noteScene = ExtResource("7_buxyy")
+
+[node name="GameObjects" type="Node3D" parent="." unique_id=1132057377]
+
+[node name="MainTrack" type="MeshInstance3D" parent="GameObjects" unique_id=1726374007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2694366, 0, 0)
+material_override = SubResource("StandardMaterial3D_txxkg")
+mesh = ExtResource("7_uotjs")
+
+[node name="NoteButtonNode" type="Node3D" parent="GameObjects/MainTrack" unique_id=321509316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+top_level = true
+script = ExtResource("7_xwjbm")
+padding = 0.01
+
+[node name="FXButtonMesh" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=2086317532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.7845237)
+top_level = true
+mesh = ExtResource("11_w5l26")
+script = ExtResource("10_cfeic")
+
+[node name="MainButtonMesh" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=1341266244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -0.6716888)
+top_level = true
+mesh = ExtResource("9_vu60g")
+script = ExtResource("10_cfeic")
+
+[node name="RecordNode" type="Node3D" parent="GameObjects/MainTrack" unique_id=383060466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.731, 0, 0)
+
+[node name="RecordMesh" type="MeshInstance3D" parent="GameObjects/MainTrack/RecordNode" unique_id=1821738902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7305634, 0, -1)
+top_level = true
+mesh = SubResource("CylinderMesh_5pscq")
+script = ExtResource("13_5klrq")
+
+[node name="ScratchTrack" type="MeshInstance3D" parent="GameObjects" unique_id=1471525583]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7305634, 0, 0)
+mesh = ExtResource("10_vu60g")
+surface_material_override/0 = SubResource("StandardMaterial3D_ao0qo")
+
+[node name="JudgementLine" type="MeshInstance3D" parent="GameObjects" unique_id=411110736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36321187, 0)
+mesh = SubResource("PlaneMesh_txxkg")
+surface_material_override/0 = SubResource("StandardMaterial3D_cijmt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1226714779]
+transform = Transform3D(0.9803956, 0, -0.19703929, 0.19431557, -0.16569641, 0.9668433, -0.032648697, -0.98617685, -0.16244808, 0, 14.635641, 0)
+light_color = Color(0.58000004, 0.8110001, 1, 1)
+light_energy = 1.547
+sky_mode = 1
+
+[connection signal="chartCreated" from="Composer" to="AudioStreamPlayer" method="_onChartCreated"]
+[connection signal="chartCreated" from="Composer" to="Judge" method="_onChartCreated"]
+[connection signal="chartCreated" from="Composer" to="GameManager" method="_onChartCreated"]
+[connection signal="chartCreated" from="Composer" to="NoteManager" method="_onChartCreated"]
+[connection signal="chartCreated" from="Composer" to="GameObjects/MainTrack/NoteButtonNode" method="_onChartCreated"]
+[connection signal="songUpdate" from="AudioStreamPlayer" to="Input" method="_onSongUpdate"]
+[connection signal="songUpdate" from="AudioStreamPlayer" to="Judge" method="_onSongUpdate"]
+[connection signal="songUpdate" from="AudioStreamPlayer" to="NoteManager" method="_onSongUpdate"]
+[connection signal="songUpdate" from="AudioStreamPlayer" to="GameObjects/MainTrack/RecordNode/RecordMesh" method="_onSongUpdate"]
+[connection signal="btn1" from="Input" to="Judge" method="_onBTN_1"]
+[connection signal="btn1" from="Input" to="GameObjects/MainTrack/NoteButtonNode" method="_onBTN_1"]
+[connection signal="btn2" from="Input" to="Judge" method="_onBTN_2"]
+[connection signal="btn2" from="Input" to="GameObjects/MainTrack/NoteButtonNode" method="_onBTN_2"]
+[connection signal="btn3" from="Input" to="Judge" method="_onBTN_3"]
+[connection signal="btn3" from="Input" to="GameObjects/MainTrack/NoteButtonNode" method="_onBTN_3"]
+[connection signal="btn4" from="Input" to="Judge" method="_onBTN_4"]
+[connection signal="btn4" from="Input" to="GameObjects/MainTrack/NoteButtonNode" method="_onBTN_4"]
+[connection signal="btnFX" from="Input" to="Judge" method="_onBTN_FX"]
+[connection signal="btnFX" from="Input" to="GameObjects/MainTrack/NoteButtonNode" method="_onBTN_FX"]
+[connection signal="btnScratch" from="Input" to="Judge" method="_onScratchBTN"]
+[connection signal="btnScratch" from="Input" to="GameObjects/MainTrack/RecordNode/RecordMesh" method="_onBTN_Scratch"]
+[connection signal="mouseMoved" from="Input" to="GameObjects/MainTrack/RecordNode/RecordMesh" method="_onMouseMoved"]
+[connection signal="miss" from="Judge" to="GameManager" method="_onMiss"]
+[connection signal="miss" from="Judge" to="NoteManager" method="_onMiss"]
+[connection signal="noteHit" from="Judge" to="GameManager" method="_onNoteHit"]
+[connection signal="noteHit" from="Judge" to="NoteManager" method="_onNoteHit"]
+[connection signal="startSong" from="GameManager" to="AudioStreamPlayer" method="_onSongStarted"]

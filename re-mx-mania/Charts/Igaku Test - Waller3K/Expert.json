@@ -1,20 +1,32 @@
 {
 	"Metadata": {
 		"Artist": "Waller3K",
-		"BGMPath": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/BGM_Track.ogg",
+		"BGMPath": "BGM_Track.ogg",
 		"BPM": 120.0,
 		"Charter": "Waller3K",
 		"Difficulty": 10.0,
 		"DifficultyName": "Expert",
-		"ScratchPath": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Scratch_Track.ogg",
+		"ScratchPath": "Scratch_Track.ogg",
 		"Title": "Igaku",
-		"Track1Path": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Track_1.ogg",
-		"Track2Path": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Track_2.ogg",
-		"Track3Path": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Track_3.ogg",
-		"Track4Path": "C:/Users/waltl/Desktop/My music/FL Studio/2026/Igaku-Test/Track_4.ogg",
+		"Track1Path": "Track_1.ogg",
+		"Track2Path": "Track_2.ogg",
+		"Track3Path": "Track_3.ogg",
+		"Track4Path": "Track_4.ogg",
 		"TrackCount": 4
 	},
 	"Notes": {
+		"Track FX": [
+			{
+				"Effect": 1,
+				"End": 1.5,
+				"Pos": 0.0
+			},
+			{
+				"Effect": 2,
+				"End": 17.75,
+				"Pos": 17.5
+			}
+		],
 		"Scratch Track": [
 			{
 				"End": 1.875040054321289,
@@ -379,18 +391,6 @@
 			{
 				"End": 33.25,
 				"Pos": 32.75
-			}
-		],
-		"Track FX": [
-			{
-				"Effect": 1,
-				"End": 1.5,
-				"Pos": 0.0
-			},
-			{
-				"Effect": 2,
-				"End": 17.75,
-				"Pos": 17.5
 			}
 		]
 	}

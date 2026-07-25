@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://nl75x2wcgsxu"]
+
+[ext_resource type="Script" uid="uid://cfg0npcswu28q" path="res://Scripts/GameObjects/MainNote.gd" id="1_ifvyw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bk2no"]
+size = Vector2(1, 0.745)
+
+[node name="MainNote" type="Node3D" unique_id=1214359080]
+top_level = true
+script = ExtResource("1_ifvyw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1176255413]
+mesh = SubResource("PlaneMesh_bk2no")
