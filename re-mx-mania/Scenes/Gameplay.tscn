@@ -39,6 +39,9 @@ albedo_texture = ExtResource("6_u8j7u")
 [sub_resource type="PlaneMesh" id="PlaneMesh_upsvf"]
 size = Vector2(0.05, 100)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao0qo"]
+albedo_color = Color(0.018393984, 0.07841488, 0.100059934, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5klrq"]
 albedo_texture = ExtResource("12_7wr7o")
 uv1_scale = Vector3(1.39, 1.39, 1.39)
@@ -50,14 +53,15 @@ top_radius = 1.0
 bottom_radius = 1.0
 height = 0.01
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao0qo"]
-albedo_color = Color(0.018393984, 0.07841488, 0.100059934, 1)
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_txxkg"]
 size = Vector2(8, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cijmt"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_color = Color(0.6696, 0.72602004, 0.93, 1)
+emission_enabled = true
+emission = Color(0.14903358, 0.5791462, 0.7684444, 1)
+emission_energy_multiplier = 0.54
+backlight = Color(1, 1, 1, 1)
 
 [node name="Main" type="Node3D" unique_id=751108881]
 
@@ -120,7 +124,7 @@ mainTrack = NodePath("../GameObjects/MainTrack")
 [node name="GameObjects" type="Node3D" parent="." unique_id=1132057377]
 
 [node name="MainTrack" type="MeshInstance3D" parent="GameObjects" unique_id=1726374007]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2694366, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
 material_override = SubResource("StandardMaterial3D_txxkg")
 mesh = ExtResource("7_uotjs")
 
@@ -128,46 +132,44 @@ mesh = ExtResource("7_uotjs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 top_level = true
 script = ExtResource("7_xwjbm")
-padding = 0.01
+padding = 0.05
 
 [node name="TrackDivider_1" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=207166179]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2694366, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.269, 0.01, 0)
 top_level = true
 mesh = SubResource("PlaneMesh_upsvf")
 
 [node name="FXButtonMesh" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=2086317532]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.7845237)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.7845237)
 top_level = true
 mesh = ExtResource("11_w5l26")
 script = ExtResource("10_cfeic")
 
 [node name="MainButtonMesh_1" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=1341266244]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -0.6716888)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.5)
 top_level = true
 mesh = ExtResource("9_vu60g")
 script = ExtResource("10_cfeic")
 
-[node name="RecordNode" type="Node3D" parent="GameObjects/MainTrack" unique_id=383060466]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.731, 0, 0)
-
-[node name="RecordMesh" type="MeshInstance3D" parent="GameObjects/MainTrack/RecordNode" unique_id=1821738902]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7305634, 0, -1)
-top_level = true
-mesh = SubResource("CylinderMesh_5pscq")
-script = ExtResource("13_5klrq")
-
 [node name="ScratchTrack" type="MeshInstance3D" parent="GameObjects" unique_id=1471525583]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7305634, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 mesh = ExtResource("10_vu60g")
 surface_material_override/0 = SubResource("StandardMaterial3D_ao0qo")
 
+[node name="RecordNode" type="Node3D" parent="GameObjects/ScratchTrack" unique_id=383060466]
+
+[node name="RecordMesh" type="MeshInstance3D" parent="GameObjects/ScratchTrack/RecordNode" unique_id=1821738902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = SubResource("CylinderMesh_5pscq")
+script = ExtResource("13_5klrq")
+
 [node name="JudgementLine" type="MeshInstance3D" parent="GameObjects" unique_id=411110736]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36321187, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
 mesh = SubResource("PlaneMesh_txxkg")
 surface_material_override/0 = SubResource("StandardMaterial3D_cijmt")
 
 [node name="JudgementSprite" type="Sprite3D" parent="GameObjects" unique_id=247541490]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.1, 2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.001, 2)
 flip_h = true
 pixel_size = 0.02
 script = ExtResource("18_qaqk3")
@@ -201,8 +203,8 @@ sky_mode = 1
 [connection signal="btnFX" from="Input" to="Judge" method="_onBTN_FX"]
 [connection signal="btnFX" from="Input" to="GameObjects/MainTrack/NoteButtonNode" method="_onBTN_FX"]
 [connection signal="btnScratch" from="Input" to="Judge" method="_onScratchBTN"]
-[connection signal="btnScratch" from="Input" to="GameObjects/MainTrack/RecordNode/RecordMesh" method="_onBTN_Scratch"]
-[connection signal="mouseMoved" from="Input" to="GameObjects/MainTrack/RecordNode/RecordMesh" method="_onMouseMoved"]
+[connection signal="btnScratch" from="Input" to="GameObjects/ScratchTrack/RecordNode/RecordMesh" method="_onBTN_Scratch"]
+[connection signal="mouseMoved" from="Input" to="GameObjects/ScratchTrack/RecordNode/RecordMesh" method="_onMouseMoved"]
 [connection signal="miss" from="Judge" to="GameManager" method="_onMiss"]
 [connection signal="miss" from="Judge" to="NoteManager" method="_onMiss"]
 [connection signal="miss" from="Judge" to="GameObjects/JudgementSprite" method="_onMiss"]

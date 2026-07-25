@@ -1,5 +1,8 @@
 extends Node3D
 
+@export var normalNoteMaterial : StandardMaterial3D
+@export var FXNoteMaterial : StandardMaterial3D
+
 var isActive : bool = false
 
 var startingPosition : float
@@ -19,10 +22,10 @@ var noteIndex : int = -1
 var isHold : bool = false
 
 func activate(TrackID : int, NoteIndex : int, startingPos : float, hTime: float, holdEnd: float = -1.0):
-	position.x = GlobalStates.mainTrackXPos[TrackID]
+	global_position.x = GlobalStates.mainTrackXPos[TrackID]
 	startingPosition = startingPos
-	position.z = startingPosition
-	position.y = 1
+	global_position.z = startingPosition
+	global_position.y = 0.02
 	hitTime = hTime
 	trackID = TrackID
 	noteIndex = NoteIndex
@@ -30,10 +33,20 @@ func activate(TrackID : int, NoteIndex : int, startingPos : float, hTime: float,
 	isActive = true
 	
 	if trackID == GlobalEnums.trackIDs.TRACKFX:
-		var meshInstance : MeshInstance3D = get_child(0)
+		var meshInstance := get_node("MeshInstance3D") as MeshInstance3D
 		meshInstance.mesh = meshInstance.mesh.duplicate()
 		meshInstance.mesh.size.x = mainTrackLength
-		position.y = 0.5
+		global_position.y = 0.015
+		meshInstance.set_surface_override_material(0, FXNoteMaterial)
+	elif trackID == GlobalEnums.trackIDs.SCRATCH_TRACK:
+		var meshInstance := get_node("MeshInstance3D") as MeshInstance3D
+		meshInstance.mesh = meshInstance.mesh.duplicate()
+		meshInstance.set_surface_override_material(0, normalNoteMaterial)
+		meshInstance.mesh.size.x = GlobalStates.scratchNoteWidth
+	else:
+		var meshInstance := get_node("MeshInstance3D") as MeshInstance3D
+		meshInstance.set_surface_override_material(0, normalNoteMaterial)
+		meshInstance.mesh.size.x = GlobalStates.mainNoteWidth
 	
 	if holdEnd != -1.0:
 		isHold = true
@@ -42,22 +55,24 @@ func activate(TrackID : int, NoteIndex : int, startingPos : float, hTime: float,
 
 func deactivate():
 	visible = false
-	position = Vector3(0.0, 0.0, 0.0)
+	global_position = Vector3(0.0, 0.0, 0.0)
 	trackID = -1
 	noteIndex = -1
 	hitTime = -1.0
 	releaseTime = -1.0
 	isHold = false
 	isActive = false
+	var meshInstance := get_node("MeshInstance3D") as MeshInstance3D
+	meshInstance.set_surface_override_material(0, null)
 
 func update(songPos : float):
 	if isActive:
 		var relativeTime = hitTime - songPos
-		position.z = judgementLinePos + (relativeTime * (GlobalStates.scrollSpd * 10))
+		global_position.z = judgementLinePos + (relativeTime * (GlobalStates.scrollSpd * 10))
 		if isHold:
 			var meshInstance : MeshInstance3D = get_child(0)
 			meshInstance.mesh = meshInstance.mesh.duplicate()
-			meshInstance.mesh.size.y = (judgementLinePos + ((releaseTime - songPos) * (GlobalStates.scrollSpd * 10))) - position.z
-			position.z += meshInstance.mesh.size.y/2
+			meshInstance.mesh.size.y = (judgementLinePos + ((releaseTime - songPos) * (GlobalStates.scrollSpd * 10))) - global_position.z
+			global_position.z += meshInstance.mesh.size.y/2
 	else:
 		pass

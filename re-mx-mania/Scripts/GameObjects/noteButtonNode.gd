@@ -6,69 +6,76 @@ extends Node3D
 @export var coolDownLength : float = 1.0
 
 var mainTrackNode : MeshInstance3D
-var mainButtonNode : MeshInstance3D
 var FXButtonNode : MeshInstance3D
 var scratchTrackNode : MeshInstance3D
 
 var trackDividerNodes: Array[MeshInstance3D]
 var trackButtonsNodes: Array[MeshInstance3D]
 
-func _onChartCreated(_chart: Chart) -> void:
+func initTrackButtons() -> void:
+	# Start with initializing the FX Button Mesh
+	FXButtonNode.global_position.x = mainTrackNode.global_position.x
+	FXButtonNode.global_position.z = trackButtonsNodes[0].position.z - trackButtonsNodes[0].mesh.size.z - padding
 	
-	mainTrackNode = get_parent()
-	mainButtonNode = get_node("MainButtonMesh_1")
-	FXButtonNode = get_node("FXButtonMesh")
-	scratchTrackNode = $"../../ScratchTrack"
+	var FXMesh := FXButtonNode.mesh as Mesh
+	var MainTrackMesh := mainTrackNode.mesh as Mesh
 	
-	var trackDividerNodeOriginal = get_node("TrackDivider_1")
+	FXMesh.size.x = MainTrackMesh.size.x
+	
+	# Set global track X pos
+	GlobalStates.mainTrackXPos[GlobalEnums.trackIDs.TRACKFX] = FXButtonNode.global_position.x
+	
+	# Main track Buttons
+	var leftEdge = mainTrackNode.global_position.x + MainTrackMesh.size.x / 2
+	
+	for i in trackButtonsNodes.size():
+		var button = trackButtonsNodes[i]
+		button.mesh.size.x = (MainTrackMesh.size.x / GlobalStates.TRACK_COUNT) - padding
+		button.global_position.x = leftEdge - (button.mesh.size.x/2) - ((button.mesh.size.x + padding) * i) 
+		GlobalStates.mainTrackXPos[i + GlobalEnums.trackIDs.TRACK1] = button.global_position.x
+	
+	# Track Dividers
+	var halfButtonSize = trackButtonsNodes[0].mesh.size.x/2
+	
+	for i in trackDividerNodes.size():
+		var divider = trackDividerNodes[i]
+		divider.mesh.size.x = padding
+		divider.global_position.x = GlobalStates.mainTrackXPos[i + GlobalEnums.trackIDs.TRACK1] - halfButtonSize
+		
+		#Init global width floats
+		GlobalStates.mainNoteWidth = trackButtonsNodes[0].mesh.size.x
+		GlobalStates.scratchNoteWidth = scratchTrackNode.mesh.size.x
 
-	var mainButtonMesh = mainButtonNode.mesh
-	var mainTrackMesh = mainTrackNode.mesh
-	var FXButtonMesh = FXButtonNode.mesh
+func _onChartCreated(_chart: Chart) -> void:
+	# Get original nodes
+	mainTrackNode 	= get_parent()
+	FXButtonNode  	= get_node("FXButtonMesh")
 	
-	GlobalStates.mainTrackXPos[0] = FXButtonNode.global_position.x
-	GlobalStates.mainTrackXPos[1] = scratchTrackNode.global_position.x
+	scratchTrackNode= get_node("../../ScratchTrack")
+	GlobalStates.mainTrackXPos[GlobalEnums.trackIDs.SCRATCH_TRACK] = scratchTrackNode.global_position.x
 	
-	# Setting up Main Button Meshes
-	mainButtonMesh.size.x = (mainTrackMesh.size.x / GlobalStates.TRACK_COUNT) - padding
-	var leftEdge = mainTrackNode.position.x + mainTrackMesh.size.x / 2
-	mainButtonNode.position.x = leftEdge - (mainButtonMesh.size.x / 2) - (padding / 2)
+	var mainButtonNode	:= get_node("MainButtonMesh_1") as MeshInstance3D
+	var TrackDivider  	:= get_node("TrackDivider_1") as MeshInstance3D
 	
-	GlobalStates.mainTrackXPos[2] = mainButtonNode.global_position.x
-	
-	trackButtonsNodes.clear()
+	# Add them to their Arrays
 	trackButtonsNodes.append(mainButtonNode)
+	trackDividerNodes.append(TrackDivider)
 	
-	trackDividerNodes.append(trackDividerNodeOriginal)
-	
-	for i in GlobalStates.TRACK_COUNT - 1:
-		# Main Buttons
-		var newButton: MeshInstance3D = mainButtonNode.duplicate()
-		newButton.name = "MainButtonMesh_" + str(i + 2)
-		
+	# Creates the rest of the buttons and tracks
+	for i in GlobalStates.TRACK_COUNT - 1: # -1 because we already did the first one.
+		var newButton := trackButtonsNodes[0].duplicate() as MeshInstance3D
+		newButton.name = "MainButtonMesh_" + str(i+2)
 		newButton.mesh = newButton.mesh.duplicate()
-		
-		newButton.position.x = leftEdge - (mainButtonMesh.size.x / 2) - (padding / 2) - ((mainButtonMesh.size.x + padding) * (i+1))
 		trackButtonsNodes.append(newButton)
 		add_child(newButton)
-		GlobalStates.mainTrackXPos[i+3] = newButton.global_position.x
-		
-		#Create Track Dividers
-		var newDivider := trackDividerNodeOriginal.duplicate() as MeshInstance3D
+	
+	for i in GlobalStates.TRACK_COUNT - 2:
+		var newDivider := trackDividerNodes[0].duplicate() as MeshInstance3D
 		newDivider.name = "TrackDivider_" + str(i+2)
 		trackDividerNodes.append(newDivider)
 		add_child(newDivider)
 	
-	# Initialize Track Dividers
-	for i in trackDividerNodes.size():
-		var divider = trackDividerNodes[i]
-		divider.global_position.x = GlobalStates.mainTrackXPos[i + 2]
-	
-	
-	# Setting up FX Button Mesh
-	FXButtonMesh.size.x = (mainTrackMesh.size.x)
-	FXButtonNode.position.x = mainTrackNode.position.x
-	FXButtonNode.position.z = mainButtonNode.position.z - (padding + mainButtonMesh.size.z)
+	initTrackButtons()
 
 
 func _onBTN_1(_inputTimestamp: float, isDown: bool) -> void:

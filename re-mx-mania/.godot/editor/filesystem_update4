@@ -2,3 +2,10 @@ res://Scenes/Gameplay.tscn
 res://Scripts/GameObjects/judgementSprite.gd
 res://Scripts/GameObjects/noteButtonNode.gd
 res://Scripts/Components/Audio.gd
+res://Scripts/GameObjects/MainNote.gd
+res://Scenes/GameObjects/MainNote.tscn
+res://Assets/Materials/normalNoteMaterial.tres
+res://Assets/Materials/FXNoteMaterial.tres
+res://Scripts/Autoloads/GlobalStates.gd
+res://Charts/Igaku Test - Waller3K/Expert.json
+res://Scripts/Autoloads/GlobalEnums.gd

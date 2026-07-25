@@ -25,6 +25,12 @@ enum judgementEnum {
 	MISS
 }
 
+enum scratchEnum {
+	COMBINATION,
+	UP,
+	DOWN
+}
+
 enum effectEnum {
 	CHORUS,
 	HIPASS,
