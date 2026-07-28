@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://nl75x2wcgsxu" path="res://Scenes/GameObjects/MainNote.tscn" id="7_buxyy"]
 [ext_resource type="PlaneMesh" uid="uid://b63pg3r4aunfx" path="res://Assets/Meshes/MainTrackMesh.tres" id="7_uotjs"]
 [ext_resource type="Script" uid="uid://dl075op7bljat" path="res://Scripts/GameObjects/noteButtonNode.gd" id="7_xwjbm"]
+[ext_resource type="PackedScene" uid="uid://bjwngbwtxfho0" path="res://Scenes/GameObjects/Subnote.tscn" id="9_rbnsi"]
 [ext_resource type="BoxMesh" uid="uid://bdbijs85vv8gh" path="res://Assets/Meshes/NoteButtonMesh.tres" id="9_vu60g"]
 [ext_resource type="Script" uid="uid://bjhd5eiot3vmv" path="res://Scripts/GameObjects/GameButton.gd" id="10_cfeic"]
 [ext_resource type="PlaneMesh" uid="uid://c1hjsygce82gi" path="res://Assets/Meshes/ScratchTrackMesh.tres" id="10_vu60g"]
@@ -119,6 +120,7 @@ script = ExtResource("3_tdndw")
 script = ExtResource("6_2aia5")
 judgementLine = NodePath("../GameObjects/JudgementLine")
 noteScene = ExtResource("7_buxyy")
+subnoteScene = ExtResource("9_rbnsi")
 mainTrack = NodePath("../GameObjects/MainTrack")
 
 [node name="GameObjects" type="Node3D" parent="." unique_id=1132057377]
@@ -159,7 +161,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ao0qo")
 [node name="RecordNode" type="Node3D" parent="GameObjects/ScratchTrack" unique_id=383060466]
 
 [node name="RecordMesh" type="MeshInstance3D" parent="GameObjects/ScratchTrack/RecordNode" unique_id=1821738902]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 mesh = SubResource("CylinderMesh_5pscq")
 script = ExtResource("13_5klrq")
 
@@ -204,7 +206,11 @@ sky_mode = 1
 [connection signal="btnFX" from="Input" to="GameObjects/MainTrack/NoteButtonNode" method="_onBTN_FX"]
 [connection signal="btnScratch" from="Input" to="Judge" method="_onScratchBTN"]
 [connection signal="btnScratch" from="Input" to="GameObjects/ScratchTrack/RecordNode/RecordMesh" method="_onBTN_Scratch"]
+[connection signal="mouseMoved" from="Input" to="Judge" method="_onMouseMoved"]
 [connection signal="mouseMoved" from="Input" to="GameObjects/ScratchTrack/RecordNode/RecordMesh" method="_onMouseMoved"]
+[connection signal="holdBroken" from="Judge" to="GameManager" method="_onHoldBroken"]
+[connection signal="holdEnded" from="Judge" to="GameManager" method="_onHoldEnded"]
+[connection signal="holdStarted" from="Judge" to="GameManager" method="_onHoldStarted"]
 [connection signal="miss" from="Judge" to="GameManager" method="_onMiss"]
 [connection signal="miss" from="Judge" to="NoteManager" method="_onMiss"]
 [connection signal="miss" from="Judge" to="GameObjects/JudgementSprite" method="_onMiss"]

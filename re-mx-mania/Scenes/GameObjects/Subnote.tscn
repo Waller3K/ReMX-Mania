@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bjwngbwtxfho0"]
+
+[ext_resource type="Script" uid="uid://ck0a0ku5jybo1" path="res://Scripts/GameObjects/Subnote.gd" id="1_kebyn"]
+[ext_resource type="Texture2D" uid="uid://wppwjpr77jrs" path="res://Assets/Textures/Temp Combination Arrow.png" id="2_3ef42"]
+[ext_resource type="Texture2D" uid="uid://cmlyw3ve8cb0s" path="res://Assets/Textures/Temp Up Arrow.png" id="3_7dxem"]
+[ext_resource type="Texture2D" uid="uid://dkd5a7xwtxfxr" path="res://Assets/Textures/Temp Down Arrow.png" id="4_i2q0t"]
+
+[node name="Subnote" type="Node3D" unique_id=1247009788]
+script = ExtResource("1_kebyn")
+scratchSprites = Array[CompressedTexture2D]([ExtResource("2_3ef42"), ExtResource("3_7dxem"), ExtResource("4_i2q0t")])
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2132512637]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+pixel_size = 0.003

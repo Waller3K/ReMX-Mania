@@ -28,7 +28,6 @@ func _onMiss(trackIndex: int, noteIndex: int) -> void:
 	print("MISS!")
 
 func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) -> void:
-	pass
 	match judgement:
 		GlobalEnums.judgementEnum.PERFECT:
 			print("PERFECT! - " + str(offset))
@@ -44,3 +43,15 @@ func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) 
 			print("OK Early - " + str(offset))
 		GlobalEnums.judgementEnum.OKLATE:
 			print("OK Late - " + str(offset))
+
+
+func _onHoldStarted(trackIndex: int, noteIndex: int, FX: int) -> void:
+	print("Hold Started, " + str(trackIndex))
+
+
+func _onHoldEnded(trackIndex: int, noteIndex: int, FX: int) -> void:
+	print("Hold Ended, " + str(trackIndex))
+
+
+func _onHoldBroken(trackIndex: int, noteIndex: int, FX: int) -> void:
+	print("Hold BROKEN! " + str(trackIndex))
