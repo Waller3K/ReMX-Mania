@@ -1,7 +1,13 @@
 res://Scenes/Gameplay.tscn
 res://Scripts/Components/Judge.gd
-res://Charts/Igaku Test - Waller3K/Expert.json
+res://Scripts/GameObjects/MainNote.gd
+res://Assets/Materials/holdingNoteMaterial.tres
 res://Scripts/Components/NoteManager.gd
-res://Scenes/GameObjects/Subnote.tscn
-res://Scripts/GameObjects/Subnote.gd
+res://Scripts/Components/GameManager.gd
 res://Scripts/Autoloads/GlobalStates.gd
+res://Assets/Materials/holdMissMaterial.tres
+res://Scenes/GameObjects/MainNote.tscn
+res://Scripts/Components/Input.gd
+res://Charts/Igaku Test - Waller3K/Expert.json
+res://Charts/Scratch Test Chart/Expert.json
+res://Scripts/Components/Composer.gd

@@ -38,10 +38,14 @@ var chartDone: bool = false
 
 var notes
 
+var mouseYVel : float = 0.0
+
 
 func _onSongUpdate(songPosition: float) -> void:
 	songPos = songPosition * 1000
 	updateNextNote(songPos)
+	
+	
 
 func updateNextNote(songPosition: float) -> void:
 	for track in GlobalStates.TRACK_COUNT + 2:
@@ -58,6 +62,9 @@ func updateNextNote(songPosition: float) -> void:
 					trackNextNoteIndecies[track] += 1
 				else:
 					trackEndedBools[track] = true
+			elif songPosition > notes[track][trackNextNoteIndecies[track]]["Pos"] * 1000 + GlobalStates.okTiming and !trackActiveBools[track]:
+				# Missing the head of the note doesn't miss the whole hold
+				miss.emit(track, trackNextNoteIndecies[track])
 		elif songPosition > notes[track][trackNextNoteIndecies[track]]["Pos"] * 1000 + GlobalStates.okTiming:
 			miss.emit(track, trackNextNoteIndecies[track])
 			if trackNextNoteIndecies[track] + 1 < notes[track].size():
@@ -149,7 +156,7 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 	
 	return nextNoteIndex if trackEnded else nextNoteIndex + 1
 
-func scratchJudge(inputTime: float, YVelocity: float) -> void:
+func scratchJudge(inputTime: float, YVelocity: float, isMoving: bool) -> void:
 	if trackActiveBools[GlobalEnums.trackIDs.SCRATCH_TRACK] == false:
 		return
 	var currentNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK]]
@@ -167,8 +174,10 @@ func scratchJudge(inputTime: float, YVelocity: float) -> void:
 	if "End" in currentSubnote:
 		pass
 	else:
+		if !isMoving:
+			pass
 		var judgement = inputReconciler(inputTime, currentSubnote["Pos"] * 1000)
-		var offset = inputTime - currentSubnote["Pos"]
+		var offset = inputTime - currentSubnote["Pos"] * 1000
 		match int(currentSubnote["Type"]):
 			GlobalEnums.scratchEnum.UP:
 				if YVelocity > 0:
@@ -229,7 +238,7 @@ func scratchNoteHit(judgement : int, offset : float, currentNote : Dictionary):
 			GlobalEnums.trackIDs.SCRATCH_TRACK,
 			trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK]
 			)
-	if nextSubnoteIndex + 1 < currentNote["Subnotes"].size() - 1:
+	if nextSubnoteIndex + 1 > currentNote["Subnotes"].size() - 1:
 		# Set to -1 to show that we have hit the last subnote
 		nextSubnoteIndex = -1
 	else:
@@ -243,6 +252,8 @@ func _onChartCreated(chart: Chart) -> void:
 		trackInputStates.append(false)
 		trackActiveBools.append(false)
 		trackLNHBools.append(false)
+	
+	
 
 func _onBTN_1(inputTimestamp: float, isDown: bool) -> void:
 	trackNextNoteIndecies[GlobalEnums.trackIDs.TRACK1] = judge(
@@ -289,5 +300,9 @@ func _onScratchBTN(inputTimestamp: float, isDown: bool) -> void:
 		)
 
 
-func _onMouseMoved(inputTimestamp: float, YVelocity: float) -> void:
-	scratchJudge(inputTimestamp, YVelocity)
+func _onMouseMoved(_inputTimestamp: float, YVelocity: float) -> void:
+	mouseYVel = YVelocity
+
+
+func _onMouseMoving(inputTimestamp: float, isMoving: bool) -> void:
+	scratchJudge(inputTimestamp, mouseYVel, isMoving)

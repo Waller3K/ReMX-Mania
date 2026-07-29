@@ -111,8 +111,9 @@ script = ExtResource("3_ovofm")
 [node name="Judge" type="Node" parent="." unique_id=1845091284]
 script = ExtResource("4_mofsa")
 
-[node name="GameManager" type="Node" parent="." unique_id=2085287651]
+[node name="GameManager" type="Node" parent="." unique_id=2085287651 node_paths=PackedStringArray("comboLabel")]
 script = ExtResource("3_tdndw")
+comboLabel = NodePath("../GameObjects/ComboLabel")
 
 [node name="MetronomePlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1835186390]
 
@@ -170,6 +171,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
 mesh = SubResource("PlaneMesh_txxkg")
 surface_material_override/0 = SubResource("StandardMaterial3D_cijmt")
 
+[node name="ComboLabel" type="Label3D" parent="GameObjects" unique_id=446010945]
+transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 0, 0.001, 4)
+pixel_size = 0.02
+text = "999 COMBO!"
+
 [node name="JudgementSprite" type="Sprite3D" parent="GameObjects" unique_id=247541490]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.001, 2)
 flip_h = true
@@ -208,6 +214,7 @@ sky_mode = 1
 [connection signal="btnScratch" from="Input" to="GameObjects/ScratchTrack/RecordNode/RecordMesh" method="_onBTN_Scratch"]
 [connection signal="mouseMoved" from="Input" to="Judge" method="_onMouseMoved"]
 [connection signal="mouseMoved" from="Input" to="GameObjects/ScratchTrack/RecordNode/RecordMesh" method="_onMouseMoved"]
+[connection signal="mouseMoving" from="Input" to="Judge" method="_onMouseMoving"]
 [connection signal="holdBroken" from="Judge" to="GameManager" method="_onHoldBroken"]
 [connection signal="holdEnded" from="Judge" to="GameManager" method="_onHoldEnded"]
 [connection signal="holdStarted" from="Judge" to="GameManager" method="_onHoldStarted"]

@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cfg0npcswu28q" path="res://Scripts/GameObjects/MainNote.gd" id="1_ifvyw"]
 [ext_resource type="Material" uid="uid://ratfmp5j6k27" path="res://Assets/Materials/normalNoteMaterial.tres" id="2_4ljhp"]
 [ext_resource type="Material" uid="uid://cjkwvosdw4y37" path="res://Assets/Materials/FXNoteMaterial.tres" id="3_38o7u"]
+[ext_resource type="Material" uid="uid://ck8wt35vvrevp" path="res://Assets/Materials/holdingNoteMaterial.tres" id="4_3jnv1"]
+[ext_resource type="Material" uid="uid://cb35pf01oywat" path="res://Assets/Materials/holdMissMaterial.tres" id="5_pudho"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bk2no"]
 size = Vector2(1, 0.745)
@@ -12,6 +14,8 @@ top_level = true
 script = ExtResource("1_ifvyw")
 normalNoteMaterial = ExtResource("2_4ljhp")
 FXNoteMaterial = ExtResource("3_38o7u")
+activeNoteMaterial = ExtResource("4_3jnv1")
+missedNoteMaterial = ExtResource("5_pudho")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1176255413]
 mesh = SubResource("PlaneMesh_bk2no")

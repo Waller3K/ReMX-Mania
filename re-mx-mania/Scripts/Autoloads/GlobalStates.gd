@@ -14,7 +14,7 @@ var okTiming: float				= 200.00
 
 var globalOffset : float = 0.0
 
-var scrollSpd : float = 5.0
+var scrollSpd : float = 3.0
 
 var currentChartPath : String
 

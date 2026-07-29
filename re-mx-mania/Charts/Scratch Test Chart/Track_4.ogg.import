@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d3h0athewlemc"
+path="res://.godot/imported/Track_4.ogg-626083f2b0db561fcf5ce0f2df4bafff.oggvorbisstr"
+
+[deps]
+
+source_file="res://Charts/Scratch Test Chart/Track_4.ogg"
+dest_files=["res://.godot/imported/Track_4.ogg-626083f2b0db561fcf5ce0f2df4bafff.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -2,6 +2,12 @@ extends Node
 
 var numOfNotes
 
+@export var comboLabel : Label3D
+
+var combo : int = 0
+
+var maxCombo : int = 0
+
 signal startSong(timeStamp: float)
 
 func _onChartCreated(chart: Chart) -> void:
@@ -25,24 +31,32 @@ func updateScore(judgement: int) -> void:
 		pass
 
 func _onMiss(trackIndex: int, noteIndex: int) -> void:
-	print("MISS!")
+	maxCombo = combo if combo > maxCombo else maxCombo
+	
+	combo = 0
+	
+	comboLabel.text = str(combo) + " COMBO!"
+	#print("MISS!")
 
 func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) -> void:
-	match judgement:
-		GlobalEnums.judgementEnum.PERFECT:
-			print("PERFECT! - " + str(offset))
-		GlobalEnums.judgementEnum.PERFECTEARLY:
-			print("EPerfect - " + str(offset))
-		GlobalEnums.judgementEnum.PERFECTLATE:
-			print("LPerfect - " + str(offset))
-		GlobalEnums.judgementEnum.GOODEARLY:
-			print("Good Early - " + str(offset))
-		GlobalEnums.judgementEnum.GOODLATE:
-			print("Good Late - " + str(offset))
-		GlobalEnums.judgementEnum.OKEARLY:
-			print("OK Early - " + str(offset))
-		GlobalEnums.judgementEnum.OKLATE:
-			print("OK Late - " + str(offset))
+	
+	combo += 1
+	comboLabel.text = str(combo) + " COMBO!"
+	#match judgement:
+		#GlobalEnums.judgementEnum.PERFECT:
+			#print("PERFECT! - " + str(offset))
+		#GlobalEnums.judgementEnum.PERFECTEARLY:
+			#print("EPerfect - " + str(offset))
+		#GlobalEnums.judgementEnum.PERFECTLATE:
+			#print("LPerfect - " + str(offset))
+		#GlobalEnums.judgementEnum.GOODEARLY:
+			#print("Good Early - " + str(offset))
+		#GlobalEnums.judgementEnum.GOODLATE:
+			#print("Good Late - " + str(offset))
+		#GlobalEnums.judgementEnum.OKEARLY:
+			#print("OK Early - " + str(offset))
+		#GlobalEnums.judgementEnum.OKLATE:
+			#print("OK Late - " + str(offset))
 
 
 func _onHoldStarted(trackIndex: int, noteIndex: int, FX: int) -> void:
@@ -54,4 +68,6 @@ func _onHoldEnded(trackIndex: int, noteIndex: int, FX: int) -> void:
 
 
 func _onHoldBroken(trackIndex: int, noteIndex: int, FX: int) -> void:
+	combo = 0
+	comboLabel.text = str(combo) + " COMBO!"
 	print("Hold BROKEN! " + str(trackIndex))

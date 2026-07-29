@@ -1,0 +1,292 @@
+{
+	"Metadata" : {
+		"Title": "Scratch Test Chart",
+		"Artist": "Waller3K",
+		"BGMPath": "BGM_Track.ogg",
+		"BPM": 90.0,
+		"Charter": "Waller3K",
+		"Difficulty": 1.0,
+		"DifficultyName": "Expert",
+		"ScratchPath": "Scratch_Track.ogg",
+		"Track1Path": "Track_1.ogg",
+		"Track2Path": "Track_2.ogg",
+		"Track3Path": "Track_3.ogg",
+		"Track4Path": "Track_4.ogg",
+		"TrackCount": 2
+	},
+	"Notes" : {
+		"Track FX" : [],
+		"Scratch Track" : [
+			{
+				"Pos": 0.0,
+				"End": 0.666667,
+				"Subnotes" : [
+					{
+						"Pos": 0.0,
+						"Type": 0
+					}
+				]
+			},
+			{
+				"Pos": 2.666667,
+				"End": 3.333333,
+				"Subnotes" : [
+					{
+						"Pos": 2.666667,
+						"Type": 2
+					},
+					{
+						"Pos": 2.833333,
+						"Type": 1
+					},
+					{
+						"Pos": 3.0,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 5.666667,
+				"End": 6.0,
+				"Subnotes" : [
+					{
+						"Pos": 5.666667,
+						"Type": 0
+					}
+				]
+			},
+			{
+				"Pos": 7.0,
+				"End": 7.333333,
+				"Subnotes" : [
+					{
+						"Pos": 7.0,
+						"Type": 0
+					}
+				]
+			},
+			{
+				"Pos": 8.333333,
+				"End": 8.666667,
+				"Subnotes" : [
+					{
+						"Pos": 8.333333,
+						"Type": 2
+					},
+					{
+						"Pos": 8.5,
+						"Type": 1
+					}
+				]
+			},
+			{
+				"Pos": 9.666667,
+				"End": 10.0,
+				"Subnotes" : [
+					{
+						"Pos": 9.666667,
+						"Type": 2
+					},
+					{
+						"Pos": 9.833333,
+						"Type": 1
+					}
+				]
+			},
+			{
+				"Pos": 10.666667,
+				"End": 11.333333,
+				"Subnotes" : [
+					{
+						"Pos": 10.666667,
+						"Type": 0
+					}
+				]
+			},
+			{
+				"Pos": 11.666667,
+				"End": 11.833333,
+				"Subnotes" : [
+					{
+						"Pos": 11.666667,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 12.166667,
+				"End": 12.333333,
+				"Subnotes" : [
+					{
+						"Pos": 12.166667,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 12.666667,
+				"End": 12.833333,
+				"Subnotes" : [
+					{
+						"Pos": 12.666667,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 13.166667,
+				"End": 14.0,
+				"Subnotes" : [
+					{
+						"Pos": 13.166667,
+						"Type": 0
+					}
+				]
+			},
+			{
+				"Pos": 14.333333,
+				"End": 14.5,
+				"Subnotes" : [
+					{
+						"Pos": 14.333333,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 14.833333,
+				"End": 15.0,
+				"Subnotes" : [
+					{
+						"Pos": 14.833333,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 15.333333,
+				"End": 15.5,
+				"Subnotes" : [
+					{
+						"Pos": 15.333333,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 15.833333,
+				"End": 16.666667,
+				"Subnotes" : [
+					{
+						"Pos": 15.833333,
+						"Type": 2
+					},
+					{
+						"Pos": 16.0,
+						"Type": 1
+					},
+					{
+						"Pos": 16.166667,
+						"Type": 2
+					},
+					{
+						"Pos": 16.333333,
+						"Type": 1
+					},
+					{
+						"Pos": 16.5,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 17.0,
+				"End": 17.166667,
+				"Subnotes" : [
+					{
+						"Pos": 17.0,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 17.5,
+				"End": 17.666667,
+				"Subnotes" : [
+					{
+						"Pos": 17.5,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 18.0,
+				"End": 18.166667,
+				"Subnotes" : [
+					{
+						"Pos": 18.0,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 18.5,
+				"End": 19.333333,
+				"Subnotes" : [
+					{
+						"Pos": 18.5,
+						"Type": 2
+					},
+					{
+						"Pos": 18.666667,
+						"Type": 1
+					},
+					{
+						"Pos": 18.833333,
+						"Type": 2
+					},
+					{
+						"Pos": 19.0,
+						"Type": 1
+					},
+					{
+						"Pos": 19.166667,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 19.666667,
+				"End": 19.833333,
+				"Subnotes" : [
+					{
+						"Pos": 19.666667,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 20.166667,
+				"End": 20.333333,
+				"Subnotes" : [
+					{
+						"Pos": 20.166667,
+						"Type": 2
+					}
+				]
+			},
+			{
+				"Pos": 20.666667,
+				"End": 20.833333,
+				"Subnotes" : [
+					{
+						"Pos": 20.666667,
+						"Type": 2
+					}
+				]
+			}
+		],
+		"Track 1"  : [],
+		"Track 2"  : []
+	}
+}

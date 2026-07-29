@@ -27,6 +27,8 @@ var inactiveNotes : Array
 var activeSubnotes : Dictionary
 var inactiveSubnotes : Array
 
+var songPos : float
+
 func _onChartCreated(chartData: Chart) -> void:
 	for i in GlobalStates.NOTE_POOL_SIZE:
 		var noteNode : Node = noteScene.instantiate()
@@ -114,23 +116,51 @@ func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) 
 	
 	if activeNotes.has(key):
 		if activeNotes[key].isHold:
-			pass
-		if activeNotes[key].trackID == GlobalEnums.trackIDs.SCRATCH_TRACK:
-			pass
+			var hitNote = activeNotes[key]
+			
+			var hitOffset = songPos * 1000 - hitNote.hitTime
+			
+			var releaseOffset = songPos * 1000 - hitNote.releaseTime
+			
+			if hitOffset > releaseOffset:
+				hitNote.holdHit()
+				return
+			else:
+				activeNotes[key].deactivate()
+				inactiveNotes.push_front(activeNotes[key])
+				activeNotes.erase(key)
+				return
 		else:
 			activeNotes[key].deactivate()
 			inactiveNotes.push_front(activeNotes[key])
 			activeNotes.erase(key)
 	else:
-		pass
+		return
 
 
 func _onMiss(trackIndex: int, noteIndex: int) -> void:
 	var key = Vector2i(trackIndex, noteIndex)
 	
 	if activeNotes.has(key):
-		activeNotes[key].deactivate()
-		inactiveNotes.push_front(activeNotes[key])
-		activeNotes.erase(key)
+		
+		if activeNotes[key].isHold:
+			var missedNote = activeNotes[key]
+			
+			var hitOffset = songPos * 1000 - missedNote.hitTime
+			
+			var releaseOffset = songPos * 1000 - missedNote.releaseTime
+			
+			if hitOffset > releaseOffset:
+				missedNote.holdMissed()
+				return
+			else:
+				activeNotes[key].deactivate()
+				inactiveNotes.push_front(activeNotes[key])
+				activeNotes.erase(key)
+				return
+		else:
+			activeNotes[key].deactivate()
+			inactiveNotes.push_front(activeNotes[key])
+			activeNotes.erase(key)
 	else:
 		pass

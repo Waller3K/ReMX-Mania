@@ -2,8 +2,14 @@ extends Node3D
 
 @export var normalNoteMaterial : StandardMaterial3D
 @export var FXNoteMaterial : StandardMaterial3D
+@export var activeNoteMaterial : StandardMaterial3D
+@export var missedNoteMaterial : StandardMaterial3D #Only for missed hold notes
 
 var isActive : bool = false
+
+# This bool is true only while this note is currently being held down
+# (This will affect the color of the note)
+var isHolding : bool = false
 
 var startingPosition : float
 
@@ -52,6 +58,16 @@ func activate(TrackID : int, NoteIndex : int, startingPos : float, hTime: float,
 		isHold = true
 		releaseTime = holdEnd
 		
+
+func holdHit():
+	isHolding = true
+	var meshInstance := get_node("MeshInstance3D") as MeshInstance3D
+	meshInstance.set_surface_override_material(0, activeNoteMaterial)
+
+func holdMissed():
+	isHolding = false
+	var meshInstance := get_node("MeshInstance3D") as MeshInstance3D
+	meshInstance.set_surface_override_material(0, missedNoteMaterial)
 
 func deactivate():
 	visible = false
