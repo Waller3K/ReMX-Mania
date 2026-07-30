@@ -60,14 +60,16 @@ func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) 
 
 
 func _onHoldStarted(trackIndex: int, noteIndex: int, FX: int) -> void:
-	print("Hold Started, " + str(trackIndex))
+	#print("Hold Started, " + str(trackIndex))
+	pass
 
 
 func _onHoldEnded(trackIndex: int, noteIndex: int, FX: int) -> void:
-	print("Hold Ended, " + str(trackIndex))
+	#print("Hold Ended, " + str(trackIndex))
+	pass
 
 
 func _onHoldBroken(trackIndex: int, noteIndex: int, FX: int) -> void:
 	combo = 0
 	comboLabel.text = str(combo) + " COMBO!"
-	print("Hold BROKEN! " + str(trackIndex))
+	#print("Hold BROKEN! " + str(trackIndex))

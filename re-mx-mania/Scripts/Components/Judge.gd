@@ -23,6 +23,9 @@ signal holdStarted(trackIndex: int, noteIndex: int, FX: int)
 signal holdEnded(trackIndex: int, noteIndex: int, FX: int)
 signal holdBroken(trackIndex: int, noteIndex: int, FX: int)
 
+signal scratchHit(judgement : int, offset : float, noteIndex: int, subnoteIndex: int)
+signal scratchBreak(noteIndex: int, subnoteIndex: int)
+
 var songPos: float
 
 var trackNextNoteIndecies : Array[int]
@@ -44,8 +47,7 @@ var mouseYVel : float = 0.0
 func _onSongUpdate(songPosition: float) -> void:
 	songPos = songPosition * 1000
 	updateNextNote(songPos)
-	
-	
+	updateNextSubnote(songPos)
 
 func updateNextNote(songPosition: float) -> void:
 	for track in GlobalStates.TRACK_COUNT + 2:
@@ -53,11 +55,14 @@ func updateNextNote(songPosition: float) -> void:
 			pass
 		elif trackNextNoteIndecies[track] > notes[track].size() - 1:
 			trackEndedBools[track] = true
-		elif notes[track].is_empty():
-			trackEndedBools[track] = true
 		elif "End" in notes[track][trackNextNoteIndecies[track]]:
 			if songPosition > notes[track][trackNextNoteIndecies[track]]["End"] * 1000 + GlobalStates.okTiming:
 				miss.emit(track, trackNextNoteIndecies[track])
+				
+				# Remember to reset the nextSubnoteIndex!
+				if track == GlobalEnums.trackIDs.SCRATCH_TRACK:
+					nextSubnoteIndex = -1
+				
 				if trackNextNoteIndecies[track] + 1 < notes[track].size():
 					trackNextNoteIndecies[track] += 1
 				else:
@@ -71,6 +76,18 @@ func updateNextNote(songPosition: float) -> void:
 				trackNextNoteIndecies[track] += 1
 			else:
 				trackEndedBools[track] = true
+
+func updateNextSubnote(songPosition: float) -> void:
+	var currentNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK]]
+	var currentSubnote = currentNote["Subnotes"][nextSubnoteIndex]
+	var notePos = currentSubnote["Pos"]
+	if songPosition > notePos * 1000 + GlobalStates.okTiming:
+		scratchNoteMiss(currentNote)
+		
+		if nextSubnoteIndex + 1 < currentNote["Subnotes"].size() - 1:
+			nextSubnoteIndex += 1
+		else:
+			nextSubnoteIndex = -1
 
 func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 	var nextNoteIndex: int = trackNextNoteIndecies[inputIndex]
@@ -93,7 +110,7 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 		FX = currentNote["Effect"] if "Effect" in currentNote else -1 
 	
 	# Checks if this is the last note in the track
-	if nextNoteIndex == notes[inputIndex][trackNextNoteIndecies[inputIndex]].size() - 1:
+	if nextNoteIndex == notes[inputIndex].size() - 1:
 		trackEnded = true
 	
 	var nextNotePos = currentNote["Pos"] * 1000 # Multiplied by 1000 to convert from sec - ms
@@ -108,6 +125,10 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 			var tailPosition = currentNote["End"] * 1000
 			offset = inputTime - tailPosition
 			judgement = inputReconciler(inputTime, tailPosition)
+			
+			if inputIndex == GlobalEnums.trackIDs.SCRATCH_TRACK:
+				if nextSubnoteIndex != -1:
+					nextSubnoteIndex = -1
 		else:
 			return nextNoteIndex
 	else:
@@ -156,9 +177,10 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 	
 	return nextNoteIndex if trackEnded else nextNoteIndex + 1
 
-func scratchJudge(inputTime: float, YVelocity: float, isMoving: bool) -> void:
+func scratchJudge(inputTime: float, YDirection: int, _isMoving: bool) -> void:
 	if trackActiveBools[GlobalEnums.trackIDs.SCRATCH_TRACK] == false:
-		return
+		trackActiveBools[GlobalEnums.trackIDs.SCRATCH_TRACK] = true
+	
 	var currentNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK]]
 	
 	if !"Subnotes" in currentNote:
@@ -174,40 +196,30 @@ func scratchJudge(inputTime: float, YVelocity: float, isMoving: bool) -> void:
 	if "End" in currentSubnote:
 		pass
 	else:
-		if !isMoving:
-			pass
-		var judgement = inputReconciler(inputTime, currentSubnote["Pos"] * 1000)
-		var offset = inputTime - currentSubnote["Pos"] * 1000
+		var notePos = currentSubnote["Pos"] * 1000
+		
+		# If the input is earlier than the miss window
+		if inputTime < notePos - GlobalStates.okTiming * 1.5:
+			print("Too Early!")
+			return
+		
+		var judgement : int = inputReconciler(inputTime, notePos)
+		
+		var offset = inputTime - notePos
+		
 		match int(currentSubnote["Type"]):
-			GlobalEnums.scratchEnum.UP:
-				if YVelocity > 0:
-					print("UP Scratch Hit!")
-					scratchNoteHit(judgement, offset, currentNote)
-				else:
-					print("UP Scratch Miss")
 			GlobalEnums.scratchEnum.DOWN:
-				if YVelocity < 0:
-					print("DOWN Scratch Hit!")
-					scratchNoteHit(judgement, offset, currentNote)
-				else:
-					print("DOWN Scratch Miss")
+				if YDirection == 1:
+					scratchNoteHit(judgement, offset, currentNote) if judgement != GlobalEnums.judgementEnum.MISS else scratchNoteMiss(currentNote)
 			GlobalEnums.scratchEnum.COMBINATION:
-				if YVelocity != 0:
-					print("COMBINATION Scratch Hit!")
-					scratchNoteHit(judgement, offset, currentNote)
-				else:
-					print("COMBINATION Scratch Miss")
+				if YDirection != 0:
+					scratchNoteHit(judgement, offset, currentNote) if judgement != GlobalEnums.judgementEnum.MISS else scratchNoteMiss(currentNote)
+			GlobalEnums.scratchEnum.UP:
+				if YDirection == -1:
+					scratchNoteHit(judgement, offset, currentNote) if judgement != GlobalEnums.judgementEnum.MISS else scratchNoteMiss(currentNote)
 			_:
-				push_error(
-					"Invalid Scratch Type on Note: " + 
-					str(GlobalEnums.trackIDs.SCRATCH_TRACK) + 
-					":" + 
-					str(trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK]) +
-					":" +
-					str(nextSubnoteIndex) +
-					" of Type: " +
-					str(currentSubnote["Type"])
-					)
+				print("Invalid Scratch Type!" + str(currentSubnote["Type"]))
+				
 
 # Takes in the input time, and the target time, then returns the judgement
 func inputReconciler(inputTime: float, targetTime: float) -> int:
@@ -231,16 +243,24 @@ func inputReconciler(inputTime: float, targetTime: float) -> int:
 		return GlobalEnums.judgementEnum.MISS
 
 # Simple Helper Function for scratch note hit detection
-func scratchNoteHit(judgement : int, offset : float, currentNote : Dictionary):
-	noteHit.emit(
+func scratchNoteHit(judgement : int, offset : float, currentNote : Dictionary) -> void:
+	scratchHit.emit(
 			judgement,
 		 	offset,
-			GlobalEnums.trackIDs.SCRATCH_TRACK,
-			trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK]
+			trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK],
+			nextSubnoteIndex
 			)
 	if nextSubnoteIndex + 1 > currentNote["Subnotes"].size() - 1:
-		# Set to -1 to show that we have hit the last subnote
-		nextSubnoteIndex = -1
+		# Set to -2 to show that we have hit the last subnote
+		nextSubnoteIndex = -2
+	else:
+		nextSubnoteIndex += 1
+
+func scratchNoteMiss(currentNote : Dictionary) -> void:
+	scratchBreak.emit(trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK], nextSubnoteIndex)
+	if nextSubnoteIndex + 1 > currentNote["Subnotes"].size() - 1:
+		# Set to -2 to show that we have hit the last subnote
+		nextSubnoteIndex = -2
 	else:
 		nextSubnoteIndex += 1
 
@@ -304,5 +324,5 @@ func _onMouseMoved(_inputTimestamp: float, YVelocity: float) -> void:
 	mouseYVel = YVelocity
 
 
-func _onMouseMoving(inputTimestamp: float, isMoving: bool) -> void:
-	scratchJudge(inputTimestamp, mouseYVel, isMoving)
+func _onMouseMoving(inputTimestamp: float, isMoving: bool, YDirection: int) -> void:
+	scratchJudge(inputTimestamp, YDirection, isMoving)

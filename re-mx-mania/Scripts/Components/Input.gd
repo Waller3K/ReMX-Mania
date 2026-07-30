@@ -13,13 +13,17 @@ signal btnScratch(inputTimestamp: float, isDown: bool)
 signal mouseMoved(inputTimestamp: float, YVelocity: float)
 
 # Used to get whether or not the mouse is moving at all
-signal mouseMoving(inputTimestamp: float, isMoving: bool)
+signal mouseMoving(inputTimestamp: float, isMoving: bool, YDirection : int)
 
-var songPos : float
+var songPos : float = -100000
 
-var isMouseMoving : bool
+var isMouseMoving : bool = false
 
-var lastYDir : float = 0.0
+var lastYDir : int
+
+var lastMoveSongPos : float = 0.0
+
+const mouseTimeOut : float = 60.0
 
 func _ready() -> void:
 	Input.use_accumulated_input = false
@@ -59,43 +63,36 @@ func _input(event: InputEvent) -> void:
 		if isMouseMoving:
 			isMouseMoving = false
 			lastYDir = 0
-			mouseMoving.emit(songPos, false)
+			mouseMoving.emit(songPos, false, lastYDir)
 	
 	# Mouse Handling
 	if event is InputEventMouseMotion and scratchActive:
-		if !isMouseMoving:
-			pass
+		
 		mouseMoved.emit(songPos, event.relative.y)
+		
+		var currentYDir : int  = signi(int(event.relative.y)) # -1 is Up 1 is Down 0 is Idle
+		
+		# Ignore inputs that are below the deadzone
+		if abs(event.relative.y) < GlobalStates.scratchDeadzone:
+			return
+		
+		# Mouse starts moving from nothing
+		if lastYDir == 0:
+			mouseMoving.emit(songPos, true, currentYDir)
+			lastYDir = currentYDir
+			isMouseMoving = true
+		# Mouse changed direction
+		elif currentYDir != lastYDir:
+			mouseMoving.emit(songPos, true, currentYDir)
+			lastYDir = currentYDir
+			isMouseMoving = true
+		
+		lastMoveSongPos = songPos
 
 func _onSongUpdate(songPosition: float) -> void:
 	songPos = songPosition * 1000
 	
-	# Additional Mouse Handling is moved here
-	if !scratchActive:
-		if isMouseMoving:
-			isMouseMoving = false
-			lastYDir = 0
-			mouseMoving.emit(songPos, false)
-		return
-	
-	var mouseVelocity : Vector2 = Input.get_last_mouse_velocity()
-	
-	var currentlyMoving : bool = mouseVelocity.length_squared() > 0
-	
-	if currentlyMoving:
-		# Will either be -1.0 for Down, 1.0 for Up, or 0.0 for nothing
-		var currentYDir = signf(mouseVelocity.y)
-		
-		if !isMouseMoving:
-			isMouseMoving = true
-			lastYDir = currentYDir
-			mouseMoving.emit(songPos, true)
-		# If the mouse has changed direction
-		elif currentYDir != 0 and lastYDir != currentYDir:
-			lastYDir = currentYDir
-			mouseMoving.emit(songPos, true)
-	else:
-		if isMouseMoving:
-			isMouseMoving = false
-			lastYDir = 0
-			mouseMoving.emit(songPos, false)
+	if isMouseMoving and (songPos - lastMoveSongPos) > mouseTimeOut:
+		isMouseMoving = false
+		lastYDir = 0
+		mouseMoving.emit(songPos - mouseTimeOut, false, lastYDir)

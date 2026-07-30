@@ -80,7 +80,6 @@ func _process(delta: float) -> void:
 		var currentAudioPos = musicPlayer.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency() - (GlobalStates.globalOffset/1000)
 		# If the audio jumps backward by more than 0.5 seconds, it means it reset to 0
 		if (songPos - currentAudioPos) > 0.5 :
-			print(str(currentAudioPos) + ", " + str(songPos))
 			songPos = stream.get_length()
 		else:
 			songPos = currentAudioPos

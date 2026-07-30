@@ -164,3 +164,42 @@ func _onMiss(trackIndex: int, noteIndex: int) -> void:
 			activeNotes.erase(key)
 	else:
 		pass
+
+# Only called when a subnote is missed in the scratch track
+func _onScratchBreak(noteIndex: int, subnoteIndex: int) -> void:
+	var mainKey := Vector2i(GlobalEnums.trackIDs.SCRATCH_TRACK, noteIndex)
+	
+	print("Miss!")
+	
+	if activeNotes.has(mainKey):
+		var missedNote = activeNotes[mainKey]
+		
+		missedNote.holdMissed()
+		
+		var subKey := Vector3i(GlobalEnums.trackIDs.SCRATCH_TRACK, noteIndex, subnoteIndex)
+		
+		if activeSubnotes.has(subKey):
+			var missedScratch = activeSubnotes[subKey]
+			
+			if missedScratch.isHold:
+				return
+			
+			missedScratch.deactivate()
+			inactiveSubnotes.push_front(missedScratch)
+			activeSubnotes.erase(missedScratch)
+			
+
+
+func _onScratchHit(judgement: int, offset: float, noteIndex: int, subnoteIndex: int) -> void:
+	print("Hit!")
+	var mainKey = Vector2i(GlobalEnums.trackIDs.SCRATCH_TRACK, noteIndex)
+	
+	if activeNotes.has(mainKey):
+		var subKey = Vector3i(GlobalEnums.trackIDs.SCRATCH_TRACK, noteIndex, subnoteIndex)
+		
+		if activeSubnotes.has(subKey):
+			var hitNote = activeSubnotes[subKey]
+			
+			hitNote.deactivate()
+			inactiveSubnotes.push_front(hitNote)
+			activeSubnotes.erase(hitNote)
