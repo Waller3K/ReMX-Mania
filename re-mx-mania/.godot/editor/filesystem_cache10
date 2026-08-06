@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1785348158
+::res://::1785800699
 icon.svg::CompressedTexture2D::5603300852668577369::1778591865::1782521036::1::::<><><>0<>0<>4aac5d3884dedba9a7cc77d2fc320a37<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1785007550
 ::res://Assets/Materials/::1785277915
@@ -14,7 +14,7 @@ NoteButtonMesh.tres::BoxMesh::2599554398239371599::1784416223::0::1::::<><><>0<>
 ScratchTrackMesh.tres::PlaneMesh::6612781813405423432::1784405433::0::1::::<><><>0<>0<><>::
 ::res://Assets/SFX/::1783804374
 Closed_Hat_1.ogg::AudioStreamOggVorbis::455760506672224547::1783804364::1783804374::1::::<><><>0<>0<>59342d513da54f29310e9cc0c64c1a8e<>res://.godot/imported/Closed_Hat_1.ogg-62db6c61a425f5c6b774a087d67e4f74.oggvorbisstr::
-::res://Assets/Textures/::1785360099
+::res://Assets/Textures/::1785360102
 Almost Perfect Judgement.png::CompressedTexture2D::8228926686754830282::1784670697::1784670703::1::::<><><>0<>0<>a7d85ec051cf67839c93012801cb5c50<>res://.godot/imported/Almost Perfect Judgement.png-170cb1c319c3b2ed574504a9fcbc98df.ctex::
 Good Judgement.png::CompressedTexture2D::5784854443147692458::1784670697::1784670703::1::::<><><>0<>0<>3f813273b35d6d938c3f3f8c4c9bc7b4<>res://.godot/imported/Good Judgement.png-57f88880f667823d591541762ab6feeb.ctex::
 Miss Judgement.png::CompressedTexture2D::4639149875719496391::1784670697::1784683238::1::::<><><>0<>0<>8b81573cc8183518c71ec3537f42fb27<>res://.godot/imported/Miss Judgement.png-244aecf1ee64f33ca56f472c0b1d0f14.s3tc.ctex::
@@ -44,24 +44,24 @@ Track_3.ogg::AudioStreamOggVorbis::4570973951602152438::1785292961::1785292961::
 Track_4.ogg::AudioStreamOggVorbis::9140519251010652066::1785292961::1785292961::1::::<><><>0<>0<>f238257b8edccae0ee894ab07d5f41fe<>res://.godot/imported/Track_4.ogg-626083f2b0db561fcf5ce0f2df4bafff.oggvorbisstr::
 ::res://Charts/Sink to a New Test World/::1783035720
 Beginner.json::JSON::-1::1783029794::0::1::::<><><>0<>0<><>::
-::res://Scenes/::1785356988
-Gameplay.tscn::PackedScene::5538786362363920892::1785356988::0::1::::<><><>0<>0<><>::uid://cv8okknape74n::::res://Scripts/GameObjects/InfoContainer.gd<>uid://rmwyx8je2wcv::::res://Scripts/Components/Composer.gd<>uid://c3ln82f48renc::::res://Scripts/Components/Audio.gd<>uid://bj4e13klm24ri::::res://Scripts/Components/Input.gd<>uid://dn71f65o0hyv4::::res://Scripts/Components/GameManager.gd<>uid://dqda3qh26ho4p::::res://Scripts/Components/Judge.gd<>uid://drdta1y1ly8so::::res://Scripts/Components/NoteManager.gd<>uid://c7eefjsuqi0px::::res://Assets/Textures/Record Texture.png<>uid://nl75x2wcgsxu::::res://Scenes/GameObjects/MainNote.tscn<>uid://b63pg3r4aunfx::::res://Assets/Meshes/MainTrackMesh.tres<>uid://dl075op7bljat::::res://Scripts/GameObjects/noteButtonNode.gd<>uid://bjwngbwtxfho0::::res://Scenes/GameObjects/Subnote.tscn<>uid://bdbijs85vv8gh::::res://Assets/Meshes/NoteButtonMesh.tres<>uid://bjhd5eiot3vmv::::res://Scripts/GameObjects/GameButton.gd<>uid://c1hjsygce82gi::::res://Assets/Meshes/ScratchTrackMesh.tres<>uid://baq1i7u8rriqq::::res://Assets/Meshes/FXButtonMesh.tres<>uid://qpshe4hmqvh2::::res://Assets/Textures/Record.png<>uid://cuwgkwvv5v555::::res://Scripts/GameObjects/RecordNode.gd<>uid://h857c3k62lnp::::res://Scripts/GameObjects/judgementSprite.gd
+::res://Scenes/::1785514014
+Gameplay.tscn::PackedScene::5538786362363920892::1785514014::0::1::::<><><>0<>0<><>::uid://cv8okknape74n::::res://Scripts/GameObjects/InfoContainer.gd<>uid://rmwyx8je2wcv::::res://Scripts/Components/Composer.gd<>uid://c3ln82f48renc::::res://Scripts/Components/Audio.gd<>uid://bj4e13klm24ri::::res://Scripts/Components/Input.gd<>uid://dn71f65o0hyv4::::res://Scripts/Components/GameManager.gd<>uid://dqda3qh26ho4p::::res://Scripts/Components/Judge.gd<>uid://drdta1y1ly8so::::res://Scripts/Components/NoteManager.gd<>uid://c7eefjsuqi0px::::res://Assets/Textures/Record Texture.png<>uid://nl75x2wcgsxu::::res://Scenes/GameObjects/MainNote.tscn<>uid://b63pg3r4aunfx::::res://Assets/Meshes/MainTrackMesh.tres<>uid://dl075op7bljat::::res://Scripts/GameObjects/noteButtonNode.gd<>uid://bjwngbwtxfho0::::res://Scenes/GameObjects/Subnote.tscn<>uid://bdbijs85vv8gh::::res://Assets/Meshes/NoteButtonMesh.tres<>uid://bjhd5eiot3vmv::::res://Scripts/GameObjects/GameButton.gd<>uid://c1hjsygce82gi::::res://Assets/Meshes/ScratchTrackMesh.tres<>uid://baq1i7u8rriqq::::res://Assets/Meshes/FXButtonMesh.tres<>uid://qpshe4hmqvh2::::res://Assets/Textures/Record.png<>uid://cuwgkwvv5v555::::res://Scripts/GameObjects/RecordNode.gd<>uid://h857c3k62lnp::::res://Scripts/GameObjects/judgementSprite.gd
 ::res://Scenes/GameObjects/::1785278180
 MainNote.tscn::PackedScene::937160890924034234::1785278180::0::1::::<><><>0<>0<><>::uid://cfg0npcswu28q::::res://Scripts/GameObjects/MainNote.gd<>uid://ratfmp5j6k27::::res://Assets/Materials/normalNoteMaterial.tres<>uid://cjkwvosdw4y37::::res://Assets/Materials/FXNoteMaterial.tres<>uid://ck8wt35vvrevp::::res://Assets/Materials/holdingNoteMaterial.tres<>uid://cb35pf01oywat::::res://Assets/Materials/holdMissMaterial.tres
 Subnote.tscn::PackedScene::3064336710097362185::1785264446::0::1::::<><><>0<>0<><>::uid://ck0a0ku5jybo1::::res://Scripts/GameObjects/Subnote.gd<>uid://wppwjpr77jrs::::res://Assets/Textures/Temp Combination Arrow.png<>uid://cmlyw3ve8cb0s::::res://Assets/Textures/Temp Up Arrow.png<>uid://dkd5a7xwtxfxr::::res://Assets/Textures/Temp Down Arrow.png
 ::res://Scripts/::1784401880
-::res://Scripts/Autoloads/::1785293305
-GlobalEnums.gd::GDScript::887861232558932565::1785012004::0::1::::<>Node<><>0<>0<><>::
-GlobalStates.gd::GDScript::738684584467761941::1785293305::0::1::::<>Node<><>0<>0<><>::
+::res://Scripts/Autoloads/::1785369499
+GlobalEnums.gd::GDScript::887861232558932565::1785369499::0::1::::<>Node<><>0<>0<><>::
+GlobalStates.gd::GDScript::738684584467761941::1785366018::0::1::::<>Node<><>0<>0<><>::
 ::res://Scripts/Classes/::1783901298
 ChartClass.gd::GDScript::4380945922393844680::1783901298::0::1::::Chart<>Resource<><>0<>0<><>::
-::res://Scripts/Components/::1785356306
-Audio.gd::GDScript::6761686823867467588::1785354750::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
+::res://Scripts/Components/::1785514014
+Audio.gd::GDScript::6761686823867467588::1785366123::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
 Composer.gd::GDScript::1219362767220797481::1785293192::0::1::::<>Node<><>0<>0<><>::
-GameManager.gd::GDScript::8139366352522884431::1785280046::0::1::::<>Node<><>0<>0<><>::
-Input.gd::GDScript::3078278016534488374::1785355112::0::1::::<>Node<><>0<>0<><>::
-Judge.gd::GDScript::8288527537235046121::1785356306::0::1::::<>Node<><>0<>0<><>::
-NoteManager.gd::GDScript::8359820552930008358::1785278180::0::1::::<>Node<><>0<>0<><>::
+GameManager.gd::GDScript::8139366352522884431::1785513846::0::1::::<>Node<><>0<>0<><>::
+Input.gd::GDScript::3078278016534488374::1785369279::0::1::::<>Node<><>0<>0<><>::
+Judge.gd::GDScript::8288527537235046121::1785514014::0::1::::<>Node<><>0<>0<><>::
+NoteManager.gd::GDScript::8359820552930008358::1785369629::0::1::::<>Node<><>0<>0<><>::
 ::res://Scripts/GameObjects/::1785277993
 GameButton.gd::GDScript::3032806868623704657::1784832181::0::1::::<>MeshInstance3D<><>0<>0<><>::
 InfoContainer.gd::GDScript::6315799990842833335::1785181923::0::1::::<>VBoxContainer<><>0<>0<><>::

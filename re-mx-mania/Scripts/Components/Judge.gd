@@ -78,6 +78,10 @@ func updateNextNote(songPosition: float) -> void:
 				trackEndedBools[track] = true
 
 func updateNextSubnote(songPosition: float) -> void:
+	if nextSubnoteIndex < 0:
+		return
+	elif trackEndedBools[GlobalEnums.trackIDs.SCRATCH_TRACK] == true:
+		return
 	var currentNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK]]
 	var currentSubnote = currentNote["Subnotes"][nextSubnoteIndex]
 	var notePos = currentSubnote["Pos"]
@@ -178,6 +182,9 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 	return nextNoteIndex if trackEnded else nextNoteIndex + 1
 
 func scratchJudge(inputTime: float, YDirection: int, _isMoving: bool) -> void:
+	if trackEndedBools[GlobalEnums.trackIDs.SCRATCH_TRACK]  == true:
+		return
+	
 	if trackActiveBools[GlobalEnums.trackIDs.SCRATCH_TRACK] == false:
 		trackActiveBools[GlobalEnums.trackIDs.SCRATCH_TRACK] = true
 	
@@ -189,6 +196,8 @@ func scratchJudge(inputTime: float, YDirection: int, _isMoving: bool) -> void:
 		
 	if nextSubnoteIndex == -1:
 		nextSubnoteIndex = 0
+	elif nextSubnoteIndex == -2:
+		return
 	
 	var currentSubnote = currentNote["Subnotes"][nextSubnoteIndex]
 	

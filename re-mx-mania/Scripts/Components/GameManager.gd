@@ -36,40 +36,34 @@ func _onMiss(trackIndex: int, noteIndex: int) -> void:
 	combo = 0
 	
 	comboLabel.text = str(combo) + " COMBO!"
-	#print("MISS!")
+	print("MISS! " + str(trackIndex) + ", " + str(noteIndex))
 
 func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) -> void:
 	
 	combo += 1
 	comboLabel.text = str(combo) + " COMBO!"
-	#match judgement:
-		#GlobalEnums.judgementEnum.PERFECT:
-			#print("PERFECT! - " + str(offset))
-		#GlobalEnums.judgementEnum.PERFECTEARLY:
-			#print("EPerfect - " + str(offset))
-		#GlobalEnums.judgementEnum.PERFECTLATE:
-			#print("LPerfect - " + str(offset))
-		#GlobalEnums.judgementEnum.GOODEARLY:
-			#print("Good Early - " + str(offset))
-		#GlobalEnums.judgementEnum.GOODLATE:
-			#print("Good Late - " + str(offset))
-		#GlobalEnums.judgementEnum.OKEARLY:
-			#print("OK Early - " + str(offset))
-		#GlobalEnums.judgementEnum.OKLATE:
-			#print("OK Late - " + str(offset))
 
 
 func _onHoldStarted(trackIndex: int, noteIndex: int, FX: int) -> void:
-	#print("Hold Started, " + str(trackIndex))
 	pass
 
 
 func _onHoldEnded(trackIndex: int, noteIndex: int, FX: int) -> void:
-	#print("Hold Ended, " + str(trackIndex))
 	pass
 
 
 func _onHoldBroken(trackIndex: int, noteIndex: int, FX: int) -> void:
 	combo = 0
 	comboLabel.text = str(combo) + " COMBO!"
-	#print("Hold BROKEN! " + str(trackIndex))
+
+
+func _onScratchBreak(noteIndex: int, subnoteIndex: int) -> void:
+	combo = 0
+	comboLabel.text = str(combo) + " COMBO!"
+	
+	print("Scratch Broken! " + str(noteIndex) + ", " + str(subnoteIndex))
+
+
+func _onScratchHit(judgement: int, offset: float, noteIndex: int, subnoteIndex: int) -> void:
+	combo += 1
+	comboLabel.text = str(combo) + " COMBO!"

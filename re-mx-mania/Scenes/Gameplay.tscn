@@ -223,6 +223,8 @@ sky_mode = 1
 [connection signal="noteHit" from="Judge" to="GameManager" method="_onNoteHit"]
 [connection signal="noteHit" from="Judge" to="NoteManager" method="_onNoteHit"]
 [connection signal="noteHit" from="Judge" to="GameObjects/JudgementSprite" method="_onNoteHit"]
+[connection signal="scratchBreak" from="Judge" to="GameManager" method="_onScratchBreak"]
 [connection signal="scratchBreak" from="Judge" to="NoteManager" method="_onScratchBreak"]
+[connection signal="scratchHit" from="Judge" to="GameManager" method="_onScratchHit"]
 [connection signal="scratchHit" from="Judge" to="NoteManager" method="_onScratchHit"]
 [connection signal="startSong" from="GameManager" to="AudioStreamPlayer" method="_onSongStarted"]
