@@ -1,0 +1,41 @@
+{
+	"Metadata": {
+		"Artist": "Waller3K",
+		"BGMPath": "BGM_Track.ogg",
+		"BPM": 120.0,
+		"Charter": "Waller3K",
+		"Difficulty": 10.0,
+		"DifficultyName": "Expert",
+		"ScratchPath": "Scratch_Track.ogg",
+		"Title": "Igaku",
+		"Track1Path": "Track_1.ogg",
+		"Track2Path": "Track_2.ogg",
+		"Track3Path": "Track_3.ogg",
+		"Track4Path": "Track_4.ogg",
+		"TrackCount": 4
+	},
+	"Notes": {
+		"Track FX": [
+			{
+				"Effect": 1,
+				"End": 1.5,
+				"Pos": 0.0
+			},
+			{
+				"Effect": 2,
+				"End": 17.75,
+				"Pos": 17.5
+			}
+		],
+		"Scratch Track": [],
+		"Track 1": [
+			{
+				"End": 3.75,
+				"Pos": 2.25
+			}
+		],
+		"Track 2": [],
+		"Track 3": [],
+		"Track 4": []
+	}
+}

@@ -70,7 +70,7 @@ func _input(event: InputEvent) -> void:
 		
 		mouseMoved.emit(songPos, event.relative.y)
 		
-		var currentYDir : int  = signi(int(event.relative.y)) # -1 is Up 1 is Down 0 is Idle
+		var currentYDir : int  = int(signf(event.relative.y)) # -1 is Up 1 is Down 0 is Idle
 		
 		# Ignore inputs that are below the deadzone
 		if abs(event.relative.y) < GlobalStates.scratchDeadzone:

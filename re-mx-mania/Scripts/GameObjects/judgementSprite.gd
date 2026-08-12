@@ -35,3 +35,15 @@ func _onMiss(trackIndex: int, noteIndex: int) -> void:
 
 func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) -> void:
 	setJudgement(judgement)
+
+
+func _onHoldBroken(trackIndex: int, noteIndex: int, FX: int) -> void:
+	setJudgement(GlobalEnums.judgementEnum.MISS)
+
+
+func _onHoldTick(trackIndex: int, noteIndex: int) -> void:
+	setJudgement(GlobalEnums.judgementEnum.PERFECT)
+
+
+func _onScratchBreak(noteIndex: int, subnoteIndex: int) -> void:
+	setJudgement(GlobalEnums.judgementEnum.MISS)

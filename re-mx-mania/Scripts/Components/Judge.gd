@@ -20,19 +20,19 @@ signal miss(trackIndex: int, noteIndex: int) # The miss signal is the only one t
 #############################################
 
 signal holdStarted(trackIndex: int, noteIndex: int, FX: int)
+signal holdTick(trackIndex: int, noteIndex: int) # Called while a hold note is active
 signal holdEnded(trackIndex: int, noteIndex: int, FX: int)
 signal holdBroken(trackIndex: int, noteIndex: int, FX: int)
 
 signal scratchHit(judgement : int, offset : float, noteIndex: int, subnoteIndex: int)
 signal scratchBreak(noteIndex: int, subnoteIndex: int)
 
-var songPos: float
+signal debugInfo(trackArray: Array[TrackState])
 
-var trackNextNoteIndecies : Array[int]
-var trackEndedBools : Array[bool]
-var trackActiveBools : Array[bool]
-var trackInputStates : Array[bool]
-var trackLNHBools : Array[bool]
+var songPos: float
+var beatLength: float
+
+var tracks: Array[TrackState] = []
 
 # The next subnote's index (Scratch Track ONLY)
 var nextSubnoteIndex : int = -1
@@ -48,41 +48,55 @@ func _onSongUpdate(songPosition: float) -> void:
 	songPos = songPosition * 1000
 	updateNextNote(songPos)
 	updateNextSubnote(songPos)
+	debugInfo.emit(tracks)
 
 func updateNextNote(songPosition: float) -> void:
-	for track in GlobalStates.TRACK_COUNT + 2:
-		if trackEndedBools[track]:
+	var trackID : int = 0
+	for track in tracks:
+		# If the track has already ended
+		if track.ended:
 			pass
-		elif trackNextNoteIndecies[track] > notes[track].size() - 1:
-			trackEndedBools[track] = true
-		elif "End" in notes[track][trackNextNoteIndecies[track]]:
-			if songPosition > notes[track][trackNextNoteIndecies[track]]["End"] * 1000 + GlobalStates.okTiming:
-				miss.emit(track, trackNextNoteIndecies[track])
+			
+		elif track.nextNoteIndex > notes[trackID].size() - 1: # If the index is OOB
+			track.ended = true
+		elif "End" in notes[trackID][track.nextNoteIndex]:
+			if songPosition > notes[trackID][track.nextNoteIndex]["End"] * 1000 + GlobalStates.okTiming: # If the note tail is missed:
+				var noteData = notes[trackID][track.nextNoteIndex]
+				var FX = noteData["Effect"] if "Effect" in noteData else -1
+				holdBroken.emit(trackID, track.nextNoteIndex, FX)
+				track.noteHeadMissed = false # Reset note head state
+				track.isActive = false
+				track.tickTimer.stop()
 				
 				# Remember to reset the nextSubnoteIndex!
-				if track == GlobalEnums.trackIDs.SCRATCH_TRACK:
+				if trackID == GlobalEnums.trackIDs.SCRATCH_TRACK:
 					nextSubnoteIndex = -1
 				
-				if trackNextNoteIndecies[track] + 1 < notes[track].size():
-					trackNextNoteIndecies[track] += 1
+				if track.nextNoteIndex + 1 < notes[trackID].size():
+					track.nextNoteIndex += 1
 				else:
-					trackEndedBools[track] = true
-			elif songPosition > notes[track][trackNextNoteIndecies[track]]["Pos"] * 1000 + GlobalStates.okTiming and !trackActiveBools[track]:
+					track.ended = true
+			elif songPosition > notes[trackID][track.nextNoteIndex]["Pos"] * 1000 + GlobalStates.okTiming and !track.isActive:
 				# Missing the head of the note doesn't miss the whole hold
-				miss.emit(track, trackNextNoteIndecies[track])
-		elif songPosition > notes[track][trackNextNoteIndecies[track]]["Pos"] * 1000 + GlobalStates.okTiming:
-			miss.emit(track, trackNextNoteIndecies[track])
-			if trackNextNoteIndecies[track] + 1 < notes[track].size():
-				trackNextNoteIndecies[track] += 1
+				if !track.noteHeadMissed:
+					miss.emit(trackID, track.nextNoteIndex)
+					track.noteHeadMissed = true
+				
+		elif songPosition > notes[trackID][track.nextNoteIndex]["Pos"] * 1000 + GlobalStates.okTiming:
+			miss.emit(trackID, track.nextNoteIndex)
+			if track.nextNoteIndex + 1 < notes[trackID].size():
+				track.nextNoteIndex += 1
 			else:
-				trackEndedBools[track] = true
+				track.ended = true
+		trackID += 1
 
 func updateNextSubnote(songPosition: float) -> void:
-	if nextSubnoteIndex < 0:
+	if nextSubnoteIndex < 0 or nextSubnoteIndex == -2:
 		return
-	elif trackEndedBools[GlobalEnums.trackIDs.SCRATCH_TRACK] == true:
+	elif tracks[GlobalEnums.trackIDs.SCRATCH_TRACK].ended == true:
 		return
-	var currentNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK]]
+		
+	var currentNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][tracks[GlobalEnums.trackIDs.SCRATCH_TRACK].nextNoteIndex]
 	var currentSubnote = currentNote["Subnotes"][nextSubnoteIndex]
 	var notePos = currentSubnote["Pos"]
 	if songPosition > notePos * 1000 + GlobalStates.okTiming:
@@ -94,38 +108,43 @@ func updateNextSubnote(songPosition: float) -> void:
 			nextSubnoteIndex = -1
 
 func judge(inputTime: float, inputIndex: int, input: bool) -> int:
-	var nextNoteIndex: int = trackNextNoteIndecies[inputIndex]
+	var track := tracks[inputIndex]
 	var currentNote: Dictionary
-	var trackEnded: bool = false
 	var judgement: int
 	var offset: float
 	var FX: int
 	
+	if track.ended == true:
+		return track.nextNoteIndex
+	
 	# Checks if the current index is out of bounds
-	if trackNextNoteIndecies[inputIndex] > notes[inputIndex].size() - 1:
-		trackEndedBools[inputIndex] = true
-		return nextNoteIndex
+	if track.nextNoteIndex > notes[inputIndex].size() - 1:
+		track.ended = true
+		return track.nextNoteIndex
 	
 	if notes[inputIndex].is_empty():
-		return nextNoteIndex
+		return track.nextNoteIndex
 	else:
 		# Loads the note into memory
-		currentNote = notes[inputIndex][trackNextNoteIndecies[inputIndex]]
+		currentNote = notes[inputIndex][track.nextNoteIndex]
 		FX = currentNote["Effect"] if "Effect" in currentNote else -1 
-	
-	# Checks if this is the last note in the track
-	if nextNoteIndex == notes[inputIndex].size() - 1:
-		trackEnded = true
 	
 	var nextNotePos = currentNote["Pos"] * 1000 # Multiplied by 1000 to convert from sec - ms
 	
 	var isHold = "End" in currentNote
 	
+	# Checks if this is the last note in the track
+	if track.nextNoteIndex == notes[inputIndex].size() - 1 and !isHold:
+		track.ended = true
 	
 	# Hold Tail Judgement Section
 	if input == false:
 		# Checks if there is a tail to judge for
 		if isHold:
+			
+			if !track.isActive:
+				return track.nextNoteIndex   # already resolved elsewhere — ignore this stray release
+			
 			var tailPosition = currentNote["End"] * 1000
 			offset = inputTime - tailPosition
 			judgement = inputReconciler(inputTime, tailPosition)
@@ -134,7 +153,7 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 				if nextSubnoteIndex != -1:
 					nextSubnoteIndex = -1
 		else:
-			return nextNoteIndex
+			return track.nextNoteIndex
 	else:
 		# Hold Head / Tap Judgement Section
 		# Positive is LATE negative is EARLY
@@ -147,48 +166,48 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 		if inputTime > nextNotePos and !input:
 			pass
 		else:
-			return nextNoteIndex
+			return track.nextNoteIndex
 		
 	
 	if judgement == GlobalEnums.judgementEnum.MISS:
-		miss.emit(inputIndex, nextNoteIndex)
+		miss.emit(inputIndex, track.nextNoteIndex)
 	else:
-		noteHit.emit(judgement, offset, inputIndex, nextNoteIndex)
+		noteHit.emit(judgement, offset, inputIndex, track.nextNoteIndex)
 	
 	# Hold Note Tail Specific Logic
 	if isHold and input == false:
 		if judgement != GlobalEnums.judgementEnum.MISS:
-			holdEnded.emit(inputIndex, nextNoteIndex, FX)
+			holdEnded.emit(inputIndex, track.nextNoteIndex, FX)
 		else:
-			holdBroken.emit(inputIndex, nextNoteIndex, FX)
+			holdBroken.emit(inputIndex, track.nextNoteIndex, FX)
 		
-		trackActiveBools[inputIndex] = false
+		track.isActive = false
+		track.tickTimer.stop()
 		
-		if trackEnded:
-			trackLNHBools[inputIndex] = true
+		if track.nextNoteIndex == notes[inputIndex].size() - 1:
+			track.ended = true
 		
-		return nextNoteIndex if trackEnded else nextNoteIndex + 1
+		return track.nextNoteIndex if track.ended else track.nextNoteIndex + 1
 	
 	# Hold Note Head Specific Logic
 	if isHold:
-		holdStarted.emit(inputIndex, nextNoteIndex, FX)
-		trackActiveBools[inputIndex] = true
-		return nextNoteIndex
+		holdStarted.emit(inputIndex, track.nextNoteIndex, FX)
+		track.isActive = true
+		track.tickTimer.start(beatLength)
+		return track.nextNoteIndex
 	
 	# Tapped Note Specific Logic
-	if judgement != GlobalEnums.judgementEnum.MISS and trackEnded:
-		trackLNHBools[inputIndex] = true
+	if judgement != GlobalEnums.judgementEnum.MISS and track.ended:
+		track.lastNoteHit = true
 	
-	return nextNoteIndex if trackEnded else nextNoteIndex + 1
+	return track.nextNoteIndex if track.ended else track.nextNoteIndex + 1
 
 func scratchJudge(inputTime: float, YDirection: int, _isMoving: bool) -> void:
-	if trackEndedBools[GlobalEnums.trackIDs.SCRATCH_TRACK]  == true:
+	var scratchTrack = tracks[GlobalEnums.trackIDs.SCRATCH_TRACK]
+	if scratchTrack.ended == true:
 		return
 	
-	if trackActiveBools[GlobalEnums.trackIDs.SCRATCH_TRACK] == false:
-		trackActiveBools[GlobalEnums.trackIDs.SCRATCH_TRACK] = true
-	
-	var currentNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK]]
+	var currentNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][scratchTrack.nextNoteIndex]
 	
 	if !"Subnotes" in currentNote:
 		print("Invalid ScratchNote")
@@ -209,26 +228,38 @@ func scratchJudge(inputTime: float, YDirection: int, _isMoving: bool) -> void:
 		
 		# If the input is earlier than the miss window
 		if inputTime < notePos - GlobalStates.okTiming * 1.5:
-			print("Too Early!")
 			return
 		
 		var judgement : int = inputReconciler(inputTime, notePos)
 		
 		var offset = inputTime - notePos
 		
+		print(YDirection)
+		
 		match int(currentSubnote["Type"]):
 			GlobalEnums.scratchEnum.DOWN:
 				if YDirection == 1:
 					scratchNoteHit(judgement, offset, currentNote) if judgement != GlobalEnums.judgementEnum.MISS else scratchNoteMiss(currentNote)
+				else:
+					scratchNoteMiss(currentNote)
 			GlobalEnums.scratchEnum.COMBINATION:
 				if YDirection != 0:
 					scratchNoteHit(judgement, offset, currentNote) if judgement != GlobalEnums.judgementEnum.MISS else scratchNoteMiss(currentNote)
+				else:
+					scratchNoteMiss(currentNote)
 			GlobalEnums.scratchEnum.UP:
 				if YDirection == -1:
 					scratchNoteHit(judgement, offset, currentNote) if judgement != GlobalEnums.judgementEnum.MISS else scratchNoteMiss(currentNote)
+				else:
+					scratchNoteMiss(currentNote)
 			_:
 				print("Invalid Scratch Type!" + str(currentSubnote["Type"]))
 				
+
+func _onTick(trackID: int, trackState: TrackState):
+	holdTick.emit(trackID, trackState.nextNoteIndex)
+	trackState.tickTimer.start(beatLength)
+	print("Tick")
 
 # Takes in the input time, and the target time, then returns the judgement
 func inputReconciler(inputTime: float, targetTime: float) -> int:
@@ -256,7 +287,7 @@ func scratchNoteHit(judgement : int, offset : float, currentNote : Dictionary) -
 	scratchHit.emit(
 			judgement,
 		 	offset,
-			trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK],
+			tracks[GlobalEnums.trackIDs.SCRATCH_TRACK].nextNoteIndex,
 			nextSubnoteIndex
 			)
 	if nextSubnoteIndex + 1 > currentNote["Subnotes"].size() - 1:
@@ -266,7 +297,7 @@ func scratchNoteHit(judgement : int, offset : float, currentNote : Dictionary) -
 		nextSubnoteIndex += 1
 
 func scratchNoteMiss(currentNote : Dictionary) -> void:
-	scratchBreak.emit(trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK], nextSubnoteIndex)
+	scratchBreak.emit(tracks[GlobalEnums.trackIDs.SCRATCH_TRACK].nextNoteIndex, nextSubnoteIndex)
 	if nextSubnoteIndex + 1 > currentNote["Subnotes"].size() - 1:
 		# Set to -2 to show that we have hit the last subnote
 		nextSubnoteIndex = -2
@@ -275,24 +306,32 @@ func scratchNoteMiss(currentNote : Dictionary) -> void:
 
 func _onChartCreated(chart: Chart) -> void:
 	notes = chart.notes
+	
+	beatLength = 60.0/chart.bpm
+	
+	var Index : int = 0
 	for track in GlobalStates.TRACK_COUNT + 2:
-		trackEndedBools.append(false)
-		trackNextNoteIndecies.append(0)
-		trackInputStates.append(false)
-		trackActiveBools.append(false)
-		trackLNHBools.append(false)
+		var newTrack := TrackState.new()
+		
+		newTrack.tickTimer.wait_time = beatLength
+		newTrack.tickTimer.one_shot = true
+		add_child(newTrack.tickTimer)
+		
+		newTrack.tickTimer.timeout.connect(_onTick.bind(Index, newTrack))
+		tracks.append(newTrack)
+		Index += 1
 	
 	
 
 func _onBTN_1(inputTimestamp: float, isDown: bool) -> void:
-	trackNextNoteIndecies[GlobalEnums.trackIDs.TRACK1] = judge(
+	tracks[GlobalEnums.trackIDs.TRACK1].nextNoteIndex = judge(
 		inputTimestamp, 
 		GlobalEnums.trackIDs.TRACK1,
 		isDown
 		)
 
 func _onBTN_2(inputTimestamp: float, isDown: bool) -> void:
-	trackNextNoteIndecies[GlobalEnums.trackIDs.TRACK2] = judge(
+	tracks[GlobalEnums.trackIDs.TRACK2].nextNoteIndex = judge(
 		inputTimestamp, 
 		GlobalEnums.trackIDs.TRACK2,
 		isDown
@@ -300,7 +339,7 @@ func _onBTN_2(inputTimestamp: float, isDown: bool) -> void:
 
 func _onBTN_3(inputTimestamp: float, isDown: bool) -> void:
 	if GlobalStates.TRACK_COUNT > 2:
-		trackNextNoteIndecies[GlobalEnums.trackIDs.TRACK3] = judge(
+		tracks[GlobalEnums.trackIDs.TRACK3].nextNoteIndex = judge(
 			inputTimestamp, 
 			GlobalEnums.trackIDs.TRACK3,
 			isDown
@@ -308,21 +347,21 @@ func _onBTN_3(inputTimestamp: float, isDown: bool) -> void:
 
 func _onBTN_4(inputTimestamp: float, isDown: bool) -> void:
 	if GlobalStates.TRACK_COUNT > 3:
-		trackNextNoteIndecies[GlobalEnums.trackIDs.TRACK4] = judge(
+		tracks[GlobalEnums.trackIDs.TRACK4].nextNoteIndex = judge(
 			inputTimestamp, 
 			GlobalEnums.trackIDs.TRACK4,
 			isDown
 			)
 
 func _onBTN_FX(inputTimestamp: float, isDown: bool) -> void:
-	trackNextNoteIndecies[GlobalEnums.trackIDs.TRACKFX] = judge(
+	tracks[GlobalEnums.trackIDs.TRACKFX].nextNoteIndex = judge(
 		inputTimestamp, 
 		GlobalEnums.trackIDs.TRACKFX,
 		isDown
 		)
 
 func _onScratchBTN(inputTimestamp: float, isDown: bool) -> void:
-	trackNextNoteIndecies[GlobalEnums.trackIDs.SCRATCH_TRACK] = judge(
+	tracks[GlobalEnums.trackIDs.SCRATCH_TRACK].nextNoteIndex = judge(
 		inputTimestamp, 
 		GlobalEnums.trackIDs.SCRATCH_TRACK,
 		isDown
@@ -334,4 +373,5 @@ func _onMouseMoved(_inputTimestamp: float, YVelocity: float) -> void:
 
 
 func _onMouseMoving(inputTimestamp: float, isMoving: bool, YDirection: int) -> void:
-	scratchJudge(inputTimestamp, YDirection, isMoving)
+	if tracks[GlobalEnums.trackIDs.SCRATCH_TRACK].isActive:
+		scratchJudge(inputTimestamp, YDirection, isMoving)

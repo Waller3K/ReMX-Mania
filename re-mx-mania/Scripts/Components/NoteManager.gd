@@ -169,7 +169,7 @@ func _onMiss(trackIndex: int, noteIndex: int) -> void:
 func _onScratchBreak(noteIndex: int, subnoteIndex: int) -> void:
 	var mainKey := Vector2i(GlobalEnums.trackIDs.SCRATCH_TRACK, noteIndex)
 	
-	print("Miss!")
+	#print("Miss!")
 	
 	if activeNotes.has(mainKey):
 		var missedNote = activeNotes[mainKey]
@@ -191,7 +191,7 @@ func _onScratchBreak(noteIndex: int, subnoteIndex: int) -> void:
 
 
 func _onScratchHit(judgement: int, offset: float, noteIndex: int, subnoteIndex: int) -> void:
-	print("Hit!")
+	#print("Hit!")
 	var mainKey = Vector2i(GlobalEnums.trackIDs.SCRATCH_TRACK, noteIndex)
 	
 	if activeNotes.has(mainKey):

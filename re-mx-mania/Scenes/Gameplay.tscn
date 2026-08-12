@@ -79,23 +79,33 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/UI" unique_id=1464947387 node_paths=PackedStringArray("FPSLable", "SongPositionLable")]
+[node name="Debug Menu" type="VBoxContainer" parent="Camera3D/UI" unique_id=1464947387 node_paths=PackedStringArray("FPSLable", "SongPositionLable", "trackActiveBoolLable", "trackNextNoteIndexLabel")]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_bk2no")
 FPSLable = NodePath("FPSCounter")
 SongPositionLable = NodePath("SongPosCounter")
+trackActiveBoolLable = NodePath("TrackActiveLabel")
+trackNextNoteIndexLabel = NodePath("TrackNNILabel")
 
-[node name="FPSCounter" type="Label" parent="Camera3D/UI/VBoxContainer" unique_id=1576779047]
+[node name="FPSCounter" type="Label" parent="Camera3D/UI/Debug Menu" unique_id=1576779047]
 layout_mode = 2
 text = "FPS Counter"
 label_settings = SubResource("LabelSettings_5pscq")
 
-[node name="SongPosCounter" type="Label" parent="Camera3D/UI/VBoxContainer" unique_id=163628851]
+[node name="SongPosCounter" type="Label" parent="Camera3D/UI/Debug Menu" unique_id=163628851]
 layout_mode = 2
 text = "SongPos"
 label_settings = SubResource("LabelSettings_txxkg")
+
+[node name="TrackActiveLabel" type="Label" parent="Camera3D/UI/Debug Menu" unique_id=1714621001]
+layout_mode = 2
+text = "Track Active Bools: "
+
+[node name="TrackNNILabel" type="Label" parent="Camera3D/UI/Debug Menu" unique_id=1498440907]
+layout_mode = 2
+text = "Track Next Note Indexes: "
 
 [node name="Composer" type="Node" parent="." unique_id=1523553492]
 script = ExtResource("1_r5ka5")
@@ -195,7 +205,7 @@ sky_mode = 1
 [connection signal="chartCreated" from="Composer" to="NoteManager" method="_onChartCreated"]
 [connection signal="chartCreated" from="Composer" to="GameObjects/MainTrack/NoteButtonNode" method="_onChartCreated"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_onFinished"]
-[connection signal="songUpdate" from="AudioStreamPlayer" to="Camera3D/UI/VBoxContainer" method="_onSongUpdate"]
+[connection signal="songUpdate" from="AudioStreamPlayer" to="Camera3D/UI/Debug Menu" method="_onSongUpdate"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Input" method="_onSongUpdate"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Judge" method="_onSongUpdate"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="NoteManager" method="_onSongUpdate"]
@@ -214,17 +224,29 @@ sky_mode = 1
 [connection signal="mouseMoved" from="Input" to="Judge" method="_onMouseMoved"]
 [connection signal="mouseMoved" from="Input" to="GameObjects/ScratchTrack/RecordNode/RecordMesh" method="_onMouseMoved"]
 [connection signal="mouseMoving" from="Input" to="Judge" method="_onMouseMoving"]
+[connection signal="debugInfo" from="Judge" to="Camera3D/UI/Debug Menu" method="_onDebugInfo"]
+[connection signal="holdBroken" from="Judge" to="AudioStreamPlayer" method="_onHoldBroken"]
 [connection signal="holdBroken" from="Judge" to="GameManager" method="_onHoldBroken"]
+[connection signal="holdBroken" from="Judge" to="GameObjects/JudgementSprite" method="_onHoldBroken"]
+[connection signal="holdEnded" from="Judge" to="AudioStreamPlayer" method="_onHoldEnded"]
 [connection signal="holdEnded" from="Judge" to="GameManager" method="_onHoldEnded"]
+[connection signal="holdStarted" from="Judge" to="AudioStreamPlayer" method="_onHoldStarted"]
 [connection signal="holdStarted" from="Judge" to="GameManager" method="_onHoldStarted"]
+[connection signal="holdTick" from="Judge" to="GameManager" method="_onHoldTick"]
+[connection signal="holdTick" from="Judge" to="GameObjects/JudgementSprite" method="_onHoldTick"]
+[connection signal="miss" from="Judge" to="AudioStreamPlayer" method="_onMiss"]
 [connection signal="miss" from="Judge" to="GameManager" method="_onMiss"]
 [connection signal="miss" from="Judge" to="NoteManager" method="_onMiss"]
 [connection signal="miss" from="Judge" to="GameObjects/JudgementSprite" method="_onMiss"]
+[connection signal="noteHit" from="Judge" to="AudioStreamPlayer" method="_onNoteHit"]
 [connection signal="noteHit" from="Judge" to="GameManager" method="_onNoteHit"]
 [connection signal="noteHit" from="Judge" to="NoteManager" method="_onNoteHit"]
 [connection signal="noteHit" from="Judge" to="GameObjects/JudgementSprite" method="_onNoteHit"]
+[connection signal="scratchBreak" from="Judge" to="AudioStreamPlayer" method="_onScratchBreak"]
 [connection signal="scratchBreak" from="Judge" to="GameManager" method="_onScratchBreak"]
 [connection signal="scratchBreak" from="Judge" to="NoteManager" method="_onScratchBreak"]
+[connection signal="scratchBreak" from="Judge" to="GameObjects/JudgementSprite" method="_onScratchBreak"]
+[connection signal="scratchHit" from="Judge" to="AudioStreamPlayer" method="_onScratchHit"]
 [connection signal="scratchHit" from="Judge" to="GameManager" method="_onScratchHit"]
 [connection signal="scratchHit" from="Judge" to="NoteManager" method="_onScratchHit"]
 [connection signal="startSong" from="GameManager" to="AudioStreamPlayer" method="_onSongStarted"]

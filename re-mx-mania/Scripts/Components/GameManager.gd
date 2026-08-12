@@ -16,6 +16,7 @@ func _onChartCreated(chart: Chart) -> void:
 	var metronomeSFX = "res://Assets/SFX/Closed_Hat_1.ogg"
 	$MetronomePlayer.stream = load(metronomeSFX)
 	
+	await get_tree().create_timer(secsPerBeat*2).timeout
 	$MetronomePlayer.play()
 	await get_tree().create_timer(secsPerBeat).timeout
 	$MetronomePlayer.play()
@@ -36,7 +37,7 @@ func _onMiss(trackIndex: int, noteIndex: int) -> void:
 	combo = 0
 	
 	comboLabel.text = str(combo) + " COMBO!"
-	print("MISS! " + str(trackIndex) + ", " + str(noteIndex))
+	#print("MISS! " + str(trackIndex) + ", " + str(noteIndex))
 
 func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) -> void:
 	
@@ -65,5 +66,10 @@ func _onScratchBreak(noteIndex: int, subnoteIndex: int) -> void:
 
 
 func _onScratchHit(judgement: int, offset: float, noteIndex: int, subnoteIndex: int) -> void:
+	combo += 1
+	comboLabel.text = str(combo) + " COMBO!"
+
+
+func _onHoldTick(trackIndex: int, noteIndex: int) -> void:
 	combo += 1
 	comboLabel.text = str(combo) + " COMBO!"

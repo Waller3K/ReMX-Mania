@@ -34,6 +34,23 @@ func getAbsolutePath(chartPath: String, relativePath: String) -> String:
 	var finalPath = baseDir.path_join(relativePath)
 	return finalPath.simplify_path()
 
+func setTrackVolume(trackID : int, mute : bool):
+	var streamIndex : int
+	if trackID == GlobalEnums.trackIDs.TRACKFX:
+		return
+	elif trackID == GlobalEnums.trackIDs.SCRATCH_TRACK:
+		streamIndex = 4
+	else:
+		streamIndex = trackID - 2
+	
+	if mute:
+		musicPlayer.stream.set_sync_stream_volume(streamIndex, -50)
+	else:
+		musicPlayer.stream.set_sync_stream_volume(streamIndex, streamDBOffset)
+
+func toggleFX(FXID : int, isOn : bool):
+	AudioServer.set_bus_effect_enabled(masterTrackIndex, FXID, isOn)
+
 func _onChartCreated(chart: Chart) -> void:
 	syncStream = AudioStreamSynchronized.new()
 	
@@ -111,3 +128,40 @@ func _onSongStarted(_timeStamp: float) -> void:
 func _onFinished() -> void:
 	isPlaying = false
 	isPostSong = true
+
+# Normal note Hit and miss
+
+func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) -> void:
+	setTrackVolume(trackIndex, false)
+
+func _onMiss(trackIndex: int, noteIndex: int) -> void:
+	setTrackVolume(trackIndex, true)
+
+# Hold note hit end and break
+
+func _onHoldStarted(trackIndex: int, noteIndex: int, FX: int) -> void:
+	setTrackVolume(trackIndex, false)
+	if FX == -1:
+		return
+	toggleFX(FX, true)
+
+func _onHoldEnded(trackIndex: int, noteIndex: int, FX: int) -> void:
+	setTrackVolume(trackIndex, false)
+	if FX == -1:
+		return
+	toggleFX(FX, false)
+
+func _onHoldBroken(trackIndex: int, noteIndex: int, FX: int) -> void:
+	setTrackVolume(trackIndex, true)
+	if FX == -1:
+		return
+	toggleFX(FX, false)
+
+# Scratch track Hit and miss
+
+func _onScratchHit(judgement: int, offset: float, noteIndex: int, subnoteIndex: int) -> void:
+	setTrackVolume(GlobalEnums.trackIDs.SCRATCH_TRACK, false)
+
+
+func _onScratchBreak(noteIndex: int, subnoteIndex: int) -> void:
+	setTrackVolume(GlobalEnums.trackIDs.SCRATCH_TRACK, true)
