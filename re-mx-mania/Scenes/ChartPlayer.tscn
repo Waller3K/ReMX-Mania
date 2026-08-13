@@ -1,24 +1,24 @@
 [gd_scene format=3 uid="uid://ck6bacq7io06k"]
 
-[ext_resource type="Script" uid="uid://cv8okknape74n" path="res://Scripts/GameObjects/InfoContainer.gd" id="1_bk2no"]
-[ext_resource type="Script" uid="uid://rmwyx8je2wcv" path="res://Scripts/Components/Composer.gd" id="1_r5ka5"]
-[ext_resource type="Script" uid="uid://c3ln82f48renc" path="res://Scripts/Components/Audio.gd" id="1_yijg0"]
-[ext_resource type="Script" uid="uid://bj4e13klm24ri" path="res://Scripts/Components/Input.gd" id="3_ovofm"]
-[ext_resource type="Script" uid="uid://dn71f65o0hyv4" path="res://Scripts/Components/GameManager.gd" id="3_tdndw"]
-[ext_resource type="Script" uid="uid://dqda3qh26ho4p" path="res://Scripts/Components/Judge.gd" id="4_mofsa"]
-[ext_resource type="Script" uid="uid://drdta1y1ly8so" path="res://Scripts/Components/NoteManager.gd" id="6_2aia5"]
-[ext_resource type="Texture2D" uid="uid://c7eefjsuqi0px" path="res://Assets/Textures/Record Texture.png" id="6_u8j7u"]
-[ext_resource type="PackedScene" uid="uid://nl75x2wcgsxu" path="res://Scenes/GameObjects/MainNote.tscn" id="7_buxyy"]
-[ext_resource type="PlaneMesh" uid="uid://b63pg3r4aunfx" path="res://Assets/Meshes/MainTrackMesh.tres" id="7_uotjs"]
-[ext_resource type="Script" uid="uid://dl075op7bljat" path="res://Scripts/GameObjects/noteButtonNode.gd" id="7_xwjbm"]
-[ext_resource type="PackedScene" uid="uid://bjwngbwtxfho0" path="res://Scenes/GameObjects/Subnote.tscn" id="9_rbnsi"]
-[ext_resource type="BoxMesh" uid="uid://bdbijs85vv8gh" path="res://Assets/Meshes/NoteButtonMesh.tres" id="9_vu60g"]
-[ext_resource type="Script" uid="uid://bjhd5eiot3vmv" path="res://Scripts/GameObjects/GameButton.gd" id="10_cfeic"]
-[ext_resource type="PlaneMesh" uid="uid://c1hjsygce82gi" path="res://Assets/Meshes/ScratchTrackMesh.tres" id="10_vu60g"]
-[ext_resource type="BoxMesh" uid="uid://baq1i7u8rriqq" path="res://Assets/Meshes/FXButtonMesh.tres" id="11_w5l26"]
-[ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="12_7wr7o"]
-[ext_resource type="Script" uid="uid://cuwgkwvv5v555" path="res://Scripts/GameObjects/RecordNode.gd" id="13_5klrq"]
-[ext_resource type="Script" uid="uid://h857c3k62lnp" path="res://Scripts/GameObjects/judgementSprite.gd" id="18_qaqk3"]
+[ext_resource type="Script" uid="uid://cv8okknape74n" path="res://Scripts/GameObjects/InfoContainer.gd" id="1_nsx4k"]
+[ext_resource type="Script" uid="uid://rmwyx8je2wcv" path="res://Scripts/Components/Composer.gd" id="2_kjko1"]
+[ext_resource type="Script" uid="uid://c3ln82f48renc" path="res://Scripts/Components/Audio.gd" id="3_frq57"]
+[ext_resource type="Script" uid="uid://bj4e13klm24ri" path="res://Scripts/Components/Input.gd" id="4_sh332"]
+[ext_resource type="Script" uid="uid://dqda3qh26ho4p" path="res://Scripts/Components/Judge.gd" id="5_44euv"]
+[ext_resource type="Script" uid="uid://dn71f65o0hyv4" path="res://Scripts/Components/GameManager.gd" id="6_b7is6"]
+[ext_resource type="Script" uid="uid://drdta1y1ly8so" path="res://Scripts/Components/NoteManager.gd" id="7_ikdta"]
+[ext_resource type="PackedScene" uid="uid://nl75x2wcgsxu" path="res://Scenes/GameObjects/MainNote.tscn" id="8_hikl7"]
+[ext_resource type="PackedScene" uid="uid://bjwngbwtxfho0" path="res://Scenes/GameObjects/Subnote.tscn" id="9_in26x"]
+[ext_resource type="Texture2D" uid="uid://c7eefjsuqi0px" path="res://Assets/Textures/Record Texture.png" id="10_opfc1"]
+[ext_resource type="PlaneMesh" uid="uid://b63pg3r4aunfx" path="res://Assets/Meshes/MainTrackMesh.tres" id="11_7ns8y"]
+[ext_resource type="Script" uid="uid://dl075op7bljat" path="res://Scripts/GameObjects/noteButtonNode.gd" id="12_r2vne"]
+[ext_resource type="BoxMesh" uid="uid://baq1i7u8rriqq" path="res://Assets/Meshes/FXButtonMesh.tres" id="13_2rygx"]
+[ext_resource type="Script" uid="uid://bjhd5eiot3vmv" path="res://Scripts/GameObjects/GameButton.gd" id="14_7iy17"]
+[ext_resource type="BoxMesh" uid="uid://bdbijs85vv8gh" path="res://Assets/Meshes/NoteButtonMesh.tres" id="15_16tym"]
+[ext_resource type="PlaneMesh" uid="uid://c1hjsygce82gi" path="res://Assets/Meshes/ScratchTrackMesh.tres" id="16_54itd"]
+[ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="17_ns6q8"]
+[ext_resource type="Script" uid="uid://cuwgkwvv5v555" path="res://Scripts/GameObjects/RecordNode.gd" id="18_dr58h"]
+[ext_resource type="Script" uid="uid://h857c3k62lnp" path="res://Scripts/GameObjects/judgementSprite.gd" id="19_cjj0x"]
 
 [sub_resource type="SystemFont" id="SystemFont_cijmt"]
 
@@ -35,7 +35,7 @@ font_size = 48
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txxkg"]
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.85, 0.2635, 0.2635, 1)
-albedo_texture = ExtResource("6_u8j7u")
+albedo_texture = ExtResource("10_opfc1")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_upsvf"]
 size = Vector2(0.05, 100)
@@ -44,7 +44,7 @@ size = Vector2(0.05, 100)
 albedo_color = Color(0.018393984, 0.07841488, 0.100059934, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5klrq"]
-albedo_texture = ExtResource("12_7wr7o")
+albedo_texture = ExtResource("17_ns6q8")
 uv1_scale = Vector3(1.39, 1.39, 1.39)
 uv1_offset = Vector3(0.15, 0.455, 0)
 
@@ -83,7 +83,7 @@ size_flags_vertical = 4
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_bk2no")
+script = ExtResource("1_nsx4k")
 FPSLable = NodePath("FPSCounter")
 SongPositionLable = NodePath("SongPosCounter")
 trackActiveBoolLable = NodePath("TrackActiveLabel")
@@ -108,30 +108,30 @@ layout_mode = 2
 text = "Track Next Note Indexes: "
 
 [node name="Composer" type="Node" parent="." unique_id=1523553492]
-script = ExtResource("1_r5ka5")
+script = ExtResource("2_kjko1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2068876085]
-script = ExtResource("1_yijg0")
+script = ExtResource("3_frq57")
 
 [node name="Input" type="Node" parent="." unique_id=1332626918]
-script = ExtResource("3_ovofm")
+script = ExtResource("4_sh332")
 
 [node name="Conductor" type="Node" parent="." unique_id=1136633594]
 
 [node name="Judge" type="Node" parent="." unique_id=1845091284]
-script = ExtResource("4_mofsa")
+script = ExtResource("5_44euv")
 
 [node name="GameManager" type="Node" parent="." unique_id=2085287651 node_paths=PackedStringArray("comboLabel")]
-script = ExtResource("3_tdndw")
+script = ExtResource("6_b7is6")
 comboLabel = NodePath("../GameObjects/ComboLabel")
 
 [node name="MetronomePlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1835186390]
 
 [node name="NoteManager" type="Node" parent="." unique_id=670084951 node_paths=PackedStringArray("judgementLine", "mainTrack")]
-script = ExtResource("6_2aia5")
+script = ExtResource("7_ikdta")
 judgementLine = NodePath("../GameObjects/JudgementLine")
-noteScene = ExtResource("7_buxyy")
-subnoteScene = ExtResource("9_rbnsi")
+noteScene = ExtResource("8_hikl7")
+subnoteScene = ExtResource("9_in26x")
 mainTrack = NodePath("../GameObjects/MainTrack")
 
 [node name="GameObjects" type="Node3D" parent="." unique_id=1132057377]
@@ -139,12 +139,12 @@ mainTrack = NodePath("../GameObjects/MainTrack")
 [node name="MainTrack" type="MeshInstance3D" parent="GameObjects" unique_id=1726374007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
 material_override = SubResource("StandardMaterial3D_txxkg")
-mesh = ExtResource("7_uotjs")
+mesh = ExtResource("11_7ns8y")
 
 [node name="NoteButtonNode" type="Node3D" parent="GameObjects/MainTrack" unique_id=321509316]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 top_level = true
-script = ExtResource("7_xwjbm")
+script = ExtResource("12_r2vne")
 padding = 0.05
 
 [node name="TrackDivider_1" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=207166179]
@@ -155,18 +155,18 @@ mesh = SubResource("PlaneMesh_upsvf")
 [node name="FXButtonMesh" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=2086317532]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.7845237)
 top_level = true
-mesh = ExtResource("11_w5l26")
-script = ExtResource("10_cfeic")
+mesh = ExtResource("13_2rygx")
+script = ExtResource("14_7iy17")
 
 [node name="MainButtonMesh_1" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=1341266244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.5)
 top_level = true
-mesh = ExtResource("9_vu60g")
-script = ExtResource("10_cfeic")
+mesh = ExtResource("15_16tym")
+script = ExtResource("14_7iy17")
 
 [node name="ScratchTrack" type="MeshInstance3D" parent="GameObjects" unique_id=1471525583]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
-mesh = ExtResource("10_vu60g")
+mesh = ExtResource("16_54itd")
 surface_material_override/0 = SubResource("StandardMaterial3D_ao0qo")
 
 [node name="RecordNode" type="Node3D" parent="GameObjects/ScratchTrack" unique_id=383060466]
@@ -174,7 +174,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ao0qo")
 [node name="RecordMesh" type="MeshInstance3D" parent="GameObjects/ScratchTrack/RecordNode" unique_id=1821738902]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 mesh = SubResource("CylinderMesh_5pscq")
-script = ExtResource("13_5klrq")
+script = ExtResource("18_dr58h")
 
 [node name="JudgementLine" type="MeshInstance3D" parent="GameObjects" unique_id=411110736]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
@@ -189,7 +189,7 @@ pixel_size = 0.02
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.001, 2)
 flip_h = true
 pixel_size = 0.02
-script = ExtResource("18_qaqk3")
+script = ExtResource("19_cjj0x")
 
 [node name="Timer" type="Timer" parent="GameObjects/JudgementSprite" unique_id=1421452646]
 

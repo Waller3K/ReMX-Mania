@@ -24,6 +24,10 @@ var currentScore : int
 
 var currentMaxCombo : int
 
+var chartDirectories : Array[String] = [
+	"res://Charts"
+]
+
 var mainTrackXPos : Array[float] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 var mainNoteWidth : float = 0.0
 var scratchNoteWidth : float = 0.0
