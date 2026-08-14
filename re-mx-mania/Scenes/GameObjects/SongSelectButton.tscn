@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://begup3iijuaaf"]
+
+[ext_resource type="Script" uid="uid://dts2u64fkwemj" path="res://Scripts/GameObjects/SongSelectButton.gd" id="1_yrjua"]
+
+[node name="SongSelectButton" type="Button" unique_id=2109834184]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Test"
+script = ExtResource("1_yrjua")
+
+[connection signal="pressed" from="." to="." method="_onPressed"]

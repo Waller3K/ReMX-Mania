@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://c58ov1ef2wdik"
 
 GlobalEnums="*uid://mwc7efyleiiv"
 GlobalStates="*uid://kr3a6onv3r1n"
+SceneManager="*uid://drqdkkglc8mjq"
 
 [display]
 

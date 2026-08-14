@@ -204,6 +204,7 @@ sky_mode = 1
 [connection signal="chartCreated" from="Composer" to="GameManager" method="_onChartCreated"]
 [connection signal="chartCreated" from="Composer" to="NoteManager" method="_onChartCreated"]
 [connection signal="chartCreated" from="Composer" to="GameObjects/MainTrack/NoteButtonNode" method="_onChartCreated"]
+[connection signal="chartEnded" from="AudioStreamPlayer" to="GameManager" method="_onChartEnded"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_onFinished"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Camera3D/UI/Debug Menu" method="_onSongUpdate"]
 [connection signal="songUpdate" from="AudioStreamPlayer" to="Input" method="_onSongUpdate"]

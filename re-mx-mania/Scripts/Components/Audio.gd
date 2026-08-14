@@ -15,6 +15,7 @@ var isPostSong		= false
 var postSongTime : float = 0.0
 
 var preSongTimer : Timer
+var postSongTimer : Timer
 
 # -1 is no effect
 var currentFXIndex : int = -1
@@ -26,6 +27,7 @@ var masterTrackIndex = AudioServer.get_bus_index("Master")
 # to trigger updates
 ###################################################
 signal songUpdate(songPosition: float)
+signal chartEnded()
 
 
 # Takes in the chart's path, and the given relative path, and returns the final joined path.
@@ -125,9 +127,19 @@ func _onSongStarted(_timeStamp: float) -> void:
 	add_child(preSongTimer)
 
 
+func endOfChart():
+	chartEnded.emit()
+
 func _onFinished() -> void:
 	isPlaying = false
 	isPostSong = true
+	
+	postSongTimer = Timer.new()
+	postSongTimer.set_wait_time(GlobalStates.POSTSONG_TIME)
+	postSongTimer.autostart = true
+	postSongTimer.timeout.connect(endOfChart)
+	postSongTimer.timeout.connect(postSongTimer.queue_free)
+	add_child(postSongTimer)
 
 # Normal note Hit and miss
 

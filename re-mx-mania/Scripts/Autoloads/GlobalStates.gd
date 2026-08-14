@@ -3,7 +3,8 @@ extends Node
 const 	NOTE_POOL_SIZE	: 	int 	= 50
 const 	MAX_TRACK_COUNT : 	int 	= 4
 const 	MIN_TRACK_COUNT	: 	int 	= 2
-var 	PRESONG_TIME	: 	float 	= 3.0 # In seconds
+const 	PRESONG_TIME	: 	float 	= 5.0 # In seconds
+const 	POSTSONG_TIME	:	float	= 3.0 # In seconds
 var 	TRACK_COUNT		: 	int 	= MAX_TRACK_COUNT # Default Value
 
 #The timing window variables (Hard coded for now) in ms
@@ -20,9 +21,7 @@ var scratchDeadzone : float = 5.0
 
 var currentChartPath : String
 
-var currentScore : int
-
-var currentMaxCombo : int
+var currentResults : Results
 
 var chartDirectories : Array[String] = [
 	"res://Charts"

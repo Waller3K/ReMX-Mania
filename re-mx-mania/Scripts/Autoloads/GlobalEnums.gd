@@ -38,3 +38,20 @@ enum effectEnum {
 	PHASER,
 	REVERB
 }
+
+enum gradeEnum {
+	F,
+	D,
+	C,
+	CC,
+	B,
+	BB,
+	BBB,
+	A,
+	AA,
+	AAA,
+	S,
+	SS,
+	SSS,
+	SSS_PLUS
+}

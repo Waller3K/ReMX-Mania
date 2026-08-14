@@ -4,14 +4,15 @@ var numOfNotes
 
 @export var comboLabel : Label3D
 
+var results : Results = Results.new()
+
 var combo : int = 0
 
-var maxCombo : int = 0
+var numOfHitNotes : int = 0
 
 signal startSong(timeStamp: float)
 
 func _onChartCreated(chart: Chart) -> void:
-	GlobalStates.PRESONG_TIME = 5.0
 	var secsPerBeat = 60/chart.bpm
 	var metronomeSFX = "res://Assets/SFX/Closed_Hat_1.ogg"
 	$MetronomePlayer.stream = load(metronomeSFX)
@@ -28,21 +29,31 @@ func _onChartCreated(chart: Chart) -> void:
 	startSong.emit(Time.get_ticks_msec())
 
 func updateScore(judgement: int) -> void:
+	results.hitBreakdown[judgement] += 1
 	match judgement:
 		pass
 
-func _onMiss(trackIndex: int, noteIndex: int) -> void:
-	maxCombo = combo if combo > maxCombo else maxCombo
+func updateCombo(isBroken : bool):
+	if isBroken:
+		combo = 0
+		comboLabel.text = str(combo) + " COMBO!"
+		return
+	combo += 1
+	numOfHitNotes += 1
 	
-	combo = 0
+	if combo>results.maxCombo:
+		results.maxCombo = combo
 	
 	comboLabel.text = str(combo) + " COMBO!"
+
+func _onMiss(trackIndex: int, noteIndex: int) -> void:
+	updateCombo(true)
+	updateScore(GlobalEnums.judgementEnum.MISS)
 	#print("MISS! " + str(trackIndex) + ", " + str(noteIndex))
 
 func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) -> void:
-	
-	combo += 1
-	comboLabel.text = str(combo) + " COMBO!"
+	updateScore(judgement)
+	updateCombo(false)
 
 
 func _onHoldStarted(trackIndex: int, noteIndex: int, FX: int) -> void:
@@ -54,22 +65,25 @@ func _onHoldEnded(trackIndex: int, noteIndex: int, FX: int) -> void:
 
 
 func _onHoldBroken(trackIndex: int, noteIndex: int, FX: int) -> void:
-	combo = 0
-	comboLabel.text = str(combo) + " COMBO!"
+	updateCombo(true)
+	updateScore(GlobalEnums.judgementEnum.MISS)
 
 
 func _onScratchBreak(noteIndex: int, subnoteIndex: int) -> void:
-	combo = 0
-	comboLabel.text = str(combo) + " COMBO!"
-	
+	updateCombo(true)
+	updateScore(GlobalEnums.judgementEnum.MISS)
 	print("Scratch Broken! " + str(noteIndex) + ", " + str(subnoteIndex))
 
 
 func _onScratchHit(judgement: int, offset: float, noteIndex: int, subnoteIndex: int) -> void:
-	combo += 1
-	comboLabel.text = str(combo) + " COMBO!"
+	updateScore(judgement)
+	updateCombo(false)
 
 
 func _onHoldTick(trackIndex: int, noteIndex: int) -> void:
-	combo += 1
-	comboLabel.text = str(combo) + " COMBO!"
+	updateScore(GlobalEnums.judgementEnum.PERFECT)
+	updateCombo(false)
+
+
+func _onChartEnded():
+	SceneManager.loadResultsScreen(results)

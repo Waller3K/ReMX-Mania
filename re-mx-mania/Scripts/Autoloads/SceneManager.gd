@@ -12,3 +12,8 @@ extends Node
 func loadChartPlayer(chartPath: String) -> void:
 	GlobalStates.currentChartPath = chartPath
 	get_tree().change_scene_to_file("res://Scenes/ChartPlayer.tscn")
+
+## Switches from the chart player to the results screen takes in the current chart's results
+func loadResultsScreen(chartResults : Results) -> void:
+	GlobalStates.currentResults = chartResults
+	get_tree().change_scene_to_file("res://Scenes/Results.tscn")
