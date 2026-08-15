@@ -2,12 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dts2u64fkwemj" path="res://Scripts/GameObjects/SongSelectButton.gd" id="1_yrjua"]
 
+[sub_resource type="Theme" id="Theme_5pscq"]
+default_font_size = 20
+
 [node name="SongSelectButton" type="Button" unique_id=2109834184]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_5pscq")
 text = "Test"
 script = ExtResource("1_yrjua")
 

@@ -4,9 +4,6 @@ extends AudioStreamPlayer
 
 var syncStream : AudioStreamSynchronized
 
-# Variable for the volume offset to prevent clipping
-var streamDBOffset : float = -10.0
-
 var songPos: float 	= 0.0
 var isPlaying 		= false
 var isPreSong 		= false
@@ -48,7 +45,7 @@ func setTrackVolume(trackID : int, mute : bool):
 	if mute:
 		musicPlayer.stream.set_sync_stream_volume(streamIndex, -50)
 	else:
-		musicPlayer.stream.set_sync_stream_volume(streamIndex, streamDBOffset)
+		musicPlayer.stream.set_sync_stream_volume(streamIndex, GlobalStates.streamDBOffset)
 
 func toggleFX(FXID : int, isOn : bool):
 	AudioServer.set_bus_effect_enabled(masterTrackIndex, FXID, isOn)
@@ -67,29 +64,29 @@ func _onChartCreated(chart: Chart) -> void:
 		syncStream.set_sync_stream(
 			i, 
 			load(getAbsolutePath(
-					GlobalStates.currentChartPath, 
+					chart.getPath(), 
 					chart.trackPaths[i])
 				)
 		)
-		syncStream.set_sync_stream_volume(i, streamDBOffset)
+		syncStream.set_sync_stream_volume(i, GlobalStates.streamDBOffset)
 	
 	syncStream.set_sync_stream(
 		4, 
 		load(getAbsolutePath(
-				GlobalStates.currentChartPath, 
+				chart.getPath(), 
 				chart.scratchTrackPath)
 			)
 	)
-	syncStream.set_sync_stream_volume(4, streamDBOffset)
+	syncStream.set_sync_stream_volume(4, GlobalStates.streamDBOffset)
 	
 	syncStream.set_sync_stream(
 		5, 
 		load(getAbsolutePath(
-				GlobalStates.currentChartPath, 
+				chart.getPath(), 
 				chart.BGMPath)
 			)
 	)
-	syncStream.set_sync_stream_volume(5, streamDBOffset)
+	syncStream.set_sync_stream_volume(5, GlobalStates.streamDBOffset)
 	
 	musicPlayer.stream = syncStream
 

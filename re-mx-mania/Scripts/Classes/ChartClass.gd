@@ -18,7 +18,10 @@ extends Resource
 #################################################
 @export var trackCount: int
 @export var trackPaths: Array[String] = []
+@export var previewTimestamp: float
 @export var scratchTrackPath: String
+
+@export var chartPath : String
 
 #####################################################
 # Main Track Note Array. A 2D Array that contains 
@@ -26,6 +29,10 @@ extends Resource
 # the same way as they are in GlobalEnums.trackIDs
 #####################################################
 @export var notes : Array[Array]
+
+## Returns the path to this chart
+func getPath() -> String:
+	return chartPath
 
 func load(path: String) -> bool:
 	
@@ -61,6 +68,7 @@ func load(path: String) -> bool:
 	trackPaths.append(chartData["Metadata"]["Track2Path"]) 
 	trackPaths.append(chartData["Metadata"]["Track3Path"]) 
 	trackPaths.append(chartData["Metadata"]["Track4Path"]) 
+	previewTimestamp = chartData["Metadata"]["Preview"]
 	
 	
 	#The trackCount is the number of main tracks in this chart!
@@ -82,5 +90,7 @@ func load(path: String) -> bool:
 	# THE TRACKS SHOULD ALWAYS BE IN THE SAME ORDER AS THE TRACKIDS
 	for track in trackCount + 2:
 		notes.push_back(chartData["Notes"][trackNames[track]])
+	
+	chartPath = path
 	
 	return true

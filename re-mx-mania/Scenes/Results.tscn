@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cl3jstvl5sw06" path="res://icon.svg" id="1_fhok7"]
 [ext_resource type="Script" uid="uid://ckhdlgk52nhyp" path="res://Scripts/Scenes/Results.gd" id="1_mma32"]
+[ext_resource type="Script" uid="uid://cdpugkembo16x" path="res://Scripts/GameObjects/RetryButton.gd" id="3_7frha"]
+[ext_resource type="Script" uid="uid://d1m61bgbi0p43" path="res://Scripts/GameObjects/ReturnButton.gd" id="3_onfqu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fhok7"]
 font_size = 40
@@ -93,8 +95,13 @@ stretch_mode = 5
 layout_mode = 2
 theme = SubResource("Theme_r24y4")
 text = "Return to Song Select"
+script = ExtResource("3_onfqu")
 
 [node name="RetryButton" type="Button" parent="HBoxContainer/RightPanel/VBoxContainer" unique_id=1938952350]
 layout_mode = 2
 theme = SubResource("Theme_3xlkw")
 text = "Retry"
+script = ExtResource("3_7frha")
+
+[connection signal="pressed" from="HBoxContainer/RightPanel/VBoxContainer/ReturnButton" to="HBoxContainer/RightPanel/VBoxContainer/ReturnButton" method="_onPressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/VBoxContainer/RetryButton" to="HBoxContainer/RightPanel/VBoxContainer/RetryButton" method="_onPressed"]

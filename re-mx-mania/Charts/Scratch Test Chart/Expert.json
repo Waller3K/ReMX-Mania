@@ -6,12 +6,13 @@
 		"BPM": 90.0,
 		"Charter": "Waller3K",
 		"Difficulty": 1.0,
-		"DifficultyName": "Expert",
+		"DifficultyName": "Hard",
 		"ScratchPath": "Scratch_Track.ogg",
 		"Track1Path": "Track_1.ogg",
 		"Track2Path": "Track_2.ogg",
 		"Track3Path": "Track_3.ogg",
 		"Track4Path": "Track_4.ogg",
+		"Preview" : 10.0,
 		"TrackCount": 2
 	},
 	"Notes" : {

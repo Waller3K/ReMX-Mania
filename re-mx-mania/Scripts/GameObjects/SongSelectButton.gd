@@ -1,9 +1,10 @@
 extends Button
 
-@export var chartPath : String
+@export var chart : Chart
 
-func setPath(path : String) -> void:
-	chartPath = path
 
-func _onPressed():
-	SceneManager.loadChartPlayer(chartPath)
+func setChart(chartData : Chart) -> void:
+	chart = chartData
+
+func setSongInfo(songTitle : String, artistName :  String):
+	text = songTitle + " - " + artistName

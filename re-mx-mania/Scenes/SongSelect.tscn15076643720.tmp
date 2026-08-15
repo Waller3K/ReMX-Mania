@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cfyvgk1wqa0bv"]
+
+[ext_resource type="Script" uid="uid://hstwric4r3ol" path="res://Scripts/Scenes/SongSelect.gd" id="1_gr4uf"]
+[ext_resource type="PackedScene" uid="uid://begup3iijuaaf" path="res://Scenes/GameObjects/SongSelectButton.tscn" id="2_gid5b"]
+
+[node name="SongSelect" type="Control" unique_id=2074011403]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1196084068]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gr4uf")
+buttonScene = ExtResource("2_gid5b")

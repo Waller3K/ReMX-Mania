@@ -20,6 +20,10 @@ var scrollSpd : float = 2.0
 var scratchDeadzone : float = 5.0
 
 var currentChartPath : String
+var currentChartData : Chart
+
+## Variable for the volume offset to prevent clipping
+var streamDBOffset : float = -10.0
 
 var currentResults : Results
 

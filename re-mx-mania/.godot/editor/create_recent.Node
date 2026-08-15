@@ -1,7 +1,9 @@
+AudioStreamPlayer
+VBoxContainer
 Button
+Tree
 TextureRect
 Label
-VBoxContainer
 Panel
 HBoxContainer
 Label3D
@@ -11,4 +13,3 @@ Node3D
 Timer
 PanelContainer
 SubViewportContainer
-Control

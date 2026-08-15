@@ -5,13 +5,14 @@
 		"BPM": 120.0,
 		"Charter": "Waller3K",
 		"Difficulty": 10.0,
-		"DifficultyName": "Expert",
+		"DifficultyName": "Test",
 		"ScratchPath": "Scratch_Track.ogg",
 		"Title": "Igaku",
 		"Track1Path": "Track_1.ogg",
 		"Track2Path": "Track_2.ogg",
 		"Track3Path": "Track_3.ogg",
 		"Track4Path": "Track_4.ogg",
+		"Preview" : 10.0,
 		"TrackCount": 4
 	},
 	"Notes": {
