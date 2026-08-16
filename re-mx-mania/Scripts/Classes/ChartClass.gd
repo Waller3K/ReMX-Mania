@@ -80,8 +80,6 @@ func load(path: String) -> bool:
 		return false
 	trackCount		= chartData["Metadata"]["TrackCount"]
 	
-	GlobalStates.TRACK_COUNT = trackCount
-	
 	var trackNames : Array = chartData["Notes"].keys()
 	
 	# This section adds the main track notes and the FX notes to the 2D array

@@ -30,7 +30,7 @@ var inactiveSubnotes : Array
 var songPos : float
 
 func _onChartCreated(chartData: Chart) -> void:
-	for i in GlobalStates.NOTE_POOL_SIZE:
+	for i in range(GlobalStates.NOTE_POOL_SIZE):
 		var noteNode : Node = noteScene.instantiate()
 		noteNode.visible = false
 		noteNode.judgementLinePos = judgementLine.position.z
@@ -46,7 +46,7 @@ func _onChartCreated(chartData: Chart) -> void:
 	
 	chart = chartData
 	
-	for i in GlobalStates.TRACK_COUNT + 2:
+	for i in range(GlobalStates.TRACK_COUNT + 2):
 		trackEndedBools.append(false)
 		spawnIndexs.append(0)
 

@@ -11,6 +11,7 @@ extends Node
 ## Switches to Chart Player screen with the given chart, background info, and more.
 func loadChartPlayer(chartData: Chart) -> void:
 	GlobalStates.currentChartData = chartData
+	GlobalStates.TRACK_COUNT = chartData.trackCount
 	get_tree().change_scene_to_file("res://Scenes/ChartPlayer.tscn")
 
 ## Switches from the chart player to the results screen takes in the current chart's results
@@ -20,3 +21,12 @@ func loadResultsScreen(chartResults : Results) -> void:
 
 func loadSongSelect():
 	get_tree().change_scene_to_file("res://Scenes/SongSelect.tscn")
+
+func loadSettingsMenu():
+	pass
+
+func loadMainMenu():
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+
+func quit():
+	get_tree().quit()

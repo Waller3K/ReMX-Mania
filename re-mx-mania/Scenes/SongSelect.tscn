@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://hstwric4r3ol" path="res://Scripts/Scenes/SongSelect.gd" id="1_gr4uf"]
 [ext_resource type="PackedScene" uid="uid://begup3iijuaaf" path="res://Scenes/GameObjects/SongSelectButton.tscn" id="2_gid5b"]
 [ext_resource type="PackedScene" uid="uid://sft4lfaql1cx" path="res://Scenes/GameObjects/ChartList.tscn" id="3_jwku3"]
+[ext_resource type="Script" uid="uid://ccmud6k12ls7d" path="res://Scripts/GameObjects/SongSelectionReturnButton.gd" id="4_h1f1n"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_jwku3"]
 stream_count = 6
@@ -12,6 +13,9 @@ stream_2/volume = 0.0
 stream_3/volume = 0.0
 stream_4/volume = 0.0
 stream_5/volume = 0.0
+
+[sub_resource type="Theme" id="Theme_dalwh"]
+default_font_size = 50
 
 [node name="SongSelect" type="Control" unique_id=2074011403]
 layout_mode = 3
@@ -35,3 +39,18 @@ previewPlayer = NodePath("../AudioStreamPlayer")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=940690177]
 stream = SubResource("AudioStreamSynchronized_jwku3")
+
+[node name="Return" type="Button" parent="." unique_id=1154869332]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_dalwh")
+text = "Return"
+script = ExtResource("4_h1f1n")

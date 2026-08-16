@@ -310,7 +310,7 @@ func _onChartCreated(chart: Chart) -> void:
 	beatLength = 60.0/chart.bpm
 	
 	var Index : int = 0
-	for track in GlobalStates.TRACK_COUNT + 2:
+	for track in range(GlobalStates.TRACK_COUNT + 2):
 		var newTrack := TrackState.new()
 		
 		newTrack.tickTimer.wait_time = beatLength
@@ -320,8 +320,6 @@ func _onChartCreated(chart: Chart) -> void:
 		newTrack.tickTimer.timeout.connect(_onTick.bind(Index, newTrack))
 		tracks.append(newTrack)
 		Index += 1
-	
-	
 
 func _onBTN_1(inputTimestamp: float, isDown: bool) -> void:
 	tracks[GlobalEnums.trackIDs.TRACK1].nextNoteIndex = judge(

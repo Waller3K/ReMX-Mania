@@ -1,18 +1,9 @@
 res://default_bus_layout.tres
 res://Scenes/SongSelect.tscn
-res://Charts/Igaku Test - Waller3K/Expert.json
-res://Charts/Scratch Test Chart/Expert.json
-res://Charts/Igaku Test - Waller3K/Test.json
+res://Scripts/Components/NoteManager.gd
+res://Scripts/Components/Judge.gd
 res://Scripts/Classes/ChartClass.gd
-res://Scripts/GameObjects/SongSelectButton.gd
-res://Scripts/Scenes/SongSelect.gd
-res://Scripts/GameObjects/ChartList.gd
-res://Scripts/Components/Audio.gd
-res://Scripts/Autoloads/GlobalStates.gd
-res://Scenes/GameObjects/ChartList.tscn
-res://Scripts/GameObjects/RetryButton.gd
-res://Scenes/Results.tscn
-res://Scripts/GameObjects/ReturnButton.gd
 res://Scripts/Autoloads/SceneManager.gd
-res://Scenes/ChartPlayer.tscn
-res://Scripts/Components/Composer.gd
+res://Scenes/MainMenu.tscn
+res://Scripts/Scenes/MainMenu.gd
+res://Scripts/GameObjects/SongSelectionReturnButton.gd
