@@ -5,7 +5,6 @@ const 	MAX_TRACK_COUNT : 	int 	= 4
 const 	MIN_TRACK_COUNT	: 	int 	= 2
 const 	PRESONG_TIME	: 	float 	= 5.0 # In seconds
 const 	POSTSONG_TIME	:	float	= 3.0 # In seconds
-var 	TRACK_COUNT		: 	int 	= MAX_TRACK_COUNT # Default Value
 
 #The timing window variables (Hard coded for now) in ms
 var perfectTiming: float		= 16.67

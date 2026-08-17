@@ -1,9 +1,7 @@
 res://default_bus_layout.tres
-res://Scenes/SongSelect.tscn
-res://Scripts/Components/NoteManager.gd
-res://Scripts/Components/Judge.gd
-res://Scripts/Classes/ChartClass.gd
-res://Scripts/Autoloads/SceneManager.gd
 res://Scenes/MainMenu.tscn
-res://Scripts/Scenes/MainMenu.gd
-res://Scripts/GameObjects/SongSelectionReturnButton.gd
+res://Scripts/Autoloads/GlobalStates.gd
+res://Scripts/Autoloads/SceneManager.gd
+res://Scripts/Components/Judge.gd
+res://Scripts/Components/NoteManager.gd
+res://Scripts/GameObjects/noteButtonNode.gd

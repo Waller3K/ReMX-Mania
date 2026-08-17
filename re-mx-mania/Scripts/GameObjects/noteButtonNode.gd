@@ -12,6 +12,8 @@ var scratchTrackNode : MeshInstance3D
 var trackDividerNodes: Array[MeshInstance3D]
 var trackButtonsNodes: Array[MeshInstance3D]
 
+var trackCount : int
+
 func initTrackButtons() -> void:
 	# Start with initializing the FX Button Mesh
 	FXButtonNode.global_position.x = mainTrackNode.global_position.x
@@ -30,7 +32,7 @@ func initTrackButtons() -> void:
 	
 	for i in trackButtonsNodes.size():
 		var button = trackButtonsNodes[i]
-		button.mesh.size.x = (MainTrackMesh.size.x / GlobalStates.TRACK_COUNT) - padding
+		button.mesh.size.x = (MainTrackMesh.size.x / trackCount) - padding
 		button.global_position.x = leftEdge - (button.mesh.size.x/2) - ((button.mesh.size.x + padding) * i) 
 		GlobalStates.mainTrackXPos[i + GlobalEnums.trackIDs.TRACK1] = button.global_position.x
 	
@@ -46,7 +48,7 @@ func initTrackButtons() -> void:
 		GlobalStates.mainNoteWidth = trackButtonsNodes[0].mesh.size.x
 		GlobalStates.scratchNoteWidth = scratchTrackNode.mesh.size.x
 
-func _onChartCreated(_chart: Chart) -> void:
+func _onChartCreated(chart: Chart) -> void:
 	# Get original nodes
 	mainTrackNode 	= get_parent()
 	FXButtonNode  	= get_node("FXButtonMesh")
@@ -62,18 +64,20 @@ func _onChartCreated(_chart: Chart) -> void:
 	trackDividerNodes.append(TrackDivider)
 	
 	# Creates the rest of the buttons and tracks
-	for i in GlobalStates.TRACK_COUNT - 1: # -1 because we already did the first one.
+	for i in chart.trackCount - 1: # -1 because we already did the first one.
 		var newButton := trackButtonsNodes[0].duplicate() as MeshInstance3D
 		newButton.name = "MainButtonMesh_" + str(i+2)
 		newButton.mesh = newButton.mesh.duplicate()
 		trackButtonsNodes.append(newButton)
 		add_child(newButton)
 	
-	for i in GlobalStates.TRACK_COUNT - 2:
+	for i in chart.trackCount - 2:
 		var newDivider := trackDividerNodes[0].duplicate() as MeshInstance3D
 		newDivider.name = "TrackDivider_" + str(i+2)
 		trackDividerNodes.append(newDivider)
 		add_child(newDivider)
+	
+	trackCount = chart.trackCount
 	
 	initTrackButtons()
 
@@ -87,13 +91,13 @@ func _onBTN_2(_inputTimestamp: float, isDown: bool) -> void:
 
 
 func _onBTN_3(_inputTimestamp: float, isDown: bool) -> void:
-	if GlobalStates.TRACK_COUNT > 2:
+	if trackCount > 2:
 		get_node("MainButtonMesh_3")._onBTN(isDown)
 
 
 
 func _onBTN_4(_inputTimestamp: float, isDown: bool) -> void:
-	if GlobalStates.TRACK_COUNT > 3:
+	if trackCount > 3:
 		get_node("MainButtonMesh_4")._onBTN(isDown)
 
 

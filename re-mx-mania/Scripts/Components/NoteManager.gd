@@ -46,14 +46,14 @@ func _onChartCreated(chartData: Chart) -> void:
 	
 	chart = chartData
 	
-	for i in range(GlobalStates.TRACK_COUNT + 2):
+	for i in range(chart.trackCount + 2):
 		trackEndedBools.append(false)
 		spawnIndexs.append(0)
 
 func spawnNotes(songPos: float):
 	var spawnPos = songPos + GlobalStates.PRESONG_TIME
 	
-	for track in GlobalStates.TRACK_COUNT + 2:
+	for track in chart.trackCount + 2:
 		# Checks if it should try to read the next note
 		if trackEndedBools[track] :
 			continue

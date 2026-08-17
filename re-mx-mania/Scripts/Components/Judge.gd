@@ -43,6 +43,7 @@ var notes
 
 var mouseYVel : float = 0.0
 
+var trackCount : int 
 
 func _onSongUpdate(songPosition: float) -> void:
 	songPos = songPosition * 1000
@@ -310,7 +311,7 @@ func _onChartCreated(chart: Chart) -> void:
 	beatLength = 60.0/chart.bpm
 	
 	var Index : int = 0
-	for track in range(GlobalStates.TRACK_COUNT + 2):
+	for track in range(chart.trackCount + 2):
 		var newTrack := TrackState.new()
 		
 		newTrack.tickTimer.wait_time = beatLength
@@ -320,6 +321,8 @@ func _onChartCreated(chart: Chart) -> void:
 		newTrack.tickTimer.timeout.connect(_onTick.bind(Index, newTrack))
 		tracks.append(newTrack)
 		Index += 1
+	
+	trackCount = chart.trackCount
 
 func _onBTN_1(inputTimestamp: float, isDown: bool) -> void:
 	tracks[GlobalEnums.trackIDs.TRACK1].nextNoteIndex = judge(
@@ -336,7 +339,7 @@ func _onBTN_2(inputTimestamp: float, isDown: bool) -> void:
 		)
 
 func _onBTN_3(inputTimestamp: float, isDown: bool) -> void:
-	if GlobalStates.TRACK_COUNT > 2:
+	if trackCount > 2:
 		tracks[GlobalEnums.trackIDs.TRACK3].nextNoteIndex = judge(
 			inputTimestamp, 
 			GlobalEnums.trackIDs.TRACK3,
@@ -344,7 +347,7 @@ func _onBTN_3(inputTimestamp: float, isDown: bool) -> void:
 			)
 
 func _onBTN_4(inputTimestamp: float, isDown: bool) -> void:
-	if GlobalStates.TRACK_COUNT > 3:
+	if trackCount > 3:
 		tracks[GlobalEnums.trackIDs.TRACK4].nextNoteIndex = judge(
 			inputTimestamp, 
 			GlobalEnums.trackIDs.TRACK4,
