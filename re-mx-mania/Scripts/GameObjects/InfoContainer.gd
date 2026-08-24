@@ -5,6 +5,10 @@ extends VBoxContainer
 @export var trackActiveBoolLable : Label
 @export var trackNextNoteIndexLabel: Label
 
+func _ready() -> void:
+	if GlobalStates.isDebug == false:
+		visible = false
+
 func _process(_delta : float) -> void:
 	FPSLable.text = str(Engine.get_frames_per_second()) + " FPS"
 

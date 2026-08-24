@@ -1,10 +1,10 @@
-Button
-VBoxContainer
-Panel
+Label
 AudioStreamPlayer
+VBoxContainer
+Button
+Panel
 Tree
 TextureRect
-Label
 HBoxContainer
 Label3D
 Sprite3D

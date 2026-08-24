@@ -23,16 +23,32 @@ extends Resource
 
 @export var chartPath : String
 
-#####################################################
-# Main Track Note Array. A 2D Array that contains 
-# the tracks and their notes. The tracks are 
-# the same way as they are in GlobalEnums.trackIDs
-#####################################################
+
+## Main Track Note Array. A 2D Array that contains 
+## the tracks and their notes. The tracks are 
+## in the same way order as they are in GlobalEnums.trackIDs.
+## The notes are accessed like this :
+## notes[TrackID][NoteIndex]["Section"]
 @export var notes : Array[Array]
+
+## The total number of scorable notes in the chart
+@export var numOfNotes : int
 
 ## Returns the path to this chart
 func getPath() -> String:
 	return chartPath
+
+func getNoteLength(trackID : GlobalEnums.trackIDs, noteIndex : int) -> float:
+	var note : Dictionary = notes[trackID][noteIndex]
+	if note == null:
+		push_error("Error: Invalid note passed to getNoteLength() :" + str(trackID) + ", " + str(noteIndex))
+		return -1.0
+	
+	if note.has("End"):
+		var length : float = note["End"] - note["Pos"]
+		return length
+	
+	return 0.0
 
 func load(path: String) -> bool:
 	
@@ -90,5 +106,20 @@ func load(path: String) -> bool:
 		notes.push_back(chartData["Notes"][trackNames[track]])
 	
 	chartPath = path
+	
+	for track : Array[Dictionary] in notes:
+		for note : Dictionary in track:
+			# If the note is a hold it counts as 2 notes
+			if note.has("End"):
+				numOfNotes += 2
+				
+				if note.has("Subnotes"):
+					for subNotes in note["Subnotes"]:
+						numOfNotes += 1
+				continue
+			
+			numOfNotes += 1
+	
+	#print("Number of notes: " + str(numOfNotes))
 	
 	return true

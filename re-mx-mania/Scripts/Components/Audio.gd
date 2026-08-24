@@ -4,6 +4,8 @@ extends AudioStreamPlayer
 
 var syncStream : AudioStreamSynchronized
 
+@export var hitsoundPlayer : AudioStreamPlayer
+
 var songPos: float 	= 0.0
 var isPlaying 		= false
 var isPreSong 		= false
@@ -51,6 +53,8 @@ func toggleFX(FXID : int, isOn : bool):
 	AudioServer.set_bus_effect_enabled(masterTrackIndex, FXID, isOn)
 
 func _onChartCreated(chart: Chart) -> void:
+	hitsoundPlayer.stream = load("res://Assets/SFX/Closed_Hat_1.ogg") # TODO: Make a hitsound selector in the settings menu
+	
 	syncStream = AudioStreamSynchronized.new()
 	
 	#######################################################
@@ -142,6 +146,7 @@ func _onFinished() -> void:
 
 func _onNoteHit(judgement: int, offset: float, trackIndex: int, noteIndex: int) -> void:
 	setTrackVolume(trackIndex, false)
+	hitsoundPlayer.play()
 
 func _onMiss(trackIndex: int, noteIndex: int) -> void:
 	setTrackVolume(trackIndex, true)

@@ -2,11 +2,28 @@
 
 [ext_resource type="Texture2D" uid="uid://cl3jstvl5sw06" path="res://icon.svg" id="1_fhok7"]
 [ext_resource type="Script" uid="uid://ckhdlgk52nhyp" path="res://Scripts/Scenes/Results.gd" id="1_mma32"]
+[ext_resource type="Texture2D" uid="uid://cm8lpygcvg2ef" path="res://Assets/Textures/F.png" id="2_gisso"]
 [ext_resource type="Script" uid="uid://cdpugkembo16x" path="res://Scripts/GameObjects/RetryButton.gd" id="3_7frha"]
+[ext_resource type="Texture2D" uid="uid://b1gi5awpv1dbq" path="res://Assets/Textures/D.png" id="3_7tq55"]
 [ext_resource type="Script" uid="uid://d1m61bgbi0p43" path="res://Scripts/GameObjects/ReturnButton.gd" id="3_onfqu"]
+[ext_resource type="Texture2D" uid="uid://h0x7tcrv18b7" path="res://Assets/Textures/C.png" id="4_u0cxj"]
+[ext_resource type="Texture2D" uid="uid://ch8y4nugn3f3n" path="res://Assets/Textures/CC.png" id="5_875af"]
+[ext_resource type="Texture2D" uid="uid://c8v6v6xb1engc" path="res://Assets/Textures/B.png" id="6_1s8u7"]
+[ext_resource type="Texture2D" uid="uid://dpfibbf3qvyof" path="res://Assets/Textures/BB.png" id="7_560k1"]
+[ext_resource type="Texture2D" uid="uid://cniy6xl47d7f8" path="res://Assets/Textures/BBB.png" id="8_v63wu"]
+[ext_resource type="Texture2D" uid="uid://btes8wycemn77" path="res://Assets/Textures/A.png" id="9_5s3h6"]
+[ext_resource type="Texture2D" uid="uid://o0051cxysvl0" path="res://Assets/Textures/AA.png" id="10_bw1eq"]
+[ext_resource type="Texture2D" uid="uid://dxn27bnqxb8vh" path="res://Assets/Textures/AAA.png" id="11_445r6"]
+[ext_resource type="Texture2D" uid="uid://bd75acu0caklg" path="res://Assets/Textures/S.png" id="12_c7aix"]
+[ext_resource type="Texture2D" uid="uid://dy30qdtmx14dc" path="res://Assets/Textures/SS.png" id="13_lrotw"]
+[ext_resource type="Texture2D" uid="uid://dfmfiv4kggrxj" path="res://Assets/Textures/SSS.png" id="14_72yhp"]
+[ext_resource type="Texture2D" uid="uid://c3rmp0p3d81gr" path="res://Assets/Textures/SSS+.png" id="15_uktna"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fhok7"]
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pscq"]
+font_size = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_mma32"]
 font_size = 20
@@ -23,7 +40,7 @@ default_font_size = 40
 [sub_resource type="Theme" id="Theme_3xlkw"]
 default_font_size = 40
 
-[node name="Results" type="Control" unique_id=1856079748 node_paths=PackedStringArray("resultLabels")]
+[node name="Results" type="Control" unique_id=1856079748 node_paths=PackedStringArray("resultLabels", "gradeGraphic")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +48,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mma32")
-resultLabels = [NodePath("HBoxContainer/RightPanel/VBoxContainer/ScoreText"), NodePath("HBoxContainer/RightPanel/VBoxContainer/ComboText"), NodePath("HBoxContainer/RightPanel/VBoxContainer/BreakdownText")]
+resultLabels = [NodePath("HBoxContainer/RightPanel/VBoxContainer/ScoreText"), NodePath("HBoxContainer/RightPanel/VBoxContainer/TechScoreText"), NodePath("HBoxContainer/RightPanel/VBoxContainer/ComboText"), NodePath("HBoxContainer/RightPanel/VBoxContainer/BreakdownText")]
+gradeTextures = Array[Texture]([ExtResource("2_gisso"), ExtResource("3_7tq55"), ExtResource("4_u0cxj"), ExtResource("5_875af"), ExtResource("6_1s8u7"), ExtResource("7_560k1"), ExtResource("8_v63wu"), ExtResource("9_5s3h6"), ExtResource("10_bw1eq"), ExtResource("11_445r6"), ExtResource("12_c7aix"), ExtResource("13_lrotw"), ExtResource("14_72yhp"), ExtResource("15_uktna")])
+gradeGraphic = NodePath("HBoxContainer/RightPanel/VBoxContainer/FinalGradeGraphic")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=705042401]
 layout_mode = 1
@@ -61,6 +80,11 @@ grow_vertical = 2
 layout_mode = 2
 text = "Final Score:"
 label_settings = SubResource("LabelSettings_fhok7")
+
+[node name="TechScoreText" type="Label" parent="HBoxContainer/RightPanel/VBoxContainer" unique_id=877246580]
+layout_mode = 2
+text = "Technical Score :"
+label_settings = SubResource("LabelSettings_5pscq")
 
 [node name="ComboText" type="Label" parent="HBoxContainer/RightPanel/VBoxContainer" unique_id=1623161348]
 layout_mode = 2

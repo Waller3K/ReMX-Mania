@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ck6bacq7io06k"]
 
 [ext_resource type="Script" uid="uid://cv8okknape74n" path="res://Scripts/GameObjects/InfoContainer.gd" id="1_nsx4k"]
+[ext_resource type="Script" uid="uid://c1od0h6m5hbjy" path="res://Scripts/GameObjects/ScoreContainer.gd" id="2_frq57"]
 [ext_resource type="Script" uid="uid://rmwyx8je2wcv" path="res://Scripts/Components/Composer.gd" id="2_kjko1"]
 [ext_resource type="Script" uid="uid://c3ln82f48renc" path="res://Scripts/Components/Audio.gd" id="3_frq57"]
 [ext_resource type="Script" uid="uid://bj4e13klm24ri" path="res://Scripts/Components/Input.gd" id="4_sh332"]
@@ -31,6 +32,9 @@ font_size = 48
 [sub_resource type="LabelSettings" id="LabelSettings_txxkg"]
 font = SubResource("SystemFont_qaqk3")
 font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_ao0qo"]
+font_size = 50
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txxkg"]
 vertex_color_use_as_albedo = true
@@ -107,11 +111,30 @@ text = "Track Active Bools: "
 layout_mode = 2
 text = "Track Next Note Indexes: "
 
+[node name="ScoreContainer" type="VBoxContainer" parent="Camera3D/UI" unique_id=944520512 node_paths=PackedStringArray("scoreLabel")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("2_frq57")
+scoreLabel = NodePath("ScoreLabel")
+
+[node name="ScoreLabel" type="Label" parent="Camera3D/UI/ScoreContainer" unique_id=1498000288]
+layout_mode = 2
+text = "Score : "
+label_settings = SubResource("LabelSettings_ao0qo")
+
 [node name="Composer" type="Node" parent="." unique_id=1523553492]
 script = ExtResource("2_kjko1")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2068876085]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2068876085 node_paths=PackedStringArray("hitsoundPlayer")]
 script = ExtResource("3_frq57")
+hitsoundPlayer = NodePath("HitsoundPlayer")
+
+[node name="HitsoundPlayer" type="AudioStreamPlayer" parent="AudioStreamPlayer" unique_id=909714363]
 
 [node name="Input" type="Node" parent="." unique_id=1332626918]
 script = ExtResource("4_sh332")
@@ -233,8 +256,6 @@ sky_mode = 1
 [connection signal="holdEnded" from="Judge" to="GameManager" method="_onHoldEnded"]
 [connection signal="holdStarted" from="Judge" to="AudioStreamPlayer" method="_onHoldStarted"]
 [connection signal="holdStarted" from="Judge" to="GameManager" method="_onHoldStarted"]
-[connection signal="holdTick" from="Judge" to="GameManager" method="_onHoldTick"]
-[connection signal="holdTick" from="Judge" to="GameObjects/JudgementSprite" method="_onHoldTick"]
 [connection signal="miss" from="Judge" to="AudioStreamPlayer" method="_onMiss"]
 [connection signal="miss" from="Judge" to="GameManager" method="_onMiss"]
 [connection signal="miss" from="Judge" to="NoteManager" method="_onMiss"]
@@ -250,4 +271,5 @@ sky_mode = 1
 [connection signal="scratchHit" from="Judge" to="AudioStreamPlayer" method="_onScratchHit"]
 [connection signal="scratchHit" from="Judge" to="GameManager" method="_onScratchHit"]
 [connection signal="scratchHit" from="Judge" to="NoteManager" method="_onScratchHit"]
+[connection signal="scoreUpdate" from="GameManager" to="Camera3D/UI/ScoreContainer" method="_onScoreUpdate"]
 [connection signal="startSong" from="GameManager" to="AudioStreamPlayer" method="_onSongStarted"]

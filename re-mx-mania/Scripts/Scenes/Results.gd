@@ -4,8 +4,13 @@ var placeHolderLabel : Label = null
 
 @export var resultLabels : Array[Label]
 
+@export var gradeTextures : Array[Texture]
+
+@export var gradeGraphic : TextureRect
+
 enum labelEnum {
 	SCORE_TEXT,
+	TECH_SCORE_TEXT,
 	COMBO_TEXT,
 	BREAKDOWN_TEXT
 }
@@ -14,6 +19,7 @@ func _ready() -> void:
 	var results : Results = GlobalStates.currentResults
 	
 	resultLabels[labelEnum.SCORE_TEXT].set_text("Final Score: " + str(results.score))
+	resultLabels[labelEnum.TECH_SCORE_TEXT].set_text("Tech Score: " + str(results.techScore))
 	resultLabels[labelEnum.COMBO_TEXT].set_text("Max Combo: " + str(results.maxCombo))
 	resultLabels[labelEnum.BREAKDOWN_TEXT].set_text(
 		"Performance Breakdown: \n" + 
@@ -26,3 +32,4 @@ func _ready() -> void:
 		"Good LATE: " + str(results.hitBreakdown[GlobalEnums.judgementEnum.GOODLATE]) + "\n" +
 		"Ok LATE: " + str(results.hitBreakdown[GlobalEnums.judgementEnum.OKLATE]) + "\n"  
 	)
+	gradeGraphic.texture = gradeTextures[results.grade]

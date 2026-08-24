@@ -20,7 +20,6 @@ signal miss(trackIndex: int, noteIndex: int) # The miss signal is the only one t
 #############################################
 
 signal holdStarted(trackIndex: int, noteIndex: int, FX: int)
-signal holdTick(trackIndex: int, noteIndex: int) # Called while a hold note is active
 signal holdEnded(trackIndex: int, noteIndex: int, FX: int)
 signal holdBroken(trackIndex: int, noteIndex: int, FX: int)
 
@@ -67,7 +66,6 @@ func updateNextNote(songPosition: float) -> void:
 				holdBroken.emit(trackID, track.nextNoteIndex, FX)
 				track.noteHeadMissed = false # Reset note head state
 				track.isActive = false
-				track.tickTimer.stop()
 				
 				# Remember to reset the nextSubnoteIndex!
 				if trackID == GlobalEnums.trackIDs.SCRATCH_TRACK:
@@ -108,6 +106,8 @@ func updateNextSubnote(songPosition: float) -> void:
 		else:
 			nextSubnoteIndex = -1
 
+## Takes in the input time, the index of the input and the state (true or false)
+## of the input and returns a judgement intager based on the track's next note.
 func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 	var track := tracks[inputIndex]
 	var currentNote: Dictionary
@@ -144,7 +144,7 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 		if isHold:
 			
 			if !track.isActive:
-				return track.nextNoteIndex   # already resolved elsewhere — ignore this stray release
+				return track.nextNoteIndex   # already resolved elsewhere
 			
 			var tailPosition = currentNote["End"] * 1000
 			offset = inputTime - tailPosition
@@ -183,7 +183,6 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 			holdBroken.emit(inputIndex, track.nextNoteIndex, FX)
 		
 		track.isActive = false
-		track.tickTimer.stop()
 		
 		if track.nextNoteIndex == notes[inputIndex].size() - 1:
 			track.ended = true
@@ -194,7 +193,6 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 	if isHold:
 		holdStarted.emit(inputIndex, track.nextNoteIndex, FX)
 		track.isActive = true
-		track.tickTimer.start(beatLength)
 		return track.nextNoteIndex
 	
 	# Tapped Note Specific Logic
@@ -240,27 +238,25 @@ func scratchJudge(inputTime: float, YDirection: int, _isMoving: bool) -> void:
 		match int(currentSubnote["Type"]):
 			GlobalEnums.scratchEnum.DOWN:
 				if YDirection == 1:
+					@warning_ignore("standalone_ternary")
 					scratchNoteHit(judgement, offset, currentNote) if judgement != GlobalEnums.judgementEnum.MISS else scratchNoteMiss(currentNote)
 				else:
 					scratchNoteMiss(currentNote)
 			GlobalEnums.scratchEnum.COMBINATION:
 				if YDirection != 0:
+					@warning_ignore("standalone_ternary")
 					scratchNoteHit(judgement, offset, currentNote) if judgement != GlobalEnums.judgementEnum.MISS else scratchNoteMiss(currentNote)
 				else:
 					scratchNoteMiss(currentNote)
 			GlobalEnums.scratchEnum.UP:
 				if YDirection == -1:
+					@warning_ignore("standalone_ternary")
 					scratchNoteHit(judgement, offset, currentNote) if judgement != GlobalEnums.judgementEnum.MISS else scratchNoteMiss(currentNote)
 				else:
 					scratchNoteMiss(currentNote)
 			_:
 				print("Invalid Scratch Type!" + str(currentSubnote["Type"]))
 				
-
-func _onTick(trackID: int, trackState: TrackState):
-	holdTick.emit(trackID, trackState.nextNoteIndex)
-	trackState.tickTimer.start(beatLength)
-	print("Tick")
 
 # Takes in the input time, and the target time, then returns the judgement
 func inputReconciler(inputTime: float, targetTime: float) -> int:
@@ -310,15 +306,10 @@ func _onChartCreated(chart: Chart) -> void:
 	
 	beatLength = 60.0/chart.bpm
 	
+	@warning_ignore("unused_variable")
 	var Index : int = 0
 	for track in range(chart.trackCount + 2):
 		var newTrack := TrackState.new()
-		
-		newTrack.tickTimer.wait_time = beatLength
-		newTrack.tickTimer.one_shot = true
-		add_child(newTrack.tickTimer)
-		
-		newTrack.tickTimer.timeout.connect(_onTick.bind(Index, newTrack))
 		tracks.append(newTrack)
 		Index += 1
 	

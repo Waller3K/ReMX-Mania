@@ -1,7 +1,4 @@
 res://default_bus_layout.tres
-res://Scenes/MainMenu.tscn
-res://Scripts/Autoloads/GlobalStates.gd
-res://Scripts/Autoloads/SceneManager.gd
-res://Scripts/Components/Judge.gd
-res://Scripts/Components/NoteManager.gd
-res://Scripts/GameObjects/noteButtonNode.gd
+res://Scenes/ChartPlayer.tscn
+res://Scripts/Scenes/Results.gd
+res://Scenes/Results.tscn
