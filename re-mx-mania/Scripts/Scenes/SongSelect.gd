@@ -82,14 +82,14 @@ func toggleCharts(chartList : Node, chartData: Chart):
 		for i in range(4):
 			var streamPath = getAbsolutePath(chartData.getPath(), chartData.trackPaths[i])
 			syncStream.set_sync_stream(i, load(streamPath))
-			syncStream.set_sync_stream_volume(i, GlobalStates.streamDBOffset)
+			syncStream.set_sync_stream_volume(i, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 		
 		
 		syncStream.set_sync_stream(4, load(getAbsolutePath(chartData.getPath(), chartData.BGMPath)))
-		syncStream.set_sync_stream_volume(4, GlobalStates.streamDBOffset)
+		syncStream.set_sync_stream_volume(4, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 		
 		syncStream.set_sync_stream(5, load(getAbsolutePath(chartData.getPath(), chartData.scratchTrackPath)))
-		syncStream.set_sync_stream_volume(5, GlobalStates.streamDBOffset)
+		syncStream.set_sync_stream_volume(5, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 		
 		previewPlayer.stream = syncStream
 		previewPlayer.play(chartData.previewTimestamp)

@@ -1,6 +1,6 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://c58ov1ef2wdik"]
 
-[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_j3pel"]
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_g28q7"]
 resource_name = "Chorus"
 voice_count = 3
 voice/3/delay_ms = 12.0
@@ -10,29 +10,41 @@ voice/3/level_db = 0.0
 voice/3/cutoff_hz = 16000.0
 voice/3/pan = 0.0
 
-[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_g28q7"]
 resource_name = "HighPassFilter"
 
-[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_g28q7"]
 resource_name = "LowPassFilter"
 
-[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_j3pel"]
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_g28q7"]
 resource_name = "Phaser"
 
-[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
 resource_name = "Reverb"
 room_size = 0.43
 damping = 0.62
 wet = 0.2
 
 [resource]
-bus/0/effect/0/effect = SubResource("AudioEffectChorus_j3pel")
-bus/0/effect/0/enabled = false
-bus/0/effect/1/effect = SubResource("AudioEffectHighPassFilter_j3pel")
-bus/0/effect/1/enabled = false
-bus/0/effect/2/effect = SubResource("AudioEffectLowPassFilter_j3pel")
-bus/0/effect/2/enabled = false
-bus/0/effect/3/effect = SubResource("AudioEffectPhaser_j3pel")
-bus/0/effect/3/enabled = false
-bus/0/effect/4/effect = SubResource("AudioEffectReverb_j3pel")
-bus/0/effect/4/enabled = false
+bus/1/name = &"Main Music"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectChorus_g28q7")
+bus/1/effect/0/enabled = false
+bus/1/effect/1/effect = SubResource("AudioEffectHighPassFilter_g28q7")
+bus/1/effect/1/enabled = false
+bus/1/effect/2/effect = SubResource("AudioEffectLowPassFilter_g28q7")
+bus/1/effect/2/enabled = false
+bus/1/effect/3/effect = SubResource("AudioEffectPhaser_g28q7")
+bus/1/effect/3/enabled = false
+bus/1/effect/4/effect = SubResource("AudioEffectReverb_g28q7")
+bus/1/effect/4/enabled = false
+bus/2/name = &"SFX"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"

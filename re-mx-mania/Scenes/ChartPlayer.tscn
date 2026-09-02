@@ -131,10 +131,12 @@ label_settings = SubResource("LabelSettings_ao0qo")
 script = ExtResource("2_kjko1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2068876085 node_paths=PackedStringArray("hitsoundPlayer")]
+bus = &"Main Music"
 script = ExtResource("3_frq57")
 hitsoundPlayer = NodePath("HitsoundPlayer")
 
 [node name="HitsoundPlayer" type="AudioStreamPlayer" parent="AudioStreamPlayer" unique_id=909714363]
+bus = &"SFX"
 
 [node name="Input" type="Node" parent="." unique_id=1332626918]
 script = ExtResource("4_sh332")

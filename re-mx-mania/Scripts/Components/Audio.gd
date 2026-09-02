@@ -19,7 +19,8 @@ var postSongTimer : Timer
 # -1 is no effect
 var currentFXIndex : int = -1
 
-var masterTrackIndex = AudioServer.get_bus_index("Master")
+var musicTrackIndex = AudioServer.get_bus_index("Main Music")
+
 
 ###################################################
 # This signal will be used in place of _process()
@@ -45,15 +46,17 @@ func setTrackVolume(trackID : int, mute : bool):
 		streamIndex = trackID - 2
 	
 	if mute:
-		musicPlayer.stream.set_sync_stream_volume(streamIndex, -50)
+		musicPlayer.stream.set_sync_stream_volume(streamIndex, linear_to_db(0.0))
 	else:
-		musicPlayer.stream.set_sync_stream_volume(streamIndex, GlobalStates.streamDBOffset)
+		musicPlayer.stream.set_sync_stream_volume(streamIndex, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 
 func toggleFX(FXID : int, isOn : bool):
-	AudioServer.set_bus_effect_enabled(masterTrackIndex, FXID, isOn)
+	AudioServer.set_bus_effect_enabled(musicTrackIndex, FXID, isOn)
 
 func _onChartCreated(chart: Chart) -> void:
 	hitsoundPlayer.stream = load("res://Assets/SFX/Closed_Hat_1.ogg") # TODO: Make a hitsound selector in the settings menu
+	
+	hitsoundPlayer.volume_db = GlobalStates.sfxVolumeDB - GlobalStates.streamDBOffset
 	
 	syncStream = AudioStreamSynchronized.new()
 	
@@ -72,7 +75,7 @@ func _onChartCreated(chart: Chart) -> void:
 					chart.trackPaths[i])
 				)
 		)
-		syncStream.set_sync_stream_volume(i, GlobalStates.streamDBOffset)
+		syncStream.set_sync_stream_volume(i, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 	
 	syncStream.set_sync_stream(
 		4, 
@@ -81,7 +84,7 @@ func _onChartCreated(chart: Chart) -> void:
 				chart.scratchTrackPath)
 			)
 	)
-	syncStream.set_sync_stream_volume(4, GlobalStates.streamDBOffset)
+	syncStream.set_sync_stream_volume(4, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 	
 	syncStream.set_sync_stream(
 		5, 
@@ -90,7 +93,7 @@ func _onChartCreated(chart: Chart) -> void:
 				chart.BGMPath)
 			)
 	)
-	syncStream.set_sync_stream_volume(5, GlobalStates.streamDBOffset)
+	syncStream.set_sync_stream_volume(5, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 	
 	musicPlayer.stream = syncStream
 

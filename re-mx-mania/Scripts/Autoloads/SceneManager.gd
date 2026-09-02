@@ -22,7 +22,7 @@ func loadSongSelect():
 	get_tree().change_scene_to_file("res://Scenes/SongSelect.tscn")
 
 func loadSettingsMenu():
-	pass
+	get_tree().change_scene_to_file("res://Scenes/SettingsMenu.tscn")
 
 func loadMainMenu():
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")

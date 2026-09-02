@@ -21,7 +21,7 @@ const 	MAXIMUM_SCORE	: int	= 1000000
 ## and long scratch ticks.  
 const 	TICK_INTERVAL	:	float 	= 0.1 # In seconds
 
-var isDebug : bool = false
+var isDebug : bool = true
 
 #The timing window variables (Hard coded for now) in ms
 var perfectTiming: float		= 16.67
@@ -43,13 +43,16 @@ var globalOffset : float = 0.0
 
 var scrollSpd : float = 2.0
 
+var musicVolumeDB : float = 0.0
+var sfxVolumeDB : float = 0.0
+
 var scratchDeadzone : float = 5.0
 
 var currentChartPath : String
 var currentChartData : Chart
 
 ## Variable for the volume offset to prevent clipping
-var streamDBOffset : float = -30.0
+var streamDBOffset : float = 10.0
 
 var currentResults : Results
 
