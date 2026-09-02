@@ -113,6 +113,7 @@ label_settings = SubResource("LabelSettings_onfqu")
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_fhok7")
+expand_mode = 2
 stretch_mode = 5
 
 [node name="ReturnButton" type="Button" parent="HBoxContainer/RightPanel/VBoxContainer" unique_id=1263889138]

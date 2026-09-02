@@ -41,15 +41,18 @@ func calculateGrade(maxWScore : int) -> GlobalEnums.gradeEnum:
 		)
 		# If it was a pure perfect full combo:
 		if noAlmostPerfect and noGood and noOK:
-			return GlobalEnums.gradeEnum.SSS_PLUS
+			grade = GlobalEnums.gradeEnum.SSS_PLUS
 		# If it was a perfect full combo:
-		if noGood and noOK:
-			return GlobalEnums.gradeEnum.SSS
+		elif noGood and noOK:
+			grade = GlobalEnums.gradeEnum.SSS
 		# If it was a good full combo:
-		if noOK:
-			return GlobalEnums.gradeEnum.SS
+		elif noOK:
+			grade = GlobalEnums.gradeEnum.SS
 		# If it was just a regular full combo:
-		return GlobalEnums.gradeEnum.S
+		else:
+			grade = GlobalEnums.gradeEnum.S
+		
+		return grade
 	
 	# If the play wasn't an FC:
 	var scoreRatio : float = float(score) / float(maxWScore)
