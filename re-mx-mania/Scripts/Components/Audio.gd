@@ -108,11 +108,11 @@ func _process(delta: float) -> void:
 			songPos = currentAudioPos
 		songUpdate.emit(songPos)
 	elif isPreSong:
-		songPos = preSongTimer.get_time_left() * -1
+		songPos = (preSongTimer.get_time_left() * -1) - (GlobalStates.globalOffset/1000)
 		songUpdate.emit(songPos)
 	elif isPostSong:
 		postSongTime += delta
-		songPos = musicPlayer.stream.get_length() + postSongTime
+		songPos = musicPlayer.stream.get_length() + postSongTime - (GlobalStates.globalOffset/1000)
 		songUpdate.emit(songPos)
 
 func startMusic() -> void:
