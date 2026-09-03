@@ -1,10 +1,4 @@
 res://default_bus_layout.tres
-res://Scenes/Results.tscn
-res://Scenes/ChartPlayer.tscn
-res://Scripts/Classes/ResultsClass.gd
-res://Scripts/GameObjects/SettingsContainer.gd
+res://Scenes/SongSelect.tscn
 res://Scenes/SettingsMenu.tscn
-res://Scripts/Components/Audio.gd
-res://Scripts/GameObjects/InputButton.gd
-res://Scenes/GameObjects/InputButton.tscn
-res://Scenes/MainMenu.tscn
+res://Scripts/GameObjects/SettingsContainer.gd

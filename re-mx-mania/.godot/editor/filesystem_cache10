@@ -1,108 +1,109 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1788358321
-default_bus_layout.tres::AudioBusLayout::6947520054032327590::1788358080::0::1::::<><><>0<>0<><>::
-icon.svg::CompressedTexture2D::5603300852668577369::1788358080::1788358080::1::::<><><>0<>0<>4aac5d3884dedba9a7cc77d2fc320a37<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-::res://Assets/::1788358080
-::res://Assets/Materials/::1788358080
-FXNoteMaterial.tres::StandardMaterial3D::5426558776482212064::1788358080::0::1::::<><><>0<>0<><>::
-holdingNoteMaterial.tres::StandardMaterial3D::5544225491556370785::1788358080::0::1::::<><><>0<>0<><>::
-holdMissMaterial.tres::StandardMaterial3D::4902681387267335179::1788358080::0::1::::<><><>0<>0<><>::
-normalNoteMaterial.tres::StandardMaterial3D::1194373548507226470::1788358080::0::1::::<><><>0<>0<><>::
-::res://Assets/Meshes/::1788358080
-FXButtonMesh.tres::BoxMesh::2421045369087282312::1788358080::0::1::::<><><>0<>0<><>::
-MainTrackMesh.tres::PlaneMesh::4621000381474612725::1788358080::0::1::::<><><>0<>0<><>::
-NoteButtonMesh.tres::BoxMesh::2599554398239371599::1788358080::0::1::::<><><>0<>0<><>::
-ScratchTrackMesh.tres::PlaneMesh::6612781813405423432::1788358080::0::1::::<><><>0<>0<><>::
-::res://Assets/SFX/::1788358080
-Click.ogg::AudioStreamOggVorbis::5690940154472469780::1788358080::1788358080::1::::<><><>0<>0<>f3cf396f68f7252ab6ec8d4959803015<>res://.godot/imported/Click.ogg-b7b1cd379f3a030989ef9b2797737668.oggvorbisstr::
-Closed_Hat_1.ogg::AudioStreamOggVorbis::455760506672224547::1788358080::1788358080::1::::<><><>0<>0<>59342d513da54f29310e9cc0c64c1a8e<>res://.godot/imported/Closed_Hat_1.ogg-62db6c61a425f5c6b774a087d67e4f74.oggvorbisstr::
-::res://Assets/Textures/::1788358080
-A.png::CompressedTexture2D::3729419253586326516::1788358080::1788358080::1::::<><><>0<>0<>7f9700f69a508cdeebca3ff672f5a21d<>res://.godot/imported/A.png-2769da69289cbf63820fe318b7c6fbb7.ctex::
-AA.png::CompressedTexture2D::1035826123194787795::1788358080::1788358080::1::::<><><>0<>0<>eaa9738165bfc7053c307448f9dd4ac0<>res://.godot/imported/AA.png-4a9b616a18badb2c39ee0066c4123c08.ctex::
-AAA.png::CompressedTexture2D::8802138943130064525::1788358080::1788358080::1::::<><><>0<>0<>cb4e9ec40cd27b9cc7db7fe9080d32a0<>res://.godot/imported/AAA.png-2eb112acdd134f21e7e94dd92f44a419.ctex::
-Almost Perfect Judgement.png::CompressedTexture2D::8228926686754830282::1788358080::1788358080::1::::<><><>0<>0<>a7d85ec051cf67839c93012801cb5c50<>res://.godot/imported/Almost Perfect Judgement.png-170cb1c319c3b2ed574504a9fcbc98df.ctex::
-B.png::CompressedTexture2D::7134346532558997922::1788358080::1788358080::1::::<><><>0<>0<>7662301688caa7b04d0a810c4581ebfe<>res://.godot/imported/B.png-e3aa10c916292cb9716aea13bb17aef8.ctex::
-BB.png::CompressedTexture2D::8222904177697923497::1788358080::1788358080::1::::<><><>0<>0<>61147b36222b6789a14d8a3f9ae3c70d<>res://.godot/imported/BB.png-b851a90ad376f4f9a6b03e3d87090267.ctex::
-BBB.png::CompressedTexture2D::5703325150540995267::1788358080::1788358080::1::::<><><>0<>0<>4d24a6f4fd232cd43a30eac02386c9b0<>res://.godot/imported/BBB.png-2cde570e1f17dd842227b0063b89a713.ctex::
-C.png::CompressedTexture2D::544385987391093382::1788358080::1788358080::1::::<><><>0<>0<>ad821a1c6b9ff097cfa09eac1c557241<>res://.godot/imported/C.png-bd923a2d620e54f0e6ef35fa47d608d2.ctex::
-CC.png::CompressedTexture2D::5333797448576770889::1788358080::1788358080::1::::<><><>0<>0<>2e3136fa6c87e1b871dcceacff3f6484<>res://.godot/imported/CC.png-b3c5ad18c69327724e479cf582ff3307.ctex::
-D.png::CompressedTexture2D::4224256229261897278::1788358080::1788358080::1::::<><><>0<>0<>2c8ba17aefc82b45da962ffc9e81598a<>res://.godot/imported/D.png-65ec8631abdcfbe07b402deb278c72cb.ctex::
-F.png::CompressedTexture2D::5683927900703998905::1788358080::1788358080::1::::<><><>0<>0<>add71e4bf4facacbd3ab3f5a6c633e68<>res://.godot/imported/F.png-18027d97cc3afe8dba1b188b4f8916b7.ctex::
-Good Judgement.png::CompressedTexture2D::5784854443147692458::1788358080::1788358080::1::::<><><>0<>0<>3f813273b35d6d938c3f3f8c4c9bc7b4<>res://.godot/imported/Good Judgement.png-57f88880f667823d591541762ab6feeb.ctex::
-Miss Judgement.png::CompressedTexture2D::4639149875719496391::1788358080::1788358080::1::::<><><>0<>0<>8b81573cc8183518c71ec3537f42fb27<>res://.godot/imported/Miss Judgement.png-244aecf1ee64f33ca56f472c0b1d0f14.s3tc.ctex::
-Ok Judgement.png::CompressedTexture2D::2401589508073320516::1788358080::1788358080::1::::<><><>0<>0<>09133346f58820dfed001f4023aae878<>res://.godot/imported/Ok Judgement.png-afcc5a38f025b0cdb0baa24fe7d24d66.ctex::
-Perfect Judgement.png::CompressedTexture2D::1309185228338228710::1788358080::1788358080::1::::<><><>0<>0<>9c2ca24f5daff4f7fb48db980d958ba7<>res://.godot/imported/Perfect Judgement.png-84fbddcc36677ec2c45508cd6deeddfc.ctex::
-Record Texture.png::CompressedTexture2D::7027394173207132345::1788358080::1788358080::1::::<><><>0<>0<>b43ce4fec029a398d2a33dd1727ae59c<>res://.godot/imported/Record Texture.png-08497200d814374497fcecf835471f31.s3tc.ctex::
-Record.png::CompressedTexture2D::1155092826174011453::1788358080::1788358080::1::::<><><>0<>0<>840d00b4d7f006d1be5cf23ce39aefc2<>res://.godot/imported/Record.png-d5597dd3ab729a3dd825fbf38dba1d53.s3tc.ctex::
-S-1.png::CompressedTexture2D::4874479484996889641::1788358080::1788358080::1::::<><><>0<>0<>5e9093418ceb98366175b89489b459e6<>res://.godot/imported/S-1.png-fc73353f97062ad1104176937c2de6e8.ctex::
-S.png::CompressedTexture2D::2664868949601463780::1788358080::1788358080::1::::<><><>0<>0<>fed9613df3e3eea6c4ca226ad2c738ab<>res://.godot/imported/S.png-d28ecfb94eb4865a6ef1e13e1c9fdd67.ctex::
-SS.png::CompressedTexture2D::8903143560525744732::1788358080::1788358080::1::::<><><>0<>0<>4b0a616360ba63637a017d9352ec1e86<>res://.godot/imported/SS.png-d125978d17276b3c3a1a3cbdd2200142.ctex::
-SSS+.png::CompressedTexture2D::6773980139425244093::1788358080::1788358080::1::::<><><>0<>0<>5cbfb2f36e7fe62e6c013844d324e5af<>res://.godot/imported/SSS+.png-fbfa28f1a78232575dd2602439f52ddc.ctex::
-SSS.png::CompressedTexture2D::7535297821885563499::1788358080::1788358080::1::::<><><>0<>0<>d94ea91f69810a1a22ccecc6ceded048<>res://.godot/imported/SSS.png-57462812c428b1751051bdc1daf3674a.ctex::
-Temp Combination Arrow.png::CompressedTexture2D::1576070765403664984::1788358080::1788358080::1::::<><><>0<>0<>8408fc7acc5ad0c9d0e26a3a53c5045d<>res://.godot/imported/Temp Combination Arrow.png-d9cb396a86c3967a8a5381ab2f3852dc.ctex::
-Temp Down Arrow.png::CompressedTexture2D::7869166847808386715::1788358080::1788358080::1::::<><><>0<>0<>ad2a8d2f830442d9da53fa709924a5a4<>res://.godot/imported/Temp Down Arrow.png-9d7f6c91018168c86cce666072583633.ctex::
-Temp Up Arrow.png::CompressedTexture2D::5639313644950169288::1788358080::1788358080::1::::<><><>0<>0<>9e4f4923b5588e189d367a5f6273c149<>res://.godot/imported/Temp Up Arrow.png-dd4f0ea9388951d09f35b7aed3b4027b.ctex::
-::res://Charts/::1788358080
-::res://Charts/Igaku Test - Waller3K/::1788358080
-BGM_Track.ogg::AudioStreamOggVorbis::4066361712325371132::1788358080::1788358080::1::::<><><>0<>0<>f958808b3437459a4d782592781addd8<>res://.godot/imported/BGM_Track.ogg-5f6f9b7150eab16dae12174c852fdafe.oggvorbisstr::
-Expert.json::JSON::-1::1788358080::0::1::::<><><>0<>0<><>::
-Scratch_Track.ogg::AudioStreamOggVorbis::760869405177072237::1788358080::1788358080::1::::<><><>0<>0<>0e17a54687cde153b9946f4594e3e0cb<>res://.godot/imported/Scratch_Track.ogg-70c0dcc52e3b446e4e42d02b3b11059f.oggvorbisstr::
-Test.json::JSON::-1::1788358080::0::1::::<><><>0<>0<><>::
-Track_1.ogg::AudioStreamOggVorbis::8508128847266177777::1788358080::1788358080::1::::<><><>0<>0<>0f0630bc27fb1fbd68c8178eaac5e7fb<>res://.godot/imported/Track_1.ogg-16a0281a0778bfeeb4c1c5f25a57b604.oggvorbisstr::
-Track_2.ogg::AudioStreamOggVorbis::6085913875551401031::1788358080::1788358080::1::::<><><>0<>0<>04005af77d0d1acd2eb833ce5b3f1f95<>res://.godot/imported/Track_2.ogg-14ecafe7769b3559a34441186dfe6442.oggvorbisstr::
-Track_3.ogg::AudioStreamOggVorbis::2575713794542768414::1788358080::1788358080::1::::<><><>0<>0<>6f8eb1a4145f26bf0df58fcf0c7cf4dd<>res://.godot/imported/Track_3.ogg-f4a9fab12bd9714b501f0ac522661a85.oggvorbisstr::
-Track_4.ogg::AudioStreamOggVorbis::4502037704473734531::1788358080::1788358080::1::::<><><>0<>0<>6bc202e0e9217a8fd6fb26ccef8d98d5<>res://.godot/imported/Track_4.ogg-0ced4c66158cb67fd0a10ad2ba1697fe.oggvorbisstr::
-::res://Charts/Scratch Test Chart/::1788358080
-BGM_Track.ogg::AudioStreamOggVorbis::7206861136943432021::1788358080::1788358080::1::::<><><>0<>0<>3f601dd6661c34f7850217c070ef1e2c<>res://.godot/imported/BGM_Track.ogg-5e601c24cf2c67acd66d95ada1d42761.oggvorbisstr::
-Expert.json::JSON::-1::1788358080::0::1::::<><><>0<>0<><>::
-Scratch_Track.ogg::AudioStreamOggVorbis::5895911104842334385::1788358080::1788358080::1::::<><><>0<>0<>69b40e1b8747eb88e53c821e36c114d3<>res://.godot/imported/Scratch_Track.ogg-7f942d264316c743ea8ca88a05914703.oggvorbisstr::
-Track_1.ogg::AudioStreamOggVorbis::584260580029449746::1788358080::1788358080::1::::<><><>0<>0<>1223404014a9df7a295a25c2ecb1db4d<>res://.godot/imported/Track_1.ogg-1cef0d618b3ac2c74145b56b18e9a2f6.oggvorbisstr::
-Track_2.ogg::AudioStreamOggVorbis::3969843681815112230::1788358080::1788358080::1::::<><><>0<>0<>b0c42a339428e047932ab3c133d8df07<>res://.godot/imported/Track_2.ogg-f9ce2a838a1ec30925b18ca2920c00e1.oggvorbisstr::
-Track_3.ogg::AudioStreamOggVorbis::4570973951602152438::1788358080::1788358080::1::::<><><>0<>0<>4e4f5cdc6f0bf78ed8cfa268f8a5fd22<>res://.godot/imported/Track_3.ogg-6f22ef3c41cd64510dcb7e45af38aadb.oggvorbisstr::
-Track_4.ogg::AudioStreamOggVorbis::9140519251010652066::1788358080::1788358080::1::::<><><>0<>0<>f238257b8edccae0ee894ab07d5f41fe<>res://.godot/imported/Track_4.ogg-626083f2b0db561fcf5ce0f2df4bafff.oggvorbisstr::
-::res://Scenes/::1788358080
-ChartPlayer.tscn::PackedScene::5538786362363920892::1788358080::0::1::::<><><>0<>0<><>::uid://cv8okknape74n::::res://Scripts/GameObjects/InfoContainer.gd<>uid://c1od0h6m5hbjy::::res://Scripts/GameObjects/ScoreContainer.gd<>uid://rmwyx8je2wcv::::res://Scripts/Components/Composer.gd<>uid://c3ln82f48renc::::res://Scripts/Components/Audio.gd<>uid://bj4e13klm24ri::::res://Scripts/Components/Input.gd<>uid://dqda3qh26ho4p::::res://Scripts/Components/Judge.gd<>uid://dn71f65o0hyv4::::res://Scripts/Components/GameManager.gd<>uid://drdta1y1ly8so::::res://Scripts/Components/NoteManager.gd<>uid://nl75x2wcgsxu::::res://Scenes/GameObjects/MainNote.tscn<>uid://bjwngbwtxfho0::::res://Scenes/GameObjects/Subnote.tscn<>uid://c7eefjsuqi0px::::res://Assets/Textures/Record Texture.png<>uid://b63pg3r4aunfx::::res://Assets/Meshes/MainTrackMesh.tres<>uid://dl075op7bljat::::res://Scripts/GameObjects/noteButtonNode.gd<>uid://baq1i7u8rriqq::::res://Assets/Meshes/FXButtonMesh.tres<>uid://bjhd5eiot3vmv::::res://Scripts/GameObjects/GameButton.gd<>uid://bdbijs85vv8gh::::res://Assets/Meshes/NoteButtonMesh.tres<>uid://c1hjsygce82gi::::res://Assets/Meshes/ScratchTrackMesh.tres<>uid://qpshe4hmqvh2::::res://Assets/Textures/Record.png<>uid://cuwgkwvv5v555::::res://Scripts/GameObjects/RecordNode.gd<>uid://h857c3k62lnp::::res://Scripts/GameObjects/judgementSprite.gd
-MainMenu.tscn::PackedScene::1294102903157873390::1788358080::0::1::::<><><>0<>0<><>::uid://clpcba3lpb6bb::::res://Scripts/Scenes/MainMenu.gd
-Results.tscn::PackedScene::5252934194898691563::1788358080::0::1::::<><><>0<>0<><>::uid://cl3jstvl5sw06::::res://icon.svg<>uid://ckhdlgk52nhyp::::res://Scripts/Scenes/Results.gd<>uid://cm8lpygcvg2ef::::res://Assets/Textures/F.png<>uid://cdpugkembo16x::::res://Scripts/GameObjects/RetryButton.gd<>uid://b1gi5awpv1dbq::::res://Assets/Textures/D.png<>uid://d1m61bgbi0p43::::res://Scripts/GameObjects/ReturnButton.gd<>uid://h0x7tcrv18b7::::res://Assets/Textures/C.png<>uid://ch8y4nugn3f3n::::res://Assets/Textures/CC.png<>uid://c8v6v6xb1engc::::res://Assets/Textures/B.png<>uid://dpfibbf3qvyof::::res://Assets/Textures/BB.png<>uid://cniy6xl47d7f8::::res://Assets/Textures/BBB.png<>uid://btes8wycemn77::::res://Assets/Textures/A.png<>uid://o0051cxysvl0::::res://Assets/Textures/AA.png<>uid://dxn27bnqxb8vh::::res://Assets/Textures/AAA.png<>uid://bd75acu0caklg::::res://Assets/Textures/S.png<>uid://dy30qdtmx14dc::::res://Assets/Textures/SS.png<>uid://dfmfiv4kggrxj::::res://Assets/Textures/SSS.png<>uid://c3rmp0p3d81gr::::res://Assets/Textures/SSS+.png
-SettingsMenu.tscn::PackedScene::6004088636091029768::1788358080::0::1::::<><><>0<>0<><>::uid://d0mf5idkmiw1w::::res://Scripts/GameObjects/SettingsContainer.gd
-SongSelect.tscn::PackedScene::5174616989704729691::1788358080::0::1::::<><><>0<>0<><>::uid://hstwric4r3ol::::res://Scripts/Scenes/SongSelect.gd<>uid://begup3iijuaaf::::res://Scenes/GameObjects/SongSelectButton.tscn<>uid://sft4lfaql1cx::::res://Scenes/GameObjects/ChartList.tscn<>uid://ccmud6k12ls7d::::res://Scripts/GameObjects/SongSelectionReturnButton.gd
-::res://Scenes/GameObjects/::1788358080
-ChartList.tscn::PackedScene::1274927070643404123::1788358080::0::1::::<><><>0<>0<><>::uid://8dh1bxs1rejk::::res://Scripts/GameObjects/ChartList.gd
-MainNote.tscn::PackedScene::937160890924034234::1788358080::0::1::::<><><>0<>0<><>::uid://cfg0npcswu28q::::res://Scripts/GameObjects/MainNote.gd<>uid://ratfmp5j6k27::::res://Assets/Materials/normalNoteMaterial.tres<>uid://cjkwvosdw4y37::::res://Assets/Materials/FXNoteMaterial.tres<>uid://ck8wt35vvrevp::::res://Assets/Materials/holdingNoteMaterial.tres<>uid://cb35pf01oywat::::res://Assets/Materials/holdMissMaterial.tres
-SongSelectButton.tscn::PackedScene::2680804934922027829::1788358080::0::1::::<><><>0<>0<><>::uid://dts2u64fkwemj::::res://Scripts/GameObjects/SongSelectButton.gd
-Subnote.tscn::PackedScene::3064336710097362185::1788358080::0::1::::<><><>0<>0<><>::uid://ck0a0ku5jybo1::::res://Scripts/GameObjects/Subnote.gd<>uid://wppwjpr77jrs::::res://Assets/Textures/Temp Combination Arrow.png<>uid://cmlyw3ve8cb0s::::res://Assets/Textures/Temp Up Arrow.png<>uid://dkd5a7xwtxfxr::::res://Assets/Textures/Temp Down Arrow.png
-::res://Scripts/::1788358080
-::res://Scripts/Autoloads/::1788358080
-GlobalEnums.gd::GDScript::887861232558932565::1788358080::0::1::::<>Node<><>0<>0<><>::
-GlobalStates.gd::GDScript::738684584467761941::1788358080::0::1::::<>Node<><>0<>0<><>::
-SceneManager.gd::GDScript::8385702980914259962::1788358080::0::1::::<>Node<><>0<>0<><>::
-::res://Scripts/Classes/::1788358080
-ChartClass.gd::GDScript::4380945922393844680::1788358080::0::1::::Chart<>Resource<><>0<>0<><>::
-ResultsClass.gd::GDScript::4552571598987958923::1788358080::0::1::::Results<>Resource<><>0<>0<><>::
-TrackStateClass.gd::GDScript::1046306882035410449::1788358080::0::1::::TrackState<>Resource<><>0<>0<><>::
-::res://Scripts/Components/::1788358080
-Audio.gd::GDScript::6761686823867467588::1788358080::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
-Composer.gd::GDScript::1219362767220797481::1788358080::0::1::::<>Node<><>0<>0<><>::
-GameManager.gd::GDScript::8139366352522884431::1788358080::0::1::::<>Node<><>0<>0<><>::
-Input.gd::GDScript::3078278016534488374::1788358080::0::1::::<>Node<><>0<>0<><>::
-Judge.gd::GDScript::8288527537235046121::1788358080::0::1::::<>Node<><>0<>0<><>::
-NoteManager.gd::GDScript::8359820552930008358::1788358080::0::1::::<>Node<><>0<>0<><>::
-::res://Scripts/GameObjects/::1788358080
-ChartList.gd::GDScript::2322896511815247732::1788358080::0::1::::<>Control<><>0<>0<><>::
-GameButton.gd::GDScript::3032806868623704657::1788358080::0::1::::<>MeshInstance3D<><>0<>0<><>::
-InfoContainer.gd::GDScript::6315799990842833335::1788358080::0::1::::<>VBoxContainer<><>0<>0<><>::
-judgementSprite.gd::GDScript::561325175336228861::1788358080::0::1::::<>Sprite3D<><>0<>0<><>::
-MainNote.gd::GDScript::5137713784028564382::1788358080::0::1::::<>Node3D<><>0<>0<><>::
-noteButtonNode.gd::GDScript::7984946052489508447::1788358080::0::1::::<>Node3D<><>0<>0<><>::
-RecordNode.gd::GDScript::6222417899581503610::1788358080::0::1::::<>MeshInstance3D<><>0<>0<><>::
-RetryButton.gd::GDScript::5015599151189816477::1788358080::0::1::::<>Button<><>0<>0<><>::
-ReturnButton.gd::GDScript::9010873237983453850::1788358080::0::1::::<>Button<><>0<>0<><>::
-ScoreContainer.gd::GDScript::6626879802495782438::1788358080::0::1::::<>VBoxContainer<><>0<>0<><>::
-SettingsContainer.gd::GDScript::8939113259151754722::1788358080::0::1::::<>VBoxContainer<><>0<>0<><>::
-SongSelectButton.gd::GDScript::8531685627722379617::1788358080::0::1::::<>Button<><>0<>0<><>::
-SongSelectionReturnButton.gd::GDScript::4939212929837783123::1788358080::0::1::::<>Button<><>0<>0<><>::
-Subnote.gd::GDScript::5526384449971267210::1788358080::0::1::::<>Node3D<><>0<>0<><>::
-::res://Scripts/Scenes/::1788358080
-MainMenu.gd::GDScript::5576007577269326327::1788358080::0::1::::<>Control<><>0<>0<><>::
-Results.gd::GDScript::5489382574744006323::1788358080::0::1::::<>Control<><>0<>0<><>::
-SongSelect.gd::GDScript::529674520753486575::1788358080::0::1::::<>Control<><>0<>0<><>::
+::res://::1788387024
+default_bus_layout.tres::AudioBusLayout::6947520054032327590::1788372275::0::1::::<><><>0<>0<><>::
+icon.svg::CompressedTexture2D::5603300852668577369::1775592147::1787596291::1::::<><><>0<>0<>4aac5d3884dedba9a7cc77d2fc320a37<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://Assets/::1786548945
+::res://Assets/Materials/::1786548945
+FXNoteMaterial.tres::StandardMaterial3D::5426558776482212064::1786548945::0::1::::<><><>0<>0<><>::
+holdingNoteMaterial.tres::StandardMaterial3D::5544225491556370785::1786548945::0::1::::<><><>0<>0<><>::
+holdMissMaterial.tres::StandardMaterial3D::4902681387267335179::1786548945::0::1::::<><><>0<>0<><>::
+normalNoteMaterial.tres::StandardMaterial3D::1194373548507226470::1786548945::0::1::::<><><>0<>0<><>::
+::res://Assets/Meshes/::1786548945
+FXButtonMesh.tres::BoxMesh::2421045369087282312::1786548945::0::1::::<><><>0<>0<><>::
+MainTrackMesh.tres::PlaneMesh::4621000381474612725::1786548945::0::1::::<><><>0<>0<><>::
+NoteButtonMesh.tres::BoxMesh::2599554398239371599::1786548945::0::1::::<><><>0<>0<><>::
+ScratchTrackMesh.tres::PlaneMesh::6612781813405423432::1786548945::0::1::::<><><>0<>0<><>::
+::res://Assets/SFX/::1787596017
+Click.ogg::AudioStreamOggVorbis::5690940154472469780::1787596017::1787596017::1::::<><><>0<>0<>f3cf396f68f7252ab6ec8d4959803015<>res://.godot/imported/Click.ogg-b7b1cd379f3a030989ef9b2797737668.oggvorbisstr::
+Closed_Hat_1.ogg::AudioStreamOggVorbis::455760506672224547::1786548945::1786548945::1::::<><><>0<>0<>59342d513da54f29310e9cc0c64c1a8e<>res://.godot/imported/Closed_Hat_1.ogg-62db6c61a425f5c6b774a087d67e4f74.oggvorbisstr::
+::res://Assets/Textures/::1787596017
+A.png::CompressedTexture2D::3729419253586326516::1787596017::1787596017::1::::<><><>0<>0<>7f9700f69a508cdeebca3ff672f5a21d<>res://.godot/imported/A.png-2769da69289cbf63820fe318b7c6fbb7.ctex::
+AA.png::CompressedTexture2D::1035826123194787795::1787596017::1787596017::1::::<><><>0<>0<>eaa9738165bfc7053c307448f9dd4ac0<>res://.godot/imported/AA.png-4a9b616a18badb2c39ee0066c4123c08.ctex::
+AAA.png::CompressedTexture2D::8802138943130064525::1787596017::1787596017::1::::<><><>0<>0<>cb4e9ec40cd27b9cc7db7fe9080d32a0<>res://.godot/imported/AAA.png-2eb112acdd134f21e7e94dd92f44a419.ctex::
+Almost Perfect Judgement.png::CompressedTexture2D::8228926686754830282::1786548945::1786548945::1::::<><><>0<>0<>a7d85ec051cf67839c93012801cb5c50<>res://.godot/imported/Almost Perfect Judgement.png-170cb1c319c3b2ed574504a9fcbc98df.ctex::
+B.png::CompressedTexture2D::7134346532558997922::1787596017::1787596017::1::::<><><>0<>0<>7662301688caa7b04d0a810c4581ebfe<>res://.godot/imported/B.png-e3aa10c916292cb9716aea13bb17aef8.ctex::
+BB.png::CompressedTexture2D::8222904177697923497::1787596017::1787596017::1::::<><><>0<>0<>61147b36222b6789a14d8a3f9ae3c70d<>res://.godot/imported/BB.png-b851a90ad376f4f9a6b03e3d87090267.ctex::
+BBB.png::CompressedTexture2D::5703325150540995267::1787596017::1787596017::1::::<><><>0<>0<>4d24a6f4fd232cd43a30eac02386c9b0<>res://.godot/imported/BBB.png-2cde570e1f17dd842227b0063b89a713.ctex::
+C.png::CompressedTexture2D::544385987391093382::1787596017::1787596017::1::::<><><>0<>0<>ad821a1c6b9ff097cfa09eac1c557241<>res://.godot/imported/C.png-bd923a2d620e54f0e6ef35fa47d608d2.ctex::
+CC.png::CompressedTexture2D::5333797448576770889::1787596017::1787596017::1::::<><><>0<>0<>2e3136fa6c87e1b871dcceacff3f6484<>res://.godot/imported/CC.png-b3c5ad18c69327724e479cf582ff3307.ctex::
+D.png::CompressedTexture2D::4224256229261897278::1787596017::1787596017::1::::<><><>0<>0<>2c8ba17aefc82b45da962ffc9e81598a<>res://.godot/imported/D.png-65ec8631abdcfbe07b402deb278c72cb.ctex::
+F.png::CompressedTexture2D::5683927900703998905::1787596017::1787596017::1::::<><><>0<>0<>add71e4bf4facacbd3ab3f5a6c633e68<>res://.godot/imported/F.png-18027d97cc3afe8dba1b188b4f8916b7.ctex::
+Good Judgement.png::CompressedTexture2D::5784854443147692458::1786548945::1786548945::1::::<><><>0<>0<>3f813273b35d6d938c3f3f8c4c9bc7b4<>res://.godot/imported/Good Judgement.png-57f88880f667823d591541762ab6feeb.ctex::
+Miss Judgement.png::CompressedTexture2D::4639149875719496391::1786548945::1786548945::1::::<><><>0<>0<>8b81573cc8183518c71ec3537f42fb27<>res://.godot/imported/Miss Judgement.png-244aecf1ee64f33ca56f472c0b1d0f14.s3tc.ctex::
+Ok Judgement.png::CompressedTexture2D::2401589508073320516::1786548945::1786548945::1::::<><><>0<>0<>09133346f58820dfed001f4023aae878<>res://.godot/imported/Ok Judgement.png-afcc5a38f025b0cdb0baa24fe7d24d66.ctex::
+Perfect Judgement.png::CompressedTexture2D::1309185228338228710::1786548945::1786548945::1::::<><><>0<>0<>9c2ca24f5daff4f7fb48db980d958ba7<>res://.godot/imported/Perfect Judgement.png-84fbddcc36677ec2c45508cd6deeddfc.ctex::
+Record Texture.png::CompressedTexture2D::7027394173207132345::1786548945::1786548945::1::::<><><>0<>0<>b43ce4fec029a398d2a33dd1727ae59c<>res://.godot/imported/Record Texture.png-08497200d814374497fcecf835471f31.s3tc.ctex::
+Record.png::CompressedTexture2D::1155092826174011453::1786548945::1786548945::1::::<><><>0<>0<>840d00b4d7f006d1be5cf23ce39aefc2<>res://.godot/imported/Record.png-d5597dd3ab729a3dd825fbf38dba1d53.s3tc.ctex::
+S-1.png::CompressedTexture2D::4874479484996889641::1787596017::1787596017::1::::<><><>0<>0<>5e9093418ceb98366175b89489b459e6<>res://.godot/imported/S-1.png-fc73353f97062ad1104176937c2de6e8.ctex::
+S.png::CompressedTexture2D::2664868949601463780::1787596017::1787596017::1::::<><><>0<>0<>fed9613df3e3eea6c4ca226ad2c738ab<>res://.godot/imported/S.png-d28ecfb94eb4865a6ef1e13e1c9fdd67.ctex::
+SS.png::CompressedTexture2D::8903143560525744732::1787596017::1787596017::1::::<><><>0<>0<>4b0a616360ba63637a017d9352ec1e86<>res://.godot/imported/SS.png-d125978d17276b3c3a1a3cbdd2200142.ctex::
+SSS+.png::CompressedTexture2D::6773980139425244093::1787596017::1787596017::1::::<><><>0<>0<>5cbfb2f36e7fe62e6c013844d324e5af<>res://.godot/imported/SSS+.png-fbfa28f1a78232575dd2602439f52ddc.ctex::
+SSS.png::CompressedTexture2D::7535297821885563499::1787596017::1787596017::1::::<><><>0<>0<>d94ea91f69810a1a22ccecc6ceded048<>res://.godot/imported/SSS.png-57462812c428b1751051bdc1daf3674a.ctex::
+Temp Combination Arrow.png::CompressedTexture2D::1576070765403664984::1786548945::1786548945::1::::<><><>0<>0<>8408fc7acc5ad0c9d0e26a3a53c5045d<>res://.godot/imported/Temp Combination Arrow.png-d9cb396a86c3967a8a5381ab2f3852dc.ctex::
+Temp Down Arrow.png::CompressedTexture2D::7869166847808386715::1786548945::1786548945::1::::<><><>0<>0<>ad2a8d2f830442d9da53fa709924a5a4<>res://.godot/imported/Temp Down Arrow.png-9d7f6c91018168c86cce666072583633.ctex::
+Temp Up Arrow.png::CompressedTexture2D::5639313644950169288::1786548945::1786548945::1::::<><><>0<>0<>9e4f4923b5588e189d367a5f6273c149<>res://.godot/imported/Temp Up Arrow.png-dd4f0ea9388951d09f35b7aed3b4027b.ctex::
+::res://Charts/::1786829724
+::res://Charts/Igaku Test - Waller3K/::1787596017
+BGM_Track.ogg::AudioStreamOggVorbis::4066361712325371132::1786548945::1786548945::1::::<><><>0<>0<>f958808b3437459a4d782592781addd8<>res://.godot/imported/BGM_Track.ogg-5f6f9b7150eab16dae12174c852fdafe.oggvorbisstr::
+Expert.json::JSON::-1::1787596017::0::1::::<><><>0<>0<><>::
+Scratch_Track.ogg::AudioStreamOggVorbis::760869405177072237::1786548945::1786548945::1::::<><><>0<>0<>0e17a54687cde153b9946f4594e3e0cb<>res://.godot/imported/Scratch_Track.ogg-70c0dcc52e3b446e4e42d02b3b11059f.oggvorbisstr::
+Test.json::JSON::-1::1786829724::0::1::::<><><>0<>0<><>::
+Track_1.ogg::AudioStreamOggVorbis::8508128847266177777::1786548945::1786548945::1::::<><><>0<>0<>0f0630bc27fb1fbd68c8178eaac5e7fb<>res://.godot/imported/Track_1.ogg-16a0281a0778bfeeb4c1c5f25a57b604.oggvorbisstr::
+Track_2.ogg::AudioStreamOggVorbis::6085913875551401031::1786548945::1786548945::1::::<><><>0<>0<>04005af77d0d1acd2eb833ce5b3f1f95<>res://.godot/imported/Track_2.ogg-14ecafe7769b3559a34441186dfe6442.oggvorbisstr::
+Track_3.ogg::AudioStreamOggVorbis::2575713794542768414::1786548945::1786548945::1::::<><><>0<>0<>6f8eb1a4145f26bf0df58fcf0c7cf4dd<>res://.godot/imported/Track_3.ogg-f4a9fab12bd9714b501f0ac522661a85.oggvorbisstr::
+Track_4.ogg::AudioStreamOggVorbis::4502037704473734531::1786548945::1786548945::1::::<><><>0<>0<>6bc202e0e9217a8fd6fb26ccef8d98d5<>res://.godot/imported/Track_4.ogg-0ced4c66158cb67fd0a10ad2ba1697fe.oggvorbisstr::
+::res://Charts/Scratch Test Chart/::1786829724
+BGM_Track.ogg::AudioStreamOggVorbis::7206861136943432021::1786548945::1786548945::1::::<><><>0<>0<>3f601dd6661c34f7850217c070ef1e2c<>res://.godot/imported/BGM_Track.ogg-5e601c24cf2c67acd66d95ada1d42761.oggvorbisstr::
+Expert.json::JSON::-1::1786829724::0::1::::<><><>0<>0<><>::
+Scratch_Track.ogg::AudioStreamOggVorbis::5895911104842334385::1786548945::1786548945::1::::<><><>0<>0<>69b40e1b8747eb88e53c821e36c114d3<>res://.godot/imported/Scratch_Track.ogg-7f942d264316c743ea8ca88a05914703.oggvorbisstr::
+Track_1.ogg::AudioStreamOggVorbis::584260580029449746::1786548945::1786548945::1::::<><><>0<>0<>1223404014a9df7a295a25c2ecb1db4d<>res://.godot/imported/Track_1.ogg-1cef0d618b3ac2c74145b56b18e9a2f6.oggvorbisstr::
+Track_2.ogg::AudioStreamOggVorbis::3969843681815112230::1786548945::1786548945::1::::<><><>0<>0<>b0c42a339428e047932ab3c133d8df07<>res://.godot/imported/Track_2.ogg-f9ce2a838a1ec30925b18ca2920c00e1.oggvorbisstr::
+Track_3.ogg::AudioStreamOggVorbis::4570973951602152438::1786548945::1786548945::1::::<><><>0<>0<>4e4f5cdc6f0bf78ed8cfa268f8a5fd22<>res://.godot/imported/Track_3.ogg-6f22ef3c41cd64510dcb7e45af38aadb.oggvorbisstr::
+Track_4.ogg::AudioStreamOggVorbis::9140519251010652066::1786548945::1786548945::1::::<><><>0<>0<>f238257b8edccae0ee894ab07d5f41fe<>res://.godot/imported/Track_4.ogg-626083f2b0db561fcf5ce0f2df4bafff.oggvorbisstr::
+::res://Scenes/::1788372225
+ChartPlayer.tscn::PackedScene::5538786362363920892::1788372225::0::1::::<><><>0<>0<><>::uid://cv8okknape74n::::res://Scripts/GameObjects/InfoContainer.gd<>uid://c1od0h6m5hbjy::::res://Scripts/GameObjects/ScoreContainer.gd<>uid://rmwyx8je2wcv::::res://Scripts/Components/Composer.gd<>uid://c3ln82f48renc::::res://Scripts/Components/Audio.gd<>uid://bj4e13klm24ri::::res://Scripts/Components/Input.gd<>uid://dqda3qh26ho4p::::res://Scripts/Components/Judge.gd<>uid://dn71f65o0hyv4::::res://Scripts/Components/GameManager.gd<>uid://drdta1y1ly8so::::res://Scripts/Components/NoteManager.gd<>uid://nl75x2wcgsxu::::res://Scenes/GameObjects/MainNote.tscn<>uid://bjwngbwtxfho0::::res://Scenes/GameObjects/Subnote.tscn<>uid://c7eefjsuqi0px::::res://Assets/Textures/Record Texture.png<>uid://b63pg3r4aunfx::::res://Assets/Meshes/MainTrackMesh.tres<>uid://dl075op7bljat::::res://Scripts/GameObjects/noteButtonNode.gd<>uid://baq1i7u8rriqq::::res://Assets/Meshes/FXButtonMesh.tres<>uid://bjhd5eiot3vmv::::res://Scripts/GameObjects/GameButton.gd<>uid://bdbijs85vv8gh::::res://Assets/Meshes/NoteButtonMesh.tres<>uid://c1hjsygce82gi::::res://Assets/Meshes/ScratchTrackMesh.tres<>uid://qpshe4hmqvh2::::res://Assets/Textures/Record.png<>uid://cuwgkwvv5v555::::res://Scripts/GameObjects/RecordNode.gd<>uid://h857c3k62lnp::::res://Scripts/GameObjects/judgementSprite.gd
+MainMenu.tscn::PackedScene::1294102903157873390::1788323651::0::1::::<><><>0<>0<><>::uid://clpcba3lpb6bb::::res://Scripts/Scenes/MainMenu.gd
+Results.tscn::PackedScene::5252934194898691563::1788372225::0::1::::<><><>0<>0<><>::uid://cl3jstvl5sw06::::res://icon.svg<>uid://ckhdlgk52nhyp::::res://Scripts/Scenes/Results.gd<>uid://cm8lpygcvg2ef::::res://Assets/Textures/F.png<>uid://cdpugkembo16x::::res://Scripts/GameObjects/RetryButton.gd<>uid://b1gi5awpv1dbq::::res://Assets/Textures/D.png<>uid://d1m61bgbi0p43::::res://Scripts/GameObjects/ReturnButton.gd<>uid://h0x7tcrv18b7::::res://Assets/Textures/C.png<>uid://ch8y4nugn3f3n::::res://Assets/Textures/CC.png<>uid://c8v6v6xb1engc::::res://Assets/Textures/B.png<>uid://dpfibbf3qvyof::::res://Assets/Textures/BB.png<>uid://cniy6xl47d7f8::::res://Assets/Textures/BBB.png<>uid://btes8wycemn77::::res://Assets/Textures/A.png<>uid://o0051cxysvl0::::res://Assets/Textures/AA.png<>uid://dxn27bnqxb8vh::::res://Assets/Textures/AAA.png<>uid://bd75acu0caklg::::res://Assets/Textures/S.png<>uid://dy30qdtmx14dc::::res://Assets/Textures/SS.png<>uid://dfmfiv4kggrxj::::res://Assets/Textures/SSS.png<>uid://c3rmp0p3d81gr::::res://Assets/Textures/SSS+.png
+SettingsMenu.tscn::PackedScene::6004088636091029768::1788372225::0::1::::<><><>0<>0<><>::uid://d0mf5idkmiw1w::::res://Scripts/GameObjects/SettingsContainer.gd<>uid://soq1j3hibodl::::res://Scenes/GameObjects/InputButton.tscn
+SongSelect.tscn::PackedScene::5174616989704729691::1786895857::0::1::::<><><>0<>0<><>::uid://hstwric4r3ol::::res://Scripts/Scenes/SongSelect.gd<>uid://begup3iijuaaf::::res://Scenes/GameObjects/SongSelectButton.tscn<>uid://sft4lfaql1cx::::res://Scenes/GameObjects/ChartList.tscn<>uid://ccmud6k12ls7d::::res://Scripts/GameObjects/SongSelectionReturnButton.gd
+::res://Scenes/GameObjects/::1788372225
+ChartList.tscn::PackedScene::1274927070643404123::1786829724::0::1::::<><><>0<>0<><>::uid://8dh1bxs1rejk::::res://Scripts/GameObjects/ChartList.gd
+InputButton.tscn::PackedScene::1293318892860679697::1788372225::0::1::::<><><>0<>0<><>::
+MainNote.tscn::PackedScene::937160890924034234::1786548945::0::1::::<><><>0<>0<><>::uid://cfg0npcswu28q::::res://Scripts/GameObjects/MainNote.gd<>uid://ratfmp5j6k27::::res://Assets/Materials/normalNoteMaterial.tres<>uid://cjkwvosdw4y37::::res://Assets/Materials/FXNoteMaterial.tres<>uid://ck8wt35vvrevp::::res://Assets/Materials/holdingNoteMaterial.tres<>uid://cb35pf01oywat::::res://Assets/Materials/holdMissMaterial.tres
+SongSelectButton.tscn::PackedScene::2680804934922027829::1786829724::0::1::::<><><>0<>0<><>::uid://dts2u64fkwemj::::res://Scripts/GameObjects/SongSelectButton.gd
+Subnote.tscn::PackedScene::3064336710097362185::1786548945::0::1::::<><><>0<>0<><>::uid://ck0a0ku5jybo1::::res://Scripts/GameObjects/Subnote.gd<>uid://wppwjpr77jrs::::res://Assets/Textures/Temp Combination Arrow.png<>uid://cmlyw3ve8cb0s::::res://Assets/Textures/Temp Up Arrow.png<>uid://dkd5a7xwtxfxr::::res://Assets/Textures/Temp Down Arrow.png
+::res://Scripts/::1786715148
+::res://Scripts/Autoloads/::1788323011
+GlobalEnums.gd::GDScript::887861232558932565::1786713369::0::1::::<>Node<><>0<>0<><>::
+GlobalStates.gd::GDScript::738684584467761941::1788322490::0::1::::<>Node<><>0<>0<><>::
+SceneManager.gd::GDScript::8385702980914259962::1788323011::0::1::::<>Node<><>0<>0<><>::
+::res://Scripts/Classes/::1788372225
+ChartClass.gd::GDScript::4380945922393844680::1787596017::0::1::::Chart<>Resource<><>0<>0<><>::
+ResultsClass.gd::GDScript::4552571598987958923::1788372225::0::1::::Results<>Resource<><>0<>0<><>::
+TrackStateClass.gd::GDScript::1046306882035410449::1786548945::0::1::::TrackState<>Resource<><>0<>0<><>::
+::res://Scripts/Components/::1788372225
+Audio.gd::GDScript::6761686823867467588::1788372225::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
+Composer.gd::GDScript::1219362767220797481::1786829724::0::1::::<>Node<><>0<>0<><>::
+GameManager.gd::GDScript::8139366352522884431::1787596017::0::1::::<>Node<><>0<>0<><>::
+Input.gd::GDScript::3078278016534488374::1786548945::0::1::::<>Node<><>0<>0<><>::
+Judge.gd::GDScript::8288527537235046121::1787596017::0::1::::<>Node<><>0<>0<><>::
+NoteManager.gd::GDScript::8359820552930008358::1786909328::0::1::::<>Node<><>0<>0<><>::
+::res://Scripts/GameObjects/::1788372225
+ChartList.gd::GDScript::2322896511815247732::1786829724::0::1::::<>Control<><>0<>0<><>::
+GameButton.gd::GDScript::3032806868623704657::1786548945::0::1::::<>MeshInstance3D<><>0<>0<><>::
+InfoContainer.gd::GDScript::6315799990842833335::1787596017::0::1::::<>VBoxContainer<><>0<>0<><>::
+judgementSprite.gd::GDScript::561325175336228861::1786548945::0::1::::<>Sprite3D<><>0<>0<><>::
+MainNote.gd::GDScript::5137713784028564382::1786548945::0::1::::<>Node3D<><>0<>0<><>::
+noteButtonNode.gd::GDScript::7984946052489508447::1786909187::0::1::::<>Node3D<><>0<>0<><>::
+RecordNode.gd::GDScript::6222417899581503610::1786548945::0::1::::<>MeshInstance3D<><>0<>0<><>::
+RetryButton.gd::GDScript::5015599151189816477::1786829724::0::1::::<>Button<><>0<>0<><>::
+ReturnButton.gd::GDScript::9010873237983453850::1786829724::0::1::::<>Button<><>0<>0<><>::
+ScoreContainer.gd::GDScript::6626879802495782438::1787596017::0::1::::<>VBoxContainer<><>0<>0<><>::
+SettingsContainer.gd::GDScript::8939113259151754722::1788372225::0::1::::<>VBoxContainer<><>0<>0<><>::
+SongSelectButton.gd::GDScript::8531685627722379617::1786829724::0::1::::<>Button<><>0<>0<><>::
+SongSelectionReturnButton.gd::GDScript::4939212929837783123::1786895817::0::1::::<>Button<><>0<>0<><>::
+Subnote.gd::GDScript::5526384449971267210::1786548945::0::1::::<>Node3D<><>0<>0<><>::
+::res://Scripts/Scenes/::1788322873
+MainMenu.gd::GDScript::5576007577269326327::1786895438::0::1::::<>Control<><>0<>0<><>::
+Results.gd::GDScript::5489382574744006323::1787596017::0::1::::<>Control<><>0<>0<><>::
+SongSelect.gd::GDScript::529674520753486575::1788322873::0::1::::<>Control<><>0<>0<><>::

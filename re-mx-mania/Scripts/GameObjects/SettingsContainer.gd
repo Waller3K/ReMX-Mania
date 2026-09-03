@@ -12,6 +12,8 @@ extends VBoxContainer
 
 @export var actionList : VBoxContainer
 
+@export var debugModeToggle : CheckButton
+
 @onready var InputButtonScene = preload("res://Scenes/GameObjects/InputButton.tscn")
 
 ## Are we currently remapping a keybind?
@@ -40,6 +42,7 @@ func _ready():
 	sfxSlider.value = db_to_linear(GlobalStates.sfxVolumeDB)
 	scrollSpeedBox.value = GlobalStates.scrollSpd
 	offsetBox.value = GlobalStates.globalOffset
+	debugModeToggle.button_pressed = GlobalStates.isDebug
 	createActionList()
 	
 	# Connecting signals
@@ -48,6 +51,7 @@ func _ready():
 	returnButton.pressed.connect(_onReturn)
 	scrollSpeedBox.value_changed.connect(_onScrollSpeedChange)
 	offsetBox.value_changed.connect(_onOffsetChange)
+	debugModeToggle.pressed.connect(_onDebugToggle)
 
 ## Creates an a list of action remap buttons from the actions in the actionDict
 func createActionList():
@@ -103,6 +107,9 @@ func _input(event: InputEvent) -> void:
 		
 		accept_event()
 		
+
+func _onDebugToggle():
+	GlobalStates.isDebug = !GlobalStates.isDebug
 
 func _onOffsetChange(newOffset: float):
 	GlobalStates.globalOffset = newOffset

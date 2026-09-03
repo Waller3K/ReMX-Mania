@@ -44,7 +44,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SettingsContainer" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer" unique_id=20065681 node_paths=PackedStringArray("musicSlider", "sfxSlider", "offsetBox", "scrollSpeedBox", "returnButton", "actionList")]
+[node name="SettingsContainer" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer" unique_id=20065681 node_paths=PackedStringArray("musicSlider", "sfxSlider", "offsetBox", "scrollSpeedBox", "returnButton", "actionList", "debugModeToggle")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_8uw7q")
@@ -54,6 +54,7 @@ offsetBox = NodePath("OffsetSetting/SpinBox")
 scrollSpeedBox = NodePath("ScrollSpeedSetting/SpinBox")
 returnButton = NodePath("Return")
 actionList = NodePath("ScrollContainer/ActionList")
+debugModeToggle = NodePath("DebugModeSetting/CheckButton")
 
 [node name="VolumeLabel" type="Label" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=42826813]
 layout_mode = 2
@@ -120,6 +121,17 @@ min_value = 1.0
 max_value = 10.0
 step = 0.25
 value = 1.0
+
+[node name="DebugModeSetting" type="HBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=160787830]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/DebugModeSetting" unique_id=149249945]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Debug Mode"
+
+[node name="CheckButton" type="CheckButton" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/DebugModeSetting" unique_id=1396871269]
+layout_mode = 2
 
 [node name="InputLabel" type="Label" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=710912777]
 layout_mode = 2
