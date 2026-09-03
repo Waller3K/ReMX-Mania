@@ -41,7 +41,7 @@ var fourXBoundary 	: int 	= 50
 ## audio delay.
 var globalOffset : float = 0.0
 
-var scrollSpd : float = 2.0
+var scrollSpd : float = 3.0
 
 var musicVolumeDB : float = 0.0
 var sfxVolumeDB : float = 0.0
