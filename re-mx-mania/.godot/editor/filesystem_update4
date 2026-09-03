@@ -1,3 +1,4 @@
 res://default_bus_layout.tres
 res://Scenes/GameObjects/chartPathEdit.tscn
 res://Scripts/Autoloads/GlobalStates.gd
+res://Scripts/Components/NoteManager.gd
