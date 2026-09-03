@@ -1,4 +1,7 @@
 res://default_bus_layout.tres
 res://Scenes/SongSelect.tscn
+res://Scripts/Scenes/SongSelect.gd
 res://Scenes/SettingsMenu.tscn
 res://Scripts/GameObjects/SettingsContainer.gd
+res://Scenes/GameObjects/chartPathEdit.tscn
+res://Scripts/Autoloads/GlobalStates.gd

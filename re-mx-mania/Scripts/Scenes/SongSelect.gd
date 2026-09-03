@@ -12,6 +12,7 @@ func _ready() -> void:
 func loadCharts() -> void:
 	# Iterates through the chart directories (Specified in the options menu)
 	for chartDir : String in GlobalStates.chartDirectories:
+		
 		# Opens the file directory
 		var openDir := DirAccess.open(chartDir)
 		

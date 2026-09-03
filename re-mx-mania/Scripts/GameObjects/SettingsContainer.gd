@@ -14,7 +14,11 @@ extends VBoxContainer
 
 @export var debugModeToggle : CheckButton
 
+@export var chartPathEditTextbox : TextEdit
+
 @onready var InputButtonScene = preload("res://Scenes/GameObjects/InputButton.tscn")
+
+@onready var ChartPathEditScene = preload("res://Scenes/GameObjects/chartPathEdit.tscn")
 
 ## Are we currently remapping a keybind?
 var isRemapping = false
@@ -44,6 +48,7 @@ func _ready():
 	offsetBox.value = GlobalStates.globalOffset
 	debugModeToggle.button_pressed = GlobalStates.isDebug
 	createActionList()
+	chartPathEditTextbox.text = GlobalStates.chartDirectories[0]
 	
 	# Connecting signals
 	musicSlider.value_changed.connect(_onVolumeChange.bind(0))
@@ -52,6 +57,11 @@ func _ready():
 	scrollSpeedBox.value_changed.connect(_onScrollSpeedChange)
 	offsetBox.value_changed.connect(_onOffsetChange)
 	debugModeToggle.pressed.connect(_onDebugToggle)
+	chartPathEditTextbox.text_changed.connect(_onPathChange)
+
+func _onPathChange(path : String):
+	GlobalStates.chartDirectories[0] = path
+	print(path)
 
 ## Creates an a list of action remap buttons from the actions in the actionDict
 func createActionList():

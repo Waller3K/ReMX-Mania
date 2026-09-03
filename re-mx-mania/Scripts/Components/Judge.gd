@@ -119,7 +119,7 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 		return track.nextNoteIndex
 	
 	# Checks if the current index is out of bounds
-	if track.nextNoteIndex > notes[inputIndex].size() - 1:
+	if track.nextNoteIndex > notes[inputIndex].size():
 		track.ended = true
 		return track.nextNoteIndex
 	
@@ -135,7 +135,7 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 	var isHold = "End" in currentNote
 	
 	# Checks if this is the last note in the track
-	if track.nextNoteIndex == notes[inputIndex].size() - 1 and !isHold:
+	if track.nextNoteIndex == notes[inputIndex].size() and !isHold:
 		track.ended = true
 	
 	# Hold Tail Judgement Section
@@ -184,7 +184,7 @@ func judge(inputTime: float, inputIndex: int, input: bool) -> int:
 		
 		track.isActive = false
 		
-		if track.nextNoteIndex == notes[inputIndex].size() - 1:
+		if track.nextNoteIndex == notes[inputIndex].size():
 			track.ended = true
 		
 		return track.nextNoteIndex if track.ended else track.nextNoteIndex + 1

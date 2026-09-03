@@ -1,0 +1,93 @@
+{
+	"Metadata": {
+		"Artist": "Waller3K",
+		"BGMPath": "BGM_Track.ogg",
+		"BPM": 120.0,
+		"Charter": "Waller3K",
+		"Difficulty": 10.0,
+		"DifficultyName": "Easy",
+		"ScratchPath": "Scratch_Track.ogg",
+		"Title": "Igaku",
+		"Track1Path": "Track_1.ogg",
+		"Track2Path": "Track_2.ogg",
+		"Track3Path": "Track_3.ogg",
+		"Track4Path": "Track_4.ogg",
+		"Preview" : 10.0,
+		"TrackCount": 2
+	},
+	"Notes": {
+		"Track FX": [
+			{
+				"Effect": 1,
+				"End": 1.5,
+				"Pos": 0.0
+			},
+			{
+				"Effect": 2,
+				"End": 17.75,
+				"Pos": 17.5
+			}
+		],
+		"Scratch Track": [
+			{
+				"End": 1.75,
+				"Pos": 1.5,
+				"Subnotes" : [
+					{
+						"Pos" : 1.5,
+						"Type" : 0
+					},
+					{
+						"Pos" : 1.625,
+						"Type" : 0
+					},
+					{
+						"Pos" : 1.75,
+						"Type" : 0
+					},
+				]
+			},
+			{
+				"End": 10.0,
+				"Pos": 9.625,
+				"Subnotes" : [
+					{
+						"Pos" : 9.625,
+						"Type" : 0
+					},
+					{
+						"Pos" : 9.75,
+						"Type" : 0
+					},
+					{
+						"Pos" : 9.875,
+						"Type" : 0
+					}
+				]
+			}
+		],
+		"Track 1": [
+			{
+				"Pos": 2.0
+			},
+			{
+				"Pos": 3.0
+			},
+			{
+				"Pos" : 7.0
+			}
+		],
+		"Track 2": [
+			{
+				"Pos" : 3.5
+			},
+			{
+				"Pos" : 4.0
+			},
+			{
+				"Pos" : 4.5,
+				"End" : 5.0
+			}
+		]
+	}
+}

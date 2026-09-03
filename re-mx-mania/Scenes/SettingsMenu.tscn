@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0mf5idkmiw1w" path="res://Scripts/GameObjects/SettingsContainer.gd" id="1_8uw7q"]
 [ext_resource type="PackedScene" uid="uid://soq1j3hibodl" path="res://Scenes/GameObjects/InputButton.tscn" id="2_bxjf0"]
+[ext_resource type="PackedScene" uid="uid://dj3pvguxfhw68" path="res://Scenes/GameObjects/chartPathEdit.tscn" id="3_4hfd5"]
 
 [node name="SettingsMenu" type="Control" unique_id=605059777]
 layout_mode = 3
@@ -44,7 +45,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SettingsContainer" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer" unique_id=20065681 node_paths=PackedStringArray("musicSlider", "sfxSlider", "offsetBox", "scrollSpeedBox", "returnButton", "actionList", "debugModeToggle")]
+[node name="SettingsContainer" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer" unique_id=20065681 node_paths=PackedStringArray("musicSlider", "sfxSlider", "offsetBox", "scrollSpeedBox", "returnButton", "actionList", "debugModeToggle", "chartPathEditTextbox")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_8uw7q")
@@ -53,8 +54,9 @@ sfxSlider = NodePath("SFXVolumeSetting2/Slider")
 offsetBox = NodePath("OffsetSetting/SpinBox")
 scrollSpeedBox = NodePath("ScrollSpeedSetting/SpinBox")
 returnButton = NodePath("Return")
-actionList = NodePath("ScrollContainer/ActionList")
+actionList = NodePath("ActionRemapperScroll/ActionList")
 debugModeToggle = NodePath("DebugModeSetting/CheckButton")
+chartPathEditTextbox = NodePath("ChartDirectories/PathList/ChartPathEdit")
 
 [node name="VolumeLabel" type="Label" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=42826813]
 layout_mode = 2
@@ -137,15 +139,30 @@ layout_mode = 2
 layout_mode = 2
 text = "InputMapping"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=414881020]
+[node name="ActionRemapperScroll" type="ScrollContainer" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=414881020]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 
-[node name="ActionList" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/ScrollContainer" unique_id=1375484833]
+[node name="ActionList" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/ActionRemapperScroll" unique_id=1375484833]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InputButton" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/ScrollContainer/ActionList" unique_id=1508352493 instance=ExtResource("2_bxjf0")]
+[node name="InputButton" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/ActionRemapperScroll/ActionList" unique_id=1508352493 instance=ExtResource("2_bxjf0")]
+layout_mode = 2
+
+[node name="DirectoriesLabel" type="Label" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=1708016841]
+layout_mode = 2
+text = "Chart Directories"
+
+[node name="ChartDirectories" type="ScrollContainer" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=1791277927]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="PathList" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/ChartDirectories" unique_id=1775194232]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChartPathEdit" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/ChartDirectories/PathList" unique_id=1610962041 instance=ExtResource("3_4hfd5")]
 layout_mode = 2
 
 [node name="Return" type="Button" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=702958336]

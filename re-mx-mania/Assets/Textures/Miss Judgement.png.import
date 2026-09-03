@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7diedqu0j608"
 path.s3tc="res://.godot/imported/Miss Judgement.png-244aecf1ee64f33ca56f472c0b1d0f14.s3tc.ctex"
+path.etc2="res://.godot/imported/Miss Judgement.png-244aecf1ee64f33ca56f472c0b1d0f14.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Miss Judgement.png"
-dest_files=["res://.godot/imported/Miss Judgement.png-244aecf1ee64f33ca56f472c0b1d0f14.s3tc.ctex"]
+dest_files=["res://.godot/imported/Miss Judgement.png-244aecf1ee64f33ca56f472c0b1d0f14.s3tc.ctex", "res://.godot/imported/Miss Judgement.png-244aecf1ee64f33ca56f472c0b1d0f14.etc2.ctex"]
 
 [params]
 
