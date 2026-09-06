@@ -12,9 +12,13 @@ extends VBoxContainer
 
 @export var actionList : VBoxContainer
 
+@export var pathList : VBoxContainer
+
 @export var debugModeToggle : CheckButton
 
-@export var chartPathEditTextbox : TextEdit
+@export var DirectoriesHeader : HBoxContainer
+
+@export var openDirFD : FileDialog
 
 @onready var InputButtonScene = preload("res://Scenes/GameObjects/InputButton.tscn")
 
@@ -47,8 +51,9 @@ func _ready():
 	scrollSpeedBox.value = GlobalStates.scrollSpd
 	offsetBox.value = GlobalStates.globalOffset
 	debugModeToggle.button_pressed = GlobalStates.isDebug
+	initDirHeader()
 	createActionList()
-	chartPathEditTextbox.text = GlobalStates.chartDirectories[0]
+	refreshPathList()
 	
 	# Connecting signals
 	musicSlider.value_changed.connect(_onVolumeChange.bind(0))
@@ -57,11 +62,12 @@ func _ready():
 	scrollSpeedBox.value_changed.connect(_onScrollSpeedChange)
 	offsetBox.value_changed.connect(_onOffsetChange)
 	debugModeToggle.pressed.connect(_onDebugToggle)
-	chartPathEditTextbox.text_changed.connect(_onPathChange)
 
-func _onPathChange(path : String):
-	GlobalStates.chartDirectories[0] = path
-	print(path)
+
+func initDirHeader():
+	var AddDirButton : Button = DirectoriesHeader.find_child("AddDirButton")
+	
+	AddDirButton.pressed.connect(_onAddDirButtonPressed)
 
 ## Creates an a list of action remap buttons from the actions in the actionDict
 func createActionList():
@@ -90,6 +96,52 @@ func createActionList():
 ## Updates the button text of the given button to the given event's name
 func updateActionList(button, event):
 	button.find_child("InputLabel").text = event.as_text().trim_suffix(" (Physical)")
+
+func refreshPathList():
+	# Clears the list of paths
+	for item in pathList.get_children():
+		item.queue_free()
+	
+	var itemIndex : int = 0
+	for path in GlobalStates.chartDirectories:
+		addPathItem(itemIndex, path)
+		itemIndex += 1
+
+## Called when a path textbox is manually edited!
+func _onPathTextChange(newPath : String, itemIndex : int):
+	GlobalStates.chartDirectories[itemIndex] = newPath
+
+func removePathItem(itemIndex : int):
+	GlobalStates.chartDirectories.remove_at(itemIndex)
+	# Refresh the path list
+	refreshPathList()
+
+## Takes in an index and the item's path and creates a new path item as a child of the pathList node
+func addPathItem(itemIndex : int, path : String):
+	var pathEdit = ChartPathEditScene.instantiate()
+	var lineEdit : LineEdit = pathEdit.find_child("LineEdit")
+	var changeButton : Button = pathEdit.find_child("ChangeButton")
+	var deleteButton : Button = pathEdit.find_child("DeleteButton")
+	
+	lineEdit.text = path
+	lineEdit.text_submitted.connect(_onPathTextChange.bind(itemIndex))
+	
+	changeButton.pressed.connect(_onChangeButtonPressed.bind(itemIndex))
+	deleteButton.pressed.connect(removePathItem.bind(itemIndex))
+	
+	pathList.add_child(pathEdit)
+
+func _onChangeButtonPressed(itemIndex : int):
+	openDirFD.visible = true
+	var newPath : String = await openDirFD.dir_selected
+	GlobalStates.chartDirectories[itemIndex] = newPath
+	refreshPathList()
+
+func _onAddDirButtonPressed():
+	openDirFD.visible = true
+	var newPath : String = await openDirFD.dir_selected
+	GlobalStates.chartDirectories.push_back(newPath)
+	refreshPathList() 
 
 func _onInputButtonPressed(button, action):
 	if !isRemapping:

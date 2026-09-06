@@ -203,4 +203,3 @@ func _onScratchHit(judgement: int, offset: float, noteIndex: int, subnoteIndex: 
 			hitNote.deactivate()
 			inactiveSubnotes.push_front(hitNote)
 			activeSubnotes.erase(hitNote)
-## すみまsorry broski

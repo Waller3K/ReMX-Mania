@@ -45,7 +45,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SettingsContainer" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer" unique_id=20065681 node_paths=PackedStringArray("musicSlider", "sfxSlider", "offsetBox", "scrollSpeedBox", "returnButton", "actionList", "debugModeToggle", "chartPathEditTextbox")]
+[node name="SettingsContainer" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer" unique_id=20065681 node_paths=PackedStringArray("musicSlider", "sfxSlider", "offsetBox", "scrollSpeedBox", "returnButton", "actionList", "pathList", "debugModeToggle", "DirectoriesHeader", "openDirFD")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_8uw7q")
@@ -55,8 +55,10 @@ offsetBox = NodePath("OffsetSetting/SpinBox")
 scrollSpeedBox = NodePath("ScrollSpeedSetting/SpinBox")
 returnButton = NodePath("Return")
 actionList = NodePath("ActionRemapperScroll/ActionList")
+pathList = NodePath("ChartDirectories/PathList")
 debugModeToggle = NodePath("DebugModeSetting/CheckButton")
-chartPathEditTextbox = NodePath("ChartDirectories/PathList/ChartPathEdit")
+DirectoriesHeader = NodePath("DirectoriesHeader")
+openDirFD = NodePath("../../../../OpenDirDialogue")
 
 [node name="VolumeLabel" type="Label" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=42826813]
 layout_mode = 2
@@ -150,9 +152,20 @@ size_flags_horizontal = 3
 [node name="InputButton" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/ActionRemapperScroll/ActionList" unique_id=1508352493 instance=ExtResource("2_bxjf0")]
 layout_mode = 2
 
-[node name="DirectoriesLabel" type="Label" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=1708016841]
+[node name="DirectoriesHeader" type="HBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=2103071358]
+layout_mode = 2
+
+[node name="DirectoriesLabel" type="Label" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/DirectoriesHeader" unique_id=1708016841]
 layout_mode = 2
 text = "Chart Directories"
+
+[node name="Spacer" type="Control" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/DirectoriesHeader" unique_id=1036790838]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddDirButton" type="Button" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/DirectoriesHeader" unique_id=521481041]
+layout_mode = 2
+text = "Add Directory"
 
 [node name="ChartDirectories" type="ScrollContainer" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=1791277927]
 custom_minimum_size = Vector2(0, 200)
@@ -168,3 +181,11 @@ layout_mode = 2
 [node name="Return" type="Button" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=702958336]
 layout_mode = 2
 text = "Return"
+
+[node name="OpenDirDialogue" type="FileDialog" parent="." unique_id=732266770]
+oversampling_override = 1.0
+title = "Open Chart Directory"
+initial_position = 2
+file_mode = 2
+display_mode = 1
+access = 2

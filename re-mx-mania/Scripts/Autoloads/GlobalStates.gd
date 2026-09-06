@@ -57,7 +57,7 @@ var streamDBOffset : float = 10.0
 var currentResults : Results
 
 var chartDirectories : Array[String] = [
-	"res://Charts"
+	"C:/Users/waltl/Desktop/Code_n_stuff/Godot/Projects/ReMX Mania/re-mx-mania/Charts"
 ]
 
 # An array of non FC grades that 
