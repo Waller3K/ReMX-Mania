@@ -3,3 +3,7 @@ res://Scenes/GameObjects/chartPathEdit.tscn
 res://Scripts/GameObjects/SettingsContainer.gd
 res://Scenes/SettingsMenu.tscn
 res://Scripts/Autoloads/GlobalStates.gd
+res://Scripts/Scenes/MainMenu.gd
+res://Scripts/Components/Audio.gd
+res://Scenes/SongSelect.tscn
+res://Scripts/Scenes/SongSelect.gd

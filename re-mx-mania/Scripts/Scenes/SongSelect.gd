@@ -6,6 +6,26 @@ extends Control
 
 var activeChartList : Node
 
+## A helperfunction that is used to load the correct AudioStream type depending on the file type!
+## Supports : .Ogg, .Mp3, and .wav
+func loadRawAudio(path : String) -> AudioStream:
+	# Returns the file extension in all lowercase so if it was OGG or Ogg it would 
+	# resolve down to ogg
+	var extension = path.get_extension().to_lower()
+	var audioStream : AudioStream
+	
+	if extension == "mp3":
+		audioStream = AudioStreamMP3.load_from_file(path)
+	elif extension == "ogg":
+		audioStream = AudioStreamOggVorbis.load_from_file(path)
+	elif extension == "wav":
+		audioStream = AudioStreamWAV.load_from_file(path)
+	else:
+		push_error("Error unsuported audio type: " + path)
+		return null
+	
+	return audioStream
+
 func _ready() -> void:
 	loadCharts()
 
@@ -82,14 +102,14 @@ func toggleCharts(chartList : Node, chartData: Chart):
 	if chartList.getIsOpen() == true:
 		for i in range(4):
 			var streamPath = getAbsolutePath(chartData.getPath(), chartData.trackPaths[i])
-			syncStream.set_sync_stream(i, load(streamPath))
+			syncStream.set_sync_stream(i, loadRawAudio(streamPath))
 			syncStream.set_sync_stream_volume(i, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 		
 		
-		syncStream.set_sync_stream(4, load(getAbsolutePath(chartData.getPath(), chartData.BGMPath)))
+		syncStream.set_sync_stream(4, loadRawAudio(getAbsolutePath(chartData.getPath(), chartData.BGMPath)))
 		syncStream.set_sync_stream_volume(4, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 		
-		syncStream.set_sync_stream(5, load(getAbsolutePath(chartData.getPath(), chartData.scratchTrackPath)))
+		syncStream.set_sync_stream(5, loadRawAudio(getAbsolutePath(chartData.getPath(), chartData.scratchTrackPath)))
 		syncStream.set_sync_stream_volume(5, GlobalStates.musicVolumeDB - GlobalStates.streamDBOffset)
 		
 		previewPlayer.stream = syncStream

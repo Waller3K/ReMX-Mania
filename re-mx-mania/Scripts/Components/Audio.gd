@@ -30,11 +30,31 @@ signal songUpdate(songPosition: float)
 signal chartEnded()
 
 
-# Takes in the chart's path, and the given relative path, and returns the final joined path.
+## Takes in the chart's path, and the given relative path, and returns the final joined path.
 func getAbsolutePath(chartPath: String, relativePath: String) -> String:
 	var baseDir : String = chartPath.get_base_dir()
 	var finalPath = baseDir.path_join(relativePath)
 	return finalPath.simplify_path()
+
+## A helperfunction that is used to load the correct AudioStream type depending on the file type!
+## Supports : .Ogg, .Mp3, and .wav
+func loadRawAudio(path : String) -> AudioStream:
+	# Returns the file extension in all lowercase so if it was OGG or Ogg it would 
+	# resolve down to ogg
+	var extension = path.get_extension().to_lower()
+	var audioStream : AudioStream
+	
+	if extension == "mp3":
+		audioStream = AudioStreamMP3.load_from_file(path)
+	elif extension == "ogg":
+		audioStream = AudioStreamOggVorbis.load_from_file(path)
+	elif extension == "wav":
+		audioStream = AudioStreamWAV.load_from_file(path)
+	else:
+		push_error("Error unsuported audio type: " + path)
+		return null
+	
+	return audioStream
 
 func setTrackVolume(trackID : int, mute : bool):
 	var streamIndex : int
@@ -70,7 +90,7 @@ func _onChartCreated(chart: Chart) -> void:
 	for i in 4 :
 		syncStream.set_sync_stream(
 			i, 
-			load(getAbsolutePath(
+			loadRawAudio(getAbsolutePath(
 					chart.getPath(), 
 					chart.trackPaths[i])
 				)
@@ -79,7 +99,7 @@ func _onChartCreated(chart: Chart) -> void:
 	
 	syncStream.set_sync_stream(
 		4, 
-		load(getAbsolutePath(
+		loadRawAudio(getAbsolutePath(
 				chart.getPath(), 
 				chart.scratchTrackPath)
 			)
@@ -88,7 +108,7 @@ func _onChartCreated(chart: Chart) -> void:
 	
 	syncStream.set_sync_stream(
 		5, 
-		load(getAbsolutePath(
+		loadRawAudio(getAbsolutePath(
 				chart.getPath(), 
 				chart.BGMPath)
 			)

@@ -1,5 +1,10 @@
 extends Node
 
+## The origin where the default charts come from
+const DEFAULT_CHART_SOURCE : String = "res://Charts/"
+## The default chart directory that resides in the 
+## OS's AppData folder. 
+const CHARTS_DEST : String = "user://Charts"
 ## The number of note object in the note spawn pool
 const 	NOTE_POOL_SIZE	: 	int 	= 50
 ## The maximum number of tracks allowed in the game
@@ -57,7 +62,7 @@ var streamDBOffset : float = 10.0
 var currentResults : Results
 
 var chartDirectories : Array[String] = [
-	"C:/Users/waltl/Desktop/Code_n_stuff/Godot/Projects/ReMX Mania/re-mx-mania/Charts"
+	CHARTS_DEST
 ]
 
 # An array of non FC grades that 
