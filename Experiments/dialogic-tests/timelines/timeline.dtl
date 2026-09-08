@@ -1,0 +1,16 @@
+characterTest: yo!
+label go back
+characterTest: whats up?
+[text_input var="response"]
+if {response} == "...":
+	characterTest: mm? okay...
+	characterTest: anyways...
+	[wait time="3.0"]
+	jump go back
+if {response} == "hehe":
+	characterTest: huh??
+	characterTest: next
+	- custom styles
+		characterTest: ya ya
+	- sigals
+		cool
