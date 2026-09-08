@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://p00njp63vq53"]
+
+[node name="ReMxEditorScene" type="Control" unique_id=968586156]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1692157489]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=293593357]
+layout_mode = 2
+
+[node name="TopPanel" type="Panel" parent="MarginContainer/VBoxContainer" unique_id=1345139196]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer" unique_id=1276487915]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=392069253]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FoldableContainer2" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=93072432]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -232.0
+offset_right = 304.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NoteTypePanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2" unique_id=1697349847]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+
+[node name="FoldableContainer" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1328238838]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -316.0
+offset_right = 308.0
+offset_bottom = 316.0
+grow_vertical = 2
+
+[node name="InspectorPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer" unique_id=348943610]
+custom_minimum_size = Vector2(300, 600)
+layout_mode = 2
+
+[node name="GameplayPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1831695593]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel" unique_id=243511503]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer" unique_id=1471127580]
+layout_mode = 2
+
+[node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/HBoxContainer" unique_id=1583531302]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/HBoxContainer" unique_id=1652952374]
+layout_mode = 2
+
+[node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" unique_id=918801173]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,8 +1,13 @@
 3e2cc9f74922c2592e3236b3f5b5179c
-::res://::1788740718
+::res://::1788811770
 default_bus_layout.tres::AudioBusLayout::6947520054032327590::1788717869::0::1::::<><><>0<>0<><>::
 export_presets.cfg::TextFile::-1::1788740718::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::5603300852668577369::1778591865::1788550387::1::::<><><>0<>0<>4aac5d3884dedba9a7cc77d2fc320a37<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://addons/::1788748845
+::res://addons/ReMXEditor/::1788750479
+main.gd::GDScript::4932828353129657253::1788750226::0::1::::ReMXEditor<>EditorPlugin<><>0<>1<><>::
+plugin.cfg::TextFile::-1::1788749016::0::1::::<><><>0<>0<><>::
+ReMXEditorScene.tscn::PackedScene::1105983735890883424::1788750479::0::1::::<><><>0<>0<><>::
 ::res://Assets/::1785007550
 ::res://Assets/Materials/::1785277915
 FXNoteMaterial.tres::StandardMaterial3D::5426558776482212064::1785011190::0::1::::<><><>0<>0<><>::
@@ -44,7 +49,7 @@ Temp Combination Arrow.png::CompressedTexture2D::1576070765403664984::1785360068
 Temp Down Arrow.png::CompressedTexture2D::7869166847808386715::1785360068::1785360102::1::::<><><>0<>0<>ad2a8d2f830442d9da53fa709924a5a4<>res://.godot/imported/Temp Down Arrow.png-9d7f6c91018168c86cce666072583633.ctex::
 Temp Up Arrow.png::CompressedTexture2D::5639313644950169288::1785360068::1785360102::1::::<><><>0<>0<>9e4f4923b5588e189d367a5f6273c149<>res://.godot/imported/Temp Up Arrow.png-dd4f0ea9388951d09f35b7aed3b4027b.ctex::
 ::res://Charts/::1786753966
-::res://Charts/Igaku Test - Waller3K/::1788550286
+::res://Charts/Igaku Test - Waller3K/::1788740921
 BGM_Track.ogg::::4066361712325371132::1783887175::1788740921::0::::<><><>0<>0<>eee310571a4cbc4a9673c1f44f9e584b<>::
 Easy.json::JSON::-1::1788550286::0::1::::<><><>0<>0<><>::
 Expert.json::JSON::-1::1788550286::0::1::::<><><>0<>0<><>::
@@ -54,7 +59,7 @@ Track_1.ogg::::8508128847266177777::1783887170::1788740921::0::::<><><>0<>0<>eee
 Track_2.ogg::::6085913875551401031::1783887170::1788740921::0::::<><><>0<>0<>eee310571a4cbc4a9673c1f44f9e584b<>::
 Track_3.ogg::::2575713794542768414::1783887170::1788740921::0::::<><><>0<>0<>eee310571a4cbc4a9673c1f44f9e584b<>::
 Track_4.ogg::::4502037704473734531::1783887170::1788740921::0::::<><><>0<>0<>eee310571a4cbc4a9673c1f44f9e584b<>::
-::res://Charts/Scratch Test Chart/::1786759453
+::res://Charts/Scratch Test Chart/::1788740921
 BGM_Track.ogg::::7206861136943432021::1785293149::1788740921::0::::<><><>0<>0<>eee310571a4cbc4a9673c1f44f9e584b<>::
 Expert.json::JSON::-1::1786759453::0::1::::<><><>0<>0<><>::
 Scratch_Track.ogg::::5895911104842334385::1785292961::1788740921::0::::<><><>0<>0<>eee310571a4cbc4a9673c1f44f9e584b<>::
@@ -62,12 +67,12 @@ Track_1.ogg::::584260580029449746::1785292961::1788740921::0::::<><><>0<>0<>eee3
 Track_2.ogg::::3969843681815112230::1785292961::1788740921::0::::<><><>0<>0<>eee310571a4cbc4a9673c1f44f9e584b<>::
 Track_3.ogg::::4570973951602152438::1785292961::1788740921::0::::<><><>0<>0<>eee310571a4cbc4a9673c1f44f9e584b<>::
 Track_4.ogg::::9140519251010652066::1785292961::1788740921::0::::<><><>0<>0<>eee310571a4cbc4a9673c1f44f9e584b<>::
-::res://Scenes/::1788740646
+::res://Scenes/::1788750226
 ChartPlayer.tscn::PackedScene::5538786362363920892::1788452676::0::1::::<><><>0<>0<><>::uid://cv8okknape74n::::res://Scripts/GameObjects/InfoContainer.gd<>uid://c1od0h6m5hbjy::::res://Scripts/GameObjects/ScoreContainer.gd<>uid://rmwyx8je2wcv::::res://Scripts/Components/Composer.gd<>uid://c3ln82f48renc::::res://Scripts/Components/Audio.gd<>uid://bj4e13klm24ri::::res://Scripts/Components/Input.gd<>uid://dqda3qh26ho4p::::res://Scripts/Components/Judge.gd<>uid://dn71f65o0hyv4::::res://Scripts/Components/GameManager.gd<>uid://drdta1y1ly8so::::res://Scripts/Components/NoteManager.gd<>uid://nl75x2wcgsxu::::res://Scenes/GameObjects/MainNote.tscn<>uid://bjwngbwtxfho0::::res://Scenes/GameObjects/Subnote.tscn<>uid://c7eefjsuqi0px::::res://Assets/Textures/Record Texture.png<>uid://b63pg3r4aunfx::::res://Assets/Meshes/MainTrackMesh.tres<>uid://dl075op7bljat::::res://Scripts/GameObjects/noteButtonNode.gd<>uid://baq1i7u8rriqq::::res://Assets/Meshes/FXButtonMesh.tres<>uid://bjhd5eiot3vmv::::res://Scripts/GameObjects/GameButton.gd<>uid://bdbijs85vv8gh::::res://Assets/Meshes/NoteButtonMesh.tres<>uid://c1hjsygce82gi::::res://Assets/Meshes/ScratchTrackMesh.tres<>uid://qpshe4hmqvh2::::res://Assets/Textures/Record.png<>uid://cuwgkwvv5v555::::res://Scripts/GameObjects/RecordNode.gd<>uid://h857c3k62lnp::::res://Scripts/GameObjects/judgementSprite.gd
 MainMenu.tscn::PackedScene::1294102903157873390::1786989766::0::1::::<><><>0<>0<><>::uid://clpcba3lpb6bb::::res://Scripts/Scenes/MainMenu.gd
 Results.tscn::PackedScene::5252934194898691563::1788452676::0::1::::<><><>0<>0<><>::uid://cl3jstvl5sw06::::res://icon.svg<>uid://ckhdlgk52nhyp::::res://Scripts/Scenes/Results.gd<>uid://cm8lpygcvg2ef::::res://Assets/Textures/F.png<>uid://cdpugkembo16x::::res://Scripts/GameObjects/RetryButton.gd<>uid://b1gi5awpv1dbq::::res://Assets/Textures/D.png<>uid://d1m61bgbi0p43::::res://Scripts/GameObjects/ReturnButton.gd<>uid://h0x7tcrv18b7::::res://Assets/Textures/C.png<>uid://ch8y4nugn3f3n::::res://Assets/Textures/CC.png<>uid://c8v6v6xb1engc::::res://Assets/Textures/B.png<>uid://dpfibbf3qvyof::::res://Assets/Textures/BB.png<>uid://cniy6xl47d7f8::::res://Assets/Textures/BBB.png<>uid://btes8wycemn77::::res://Assets/Textures/A.png<>uid://o0051cxysvl0::::res://Assets/Textures/AA.png<>uid://dxn27bnqxb8vh::::res://Assets/Textures/AAA.png<>uid://bd75acu0caklg::::res://Assets/Textures/S.png<>uid://dy30qdtmx14dc::::res://Assets/Textures/SS.png<>uid://dfmfiv4kggrxj::::res://Assets/Textures/SSS.png<>uid://c3rmp0p3d81gr::::res://Assets/Textures/SSS+.png
-SettingsMenu.tscn::PackedScene::6004088636091029768::1788740646::0::1::::<><><>0<>0<><>::uid://d0mf5idkmiw1w::::res://Scripts/GameObjects/SettingsContainer.gd<>uid://soq1j3hibodl::::res://Scenes/GameObjects/InputButton.tscn<>uid://dj3pvguxfhw68::::res://Scenes/GameObjects/chartPathEdit.tscn
-SongSelect.tscn::PackedScene::5174616989704729691::1788550286::0::1::::<><><>0<>0<><>::uid://hstwric4r3ol::::res://Scripts/Scenes/SongSelect.gd<>uid://begup3iijuaaf::::res://Scenes/GameObjects/SongSelectButton.tscn<>uid://sft4lfaql1cx::::res://Scenes/GameObjects/ChartList.tscn<>uid://ccmud6k12ls7d::::res://Scripts/GameObjects/SongSelectionReturnButton.gd
+SettingsMenu.tscn::PackedScene::6004088636091029768::1788743413::0::1::::<><><>0<>0<><>::uid://d0mf5idkmiw1w::::res://Scripts/GameObjects/SettingsContainer.gd<>uid://soq1j3hibodl::::res://Scenes/GameObjects/InputButton.tscn<>uid://dj3pvguxfhw68::::res://Scenes/GameObjects/chartPathEdit.tscn
+SongSelect.tscn::PackedScene::5174616989704729691::1788750226::0::1::::<><><>0<>0<><>::uid://hstwric4r3ol::::res://Scripts/Scenes/SongSelect.gd<>uid://begup3iijuaaf::::res://Scenes/GameObjects/SongSelectButton.tscn<>uid://sft4lfaql1cx::::res://Scenes/GameObjects/ChartList.tscn<>uid://ccmud6k12ls7d::::res://Scripts/GameObjects/SongSelectionReturnButton.gd
 ::res://Scenes/GameObjects/::1788718540
 ChartList.tscn::PackedScene::1274927070643404123::1786816960::0::1::::<><><>0<>0<><>::uid://8dh1bxs1rejk::::res://Scripts/GameObjects/ChartList.gd
 chartPathEdit.tscn::PackedScene::7849712824586955391::1788718540::0::1::::<><><>0<>0<><>::
@@ -76,16 +81,16 @@ MainNote.tscn::PackedScene::937160890924034234::1785278180::0::1::::<><><>0<>0<>
 SongSelectButton.tscn::PackedScene::2680804934922027829::1786754062::0::1::::<><><>0<>0<><>::uid://dts2u64fkwemj::::res://Scripts/GameObjects/SongSelectButton.gd
 Subnote.tscn::PackedScene::3064336710097362185::1785264446::0::1::::<><><>0<>0<><>::uid://ck0a0ku5jybo1::::res://Scripts/GameObjects/Subnote.gd<>uid://wppwjpr77jrs::::res://Assets/Textures/Temp Combination Arrow.png<>uid://cmlyw3ve8cb0s::::res://Assets/Textures/Temp Up Arrow.png<>uid://dkd5a7xwtxfxr::::res://Assets/Textures/Temp Down Arrow.png
 ::res://Scripts/::1786641244
-::res://Scripts/Autoloads/::1788740646
+::res://Scripts/Autoloads/::1788741139
 GlobalEnums.gd::GDScript::887861232558932565::1786736600::0::1::::<>Node<><>0<>0<><>::
-GlobalStates.gd::GDScript::738684584467761941::1788740646::0::1::::<>Node<><>0<>0<><>::
+GlobalStates.gd::GDScript::738684584467761941::1788741139::0::1::::<>Node<><>0<>0<><>::
 SceneManager.gd::GDScript::8385702980914259962::1788452676::0::1::::<>Node<><>0<>0<><>::
 ::res://Scripts/Classes/::1788452676
 ChartClass.gd::GDScript::4380945922393844680::1787067917::0::1::::Chart<>Resource<><>0<>0<><>::
 ResultsClass.gd::GDScript::4552571598987958923::1788452676::0::1::::Results<>Resource<><>0<>0<><>::
 TrackStateClass.gd::GDScript::1046306882035410449::1786462570::0::1::::TrackState<>Resource<><>0<>0<><>::
-::res://Scripts/Components/::1788550567
-Audio.gd::GDScript::6761686823867467588::1788452676::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
+::res://Scripts/Components/::1788743413
+Audio.gd::GDScript::6761686823867467588::1788743413::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
 Composer.gd::GDScript::1219362767220797481::1786817906::0::1::::<>Node<><>0<>0<><>::
 GameManager.gd::GDScript::8139366352522884431::1787097502::0::1::::<>Node<><>0<>0<><>::
 Input.gd::GDScript::3078278016534488374::1786400680::0::1::::<>Node<><>0<>0<><>::
@@ -106,7 +111,7 @@ SettingsContainer.gd::GDScript::8939113259151754722::1788735419::0::1::::<>VBoxC
 SongSelectButton.gd::GDScript::8531685627722379617::1786759767::0::1::::<>Button<><>0<>0<><>::
 SongSelectionReturnButton.gd::GDScript::4939212929837783123::1786989766::0::1::::<>Button<><>0<>0<><>::
 Subnote.gd::GDScript::5526384449971267210::1785264670::0::1::::<>Node3D<><>0<>0<><>::
-::res://Scripts/Scenes/::1788740297
-MainMenu.gd::GDScript::5576007577269326327::1788740297::0::1::::<>Control<><>0<>0<><>::
+::res://Scripts/Scenes/::1788743721
+MainMenu.gd::GDScript::5576007577269326327::1788741106::0::1::::<>Control<><>0<>0<><>::
 Results.gd::GDScript::5489382574744006323::1787194034::0::1::::<>Control<><>0<>0<><>::
-SongSelect.gd::GDScript::529674520753486575::1788550286::0::1::::<>Control<><>0<>0<><>::
+SongSelect.gd::GDScript::529674520753486575::1788743721::0::1::::<>Control<><>0<>0<><>::
