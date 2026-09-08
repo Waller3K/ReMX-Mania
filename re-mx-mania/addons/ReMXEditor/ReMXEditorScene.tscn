@@ -35,7 +35,38 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="GameplayPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1831695593]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_right = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel" unique_id=243511503]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer" unique_id=1471127580]
+layout_mode = 2
+
+[node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/HBoxContainer" unique_id=1583531302]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/HBoxContainer" unique_id=1652952374]
+layout_mode = 2
+
 [node name="FoldableContainer2" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=93072432]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -64,34 +95,6 @@ grow_vertical = 2
 
 [node name="InspectorPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer" unique_id=348943610]
 custom_minimum_size = Vector2(300, 600)
-layout_mode = 2
-
-[node name="GameplayPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1831695593]
-custom_minimum_size = Vector2(700, 0)
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel" unique_id=243511503]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer" unique_id=1471127580]
-layout_mode = 2
-
-[node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/HBoxContainer" unique_id=1583531302]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/HBoxContainer" unique_id=1652952374]
 layout_mode = 2
 
 [node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800]
