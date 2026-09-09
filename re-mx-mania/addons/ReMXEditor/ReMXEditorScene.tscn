@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://p00njp63vq53"]
 
+[ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="1_15a65"]
+
 [node name="ReMxEditorScene" type="Control" unique_id=968586156]
 layout_mode = 3
 anchors_preset = 15
@@ -54,16 +56,93 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer" unique_id=1471127580]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer" unique_id=82924279]
 layout_mode = 2
 
-[node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/HBoxContainer" unique_id=1583531302]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer" unique_id=1471127580]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1218017839]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 5
+
+[node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1583531302]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/HBoxContainer" unique_id=1652952374]
+[node name="TrackContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainTracksPanel" unique_id=479589653]
+layout_mode = 0
+offset_right = 466.0
+offset_bottom = 804.0
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=856131702]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2" unique_id=1652952374]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="JudgementLine" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer" unique_id=622007578]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer" unique_id=207020433]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=763294683]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=662734478]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="MainButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer" unique_id=456009786]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="MainButton" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer/MainButtonContainer" unique_id=689775866]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.7193069, 0.38163018, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1984439040]
+layout_mode = 2
+
+[node name="LeftSpacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=855062538]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FXButton" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1610002639]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+color = Color(0.99999994, 0.17389718, 0.3145012, 1)
+
+[node name="RightSpacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1629209849]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=373478391]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer" unique_id=1513556859]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+texture = ExtResource("1_15a65")
+expand_mode = 2
 
 [node name="FoldableContainer2" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=93072432]
 visible = false
@@ -84,6 +163,7 @@ custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 
 [node name="FoldableContainer" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1328238838]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
