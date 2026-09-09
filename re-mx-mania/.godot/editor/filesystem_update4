@@ -1,2 +1,6 @@
 res://default_bus_layout.tres
 res://addons/ReMXEditor/ReMXEditorScene.tscn
+res://addons/ReMXEditor/main.gd
+res://addons/ReMXEditor/Scripts/Autoloads/globalVariables.gd
+res://addons/ReMXEditor/Scripts/Objects/songInfoPanel.gd
+res://Scripts/Classes/ChartClass.gd

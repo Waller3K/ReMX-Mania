@@ -1,14 +1,17 @@
 [gd_scene format=3 uid="uid://p00njp63vq53"]
 
 [ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="1_15a65"]
+[ext_resource type="Script" uid="uid://cvu7v8sn7on2u" path="res://addons/ReMXEditor/Scripts/Objects/songInfoPanel.gd" id="2_nuc7v"]
 
-[node name="ReMxEditorScene" type="Control" unique_id=968586156]
+[node name="ReMXEditorScene" type="Control" unique_id=968586156]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1692157489]
 layout_mode = 1
@@ -37,19 +40,22 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GameplayPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1831695593]
-custom_minimum_size = Vector2(700, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1275599094]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -350.0
-offset_right = 350.0
+offset_left = -300.0
+offset_right = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel" unique_id=243511503]
+[node name="GameplayPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer" unique_id=1831695593]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel" unique_id=243511503]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,134 +63,509 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer" unique_id=82924279]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer" unique_id=82924279]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer" unique_id=1471127580]
+[node name="TrackContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer" unique_id=1471127580]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1218017839]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer" unique_id=1218017839]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 0
 
-[node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1583531302]
+[node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer" unique_id=1583531302]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TrackContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainTracksPanel" unique_id=479589653]
-layout_mode = 0
-offset_right = 466.0
-offset_bottom = 804.0
+[node name="TrackContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel" unique_id=479589653]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=856131702]
+[node name="Track1" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel/TrackContainer" unique_id=911967863]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer" unique_id=856131702]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 10
 
-[node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2" unique_id=1652952374]
+[node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer2" unique_id=1652952374]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="JudgementLine" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer" unique_id=622007578]
+[node name="JudgementLine" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer" unique_id=622007578]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer" unique_id=207020433]
+[node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer" unique_id=207020433]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=763294683]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer" unique_id=763294683]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=662734478]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer" unique_id=662734478]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="MainButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer" unique_id=456009786]
+[node name="MainButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer" unique_id=456009786]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="MainButton" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer/MainButtonContainer" unique_id=689775866]
+[node name="MainButton1" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer/MainButtonContainer" unique_id=689775866]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7193069, 0.38163018, 1, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1984439040]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer" unique_id=1984439040]
 layout_mode = 2
 
-[node name="LeftSpacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=855062538]
+[node name="LeftSpacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/HBoxContainer" unique_id=855062538]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FXButton" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1610002639]
+[node name="FXButton" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/HBoxContainer" unique_id=1610002639]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 color = Color(0.99999994, 0.17389718, 0.3145012, 1)
 
-[node name="RightSpacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1629209849]
+[node name="RightSpacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/HBoxContainer" unique_id=1629209849]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=373478391]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer" unique_id=373478391]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_constants/margin_right = 10
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/GameplayPanel/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer" unique_id=1513556859]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/MarginContainer" unique_id=1513556859]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 texture = ExtResource("1_15a65")
 expand_mode = 2
 
+[node name="TimelinePanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer" unique_id=156214315]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
 [node name="FoldableContainer2" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=93072432]
 visible = false
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -304.0
-offset_top = -232.0
-offset_right = 304.0
-grow_horizontal = 2
+offset_left = -379.0
+offset_top = -632.0
+grow_horizontal = 0
 grow_vertical = 0
+title = "Note Type Pallete"
 
 [node name="NoteTypePanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2" unique_id=1697349847]
-custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 
 [node name="FoldableContainer" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1328238838]
 visible = false
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -316.0
-offset_right = 308.0
-offset_bottom = 316.0
-grow_vertical = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -639.0
+offset_right = 258.0
+grow_vertical = 0
+title = "Inspector"
 
 [node name="InspectorPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer" unique_id=348943610]
-custom_minimum_size = Vector2(300, 600)
+custom_minimum_size = Vector2(250, 600)
 layout_mode = 2
 
-[node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800]
+[node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800 node_paths=PackedStringArray("LoadChartButton", "NewChartButton", "SaveChartButton", "CloseChartButton")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+script = ExtResource("2_nuc7v")
+LoadChartButton = NodePath("ScrollContainer/VBoxContainer/LoadChartButton/Button")
+NewChartButton = NodePath("ScrollContainer/VBoxContainer/NewChartButton/Button")
+SaveChartButton = NodePath("ScrollContainer/VBoxContainer/SaveChartButton/Button")
+CloseChartButton = NodePath("ScrollContainer/VBoxContainer/CloseChartButton/Button")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" unique_id=918801173]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" unique_id=1612889656]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer" unique_id=918801173]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LoadChartButton" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1996646945]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/LoadChartButton" unique_id=1363304612]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/LoadChartButton" unique_id=990297633]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Load Chart"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/LoadChartButton" unique_id=889004273]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NewChartButton" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=177281196]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/NewChartButton" unique_id=1924701960]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/NewChartButton" unique_id=1095560596]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "New Chart"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/NewChartButton" unique_id=1712992801]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaveChartButton" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=432682105]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/SaveChartButton" unique_id=1588187261]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/SaveChartButton" unique_id=752225435]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Save Chart"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/SaveChartButton" unique_id=1675714819]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseChartButton" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1180267231]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/CloseChartButton" unique_id=2123157285]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/CloseChartButton" unique_id=1487643720]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Close Chart"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/CloseChartButton" unique_id=1354034289]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SectionSeperator" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1790837722]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+color = Color(0.30692267, 0.3069227, 0.3069227, 1)
+
+[node name="ChartMetadataLabel" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=398994620]
+layout_mode = 2
+text = "~Chart Metadata~"
+horizontal_alignment = 1
+
+[node name="SongTitleEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1694267006]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/SongTitleEdit" unique_id=1726421658]
+layout_mode = 2
+text = "Song Title"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/SongTitleEdit" unique_id=1885211608]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/SongTitleEdit" unique_id=608260463]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="SongTitleRomanizedEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1286179364]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/SongTitleRomanizedEdit" unique_id=678341534]
+layout_mode = 2
+text = "Song Title Romanized"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/SongTitleRomanizedEdit" unique_id=1404447008]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/SongTitleRomanizedEdit" unique_id=224334753]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="ArtistNameEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=748915625]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ArtistNameEdit" unique_id=538966814]
+layout_mode = 2
+text = "Artist"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ArtistNameEdit" unique_id=1586950831]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ArtistNameEdit" unique_id=530211476]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="ArtistNameRomanizedEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1731483958]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ArtistNameRomanizedEdit" unique_id=1250868495]
+layout_mode = 2
+text = "Artist Name Romanized"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ArtistNameRomanizedEdit" unique_id=1616899376]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ArtistNameRomanizedEdit" unique_id=751992443]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="ChaterEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1487948482]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ChaterEdit" unique_id=978827036]
+layout_mode = 2
+text = "Charter"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ChaterEdit" unique_id=1279475926]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ChaterEdit" unique_id=1785953429]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="DifficultyNameEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1817341559]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/DifficultyNameEdit" unique_id=221470837]
+layout_mode = 2
+text = "Difficulty Name"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/DifficultyNameEdit" unique_id=1139486227]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/DifficultyNameEdit" unique_id=827643767]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="DifficultyConstantBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=479876918]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/DifficultyConstantBox" unique_id=735610228]
+layout_mode = 2
+text = "Difficulty Constant"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/DifficultyConstantBox" unique_id=379911956]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/DifficultyConstantBox" unique_id=1444139148]
+layout_mode = 2
+
+[node name="StartingBPMBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=278958992]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/StartingBPMBox" unique_id=309231351]
+layout_mode = 2
+text = "Starting BPM"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/StartingBPMBox" unique_id=1053969469]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/StartingBPMBox" unique_id=979923355]
+layout_mode = 2
+
+[node name="PreviewTimestampBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1714542247]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/PreviewTimestampBox" unique_id=1308880286]
+layout_mode = 2
+text = "Preview Timestamp"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/PreviewTimestampBox" unique_id=1998220696]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/PreviewTimestampBox" unique_id=1565183635]
+layout_mode = 2
+
+[node name="TrackCountBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1240436709]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/TrackCountBox" unique_id=1556775052]
+layout_mode = 2
+text = "Track Count"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/TrackCountBox" unique_id=847054261]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/TrackCountBox" unique_id=1407304131]
+layout_mode = 2
+min_value = 2.0
+max_value = 4.0
+value = 2.0
+rounded = true
+
+[node name="BGMPathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1737222229]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/BGMPathEdit" unique_id=1861560194]
+layout_mode = 2
+text = "BGM Path"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/BGMPathEdit" unique_id=954434320]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/BGMPathEdit" unique_id=720063720]
+layout_mode = 2
+text = "Change"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/BGMPathEdit" unique_id=2077160418]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Path"
+
+[node name="ScratchPathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=673025308]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ScratchPathEdit" unique_id=1207682318]
+layout_mode = 2
+text = "Scratch Path"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ScratchPathEdit" unique_id=353512096]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ScratchPathEdit" unique_id=148774523]
+layout_mode = 2
+text = "Change"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/ScratchPathEdit" unique_id=425235473]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Path"
+
+[node name="Track1PathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=139963027]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track1PathEdit" unique_id=240728683]
+layout_mode = 2
+text = "Track 1 Path"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track1PathEdit" unique_id=1369907797]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track1PathEdit" unique_id=903259601]
+layout_mode = 2
+text = "Change"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track1PathEdit" unique_id=1599093545]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Path"
+
+[node name="Track2PathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=8798092]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track2PathEdit" unique_id=1182437744]
+layout_mode = 2
+text = "Track 2 Path"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track2PathEdit" unique_id=2089304695]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track2PathEdit" unique_id=993446452]
+layout_mode = 2
+text = "Change"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track2PathEdit" unique_id=1797191693]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Path"
+
+[node name="Track3PathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1212484327]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track3PathEdit" unique_id=137968698]
+layout_mode = 2
+text = "Track 3 Path"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track3PathEdit" unique_id=1686716679]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track3PathEdit" unique_id=1842024531]
+layout_mode = 2
+text = "Change"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track3PathEdit" unique_id=1596756542]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Path"
+
+[node name="Track4PathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer" unique_id=1439039313]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track4PathEdit" unique_id=1830572901]
+layout_mode = 2
+text = "Track 4 Path"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track4PathEdit" unique_id=866454029]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track4PathEdit" unique_id=1008604137]
+layout_mode = 2
+text = "Change"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/VBoxContainer/Track4PathEdit" unique_id=113867129]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Path"

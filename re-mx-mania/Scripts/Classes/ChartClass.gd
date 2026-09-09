@@ -6,7 +6,9 @@ extends Resource
 @export var bpm 			:	float
 @export var BGMPath 		:	String
 @export var songName		:	String
+@export var songNameRom 	:	String # Romanized version of songName
 @export var songArtist		:	String
+@export var songArtistRom	:	String # Romanized version of songArtist
 @export var charter			:	String
 @export var difficultyName	:	String
 @export var difficulty		:	float
@@ -16,11 +18,21 @@ extends Resource
 # These variables will always remain seperate as 
 # There should always be 4 main audio tracks!
 #################################################
+
+## Number of main tracks
 @export var trackCount: int
+
+## An array of track paths ordered in the same way as GlobalEnums.trackIDs
 @export var trackPaths: Array[String] = []
+
+## The place the music starts playing from when the player opens the chart in
+## song select menu!
 @export var previewTimestamp: float
+
+## path to the scratch track audio!
 @export var scratchTrackPath: String
 
+## path to the current chart!
 @export var chartPath : String
 
 
@@ -38,6 +50,9 @@ extends Resource
 func getPath() -> String:
 	return chartPath
 
+## Returns the length of the passed in note. Takes in the note's track ID and its
+## index.
+## NOTE: Only works on main track notes and FX notes. Scratch track subnotes are excluded
 func getNoteLength(trackID : GlobalEnums.trackIDs, noteIndex : int) -> float:
 	var note : Dictionary = notes[trackID][noteIndex]
 	if note == null:
@@ -50,6 +65,8 @@ func getNoteLength(trackID : GlobalEnums.trackIDs, noteIndex : int) -> float:
 	
 	return 0.0
 
+## Loads the chart data from a valid chart.json file at the given path. Returns true if chart is
+## parsed successfully and false if not.
 func load(path: String) -> bool:
 	
 	# Checks if the file path is valid 
@@ -85,6 +102,12 @@ func load(path: String) -> bool:
 	trackPaths.append(chartData["Metadata"]["Track3Path"]) 
 	trackPaths.append(chartData["Metadata"]["Track4Path"]) 
 	previewTimestamp = chartData["Metadata"]["Preview"]
+	
+	if chartData.has("TitleRomanized"):
+		songNameRom = chartData["Metadata"]["TitleRomanized"]
+	
+	if chartData.has("ArtistRomanized"):
+		songArtistRom = chartData["Metadata"]["ArtistRomanized"]
 	
 	
 	#The trackCount is the number of main tracks in this chart!
@@ -123,3 +146,77 @@ func load(path: String) -> bool:
 	#print("Number of notes: " + str(numOfNotes))
 	
 	return true
+
+## A simple helper function that deturmines if the inputed text is made up of just ASCII characters!
+func isASCII(input : String) -> bool:
+	## A simple RegEX that returns true only when the input is purely made up of Ascii characters!
+	var asciiRegEX = RegEx.create_from_string("^[[:ascii:]\\s]*$")
+	
+	if asciiRegEX.search(input) != null:
+		return true
+	
+	return false
+
+## Takes the current chart data and exports it as a chart.json file in the given directory!
+func save(path : String):
+	# Checks if the directory is valid
+	var dir = DirAccess.open(path)
+	if dir == null:
+		push_error("Failed to open directory with chart.save()! Error:" + str(DirAccess.get_open_error()))
+		return
+	
+	var titleNeedRomanization : bool = isASCII(songName)
+	var artistNeedRomanization : bool = isASCII(songArtist)
+	
+	
+	var chartData : Dictionary = {
+		"Metadata" : {
+			"Title" 			: songName,
+			"Artist" 			: songArtist,
+			"Charter" 			: charter,
+			"DifficultyName" 	: difficultyName,
+			"Difficulty" 		: difficulty,
+			"Preview"			: previewTimestamp,
+			"TrackCount"		: trackCount,
+			"BPM"				: bpm,
+			"BGMPath"			: BGMPath,
+			"ScratchPath"		: scratchTrackPath,
+			"Track1Path"		: trackPaths[0],
+			"Track2Path"		: trackPaths[1],
+			"Track3Path"		: trackPaths[2],
+			"Track4Path"		: trackPaths[3]
+		},
+		"Notes" : {
+			"Track FX" : notes[0],
+			"Scratch Track" : notes[1]
+		}
+	}
+	
+	var trackNames = [
+		"Track 1",
+		"Track 2",
+		"Track 3",
+		"Track 4"
+	]
+	
+	for track in range(trackCount):
+		chartData["Notes"][trackNames[track]] = notes[track + 2] # Plus 2 to skip Track FX and Scratch Track
+	
+	if titleNeedRomanization:
+		chartData["TitleRomanized"] = songNameRom
+	
+	if artistNeedRomanization:
+		chartData["ArtistRomanized"] = songArtistRom
+	
+	var filename = difficultyName + ".json"
+	
+	var outputJson = FileAccess.open((path + filename), FileAccess.WRITE)
+	
+	if outputJson:
+		var jsonString = JSON.stringify(chartData, "\t")
+		
+		outputJson.store_string(jsonString)
+		outputJson.close()
+		print("Chart Saved to: ", path)
+	else:
+		print("Failed to open file! Error code: ", FileAccess.get_open_error())
