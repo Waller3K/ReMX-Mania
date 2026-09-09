@@ -1,2 +1,8 @@
 # Dependancy Directory and build clutter
 Tools/MtC/build
+.vscode
+re-mx-mania/.godot
+re-mx-mania/.vscode
+Experiments/rhythm-tests/.godot
+Experiments/rhythm-tests/.vscode
+Experiments/dialogic-tests/.godot
