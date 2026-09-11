@@ -4,18 +4,29 @@ extends EditorPlugin
 
 const MAINPANEL = preload("res://addons/ReMXEditor/ReMXEditorScene.tscn")
 
-const AUTOLOAD_NAME = "PluginGlobals"
-const AUTOLOAD_PATH = "res://addons/ReMXEditor/Scripts/Autoloads/globalVariables.gd"
+# Global variables
+## The current chartdata that is loaded into memory
+static var currentChart : Chart = null
 
 var mainPanelInstance : Node
 
+## A simple helper function that deturmines if the inputed text is made up of just ASCII characters!
+static func isASCII(input : String) -> bool:
+	## A simple RegEX that returns true only when the input is purely made up of Ascii characters!
+	var asciiRegEX = RegEx.create_from_string("^[[:ascii:]\\s]*$")
+	
+	if asciiRegEX.search(input) != null:
+		return true
+	
+	return false
+
 # Called when the plugin is first enabled
 func _enable_plugin() -> void:
-	add_autoload_singleton(AUTOLOAD_NAME, AUTOLOAD_PATH)
+	pass
 
 # Called when the plugin is disabled
 func _disable_plugin() -> void:
-	remove_autoload_singleton(AUTOLOAD_NAME)
+	pass
 
 # Setup function
 func _enter_tree() -> void:

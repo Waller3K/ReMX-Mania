@@ -165,8 +165,8 @@ func save(path : String):
 		push_error("Failed to open directory with chart.save()! Error:" + str(DirAccess.get_open_error()))
 		return
 	
-	var titleNeedRomanization : bool = isASCII(songName)
-	var artistNeedRomanization : bool = isASCII(songArtist)
+	var titleNeedRomanization : bool = !isASCII(songName)
+	var artistNeedRomanization : bool = !isASCII(songArtist)
 	
 	
 	var chartData : Dictionary = {
@@ -210,7 +210,7 @@ func save(path : String):
 	
 	var filename = difficultyName + ".json"
 	
-	var outputJson = FileAccess.open((path + filename), FileAccess.WRITE)
+	var outputJson = FileAccess.open(path.path_join(filename), FileAccess.WRITE)
 	
 	if outputJson:
 		var jsonString = JSON.stringify(chartData, "\t")
@@ -218,5 +218,6 @@ func save(path : String):
 		outputJson.store_string(jsonString)
 		outputJson.close()
 		print("Chart Saved to: ", path)
+		print("Filename is : ", difficultyName, ".json")
 	else:
 		print("Failed to open file! Error code: ", FileAccess.get_open_error())
