@@ -38,19 +38,19 @@ func _ready() -> void:
 	
 	# Connecting input fields
 	# Text fields
-	SongTitleEdit.text_submitted.connect(_onMetadataTextChanged.bind("songName"))
+	SongTitleEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "songName"))
 	SongTitleEdit.text_changed.connect(needsRomanization.bind(SongTitleRomanEdit))
 	
-	SongTitleRomanEdit.text_submitted.connect(_onMetadataTextChanged.bind("songNameRom"))
+	SongTitleRomanEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "songNameRom"))
 	SongTitleRomanEdit.text_changed.connect(isRomanized.bind(SongTitleRomanEdit))
 	
-	ArtistNameEdit.text_submitted.connect(_onMetadataTextChanged.bind("songArtist"))
+	ArtistNameEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "songArtist"))
 	ArtistNameEdit.text_changed.connect(needsRomanization.bind(ArtistNameRomanEdit))
 	
-	ArtistNameRomanEdit.text_submitted.connect(_onMetadataTextChanged.bind("songArtistRom"))
+	ArtistNameRomanEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "songArtistRom"))
 	ArtistNameRomanEdit.text_changed.connect(isRomanized.bind(ArtistNameRomanEdit))
 	
-	CharterEdit.text_submitted.connect(_onMetadataTextChanged.bind("charter"))
+	CharterEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "charter"))
 	DifficultyNameEdit.text_submitted.connect(_onMetadataTextChanged.bind("difficultyName"))
 	# Spinboxes
 	DifficultyConstantBox.value_changed.connect(_onMetadataValueChanged.bind("difficulty"))
@@ -58,13 +58,12 @@ func _ready() -> void:
 	PreviewTimestampBox.value_changed.connect(_onMetadataValueChanged.bind("previewTimestamp"))
 	TrackCountBox.value_changed.connect(_onMetadataValueChanged.bind("trackCount"))
 	# Path Edits
-	BGMPathEdit.text_submitted.connect(_onMetadataTextChanged.bind("BGMPath"))
-	ScratchPathEdit.text_submitted.connect(_onMetadataTextChanged.bind("scratchTrackPath"))
+	BGMPathEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "BGMPath"))
+	ScratchPathEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "scratchTrackPath"))
 	Track1PathEdit.text_submitted.connect(_onMetadataTextChanged.bind("trackPaths", 0))
 	Track2PathEdit.text_submitted.connect(_onMetadataTextChanged.bind("trackPaths", 1))
 	Track3PathEdit.text_submitted.connect(_onMetadataTextChanged.bind("trackPaths", 2))
 	Track4PathEdit.text_submitted.connect(_onMetadataTextChanged.bind("trackPaths", 3))
-	
 
 ## Checks if the input is still ASCII and deletes the most recent character if not.
 func isRomanized(text : String, lineEdit : LineEdit):
@@ -77,12 +76,14 @@ func isRomanized(text : String, lineEdit : LineEdit):
 ## Checks if the text needs romanization and enables the romanized line edit if true!
 func needsRomanization(text : String, romanizedLineEdit : LineEdit):
 	if ReMXEditor.isASCII(text):
-		if romanizedLineEdit.visible:
+		if romanizedLineEdit.visible == true:
 			romanizedLineEdit.clear()
-			romanizedLineEdit.text_submitted.emit()
+			romanizedLineEdit.text_submitted.emit("")
 			romanizedLineEdit.visible = false
+		print(text, " is ASCII!")
 		return
 	
+	print(text, " is not ASCII!")
 	romanizedLineEdit.visible = true
 
 ## Takes the currentChart from the ReMXEditor class and sets
@@ -139,9 +140,11 @@ func _onMetadataTextChanged(newText : String, property : String, index : int = 0
 	
 	if property == "trackPaths":
 		ReMXEditor.currentChart.trackPaths[index] = newText
+		print(property, " at index ", index, " Now is: ", ReMXEditor.currentChart.get(property))
 		return
 	
 	ReMXEditor.currentChart.set(property, newText)
+	print(property, " Now is: ", ReMXEditor.currentChart.get(property))
 
 func _onMetadataValueChanged(newValue : float, property : String):
 	if property not in ReMXEditor.currentChart:
@@ -149,6 +152,7 @@ func _onMetadataValueChanged(newValue : float, property : String):
 		return
 	
 	ReMXEditor.currentChart.set(property, newValue)
+	print(property, " Now is: ", ReMXEditor.currentChart.get(property))
 
 func _onNewChart():
 	pass
@@ -172,6 +176,8 @@ func _onSaveChart():
 	EditorFD.visible = true
 	var chartDir = await EditorFD.dir_selected
 	ReMXEditor.currentChart.save(chartDir)
+	# Force a scan after the file is saved
+	EditorInterface.get_resource_filesystem().scan()
 
 func _onCloseChart():
 	# Do nothing if there is no current chart
