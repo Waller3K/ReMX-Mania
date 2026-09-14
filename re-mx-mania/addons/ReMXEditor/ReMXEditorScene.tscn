@@ -196,7 +196,7 @@ title = "Inspector"
 custom_minimum_size = Vector2(250, 600)
 layout_mode = 2
 
-[node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800 node_paths=PackedStringArray("LoadChartButton", "NewChartButton", "SaveChartButton", "CloseChartButton", "EditorFD", "SongTitleEdit", "SongTitleRomanEdit", "ArtistNameEdit", "ArtistNameRomanEdit", "CharterEdit", "DifficultyNameEdit", "DifficultyConstantBox", "StartingBPMBox", "PreviewTimestampBox", "TrackCountBox", "BGMPathEdit", "ScratchPathEdit", "Track1PathEdit", "Track2PathEdit", "Track3PathEdit", "Track4PathEdit")]
+[node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800 node_paths=PackedStringArray("LoadChartButton", "NewChartButton", "SaveChartButton", "CloseChartButton", "EditorFD", "SongTitleEdit", "SongTitleRomanContainer", "SongTitleRomanEdit", "ArtistNameEdit", "ArtistNameRomanContainer", "ArtistNameRomanEdit", "CharterEdit", "DifficultyNameEdit", "DifficultyConstantBox", "StartingBPMBox", "PreviewTimestampBox", "TrackCountBox", "BGMPathEdit", "ScratchPathEdit", "Track1PathEdit", "Track2PathEdit", "Track3PathEdit", "Track4PathEdit")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 script = ExtResource("2_nuc7v")
@@ -206,8 +206,10 @@ SaveChartButton = NodePath("ScrollContainer/ChartMetadata/SaveChartButton/Button
 CloseChartButton = NodePath("ScrollContainer/ChartMetadata/CloseChartButton/Button")
 EditorFD = NodePath("../../../../EditorFileDialog")
 SongTitleEdit = NodePath("ScrollContainer/ChartMetadata/SongTitleEdit/LineEdit")
+SongTitleRomanContainer = NodePath("ScrollContainer/ChartMetadata/SongTitleRomanizedEdit")
 SongTitleRomanEdit = NodePath("ScrollContainer/ChartMetadata/SongTitleRomanizedEdit/LineEdit")
 ArtistNameEdit = NodePath("ScrollContainer/ChartMetadata/ArtistNameEdit/LineEdit")
+ArtistNameRomanContainer = NodePath("ScrollContainer/ChartMetadata/ArtistNameRomanizedEdit")
 ArtistNameRomanEdit = NodePath("ScrollContainer/ChartMetadata/ArtistNameRomanizedEdit/LineEdit")
 CharterEdit = NodePath("ScrollContainer/ChartMetadata/ChaterEdit/LineEdit")
 DifficultyNameEdit = NodePath("ScrollContainer/ChartMetadata/DifficultyNameEdit/LineEdit")
@@ -326,6 +328,7 @@ layout_mode = 2
 placeholder_text = "Name"
 
 [node name="SongTitleRomanizedEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1286179364]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata/SongTitleRomanizedEdit" unique_id=678341534]
@@ -358,6 +361,7 @@ layout_mode = 2
 placeholder_text = "Name"
 
 [node name="ArtistNameRomanizedEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1731483958]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata/ArtistNameRomanizedEdit" unique_id=1250868495]

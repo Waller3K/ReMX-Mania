@@ -119,14 +119,45 @@ func load(path: String) -> bool:
 		return false
 	trackCount		= chartData["Metadata"]["TrackCount"]
 	
-	var trackNames : Array = chartData["Notes"].keys()
+	# NEW NOTES LOADING SECTION!
 	
-	# This section adds the main track notes and the FX notes to the 2D array
-	# Plus 2 because the FX track isn't counted in the trackCount and neither
-	# is Scratch Track
-	# THE TRACKS SHOULD ALWAYS BE IN THE SAME ORDER AS THE TRACKIDS
-	for track in trackCount + 2:
-		notes.push_back(chartData["Notes"][trackNames[track]])
+	#############################################################################
+	# First we have to separate the Main tracks from
+	# the other tracks by manually running through their keys
+	# They should be named something specific like "Track 1" or "Scratch Track"
+	# Maybe using a regex of some sort on the keys? something like "/^(Track [1-4])$/"
+	#############################################################################
+	var mainTrackRegex := RegEx.create_from_string("^(Track [1-4])$")
+	
+	var mainTrackKeys : Array[String]
+	
+	for track in chartData["Notes"]:
+		if mainTrackRegex.search(track) != null:
+			mainTrackKeys.push_back(track)
+		else:
+			continue
+	
+	# Sort the keys by trailing number
+	mainTrackKeys.sort_custom(func(a : String, b : String): return a.naturalcasecmp_to(b) < 0)
+	
+	# Manually add the Scratch track and Track FX notes to the notes 2D array 
+	# in the right order
+	notes.push_back(chartData["Notes"]["Track FX"])
+	notes.push_back(chartData["Notes"]["Scratch Track"])
+	
+	# Iterate through the other tracks so that they are added to the 
+	# notes Array in the right order
+	for key in mainTrackKeys:
+		notes.push_back(chartData["Notes"][key])
+	
+	#var trackNames : Array = chartData["Notes"].keys()
+	#
+	## This section adds the main track notes and the FX notes to the 2D array
+	## Plus 2 because the FX track isn't counted in the trackCount and neither
+	## is Scratch Track
+	## THE TRACKS SHOULD ALWAYS BE IN THE SAME ORDER AS THE TRACKIDS
+	#for track in trackCount + 2:
+		#notes.push_back(chartData["Notes"][trackNames[track]])
 	
 	chartPath = path
 	

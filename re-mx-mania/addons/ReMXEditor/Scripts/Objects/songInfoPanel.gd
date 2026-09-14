@@ -10,9 +10,15 @@ extends Panel
 
 # Metadata fields
 @export var SongTitleEdit : LineEdit
+
+@export var SongTitleRomanContainer : HBoxContainer
 @export var SongTitleRomanEdit : LineEdit
+
 @export var ArtistNameEdit : LineEdit
+
+@export var ArtistNameRomanContainer : HBoxContainer
 @export var ArtistNameRomanEdit : LineEdit
+
 @export var CharterEdit : LineEdit
 @export var DifficultyNameEdit : LineEdit
 @export var DifficultyConstantBox : SpinBox
@@ -39,31 +45,31 @@ func _ready() -> void:
 	# Connecting input fields
 	# Text fields
 	SongTitleEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "songName"))
-	SongTitleEdit.text_changed.connect(needsRomanization.bind(SongTitleRomanEdit))
+	SongTitleEdit.text_changed.connect(needsRomanization.bind(SongTitleRomanContainer, SongTitleRomanEdit))
 	
 	SongTitleRomanEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "songNameRom"))
 	SongTitleRomanEdit.text_changed.connect(isRomanized.bind(SongTitleRomanEdit))
 	
 	ArtistNameEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "songArtist"))
-	ArtistNameEdit.text_changed.connect(needsRomanization.bind(ArtistNameRomanEdit))
+	ArtistNameEdit.text_changed.connect(needsRomanization.bind(ArtistNameRomanContainer, ArtistNameRomanEdit))
 	
 	ArtistNameRomanEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "songArtistRom"))
 	ArtistNameRomanEdit.text_changed.connect(isRomanized.bind(ArtistNameRomanEdit))
 	
-	CharterEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "charter"))
-	DifficultyNameEdit.text_submitted.connect(_onMetadataTextChanged.bind("difficultyName"))
+	CharterEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "charter"))
+	DifficultyNameEdit.text_changed.connect(_onMetadataTextChanged.bind("difficultyName"))
 	# Spinboxes
 	DifficultyConstantBox.value_changed.connect(_onMetadataValueChanged.bind("difficulty"))
 	StartingBPMBox.value_changed.connect(_onMetadataValueChanged.bind("bpm"))
 	PreviewTimestampBox.value_changed.connect(_onMetadataValueChanged.bind("previewTimestamp"))
 	TrackCountBox.value_changed.connect(_onMetadataValueChanged.bind("trackCount"))
 	# Path Edits
-	BGMPathEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "BGMPath"))
-	ScratchPathEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "scratchTrackPath"))
-	Track1PathEdit.text_submitted.connect(_onMetadataTextChanged.bind("trackPaths", 0))
-	Track2PathEdit.text_submitted.connect(_onMetadataTextChanged.bind("trackPaths", 1))
-	Track3PathEdit.text_submitted.connect(_onMetadataTextChanged.bind("trackPaths", 2))
-	Track4PathEdit.text_submitted.connect(_onMetadataTextChanged.bind("trackPaths", 3))
+	BGMPathEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "BGMPath"))
+	ScratchPathEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "scratchTrackPath"))
+	Track1PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 0))
+	Track2PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 1))
+	Track3PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 2))
+	Track4PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 3))
 
 ## Checks if the input is still ASCII and deletes the most recent character if not.
 func isRomanized(text : String, lineEdit : LineEdit):
@@ -74,17 +80,17 @@ func isRomanized(text : String, lineEdit : LineEdit):
 	lineEdit.caret_column = lineEdit.text.length()
 
 ## Checks if the text needs romanization and enables the romanized line edit if true!
-func needsRomanization(text : String, romanizedLineEdit : LineEdit):
+func needsRomanization(text : String, romanizedContainer : HBoxContainer, romanizedLineEdit : LineEdit):
 	if ReMXEditor.isASCII(text):
-		if romanizedLineEdit.visible == true:
+		if romanizedContainer.visible == true:
 			romanizedLineEdit.clear()
 			romanizedLineEdit.text_submitted.emit("")
-			romanizedLineEdit.visible = false
+			romanizedContainer.visible = false
 		print(text, " is ASCII!")
 		return
 	
 	print(text, " is not ASCII!")
-	romanizedLineEdit.visible = true
+	romanizedContainer.visible = true
 
 ## Takes the currentChart from the ReMXEditor class and sets
 ## all of the UI Fields to the corrisponding values!
