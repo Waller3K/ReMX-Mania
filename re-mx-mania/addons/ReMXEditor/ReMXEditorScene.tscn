@@ -326,7 +326,6 @@ layout_mode = 2
 placeholder_text = "Name"
 
 [node name="SongTitleRomanizedEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1286179364]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata/SongTitleRomanizedEdit" unique_id=678341534]
@@ -359,7 +358,6 @@ layout_mode = 2
 placeholder_text = "Name"
 
 [node name="ArtistNameRomanizedEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1731483958]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata/ArtistNameRomanizedEdit" unique_id=1250868495]

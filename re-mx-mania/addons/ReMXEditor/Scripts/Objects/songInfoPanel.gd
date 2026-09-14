@@ -38,16 +38,16 @@ func _ready() -> void:
 	
 	# Connecting input fields
 	# Text fields
-	SongTitleEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "songName"))
+	SongTitleEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "songName"))
 	SongTitleEdit.text_changed.connect(needsRomanization.bind(SongTitleRomanEdit))
 	
-	SongTitleRomanEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "songNameRom"))
+	SongTitleRomanEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "songNameRom"))
 	SongTitleRomanEdit.text_changed.connect(isRomanized.bind(SongTitleRomanEdit))
 	
-	ArtistNameEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "songArtist"))
+	ArtistNameEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "songArtist"))
 	ArtistNameEdit.text_changed.connect(needsRomanization.bind(ArtistNameRomanEdit))
 	
-	ArtistNameRomanEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "songArtistRom"))
+	ArtistNameRomanEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "songArtistRom"))
 	ArtistNameRomanEdit.text_changed.connect(isRomanized.bind(ArtistNameRomanEdit))
 	
 	CharterEdit.text_submitted.connect(func(newText): _onMetadataTextChanged(newText, "charter"))
