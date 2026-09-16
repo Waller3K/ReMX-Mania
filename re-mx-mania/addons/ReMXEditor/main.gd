@@ -2,7 +2,7 @@
 class_name ReMXEditor
 extends EditorPlugin
 
-const MAINPANEL = preload("res://addons/ReMXEditor/ReMXEditorScene.tscn")
+const MAINPANEL = preload("res://addons/ReMXEditor/Scenes/ReMXEditorScene.tscn")
 
 # Global variables
 ## The current chartdata that is loaded into memory
@@ -39,6 +39,9 @@ func _enter_tree() -> void:
 func _exit_tree() -> void:
 	if mainPanelInstance:
 		mainPanelInstance.queue_free()
+	
+	if currentChart != null:
+		currentChart = null
 
 # Just needs to contain return true
 func _has_main_screen() -> bool:

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://p00njp63vq53"]
 
-[ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="1_15a65"]
-[ext_resource type="Script" uid="uid://cvu7v8sn7on2u" path="res://addons/ReMXEditor/Scripts/Objects/songInfoPanel.gd" id="2_nuc7v"]
+[ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="1_f4di4"]
+[ext_resource type="Script" uid="uid://cvu7v8sn7on2u" path="res://addons/ReMXEditor/Scripts/Objects/songInfoPanel.gd" id="2_1gjrh"]
 
 [node name="ReMXEditorScene" type="Control" unique_id=968586156]
 layout_mode = 3
@@ -157,7 +157,7 @@ theme_override_constants/margin_right = 10
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/MarginContainer" unique_id=1513556859]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
-texture = ExtResource("1_15a65")
+texture = ExtResource("1_f4di4")
 expand_mode = 2
 
 [node name="TimelinePanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer" unique_id=156214315]
@@ -196,10 +196,10 @@ title = "Inspector"
 custom_minimum_size = Vector2(250, 600)
 layout_mode = 2
 
-[node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800 node_paths=PackedStringArray("LoadChartButton", "NewChartButton", "SaveChartButton", "CloseChartButton", "EditorFD", "SongTitleEdit", "SongTitleRomanContainer", "SongTitleRomanEdit", "ArtistNameEdit", "ArtistNameRomanContainer", "ArtistNameRomanEdit", "CharterEdit", "DifficultyNameEdit", "DifficultyConstantBox", "StartingBPMBox", "PreviewTimestampBox", "TrackCountBox", "BGMPathEdit", "ScratchPathEdit", "Track1PathEdit", "Track2PathEdit", "Track3PathEdit", "Track4PathEdit")]
+[node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800 node_paths=PackedStringArray("LoadChartButton", "NewChartButton", "SaveChartButton", "CloseChartButton", "EditorFD", "SongTitleEdit", "SongTitleRomanContainer", "SongTitleRomanEdit", "ArtistNameEdit", "ArtistNameRomanContainer", "ArtistNameRomanEdit", "CharterEdit", "DifficultyNameEdit", "DifficultyConstantBox", "StartingBPMBox", "PreviewTimestampBox", "TrackCountBox", "BGMPathEdit", "ScratchPathEdit", "Track1PathEdit", "Track2PathEdit", "Track3PathEdit", "Track4PathEdit", "confirmWindow")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-script = ExtResource("2_nuc7v")
+script = ExtResource("2_1gjrh")
 LoadChartButton = NodePath("ScrollContainer/ChartMetadata/LoadChartButton/Button")
 NewChartButton = NodePath("ScrollContainer/ChartMetadata/NewChartButton/Button")
 SaveChartButton = NodePath("ScrollContainer/ChartMetadata/SaveChartButton/Button")
@@ -223,6 +223,7 @@ Track1PathEdit = NodePath("ScrollContainer/ChartMetadata/Track1PathEdit/LineEdit
 Track2PathEdit = NodePath("ScrollContainer/ChartMetadata/Track2PathEdit/LineEdit")
 Track3PathEdit = NodePath("ScrollContainer/ChartMetadata/Track3PathEdit/LineEdit")
 Track4PathEdit = NodePath("ScrollContainer/ChartMetadata/Track4PathEdit/LineEdit")
+confirmWindow = NodePath("../../../../ConfirmationDialog")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" unique_id=1612889656]
 layout_mode = 1
@@ -596,3 +597,10 @@ placeholder_text = "Path"
 [node name="EditorFileDialog" type="EditorFileDialog" parent="." unique_id=204571811]
 oversampling_override = 1.0
 initial_position = 1
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=1108617282]
+oversampling_override = 1.0
+title = "Are you sure?"
+initial_position = 2
+ok_button_text = "Yes"
+cancel_button_text = "No"

@@ -20,7 +20,7 @@ extends Resource
 #################################################
 
 ## Number of main tracks
-@export var trackCount: int
+@export var trackCount: int = GlobalStates.MIN_TRACK_COUNT
 
 ## An array of track paths ordered in the same way as GlobalEnums.trackIDs
 @export var trackPaths: Array[String] = []
@@ -34,7 +34,6 @@ extends Resource
 
 ## path to the current chart!
 @export var chartPath : String
-
 
 ## Main Track Note Array. A 2D Array that contains 
 ## the tracks and their notes. The tracks are 
@@ -188,6 +187,30 @@ func isASCII(input : String) -> bool:
 	
 	return false
 
+
+func setTrackCount(newCount):
+	var trueTrackSize = notes.size()
+	if newCount > trueTrackSize:
+		var difference = newCount - trueTrackSize
+		var emptyArray = []
+		
+		for i in difference:
+			notes.push_back(emptyArray)
+		
+		return
+	elif newCount < trueTrackSize:
+		var difference = trueTrackSize - newCount
+		
+		for i in difference:
+			if !notes[-1].is_empty():
+				print("Worry, clearing track data!")
+				notes.pop_back()
+			else:
+				notes.pop_back()
+		return
+	else:
+		return
+
 ## Takes the current chart data and exports it as a chart.json file in the given directory!
 func save(path : String):
 	# Checks if the directory is valid
@@ -252,3 +275,15 @@ func save(path : String):
 		print("Filename is : ", difficultyName, ".json")
 	else:
 		print("Failed to open file! Error code: ", FileAccess.get_open_error())
+
+## Used to initialize a blank chart
+func init():
+	for i in 4:
+		trackPaths.push_back("")
+	print(trackPaths)
+	
+	for i in trackCount + 2:
+		var blankArray = []
+		notes.push_back(blankArray)
+	
+	print(notes)

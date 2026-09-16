@@ -32,7 +32,9 @@ extends Panel
 @export var Track3PathEdit : LineEdit
 @export var Track4PathEdit : LineEdit
 
+@export var confirmWindow : ConfirmationDialog
 
+var chartLoaded : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -70,6 +72,29 @@ func _ready() -> void:
 	Track2PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 1))
 	Track3PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 2))
 	Track4PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 3))
+	
+	toggleEditable(false)
+
+## Toggles the editable property of all of the UI elements in the metadata menu!
+func toggleEditable(isEditable : bool):
+	SongTitleEdit.editable = isEditable
+	SongTitleRomanEdit.editable = isEditable
+	ArtistNameEdit.editable = isEditable
+	ArtistNameRomanEdit.editable = isEditable
+	CharterEdit.editable = isEditable
+	DifficultyNameEdit.editable = isEditable
+	
+	DifficultyConstantBox.editable = isEditable
+	StartingBPMBox.editable = isEditable
+	PreviewTimestampBox.editable = isEditable
+	TrackCountBox.editable = isEditable
+	
+	BGMPathEdit.editable = isEditable
+	ScratchPathEdit.editable = isEditable
+	Track1PathEdit.editable = isEditable
+	Track2PathEdit.editable = isEditable
+	Track3PathEdit.editable = isEditable
+	Track4PathEdit.editable = isEditable
 
 ## Checks if the input is still ASCII and deletes the most recent character if not.
 func isRomanized(text : String, lineEdit : LineEdit):
@@ -97,11 +122,11 @@ func needsRomanization(text : String, romanizedContainer : HBoxContainer, romani
 func setChartMetadata():
 	SongTitleEdit.text = ReMXEditor.currentChart.songName
 	if !ReMXEditor.isASCII(ReMXEditor.currentChart.songName):
-		SongTitleRomanEdit.visible = true
+		SongTitleRomanContainer.visible = true
 		SongTitleRomanEdit.text = ReMXEditor.currentChart.songNameRom
 	ArtistNameEdit.text = ReMXEditor.currentChart.songArtist
 	if !ReMXEditor.isASCII(ReMXEditor.currentChart.songArtist):
-		ArtistNameRomanEdit.visible = true
+		ArtistNameRomanContainer.visible = true
 		ArtistNameRomanEdit.text = ReMXEditor.currentChart.songArtistRom
 	CharterEdit.text = ReMXEditor.currentChart.charter
 	DifficultyNameEdit.text = ReMXEditor.currentChart.difficultyName
@@ -119,13 +144,13 @@ func setChartMetadata():
 ## Clears all of the data in the UI fields!
 func clearChartMetadata():
 	SongTitleEdit.text = ""
-	if SongTitleRomanEdit.visible:
+	if SongTitleRomanContainer.visible:
 		SongTitleRomanEdit.text = ""
-		SongTitleRomanEdit.visible = false
+		SongTitleRomanContainer.visible = false
 	ArtistNameEdit.text = ""
-	if ArtistNameRomanEdit.visible:
+	if ArtistNameRomanContainer.visible:
 		ArtistNameRomanEdit.text = ""
-		ArtistNameRomanEdit.visible = false
+		ArtistNameRomanContainer.visible = false
 	CharterEdit.text = ""
 	DifficultyNameEdit.text = ""
 	DifficultyConstantBox.value = 0
@@ -157,11 +182,22 @@ func _onMetadataValueChanged(newValue : float, property : String):
 		push_error(" Error! There is no '", property, "' in Chart!")
 		return
 	
+	if property == "trackCount":
+		ReMXEditor.currentChart.setTrackCount(newValue)
+	
 	ReMXEditor.currentChart.set(property, newValue)
 	print(property, " Now is: ", ReMXEditor.currentChart.get(property))
 
 func _onNewChart():
-	pass
+	if ReMXEditor.currentChart != null:
+		push_error("Close current chart before creating a new one!")
+		#TODO: Create a confimation dialog hook here!
+		return
+	
+	ReMXEditor.currentChart = Chart.new()
+	ReMXEditor.currentChart.init()
+	clearChartMetadata()
+	toggleEditable(true)
 
 func _onLoadChart():
 	EditorFD.file_mode = EditorFD.FileMode.FILE_MODE_OPEN_FILE
@@ -175,6 +211,7 @@ func _onLoadChart():
 	
 	ReMXEditor.currentChart = loadedChart
 	setChartMetadata()
+	toggleEditable(true)
 
 func _onSaveChart():
 	EditorFD.file_mode = FileDialog.FILE_MODE_OPEN_DIR
@@ -191,4 +228,5 @@ func _onCloseChart():
 		return
 	
 	ReMXEditor.currentChart = null
+	toggleEditable(false)
 	clearChartMetadata()
