@@ -1,0 +1,8 @@
+[background arg="res://Assets/BG Art/XanderRoom1.png" fade="0.0"]
+join XanderDemo left
+XanderDemo: Hey! Wanna get going?
+- Nah..
+	[wait time="2.0"]
+	jump 
+- Sure!
+	[end_timeline]

@@ -27,5 +27,8 @@ func loadSettingsMenu():
 func loadMainMenu():
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
+func loadStory():
+	get_tree().change_scene_to_file("res://Scenes/demo_story.tscn")
+
 func quit():
 	get_tree().quit()
