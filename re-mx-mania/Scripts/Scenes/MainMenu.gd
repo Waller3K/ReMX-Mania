@@ -2,6 +2,7 @@ extends Control
 
 @export var songSelectButton : Button
 @export var settingsButton : Button
+@export var storyButton : Button
 @export var quitButton : Button
 
 ## A simple function that takes the chart files from the .pck file,
@@ -41,6 +42,7 @@ func _ready() -> void:
 	installDefaultCharts()
 	songSelectButton.pressed.connect(_onSongSelect)
 	settingsButton.pressed.connect(_onSettings)
+	storyButton.pressed.connect(_onStory)
 	quitButton.pressed.connect(_onQuit)
 
 func _onSongSelect():
@@ -48,6 +50,9 @@ func _onSongSelect():
 
 func _onSettings():
 	SceneManager.loadSettingsMenu()
+
+func _onStory():
+	SceneManager.loadStory()
 
 func _onQuit():
 	SceneManager.quit()

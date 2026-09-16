@@ -11,7 +11,7 @@ default_font_size = 50
 [sub_resource type="Theme" id="Theme_ujc2j"]
 default_font_size = 50
 
-[node name="MainMenu" type="Control" unique_id=1546806901 node_paths=PackedStringArray("songSelectButton", "settingsButton", "quitButton")]
+[node name="MainMenu" type="Control" unique_id=1546806901 node_paths=PackedStringArray("songSelectButton", "settingsButton", "storyButton", "quitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ grow_vertical = 2
 script = ExtResource("1_tt5f1")
 songSelectButton = NodePath("Panel/VBoxContainer/SongSelect")
 settingsButton = NodePath("Panel/VBoxContainer/Settings")
+storyButton = NodePath("Panel/VBoxContainer/Story")
 quitButton = NodePath("Panel/VBoxContainer/Quit")
 
 [node name="Panel" type="Panel" parent="." unique_id=1246561379]
@@ -54,6 +55,11 @@ text = "Song Select"
 layout_mode = 2
 theme = SubResource("Theme_4jli2")
 text = "Settings"
+
+[node name="Story" type="Button" parent="Panel/VBoxContainer" unique_id=860723115]
+layout_mode = 2
+theme = SubResource("Theme_ujc2j")
+text = "Story"
 
 [node name="Quit" type="Button" parent="Panel/VBoxContainer" unique_id=967371663]
 layout_mode = 2
