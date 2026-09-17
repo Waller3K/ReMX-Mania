@@ -85,7 +85,6 @@ project/assembly_name="ReMX Mania"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ReMXEditor/plugin.cfg")
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 [input]

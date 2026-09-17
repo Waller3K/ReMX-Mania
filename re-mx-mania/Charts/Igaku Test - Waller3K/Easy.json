@@ -4,89 +4,236 @@
 		"BGMPath": "BGM_Track.ogg",
 		"BPM": 120.0,
 		"Charter": "Waller3K",
-		"Difficulty": 10.0,
+		"Difficulty": 3.0,
 		"DifficultyName": "Easy",
+		"Preview": 10.0,
 		"ScratchPath": "Scratch_Track.ogg",
 		"Title": "Igaku",
 		"Track1Path": "Track_1.ogg",
 		"Track2Path": "Track_2.ogg",
 		"Track3Path": "Track_3.ogg",
 		"Track4Path": "Track_4.ogg",
-		"Preview" : 10.0,
 		"TrackCount": 2
 	},
 	"Notes": {
-		"Track FX": [
-			{
-				"Effect": 1,
-				"End": 1.5,
-				"Pos": 0.0
-			},
-			{
-				"Effect": 2,
-				"End": 17.75,
-				"Pos": 17.5
-			}
-		],
 		"Scratch Track": [
 			{
-				"End": 1.75,
-				"Pos": 1.5,
+				"Pos" : 1.5,
+				"End" : 2.0,
 				"Subnotes" : [
 					{
 						"Pos" : 1.5,
 						"Type" : 0
 					},
 					{
-						"Pos" : 1.625,
-						"Type" : 0
-					},
-					{
 						"Pos" : 1.75,
 						"Type" : 0
-					},
+					}
 				]
+
 			},
 			{
-				"End": 10.0,
-				"Pos": 9.625,
+				"Pos" : 9.5,
+				"End" : 10.0,
 				"Subnotes" : [
 					{
-						"Pos" : 9.625,
+						"Pos" : 9.5,
 						"Type" : 0
 					},
 					{
 						"Pos" : 9.75,
 						"Type" : 0
+					}
+				]
+
+			},
+			{
+				"Pos" : 25.5,
+				"End" : 26.0,
+				"Subnotes" : [
+					{
+						"Pos" : 25.5,
+						"Type" : 0
 					},
 					{
-						"Pos" : 9.875,
+						"Pos" : 25.75,
 						"Type" : 0
 					}
 				]
+
 			}
 		],
 		"Track 1": [
 			{
-				"Pos": 2.0
+				"Pos" : 2.5
 			},
 			{
-				"Pos": 3.0
+				"Pos" : 4.5
 			},
 			{
-				"Pos" : 7.0
+				"Pos" : 5.0
+			},
+			{
+				"Pos" : 6.5
+			},
+			{
+				"Pos" : 8.0
+			},
+			{
+				"Pos" : 10.5
+			},
+			{
+				"Pos" : 12.5
+			},
+			{
+				"Pos" : 13.0
+			},
+			{
+				"Pos" : 14.5,
+				"End" : 15.5
+			},
+			{
+				"Pos" : 16.5
+			},
+			{
+				"Pos" : 18.0
+			},
+			{
+				"Pos" : 19.75
+			},
+			{
+				"Pos" : 20.75
+			},
+			{
+				"Pos" : 21.0
+			},
+			{
+				"Pos" : 22.0
+			},
+			{
+				"Pos" : 22.5
+			},
+			{
+				"Pos" : 23.5
+			},
+			{
+				"Pos" : 25.0
+			},
+			{
+				"Pos" : 26.0
+			},
+			{
+				"Pos" : 26.5
+			},
+			{
+				"Pos" : 28.0
+			},
+			{
+				"Pos" : 29.0
+			},
+			{
+				"Pos" : 30.0
+			},
+			{
+				"Pos" : 30.5,
+				"End" : 31
 			}
 		],
 		"Track 2": [
 			{
-				"Pos" : 3.5
+				"Pos" : 3.0
 			},
 			{
 				"Pos" : 4.0
 			},
 			{
-				"Pos" : 4.5,
-				"End" : 5.0
+				"Pos" : 5.5
+			},
+			{
+				"Pos" : 7.0
+			},
+			{
+				"Pos" : 8.5
+			},
+			{
+				"Pos" : 9.0
+			},			
+			{
+				"Pos" : 11.0
+			},
+			{
+				"Pos" : 12.0
+			},
+			{
+				"Pos" : 13.5
+			},
+			{
+				"Pos" : 14.0
+			},
+			{
+				"Pos" : 16.0
+			},
+			{
+				"Pos" : 17.0
+			},
+			{
+				"Pos" : 18.5
+			},
+			{
+				"Pos" : 19.25
+			},
+			{
+				"Pos" : 20.25
+			},
+			{
+				"Pos" : 21.5
+			},
+			{
+				"Pos" : 24.25
+			},
+			{
+				"Pos" : 24.75
+			},
+			{
+				"Pos" : 27.0
+			},
+			{
+				"Pos" : 27.5
+			},
+			{
+				"Pos" : 28.5
+			},
+			{
+				"Pos" : 29.5
+			},
+			{
+				"Pos" : 31.25
+			},
+			{
+				"Pos" : 31.75,
+				"End" : 32.25
+			}
+		],
+		"Track FX": [
+			{
+				"Pos" : 0.0,
+				"End" : 1.5,
+				"Effect" : 0
+			},
+			{
+				"Pos" : 6.0,
+				"End" : 6.5,
+				"Effect" : 0
+			},
+			{
+				"Pos" : 17.5,
+				"End" : 18.0,
+				"Effect" : 2
+			},
+			{
+				"Pos" : 32.75,
+				"End" : 34.0,
+				"Effect" : 1
 			}
 		]
 	}
