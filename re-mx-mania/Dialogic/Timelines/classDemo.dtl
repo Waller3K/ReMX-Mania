@@ -1,8 +1,26 @@
 [background arg="res://Assets/BG Art/XanderRoom1.png" fade="0.0"]
 join XanderDemo left
-XanderDemo: Hey! Wanna get going?
-- Nah..
-	[wait time="2.0"]
-	jump 
-- Sure!
-	[end_timeline]
+XanderDemo: Hey! Welcome to ReMX Mania!
+XanderDemo: There... isn't much here right now...
+XanderDemo: But, I want to thank you for playing this early demo!
+XanderDemo: That aside how good are you at rhythm games?
+- ...What's a *Rhythm Game*???
+	[signal arg_type="dict" arg="{"Arg":"LoadChart","Path":"user://Charts/Igaku Test - Waller3K/Easy.json"}"]
+	jump EasyChartSelected!
+- Eh, I've played guitar here like at least once?
+	[signal arg_type="dict" arg="{"Arg":"LoadChart","Path":"user://Charts/Igaku Test - Waller3K/Easy.json"}"]
+	jump EasyChartSelected!
+- Oh! I'm ok at them
+	[signal arg_type="dict" arg="{"Arg":"LoadChart","Path":"user://Charts/Igaku Test - Waller3K/Easy.json"}"]
+	jump EasyChartSelected!
+- I'm pretty good at them and am looking for a challenge! >:D
+	[signal arg_type="dict" arg="{"Arg":"LoadChart","Path":"user://Charts/Igaku Test - Waller3K/Expert.json"}"]
+	jump ExpertChartSelected!
+label EasyChartSelected!
+XanderDemo: Alright, let's get started then! You got this!
+[signal arg="StartChart"]
+[end_timeline]
+label ExpertChartSelected!
+XanderDemo: Well ok then! Show me what you can do!
+[signal arg="StartChart"]
+[end_timeline]

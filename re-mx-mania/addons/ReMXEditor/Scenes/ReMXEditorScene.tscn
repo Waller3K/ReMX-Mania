@@ -327,6 +327,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Name"
+editable = false
 
 [node name="SongTitleRomanizedEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1286179364]
 visible = false
@@ -344,6 +345,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Name"
+editable = false
 
 [node name="ArtistNameEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=748915625]
 layout_mode = 2
@@ -360,6 +362,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Name"
+editable = false
 
 [node name="ArtistNameRomanizedEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1731483958]
 visible = false
@@ -377,6 +380,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Name"
+editable = false
 
 [node name="ChaterEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1487948482]
 layout_mode = 2
@@ -393,6 +397,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Name"
+editable = false
 
 [node name="DifficultyNameEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1817341559]
 layout_mode = 2
@@ -409,6 +414,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Name"
+editable = false
 
 [node name="DifficultyConstantBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=479876918]
 layout_mode = 2
@@ -424,6 +430,7 @@ size_flags_horizontal = 3
 [node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata/DifficultyConstantBox" unique_id=1444139148]
 layout_mode = 2
 step = 0.01
+editable = false
 
 [node name="StartingBPMBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=278958992]
 layout_mode = 2
@@ -440,6 +447,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 max_value = 1000.0
 step = 0.01
+editable = false
 
 [node name="PreviewTimestampBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1714542247]
 layout_mode = 2
@@ -455,6 +463,7 @@ size_flags_horizontal = 3
 [node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata/PreviewTimestampBox" unique_id=1565183635]
 layout_mode = 2
 allow_greater = true
+editable = false
 
 [node name="TrackCountBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1240436709]
 layout_mode = 2
@@ -473,6 +482,7 @@ min_value = 2.0
 max_value = 4.0
 value = 2.0
 rounded = true
+editable = false
 
 [node name="BGMPathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1737222229]
 layout_mode = 2
@@ -493,6 +503,7 @@ text = "Change"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Path"
+editable = false
 
 [node name="ScratchPathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=673025308]
 layout_mode = 2
@@ -513,6 +524,7 @@ text = "Change"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Path"
+editable = false
 
 [node name="Track1PathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=139963027]
 layout_mode = 2
@@ -533,6 +545,7 @@ text = "Change"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Path"
+editable = false
 
 [node name="Track2PathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=8798092]
 layout_mode = 2
@@ -553,6 +566,7 @@ text = "Change"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Path"
+editable = false
 
 [node name="Track3PathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1212484327]
 layout_mode = 2
@@ -573,6 +587,7 @@ text = "Change"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Path"
+editable = false
 
 [node name="Track4PathEdit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel/ScrollContainer/ChartMetadata" unique_id=1439039313]
 layout_mode = 2
@@ -593,6 +608,7 @@ text = "Change"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Path"
+editable = false
 
 [node name="EditorFileDialog" type="EditorFileDialog" parent="." unique_id=204571811]
 oversampling_override = 1.0
