@@ -1,4 +1,4 @@
-[background arg="res://Assets/BG Art/XanderRoom1.png" fade="0.0"]
+[background arg="res://Assets/BG Art/XanderRoomInk.png" fade="0.0"]
 join XanderDemo left
 XanderDemo: Hey! Welcome to ReMX Mania!
 XanderDemo: There... isn't much here right now...
