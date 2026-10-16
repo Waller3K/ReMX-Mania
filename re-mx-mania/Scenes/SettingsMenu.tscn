@@ -45,7 +45,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SettingsContainer" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer" unique_id=20065681 node_paths=PackedStringArray("musicSlider", "sfxSlider", "offsetBox", "scrollSpeedBox", "returnButton", "actionList", "pathList", "debugModeToggle", "DirectoriesHeader", "openDirFD")]
+[node name="SettingsContainer" type="VBoxContainer" parent="Main Panel/MarginContainer/HBoxContainer" unique_id=20065681 node_paths=PackedStringArray("musicSlider", "sfxSlider", "offsetBox", "scrollSpeedBox", "returnButton", "actionList", "pathList", "debugModeToggle", "DirectoriesHeader", "openDirFD", "reinstallButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_8uw7q")
@@ -59,6 +59,7 @@ pathList = NodePath("ChartDirectories/PathList")
 debugModeToggle = NodePath("DebugModeSetting/CheckButton")
 DirectoriesHeader = NodePath("DirectoriesHeader")
 openDirFD = NodePath("../../../../OpenDirDialogue")
+reinstallButton = NodePath("Reinstall")
 
 [node name="VolumeLabel" type="Label" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=42826813]
 layout_mode = 2
@@ -178,13 +179,18 @@ size_flags_horizontal = 3
 [node name="ChartPathEdit" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer/ChartDirectories/PathList" unique_id=1610962041 instance=ExtResource("3_4hfd5")]
 layout_mode = 2
 
+[node name="Reinstall" type="Button" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=1871685106]
+layout_mode = 2
+tooltip_text = "Clears the default chart directory at \"user://Charts\" and reinstalls the default charts to that folder. THIS ACTION CONNOT BE UNDONE!"
+text = "REINSTALL DEFAULT CHARTS!"
+
 [node name="Return" type="Button" parent="Main Panel/MarginContainer/HBoxContainer/SettingsContainer" unique_id=702958336]
 layout_mode = 2
 text = "Return"
 
 [node name="OpenDirDialogue" type="FileDialog" parent="." unique_id=732266770]
 oversampling_override = 1.0
-title = "Open Chart Directory"
+title = "Open a Directory"
 initial_position = 2
 file_mode = 2
 display_mode = 1

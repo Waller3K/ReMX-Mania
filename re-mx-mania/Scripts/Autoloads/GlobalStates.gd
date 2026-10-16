@@ -26,6 +26,13 @@ const 	MAXIMUM_SCORE	: int	= 1000000
 ## and long scratch ticks.  
 const 	TICK_INTERVAL	:	float 	= 0.1 # In seconds
 
+## The Current Release Version of the game! Remember to change this
+## before any release on github! 
+## 0.01 - 0.09 is Pre-Alpha
+## 0.1 - 0.9 is Alpha and Beta
+## 1.0 + is final release!
+const	VERSION	 		:	float	= 0.012 # Pre-Alpha 1.2
+
 var isDebug : bool = true
 
 #The timing window variables (Hard coded for now) in ms
@@ -82,3 +89,65 @@ var gradeThresholds : Array[float] = [
 var mainTrackXPos : Array[float] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 var mainNoteWidth : float = 0.0
 var scratchNoteWidth : float = 0.0
+
+#Global Functions
+
+## A simple function that takes the chart files from the .pck file,
+## and creates a default Charts directory in the user folder on first
+## launch.
+func installDefaultCharts():
+	# If the marker file exists, check the version of the file.
+	if FileAccess.file_exists(GlobalStates.CHARTS_DEST + "/.defaultChartsInstalled"):
+		var markerFile := FileAccess.open(GlobalStates.CHARTS_DEST + "/.defaultChartsInstalled", FileAccess.READ)
+		if markerFile.eof_reached():
+			print("markerFile Empty! Updating charts...")
+		else:
+			var version = markerFile.get_float()
+			# Using snappedf() to deal with floating point imprecision.
+			if snappedf(version, 0.0001) == GlobalStates.VERSION:
+				return
+			else:
+				print("Version Mismatch, Current Game Version is '"
+				+ str(GlobalStates.VERSION)
+				+ "' markerFile Version is '"
+				+ str(version)
+				+ "'. Updating charts...")
+		clearDirRecursive(GlobalStates.CHARTS_DEST)
+	
+	copyDirRecursive(GlobalStates.DEFAULT_CHART_SOURCE, GlobalStates.CHARTS_DEST)
+	
+	# NOTE: FILEACCESS.WRITE truncates the file and overwrites its contents.
+	var marker := FileAccess.open(GlobalStates.CHARTS_DEST + "/.defaultChartsInstalled", FileAccess.WRITE)
+	marker.store_float(GlobalStates.VERSION)
+	marker.close()
+
+## A helper function that recursively goes through a directory and
+## clears it out.
+func clearDirRecursive(path : String):
+	for dir in DirAccess.get_directories_at(path):
+		clearDirRecursive(path.path_join(dir))
+	
+	for file in DirAccess.get_files_at(path):
+		DirAccess.remove_absolute(path.path_join(file))
+	
+	DirAccess.remove_absolute(path)
+
+## A helper function that goes through a directory and copies 
+## all of the contents of said directory to another.
+func copyDirRecursive(from : String, to : String):
+	DirAccess.make_dir_recursive_absolute(to)
+	var dir = DirAccess.open(from)
+	dir.list_dir_begin()
+	var itemName = dir.get_next()
+	while itemName != "":
+		if itemName.begins_with("."):
+			itemName = dir.get_next()
+			continue
+		var fromPath = from + "/" + itemName
+		var toPath = to + "/" + itemName
+		if dir.current_is_dir():
+			copyDirRecursive(fromPath, toPath)
+		else:
+			DirAccess.copy_absolute(fromPath, toPath)
+		itemName = dir.get_next()
+	dir.list_dir_end()

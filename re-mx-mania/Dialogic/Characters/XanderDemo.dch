@@ -19,7 +19,7 @@
 &"portraits": {
 "Xander Test Wip": {
 "export_overrides": {
-"image": "\"res://Assets/Character Art/Xander_Test_WIP.png\""
+"image": "\"res://Assets/Character Art/Xander Render Test.png\""
 },
 "mirror": false,
 "offset": Vector2(0, 0),

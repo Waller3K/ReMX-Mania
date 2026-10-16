@@ -24,7 +24,7 @@ var isPassing : bool
 ## A function that takes in the maximum possible weighted score for a given chart, and 
 ## calculates the player's final grade based on what percentage of the notes were
 ## hit, whether or not the play was a full combo, and other factors 
-func calculateGrade(maxWScore : int) -> GlobalEnums.gradeEnum:
+func calculateGrade(_maxWScore : int) -> GlobalEnums.gradeEnum:
 	# If the play was a full combo
 	if hitBreakdown[GlobalEnums.judgementEnum.MISS] == 0:
 		var noAlmostPerfect : bool = (
@@ -55,12 +55,14 @@ func calculateGrade(maxWScore : int) -> GlobalEnums.gradeEnum:
 		return grade
 	
 	# If the play wasn't an FC:
-	var scoreRatio : float = float(score) / float(maxWScore)
+	var scoreRatio : float = float(techScore) / float(GlobalStates.MAXIMUM_SCORE)
 	
 	grade = GlobalEnums.gradeEnum.F
 	for gradeThreshold in GlobalStates.gradeThresholds:
 		if scoreRatio < gradeThreshold:
 			return grade
+			
+		@warning_ignore("int_as_enum_without_cast")
 		grade += 1
 	
 	return grade

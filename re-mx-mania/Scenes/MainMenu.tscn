@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://so4xkyqw6sve"]
 
 [ext_resource type="Script" uid="uid://clpcba3lpb6bb" path="res://Scripts/Scenes/MainMenu.gd" id="1_tt5f1"]
+[ext_resource type="Texture2D" uid="uid://cxvferhhsunw2" path="res://Assets/Textures/Temp_Logo.png" id="2_853f1"]
+[ext_resource type="AudioStream" uid="uid://crsjf56jli45u" path="res://Assets/BG Music/Theme 4-1.mp3" id="3_8saeu"]
 
 [sub_resource type="Theme" id="Theme_dalwh"]
 default_font_size = 50
@@ -11,7 +13,7 @@ default_font_size = 50
 [sub_resource type="Theme" id="Theme_ujc2j"]
 default_font_size = 50
 
-[node name="MainMenu" type="Control" unique_id=1546806901 node_paths=PackedStringArray("songSelectButton", "settingsButton", "storyButton", "quitButton")]
+[node name="MainMenu" type="Control" unique_id=1546806901 node_paths=PackedStringArray("songSelectButton", "settingsButton", "storyButton", "quitButton", "versionLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,10 +21,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tt5f1")
-songSelectButton = NodePath("Panel/VBoxContainer/SongSelect")
-settingsButton = NodePath("Panel/VBoxContainer/Settings")
-storyButton = NodePath("Panel/VBoxContainer/Story")
-quitButton = NodePath("Panel/VBoxContainer/Quit")
+songSelectButton = NodePath("Panel/VBoxContainer2/HBoxContainer/VBoxContainer/SongSelect")
+settingsButton = NodePath("Panel/VBoxContainer2/HBoxContainer/VBoxContainer/Settings")
+storyButton = NodePath("Panel/VBoxContainer2/HBoxContainer/VBoxContainer/Story")
+quitButton = NodePath("Panel/VBoxContainer2/HBoxContainer/VBoxContainer/Quit")
+versionLabel = NodePath("Panel/VBoxContainer2/VersionLabel")
 
 [node name="Panel" type="Panel" parent="." unique_id=1246561379]
 layout_mode = 1
@@ -32,36 +35,68 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=369529836]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel" unique_id=275608387]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -16.0
-offset_right = 4.0
-offset_bottom = 16.0
+offset_left = -141.0
+offset_top = -241.5
+offset_right = 141.0
+offset_bottom = 241.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SongSelect" type="Button" parent="Panel/VBoxContainer" unique_id=583586817]
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer2" unique_id=1120002585]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_853f1")
+expand_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer2" unique_id=1711663028]
+layout_mode = 2
+
+[node name="Spacer 1" type="Control" parent="Panel/VBoxContainer2/HBoxContainer" unique_id=1814076075]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2/HBoxContainer" unique_id=369529836]
+layout_mode = 2
+
+[node name="SongSelect" type="Button" parent="Panel/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=583586817]
 layout_mode = 2
 theme = SubResource("Theme_dalwh")
 text = "Song Select"
 
-[node name="Settings" type="Button" parent="Panel/VBoxContainer" unique_id=1528428534]
+[node name="Settings" type="Button" parent="Panel/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1528428534]
 layout_mode = 2
 theme = SubResource("Theme_4jli2")
 text = "Settings"
 
-[node name="Story" type="Button" parent="Panel/VBoxContainer" unique_id=860723115]
+[node name="Story" type="Button" parent="Panel/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=860723115]
 layout_mode = 2
 theme = SubResource("Theme_ujc2j")
 text = "Story"
 
-[node name="Quit" type="Button" parent="Panel/VBoxContainer" unique_id=967371663]
+[node name="Quit" type="Button" parent="Panel/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=967371663]
 layout_mode = 2
 theme = SubResource("Theme_ujc2j")
 text = "Quit"
+
+[node name="Spacer 2" type="Control" parent="Panel/VBoxContainer2/HBoxContainer" unique_id=1085724654]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer2" unique_id=1970767248]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="VersionLabel" type="Label" parent="Panel/VBoxContainer2" unique_id=2080903184]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=316236002]
+stream = ExtResource("3_8saeu")
+autoplay = true

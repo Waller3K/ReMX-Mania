@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://crsjf56jli45u"
+path="res://.godot/imported/Theme 4-1.mp3-e06026b5d90ff6ae75abe6f97739ced6.mp3str"
+
+[deps]
+
+source_file="res://Assets/BG Music/Theme 4-1.mp3"
+dest_files=["res://.godot/imported/Theme 4-1.mp3-e06026b5d90ff6ae75abe6f97739ced6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

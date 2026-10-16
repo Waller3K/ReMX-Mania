@@ -20,6 +20,8 @@ extends VBoxContainer
 
 @export var openDirFD : FileDialog
 
+@export var reinstallButton : Button
+
 @onready var InputButtonScene = preload("res://Scenes/GameObjects/InputButton.tscn")
 
 @onready var ChartPathEditScene = preload("res://Scenes/GameObjects/chartPathEdit.tscn")
@@ -62,6 +64,7 @@ func _ready():
 	scrollSpeedBox.value_changed.connect(_onScrollSpeedChange)
 	offsetBox.value_changed.connect(_onOffsetChange)
 	debugModeToggle.pressed.connect(_onDebugToggle)
+	reinstallButton.pressed.connect(_onReinstall)
 
 
 func initDirHeader():
@@ -185,6 +188,10 @@ func _onVolumeChange(volume: float, index : int):
 			GlobalStates.musicVolumeDB = linear_to_db(volume)
 		1:
 			GlobalStates.sfxVolumeDB = linear_to_db(volume)
+
+func _onReinstall():
+	GlobalStates.clearDirRecursive(GlobalStates.CHARTS_DEST)
+	GlobalStates.installDefaultCharts()
 
 func _onReturn():
 	SceneManager.loadMainMenu()
