@@ -203,7 +203,7 @@ func setTrackCount(newCount):
 		
 		for i in difference:
 			if !notes[-1].is_empty():
-				print("Worry, clearing track data!")
+				print("Warning! clearing track data!")
 				notes.pop_back()
 			else:
 				notes.pop_back()

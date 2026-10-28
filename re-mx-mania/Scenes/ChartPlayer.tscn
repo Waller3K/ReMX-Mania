@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="17_ns6q8"]
 [ext_resource type="Script" uid="uid://cuwgkwvv5v555" path="res://Scripts/GameObjects/RecordNode.gd" id="18_dr58h"]
 [ext_resource type="Script" uid="uid://h857c3k62lnp" path="res://Scripts/GameObjects/judgementSprite.gd" id="19_cjj0x"]
+[ext_resource type="Texture2D" uid="uid://cpri6l7us2i7u" path="res://Assets/BG Art/TempGameplayBG.png" id="21_frq57"]
 
 [sub_resource type="SystemFont" id="SystemFont_cijmt"]
 
@@ -67,6 +68,16 @@ emission_enabled = true
 emission = Color(0.14903358, 0.5791462, 0.7684444, 1)
 emission_energy_multiplier = 0.54
 backlight = Color(1, 1, 1, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ao0qo"]
+panorama = ExtResource("21_frq57")
+
+[sub_resource type="Sky" id="Sky_txxkg"]
+sky_material = SubResource("PanoramaSkyMaterial_ao0qo")
+
+[sub_resource type="Environment" id="Environment_5pscq"]
+background_mode = 2
+sky = SubResource("Sky_txxkg")
 
 [node name="Main" type="Node3D" unique_id=751108881]
 
@@ -224,6 +235,9 @@ transform = Transform3D(0.9803956, 0, -0.19703929, 0.19431557, -0.16569641, 0.96
 light_color = Color(0.58000004, 0.8110001, 1, 1)
 light_energy = 1.547
 sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=458360665]
+environment = SubResource("Environment_5pscq")
 
 [connection signal="chartCreated" from="Composer" to="AudioStreamPlayer" method="_onChartCreated"]
 [connection signal="chartCreated" from="Composer" to="Judge" method="_onChartCreated"]
