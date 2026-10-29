@@ -149,15 +149,6 @@ func load(path: String) -> bool:
 	for key in mainTrackKeys:
 		notes.push_back(chartData["Notes"][key])
 	
-	#var trackNames : Array = chartData["Notes"].keys()
-	#
-	## This section adds the main track notes and the FX notes to the 2D array
-	## Plus 2 because the FX track isn't counted in the trackCount and neither
-	## is Scratch Track
-	## THE TRACKS SHOULD ALWAYS BE IN THE SAME ORDER AS THE TRACKIDS
-	#for track in trackCount + 2:
-		#notes.push_back(chartData["Notes"][trackNames[track]])
-	
 	chartPath = path
 	
 	for track : Array[Dictionary] in notes:
@@ -189,7 +180,7 @@ func isASCII(input : String) -> bool:
 
 
 func setTrackCount(newCount):
-	var trueTrackSize = notes.size()
+	var trueTrackSize = notes.size() - 2 # Subtract 2 for the FX and Scratch Tracks
 	if newCount > trueTrackSize:
 		var difference = newCount - trueTrackSize
 		var emptyArray = []
@@ -197,7 +188,6 @@ func setTrackCount(newCount):
 		for i in difference:
 			notes.push_back(emptyArray)
 		
-		return
 	elif newCount < trueTrackSize:
 		var difference = trueTrackSize - newCount
 		
@@ -207,9 +197,11 @@ func setTrackCount(newCount):
 				notes.pop_back()
 			else:
 				notes.pop_back()
-		return
 	else:
 		return
+	
+	trackCount = newCount
+	print(notes)
 
 ## Takes the current chart data and exports it as a chart.json file in the given directory!
 func save(path : String):

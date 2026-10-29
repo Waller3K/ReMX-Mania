@@ -36,6 +36,8 @@ extends Panel
 
 var chartLoaded : bool = false
 
+signal chartLoadedInEditor
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Connect Button Signals
@@ -212,6 +214,7 @@ func _onLoadChart():
 	ReMXEditor.currentChart = loadedChart
 	setChartMetadata()
 	toggleEditable(true)
+	chartLoadedInEditor.emit()
 
 func _onSaveChart():
 	EditorFD.file_mode = FileDialog.FILE_MODE_OPEN_DIR

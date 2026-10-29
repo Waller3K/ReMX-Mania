@@ -98,6 +98,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.29219002, 0.29219005, 0.29219002, 1)
 
+[node name="Track2" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel/TrackContainer" unique_id=361709855]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
+
+[node name="Track3" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel/TrackContainer" unique_id=1475425976]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
+
+[node name="Track4" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel/TrackContainer" unique_id=1236374149]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
+
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer" unique_id=856131702]
 layout_mode = 2
 theme_override_constants/margin_left = 5
@@ -129,6 +146,23 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
 [node name="MainButton1" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer/MainButtonContainer" unique_id=689775866]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.7193069, 0.38163018, 1, 1)
+
+[node name="MainButton2" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer/MainButtonContainer" unique_id=1886971132]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.7193069, 0.38163018, 1, 1)
+
+[node name="MainButton3" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer/MainButtonContainer" unique_id=1557662982]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.7193069, 0.38163018, 1, 1)
+
+[node name="MainButton4" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer/MainButtonContainer" unique_id=370309724]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.7193069, 0.38163018, 1, 1)
