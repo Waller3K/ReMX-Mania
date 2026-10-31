@@ -1,7 +1,27 @@
 [gd_scene format=3 uid="uid://p00njp63vq53"]
 
+[ext_resource type="Script" uid="uid://dmk10mwvs15eo" path="res://addons/ReMXEditor/Scripts/Objects/Top Panel Buttons/topPanelMediaButtons.gd" id="1_eh5iu"]
 [ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="1_f4di4"]
 [ext_resource type="Script" uid="uid://cvu7v8sn7on2u" path="res://addons/ReMXEditor/Scripts/Objects/songInfoPanel.gd" id="2_1gjrh"]
+[ext_resource type="Script" uid="uid://cudv2g7oaqugp" path="res://addons/ReMXEditor/Scripts/Objects/timelinePanel.gd" id="2_sayof"]
+[ext_resource type="Script" uid="uid://btff7cka7axvo" path="res://addons/ReMXEditor/Scripts/Objects/gameplayPanel.gd" id="2_xo132"]
+[ext_resource type="Script" uid="uid://8sljtqjovd0i" path="res://addons/ReMXEditor/Scripts/Objects/audioStreamPlayer.gd" id="4_sayof"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2h18k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vm1wb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21k31"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xa3gg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh5iu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xo132"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2xp3l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rys8b"]
 
 [node name="ReMXEditorScene" type="Control" unique_id=968586156]
 layout_mode = 3
@@ -32,6 +52,40 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TopPanel" unique_id=1705775039]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=2136529884]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=787692940]
+layout_mode = 2
+disabled = true
+text = "Play"
+script = ExtResource("1_eh5iu")
+
+[node name="PauseButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=1460627729]
+layout_mode = 2
+disabled = true
+text = "Pause"
+script = ExtResource("1_eh5iu")
+
+[node name="StopButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=624413631]
+layout_mode = 2
+disabled = true
+text = "Stop"
+script = ExtResource("1_eh5iu")
+
+[node name="Right Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=1920452729]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer" unique_id=1276487915]
 layout_mode = 2
 size_flags_vertical = 3
@@ -51,9 +105,13 @@ offset_right = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameplayPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer" unique_id=1831695593]
-custom_minimum_size = Vector2(700, 0)
+[node name="GameplayPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer" unique_id=1831695593 node_paths=PackedStringArray("tracks", "trackContainer", "buttons")]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
+script = ExtResource("2_xo132")
+tracks = [NodePath("MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackFX"), NodePath("MarginContainer/VBoxContainer/TrackContainer/ScratchTrackMarginContainer/ScratchTrackPanel/ScratchTrack"), NodePath("MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer/Track1"), NodePath("MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer/Track2"), NodePath("MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer/Track3"), NodePath("MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer/Track4")]
+trackContainer = NodePath("MarginContainer/VBoxContainer/TrackContainer")
+buttons = [NodePath("MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer/MainButtonContainer/MainButton1"), NodePath("MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer/MainButtonContainer/MainButton2"), NodePath("MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer/MainButtonContainer/MainButton3"), NodePath("MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/MarginContainer/MainButtonContainer/MainButton4"), NodePath("MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/HBoxContainer/FXButton")]
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel" unique_id=243511503]
 layout_mode = 1
@@ -74,17 +132,18 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer" unique_id=1218017839]
+[node name="MainTrackMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer" unique_id=1218017839]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 0
 
-[node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer" unique_id=1583531302]
+[node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer" unique_id=1583531302]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2h18k")
 
-[node name="TrackContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel" unique_id=479589653]
+[node name="TrackContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel" unique_id=479589653]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,39 +152,58 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 
-[node name="Track1" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel/TrackContainer" unique_id=911967863]
+[node name="Track1" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer" unique_id=911967863]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.29219002, 0.29219005, 0.29219002, 1)
+color = Color(1, 1, 1, 0)
 
-[node name="Track2" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel/TrackContainer" unique_id=361709855]
+[node name="Track2" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer" unique_id=361709855]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.29219002, 0.29219005, 0.29219002, 1)
+color = Color(0.29411766, 0.29411766, 0.29411766, 0)
 
-[node name="Track3" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel/TrackContainer" unique_id=1475425976]
+[node name="Track3" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer" unique_id=1475425976]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.29219002, 0.29219005, 0.29219002, 1)
+color = Color(0.29411766, 0.29411766, 0.29411766, 0)
 
-[node name="Track4" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer/MainTracksPanel/TrackContainer" unique_id=1236374149]
+[node name="Track4" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer" unique_id=1236374149]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.29219002, 0.29219005, 0.29219002, 1)
+color = Color(0.29411766, 0.29411766, 0.29411766, 0)
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer" unique_id=856131702]
+[node name="TrackFX" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel" unique_id=778548030]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ScratchTrackMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer" unique_id=856131702]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 10
 
-[node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MarginContainer2" unique_id=1652952374]
+[node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/ScratchTrackMarginContainer" unique_id=1652952374]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vm1wb")
+
+[node name="ScratchTrack" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/ScratchTrackMarginContainer/ScratchTrackPanel" unique_id=1921536175]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="JudgementLine" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer" unique_id=622007578]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer" unique_id=207020433]
@@ -175,7 +253,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="FXButton" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/ButtonContainer/VBoxContainer/HBoxContainer" unique_id=1610002639]
-custom_minimum_size = Vector2(400, 50)
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 color = Color(0.99999994, 0.17389718, 0.3145012, 1)
 
@@ -195,8 +273,47 @@ texture = ExtResource("1_f4di4")
 expand_mode = 2
 
 [node name="TimelinePanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer" unique_id=156214315]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+script = ExtResource("2_sayof")
+
+[node name="AudioTrackContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel" unique_id=1066278570]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGMTrack" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=2123555707]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_21k31")
+
+[node name="ScratchTrack" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=542774957]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xa3gg")
+
+[node name="Track1" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=521741507]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_eh5iu")
+
+[node name="Track2" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=545147374]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xo132")
+
+[node name="Track3" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=189286419]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2xp3l")
+
+[node name="Track4" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=863125631]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rys8b")
 
 [node name="FoldableContainer2" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=93072432]
 visible = false
@@ -654,3 +771,23 @@ title = "Are you sure?"
 initial_position = 2
 ok_button_text = "Yes"
 cancel_button_text = "No"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1006772640]
+script = ExtResource("4_sayof")
+
+[connection signal="resized" from="." to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel" method="_onSceneResized"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PlayButton" to="AudioStreamPlayer" method="_onPlay"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PauseButton" to="AudioStreamPlayer" method="_onPause"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/StopButton" to="AudioStreamPlayer" method="_onStop"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PlayButton" method="_onChartClosed"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PauseButton" method="_onChartClosed"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/StopButton" method="_onChartClosed"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel" method="_onChartClosed"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel" method="_onStop"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="AudioStreamPlayer" method="_onChartClosed"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PlayButton" method="_onChartLoadedInEditor"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PauseButton" method="_onChartLoadedInEditor"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/StopButton" method="_onChartLoadedInEditor"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel" method="_onChartLoadedInEditor"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel" method="_onChartLoaded"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="AudioStreamPlayer" method="_onChartLoadedInEditor"]

@@ -36,7 +36,16 @@ extends Panel
 
 var chartLoaded : bool = false
 
+## A signal that is emitted when the user loads
+## a new chart successfully into the editor
 signal chartLoadedInEditor
+
+## A signal emitted when the user closes the previously
+## loaded chart.
+signal chartClosed
+
+## A signal emitted when a new chart is created and opened
+signal newChart
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -180,6 +189,9 @@ func _onMetadataTextChanged(newText : String, property : String, index : int = 0
 	print(property, " Now is: ", ReMXEditor.currentChart.get(property))
 
 func _onMetadataValueChanged(newValue : float, property : String):
+	if ReMXEditor.currentChart == null:
+		return
+		
 	if property not in ReMXEditor.currentChart:
 		push_error(" Error! There is no '", property, "' in Chart!")
 		return
@@ -200,6 +212,7 @@ func _onNewChart():
 	ReMXEditor.currentChart.init()
 	clearChartMetadata()
 	toggleEditable(true)
+	newChart.emit()
 
 func _onLoadChart():
 	EditorFD.file_mode = EditorFD.FileMode.FILE_MODE_OPEN_FILE
@@ -233,3 +246,4 @@ func _onCloseChart():
 	ReMXEditor.currentChart = null
 	toggleEditable(false)
 	clearChartMetadata()
+	chartClosed.emit()
