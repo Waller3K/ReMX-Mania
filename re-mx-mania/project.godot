@@ -28,12 +28,8 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={
-"XanderDemo": "res://Dialogic/Characters/XanderDemo.dch"
-}
-directories/dtl_directory={
-"classDemo": "res://Dialogic/Timelines/classDemo.dtl"
-}
+directories/dch_directory={}
+directories/dtl_directory={}
 layout/style_directory={}
 layout/style_list=[]
 layout/default_style="Default"
@@ -86,7 +82,7 @@ project/assembly_name="ReMX Mania"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/ReMXEditor/plugin.cfg", "res://addons/dialogic/plugin.cfg")
 
 [input]
 

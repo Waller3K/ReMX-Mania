@@ -1,6 +1,8 @@
 @tool
 extends Panel
 
+#Test from classroom Mac Studio
+
 var playheadPos : int
 
 var mouseActive : bool = false
