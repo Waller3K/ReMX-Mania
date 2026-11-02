@@ -18,8 +18,8 @@ static var globalOffset : float = 0.0
 
 static var defaultFont : Font = preload("res://addons/ReMXEditor/Assets/Fonts/ARIAL.TTF")
 
-## The snap level of the grid in a fraction of the beat!
-static var gridSnap : float = 0.25
+## The snap level. The higher the number the more divisions of the beat.
+static var gridSnap : int = 1
 
 # CURRENT CHART VARIABLES
 ## The current song position of the playing chart (In Seconds!)
@@ -35,20 +35,44 @@ static var isPlaying : bool = false
 ## Is set to -1.0 if the song hasn't been paused!
 static var pausedAt : float = -1.0
 
+## The amount of chart (in seconds) that is currently visible! 
+## Lower this value to zoom in, raise it to zoom out! 
+static var visibleLength : float = 1.0
+
 var mainPanelInstance : Node
 
 ## Helper function that takes in the size of a node, 
 ## and returns the Y position that represents the current chart's 
 ## timestamp with 0 being the bottom of the node, and the chart's 
 ## length being at the top!
-static func chartPosToScreenPos(nodeSize : Vector2, posOverride : float = -1.0, isScrolling : bool = false) -> float:
-	if isScrolling:
-		return remap(posOverride, chartPos, 1.0+chartPos, nodeSize.y, 0.0)
+## Use the posOverride to convert any chart position (IN SECONDS) 
+## to the correct screen Y position (IN PIXELS)!
+## Use useZoom to get the screen Y position corrected for the current visible 
+## length of the chart at the current chart position
+static func chartPosToScreenPos(nodeSize : Vector2, posOverride : float = -1.0, useZoom : bool = false) -> float:
+	if useZoom:
+		return remap(posOverride, chartPos, visibleLength+chartPos, nodeSize.y, 0.0)
 	
 	if posOverride != -1.0:
 		return remap(posOverride, 0.0, chartLength, nodeSize.y, 0.0)
 	
 	return remap(chartPos, 0.0, chartLength, nodeSize.y, 0.0)
+
+
+## Helper function that takes in the size of a node and a screen Y 
+## position along that node (In Pixels), and returns the corresponding
+## chart position that it represents (In Seconds)! 
+## Use useZoom to correct the chart position for the current zoom level
+## and the current chart position!
+static func screenPosToChartPos(nodeSize : Vector2, screenY : float, useZoom : bool = false) -> float:
+	if useZoom:
+		return remap(screenY, nodeSize.y, 0.0, chartPos, visibleLength+chartPos)
+	
+	return remap(screenY, nodeSize.y, 0.0, 0.0, chartLength)
+
+static func setChartPos(newChartPos: float):
+	chartPos = newChartPos
+	pausedAt = newChartPos
 
 ## A simple helper function that determines if the inputed text is made up of just ASCII characters!
 static func isASCII(input : String) -> bool:

@@ -47,9 +47,44 @@ func drawNotes(trackID : int, track : CanvasItem) -> void:
 		if note.has("End"):
 			var endY = ReMXEditor.chartPosToScreenPos(track.size, note["End"], true)
 			var holdRect : Rect2 = Rect2(0.0, endY, track.size.x, noteY - endY)
+			
 			if trackID == trackIDs.TRACKFX:
 				track.draw_rect(holdRect, Color(1.0, 0.339, 0.339, 1.0))
 				track.draw_string(ReMXEditor.defaultFont, Vector2(track.size.x/2, noteY - 8), str(note["Effect"]))
+				continue
+			
+			if note.has("Subnotes"):
+				track.draw_rect(holdRect, Color(0.812, 0.536, 0.0, 1.0))
+				for subnote in note["Subnotes"]:
+					var subnotePos = subnote["Pos"]
+					var subnoteType : int = int(subnote["Type"])
+					
+					var subnoteY = ReMXEditor.chartPosToScreenPos(
+						track.size, 
+						subnotePos, 
+						true
+						)
+					
+					var subnoteString : String
+					
+					match subnoteType:
+						0:
+							subnoteString = "---^^vv---"
+						1:
+							subnoteString = "---^^^^---"
+						2:
+							subnoteString = "---vvvv---"
+						_:
+							subnoteString = "---????---"
+					
+					track.draw_line(Vector2(0.0, subnoteY), Vector2(track.size.x, subnoteY), Color(0.541, 0.204, 0.596, 1.0), 5.0)
+					
+					track.draw_string(
+						ReMXEditor.defaultFont, 
+						Vector2(track.size.x/2, subnoteY), 
+						subnoteString,
+						HORIZONTAL_ALIGNMENT_CENTER
+						)
 				continue
 			
 			track.draw_rect(holdRect, Color(0.0, 0.656, 0.873, 1.0))

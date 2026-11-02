@@ -47,6 +47,8 @@ func _process(delta: float) -> void:
 			ReMXEditor.chartPos = stream.get_length()
 		else:
 			ReMXEditor.chartPos = currentAudioPos
+	elif ReMXEditor.pausedAt != -1.0 && !ReMXEditor.isPlaying:
+		ReMXEditor.chartPos = ReMXEditor.pausedAt
 	else:
 		ReMXEditor.chartPos = 0.0
 	
@@ -109,6 +111,7 @@ func _onPlay() -> void:
 	if !ReMXEditor.isPlaying:
 		if ReMXEditor.pausedAt != -1.0:
 			play(ReMXEditor.pausedAt)
+			ReMXEditor.pausedAt = -1.0
 		else:
 			play()
 		ReMXEditor.isPlaying = true

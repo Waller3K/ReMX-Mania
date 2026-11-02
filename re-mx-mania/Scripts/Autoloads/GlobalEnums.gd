@@ -1,10 +1,8 @@
 extends Node
 
-####################################################
-# FX Track is ID 0 and Scratch Track is ID 1
-# because they will ALWAYS be there
-# Regardless of TRACK_COUNT
-####################################################
+## FX Track is ID 0 and Scratch Track is ID 1
+## because they will ALWAYS be there
+## Regardless of TRACK_COUNT
 enum trackIDs {
 	TRACKFX,
 	SCRATCH_TRACK,

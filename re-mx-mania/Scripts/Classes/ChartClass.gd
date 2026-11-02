@@ -183,9 +183,9 @@ func setTrackCount(newCount):
 	var trueTrackSize = notes.size() - 2 # Subtract 2 for the FX and Scratch Tracks
 	if newCount > trueTrackSize:
 		var difference = newCount - trueTrackSize
-		var emptyArray = []
 		
 		for i in difference:
+			var emptyArray = []
 			notes.push_back(emptyArray)
 		
 	elif newCount < trueTrackSize:
@@ -279,3 +279,39 @@ func init():
 		notes.push_back(blankArray)
 	
 	print(notes)
+
+# ***************** NOTE EDITING FUNCTIONS ******************* #
+
+func sortByPosition(noteA : Dictionary, noteB : Dictionary) -> bool:
+	if noteA["Pos"] < noteB["Pos"]:
+		return true
+	return false
+
+func addMainNote(trackID : int, pos : float, end : float = -1.0) -> void:
+	
+	if trackID < int(GlobalEnums.trackIDs.TRACK1):
+		return
+	
+	var newNote : Dictionary = {
+		"Pos" : pos
+	}
+	
+	if end > pos:
+		newNote["End"] = end
+	
+	var newNoteIndex = notes[trackID].bsearch_custom(newNote, sortByPosition)
+	
+	notes[trackID].insert(newNoteIndex, newNote)
+	
+	print("Added new note: '" + str(newNote) + "' at Index: " + str(newNoteIndex))
+
+func addFXNote(type: int, pos : float, end : float):
+	if pos > end:
+		push_error("FX note end placed before note head")
+		return
+	
+	var newFXNote : Dictionary = {
+		"Pos" : pos,
+		"End" : end,
+		"Type" : type
+	}

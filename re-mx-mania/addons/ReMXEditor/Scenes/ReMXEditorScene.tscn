@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://p00njp63vq53"]
 
+[ext_resource type="Script" uid="uid://yqafcirh6arm" path="res://addons/ReMXEditor/Scripts/Objects/Top Panel Buttons/topPanelContainer.gd" id="1_2xp3l"]
 [ext_resource type="Script" uid="uid://dmk10mwvs15eo" path="res://addons/ReMXEditor/Scripts/Objects/Top Panel Buttons/topPanelMediaButtons.gd" id="1_eh5iu"]
 [ext_resource type="Texture2D" uid="uid://qpshe4hmqvh2" path="res://Assets/Textures/Record.png" id="1_f4di4"]
 [ext_resource type="Script" uid="uid://cvu7v8sn7on2u" path="res://addons/ReMXEditor/Scripts/Objects/songInfoPanel.gd" id="2_1gjrh"]
@@ -52,37 +53,62 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TopPanel" unique_id=1705775039]
+[node name="TopPanelContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TopPanel" unique_id=1705775039 node_paths=PackedStringArray("snappingToggle", "gridLevelLabel", "gridLevelBox", "testAddNoteButton")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2xp3l")
+snappingToggle = NodePath("SnappingToggle")
+gridLevelLabel = NodePath("GridLevelLabel")
+gridLevelBox = NodePath("GridLevelBox")
+testAddNoteButton = NodePath("AddTestNoteButton")
 
-[node name="Left Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=2136529884]
+[node name="SnappingToggle" type="CheckButton" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=2038531448]
+layout_mode = 2
+text = "Snapping"
+
+[node name="GridLevelLabel" type="Label" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=299430117]
+layout_mode = 2
+text = "Grid Level"
+
+[node name="GridLevelBox" type="SpinBox" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=1760619869]
+layout_mode = 2
+min_value = 1.0
+max_value = 12.0
+value = 1.0
+rounded = true
+alignment = 1
+
+[node name="AddTestNoteButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=1585146169]
+layout_mode = 2
+text = "Add TEST note"
+
+[node name="Left Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=2136529884]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=787692940]
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=787692940]
 layout_mode = 2
 disabled = true
 text = "Play"
 script = ExtResource("1_eh5iu")
 
-[node name="PauseButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=1460627729]
+[node name="PauseButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=1460627729]
 layout_mode = 2
 disabled = true
 text = "Pause"
 script = ExtResource("1_eh5iu")
 
-[node name="StopButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=624413631]
+[node name="StopButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=624413631]
 layout_mode = 2
 disabled = true
 text = "Stop"
 script = ExtResource("1_eh5iu")
 
-[node name="Right Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopPanel/HBoxContainer" unique_id=1920452729]
+[node name="Right Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=1920452729]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -288,31 +314,37 @@ grow_vertical = 2
 [node name="BGMTrack" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=2123555707]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_21k31")
 
 [node name="ScratchTrack" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=542774957]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xa3gg")
 
 [node name="Track1" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=521741507]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_eh5iu")
 
 [node name="Track2" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=545147374]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xo132")
 
 [node name="Track3" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=189286419]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2xp3l")
 
 [node name="Track4" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel/AudioTrackContainer" unique_id=863125631]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rys8b")
 
 [node name="FoldableContainer2" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=93072432]
@@ -776,18 +808,21 @@ cancel_button_text = "No"
 script = ExtResource("4_sayof")
 
 [connection signal="resized" from="." to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel" method="_onSceneResized"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PlayButton" to="AudioStreamPlayer" method="_onPlay"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PauseButton" to="AudioStreamPlayer" method="_onPause"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/StopButton" to="AudioStreamPlayer" method="_onStop"]
-[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PlayButton" method="_onChartClosed"]
-[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PauseButton" method="_onChartClosed"]
-[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/StopButton" method="_onChartClosed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PlayButton" to="AudioStreamPlayer" method="_onPlay"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PauseButton" to="AudioStreamPlayer" method="_onPause"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/StopButton" to="AudioStreamPlayer" method="_onStop"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" method="_onChartClosed"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PlayButton" method="_onChartClosed"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PauseButton" method="_onChartClosed"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/StopButton" method="_onChartClosed"]
 [connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel" method="_onChartClosed"]
 [connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel" method="_onStop"]
+[connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel" method="_onChartClosed"]
 [connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="AudioStreamPlayer" method="_onChartClosed"]
-[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PlayButton" method="_onChartLoadedInEditor"]
-[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/PauseButton" method="_onChartLoadedInEditor"]
-[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/HBoxContainer/StopButton" method="_onChartLoadedInEditor"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" method="_onChartLoadedInEditor"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PlayButton" method="_onChartLoadedInEditor"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PauseButton" method="_onChartLoadedInEditor"]
+[connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/StopButton" method="_onChartLoadedInEditor"]
 [connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel" method="_onChartLoadedInEditor"]
 [connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/TimelinePanel" method="_onChartLoaded"]
 [connection signal="chartLoadedInEditor" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="AudioStreamPlayer" method="_onChartLoadedInEditor"]
