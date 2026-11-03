@@ -21,6 +21,9 @@ static var defaultFont : Font = preload("res://addons/ReMXEditor/Assets/Fonts/AR
 ## The snap level. The higher the number the more divisions of the beat.
 static var gridSnap : int = 1
 
+## The toggle variable for turning on and off grid snapping
+static var isSnapping : bool = false
+
 # CURRENT CHART VARIABLES
 ## The current song position of the playing chart (In Seconds!)
 static var chartPos : float = 0.0
@@ -39,7 +42,21 @@ static var pausedAt : float = -1.0
 ## Lower this value to zoom in, raise it to zoom out! 
 static var visibleLength : float = 1.0
 
+## The indexes for the placement tools
+enum toolEnum {
+	TAP,
+	HOLD,
+	FX_HOLD,
+	SCRATCH_HOLD,
+	SUB_SCRATCH_SHORT,
+	SUB_SCRATCH_LONG,
+	SELECT
+}
+
+static var currentTool : toolEnum = toolEnum.TAP
+
 var mainPanelInstance : Node
+
 
 ## Helper function that takes in the size of a node, 
 ## and returns the Y position that represents the current chart's 

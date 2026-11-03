@@ -1,11 +1,10 @@
 @tool
 extends Panel
 
-#Test from classroom Mac Studio
-
 var playheadPos : int
 
 var mouseActive : bool = false
+var isDragging : bool = false
 
 var mouseY : float = 0.0
 
@@ -37,6 +36,11 @@ func _process(_delta) -> void:
 	if(ReMXEditor.isPlaying):
 		playheadPos = ReMXEditor.chartPosToScreenPos(size)
 	else:
+		if isDragging:
+			playheadPos = mouseY
+			ReMXEditor.setChartPos(ReMXEditor.screenPosToChartPos(size, mouseY))
+			queue_redraw()
+			return
 		if ReMXEditor.pausedAt != -1.0:
 			playheadPos = ReMXEditor.chartPosToScreenPos(size, ReMXEditor.pausedAt)
 		else:
@@ -71,6 +75,12 @@ func _gui_input(event: InputEvent) -> void:
 		match mouseButton.button_index:
 			MOUSE_BUTTON_LEFT:
 				var newChartPos = ReMXEditor.screenPosToChartPos(size, mouseY)
+				
+				if mouseButton.is_pressed():
+					isDragging = true
+				else:
+					isDragging = false
+				
 				if !ReMXEditor.isPlaying:
 					ReMXEditor.setChartPos(ReMXEditor.screenPosToChartPos(size, mouseY))
 				

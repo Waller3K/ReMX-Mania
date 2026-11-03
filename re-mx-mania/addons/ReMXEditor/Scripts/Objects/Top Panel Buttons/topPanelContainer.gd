@@ -18,10 +18,10 @@ func _ready() -> void:
 	testAddNoteButton.disabled = true
 
 
-
-
 func toggleSnapping(state: bool) -> void:
-	pass
+	ReMXEditor.isSnapping = state
+	gridLevelBox.visible = state
+	gridLevelLabel.visible = state
 
 func _onGridLevelChanged(newGridLevel : int) -> void:
 	ReMXEditor.gridSnap = newGridLevel

@@ -28,8 +28,12 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={}
+directories/dch_directory={
+"XanderDemo": "res://Dialogic/Characters/XanderDemo.dch"
+}
+directories/dtl_directory={
+"classDemo": "res://Dialogic/Timelines/classDemo.dtl"
+}
 layout/style_directory={}
 layout/style_list=[]
 layout/default_style="Default"

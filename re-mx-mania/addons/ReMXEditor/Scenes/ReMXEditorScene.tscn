@@ -68,13 +68,16 @@ testAddNoteButton = NodePath("AddTestNoteButton")
 
 [node name="SnappingToggle" type="CheckButton" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=2038531448]
 layout_mode = 2
+disabled = true
 text = "Snapping"
 
 [node name="GridLevelLabel" type="Label" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=299430117]
+visible = false
 layout_mode = 2
 text = "Grid Level"
 
 [node name="GridLevelBox" type="SpinBox" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=1760619869]
+visible = false
 layout_mode = 2
 min_value = 1.0
 max_value = 12.0
@@ -84,6 +87,7 @@ alignment = 1
 
 [node name="AddTestNoteButton" type="Button" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=1585146169]
 layout_mode = 2
+disabled = true
 text = "Add TEST note"
 
 [node name="Left Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=2136529884]
@@ -167,7 +171,18 @@ theme_override_constants/margin_right = 0
 [node name="MainTracksPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer" unique_id=1583531302]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2h18k")
+
+[node name="TrackFX" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel" unique_id=778548030]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="TrackContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel" unique_id=479589653]
 layout_mode = 1
@@ -181,33 +196,28 @@ size_flags_vertical = 3
 [node name="Track1" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer" unique_id=911967863]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 color = Color(1, 1, 1, 0)
 
 [node name="Track2" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer" unique_id=361709855]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 color = Color(0.29411766, 0.29411766, 0.29411766, 0)
 
 [node name="Track3" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer" unique_id=1475425976]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 color = Color(0.29411766, 0.29411766, 0.29411766, 0)
 
 [node name="Track4" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel/TrackContainer" unique_id=1236374149]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 color = Color(0.29411766, 0.29411766, 0.29411766, 0)
-
-[node name="TrackFX" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/MainTrackMarginContainer/MainTracksPanel" unique_id=778548030]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
 
 [node name="ScratchTrackMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer" unique_id=856131702]
 layout_mode = 2
@@ -217,6 +227,7 @@ theme_override_constants/margin_right = 10
 [node name="ScratchTrackPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/ScratchTrackMarginContainer" unique_id=1652952374]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vm1wb")
 
 [node name="ScratchTrack" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer/TrackContainer/ScratchTrackMarginContainer/ScratchTrackPanel" unique_id=1921536175]
@@ -226,6 +237,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(1, 1, 1, 0)
 
 [node name="JudgementLine" type="ColorRect" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel/MarginContainer/VBoxContainer" unique_id=622007578]

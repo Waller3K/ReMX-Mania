@@ -21,10 +21,39 @@ var chartLoaded : bool = false
 
 var BPM : float = 0.0
 
+var secsPerBeat : float
+
+## Contains the raw mouse state! isActive, activeTrack, yPos, chartPos
+var mouseState : Dictionary = {
+	"isActive" = false,
+	"activeTrack" = -1,
+	"yPos" = 0.0
+}
+
+
+## The position of the cursor where notes will be placed in PIXELS
+var cursorPos : float = 0.0
+
+## The position of the cursor where notes will be placed in SECONDS
+var cursorChartPos : float = 0.0
+
 func _ready() -> void:
 	var index = 0
 	for track : ColorRect in tracks:
-		track.draw.connect(drawNotes.bind(index, track))
+		track.draw.connect(draw.bind(index as trackIDs, track))
+		
+		if track == tracks[trackIDs.TRACKFX]:
+			# TODO: add FX Track specific connections here!
+			index += 1
+			continue
+		
+		if track == tracks[trackIDs.SCRATCH_TRACK]:
+			# TODO: add Scratch Track Specific connections here!
+			index += 1
+			continue
+		
+		track.mouse_entered.connect(toggleMouseActive.bind(index as trackIDs, true))
+		track.mouse_exited.connect(toggleMouseActive.bind(index as trackIDs, false))
 		index += 1
 	
 	trackContainer.draw.connect(drawTrackContainer)
@@ -37,6 +66,39 @@ func _process(delta : float) -> void:
 	
 	for track : ColorRect in tracks:
 		track.queue_redraw()
+	
+	updateCursor()
+
+func updateCursor():
+	if ReMXEditor.isSnapping:
+		var rawChartPos : float = ReMXEditor.screenPosToChartPos(
+			tracks[mouseState["activeTrack"]].size, 
+			cursorPos, 
+			true
+			)
+		
+		## The length of a snap segment (In Seconds)
+		var snapInterval = secsPerBeat/ReMXEditor.gridSnap
+		
+		cursorChartPos = snappedf(rawChartPos, snapInterval)
+		cursorPos = ReMXEditor.chartPosToScreenPos(
+			tracks[mouseState["activeTrack"]].size, 
+			cursorChartPos, 
+			true
+		)
+		return
+	
+	cursorPos = mouseState["yPos"]
+	cursorChartPos = ReMXEditor.screenPosToChartPos(
+			tracks[mouseState["activeTrack"]].size, 
+			cursorPos, 
+			true
+			)
+
+func draw(trackID : trackIDs, track : CanvasItem) -> void:
+	drawNotes(trackID, track)
+	if mouseState["isActive"] && mouseState["activeTrack"] == trackID:
+		drawCursor(cursorPos, track)
 
 func drawNotes(trackID : int, track : CanvasItem) -> void:
 	if !chartLoaded || track.is_part_of_edited_scene():
@@ -92,6 +154,8 @@ func drawNotes(trackID : int, track : CanvasItem) -> void:
 		
 		track.draw_line(Vector2(0, noteY),Vector2(track.size.x, noteY),Color(0.733, 0.049, 1.0, 1.0), 5.0)
 
+func drawCursor(mouseYPos : float, track : CanvasItem):
+	track.draw_line(Vector2(0.0, mouseYPos), Vector2(track.size.x, mouseYPos), Color(0.75, 0.0, 0.8, 0.5), 3)
 
 func drawTrackContainer():
 	if !chartLoaded:
@@ -100,7 +164,10 @@ func drawTrackContainer():
 	drawGrid(trackContainer)
 
 func drawGrid(node : CanvasItem) -> void:
-	var secsPerBeat : float = 60.0 / float(BPM)
+	if !ReMXEditor.isSnapping:
+		return
+	
+	secsPerBeat = 60.0 / BPM
 	
 	var numOfLines : int = 50
 	
@@ -109,11 +176,26 @@ func drawGrid(node : CanvasItem) -> void:
 	var nearestBeatInSeconds = floori(ReMXEditor.chartPos/secsPerBeat) * secsPerBeat
 	
 	for i in numOfLines:
-		var lineY = ReMXEditor.chartPosToScreenPos(node.size, nearestBeatInSeconds - ((secsPerBeat/4) * index), true)
+		var lineY = ReMXEditor.chartPosToScreenPos(node.size, 
+			nearestBeatInSeconds - ((secsPerBeat/ReMXEditor.gridSnap) * index), 
+			true
+			)
 		node.draw_line(Vector2(0.0, lineY),  Vector2(node.size.x, lineY), Color(0.27, 0.27, 0.27, 1.0))
 		index += 1
-	
 
+func toggleMouseActive(trackID : trackIDs, isActive : bool):
+	mouseState["isActive"] = isActive
+	mouseState["activeTrack"] = trackID
+
+# ********************* Tool Functions!!! ********************* #
+
+func tapTool(activeTrack : int, mouseButton : InputEventMouseButton, mouseChartPos : float):
+	if activeTrack == -1 || activeTrack < trackIDs.TRACK1 || mouseButton.is_pressed() == false:
+		return
+	
+	match mouseButton.button_index:
+		MOUSE_BUTTON_LEFT:
+			ReMXEditor.currentChart.addMainNote(activeTrack, mouseChartPos)
 
 func _onChartLoadedInEditor() -> void:
 	if chartLoaded:
@@ -133,7 +215,6 @@ func _onChartLoadedInEditor() -> void:
 	
 	chartLoaded = true
 
-
 func _onChartClosed() -> void:
 	tracks[trackIDs.TRACK3].visible = false
 	tracks[trackIDs.TRACK4].visible = false
@@ -143,3 +224,26 @@ func _onChartClosed() -> void:
 	BPM = 0.0
 	
 	chartLoaded = false
+
+func _gui_input(event: InputEvent) -> void:
+	if is_part_of_edited_scene():
+		return
+	
+	# Mouse Section
+	
+	if !mouseState["isActive"]:
+		return
+	
+	if event is InputEventMouseButton:
+		if !ReMXEditor.currentChart:
+			return
+		
+		var mouseButton : InputEventMouseButton = event
+		
+		match ReMXEditor.currentTool:
+			ReMXEditor.toolEnum.TAP:
+				tapTool(mouseState["activeTrack"], mouseButton, cursorChartPos)
+	
+	if event is InputEventMouseMotion:
+		var mouseMotion : InputEventMouseMotion = event
+		mouseState["yPos"] = mouseMotion.position.y
