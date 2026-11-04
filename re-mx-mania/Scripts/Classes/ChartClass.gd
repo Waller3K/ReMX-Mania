@@ -305,6 +305,78 @@ func addMainNote(trackID : int, pos : float, end : float = -1.0) -> void:
 	
 	print("Added new note: '" + str(newNote) + "' at Index: " + str(newNoteIndex))
 
+
+func nearestMainNote(trackID : int, cursorPos : float, threshold : float) -> Dictionary:
+	if notes[trackID].is_empty():
+		return {}
+	
+	## A dummy note used purely to allow the position to be used 
+	## in a bsearch_custom()
+	var dummyNote = {
+		"Pos" : cursorPos
+	}
+	var bsearchOutcome = notes[trackID].bsearch_custom(dummyNote, sortByPosition)
+	var nextNoteIndex = bsearchOutcome if bsearchOutcome != notes[trackID].size() else -1 
+
+	var nextNote = null
+	var prevNote = null
+	if nextNoteIndex != -1:
+		nextNote = notes[trackID][nextNoteIndex]
+	if bsearchOutcome != 0:
+		prevNote = notes[trackID][bsearchOutcome-1]
+
+	var nearestNote = {
+		"Index" : 0,
+		"Dist" : 0.0
+	}
+
+	var nextNoteDist = INF
+	var prevNoteDist = INF
+
+	# If the cursor is inside a hold note!
+	if prevNote:
+		if prevNote.has("End"):
+			if cursorPos >= prevNote["Pos"] && cursorPos <= prevNote["End"]:
+				nearestNote["Index"] = bsearchOutcome-1
+				nearestNote["Dist"] = prevNoteDist
+				return nearestNote
+
+
+	if nextNote && prevNote:
+		nextNoteDist = nextNote["Pos"] - dummyNote["Pos"]
+		prevNoteDist = dummyNote["Pos"] - prevNote["Pos"]
+
+		if nextNoteDist >= prevNoteDist:
+			nearestNote["Index"] = bsearchOutcome-1
+			nearestNote["Dist"] = prevNoteDist
+		else:
+			nearestNote["Index"] = nextNoteIndex
+			nearestNote["Dist"] = nextNoteDist
+	elif !nextNote:
+		prevNoteDist = dummyNote["Pos"] - prevNote["Pos"]
+		nearestNote["Index"] = bsearchOutcome-1
+		nearestNote["Dist"] = prevNoteDist
+	elif !prevNote:
+		nextNoteDist = nextNote["Pos"] - dummyNote["Pos"]
+		nearestNote["Index"] = nextNoteIndex
+		nearestNote["Dist"] = nextNoteDist
+	
+	if nearestNote["Dist"] > threshold:
+		return {}
+	
+	return nearestNote
+
+
+## Removes the first main note that is closest to the cursor and within the threshold.
+## Takes in the trackID, cursor position in SECONDS, and a threshold also in SECONDS.
+func removeMainNote(trackID : int, cursorPos : float, threshold : float) -> void:
+	var nearestNote : Dictionary = nearestMainNote(trackID, cursorPos, threshold)
+
+	if nearestNote.is_empty():
+		return
+
+	notes[trackID].remove_at(nearestNote["Index"])
+
 func addFXNote(type: int, pos : float, end : float):
 	if pos > end:
 		push_error("FX note end placed before note head")

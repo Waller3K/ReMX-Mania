@@ -17,6 +17,8 @@ enum trackIDs {
 ## The buttons are ordered track 1-4 (Indecies 0-3) and then FX Track (index 4)
 @export var buttons : Array[ColorRect]
 
+@export var deleteThreshold : float = 0.01
+
 var chartLoaded : bool = false
 
 var BPM : float = 0.0
@@ -30,6 +32,14 @@ var mouseState : Dictionary = {
 	"yPos" = 0.0
 }
 
+## The 'Start' and 'End' Y positions (IN SECONDS) of a click and drag motion 
+var dragPos : Dictionary = {
+	"Start" = 0.0,
+	"End" = 0.0
+}
+
+## A boolean value that is set true when the user has initiated a click and drag motion
+var isDragging : bool = false
 
 ## The position of the cursor where notes will be placed in PIXELS
 var cursorPos : float = 0.0
@@ -43,12 +53,18 @@ func _ready() -> void:
 		track.draw.connect(draw.bind(index as trackIDs, track))
 		
 		if track == tracks[trackIDs.TRACKFX]:
-			# TODO: add FX Track specific connections here!
+			track.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+			track.mouse_entered.connect(toggleMouseActive.bind(index as trackIDs, true))
+			track.mouse_exited.connect(toggleMouseActive.bind(index as trackIDs, false))
 			index += 1
 			continue
 		
 		if track == tracks[trackIDs.SCRATCH_TRACK]:
-			# TODO: add Scratch Track Specific connections here!
+			track.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+			track.mouse_entered.connect(toggleMouseActive.bind(index as trackIDs, true))
+			track.mouse_exited.connect(toggleMouseActive.bind(index as trackIDs, false))
 			index += 1
 			continue
 		
@@ -73,7 +89,7 @@ func updateCursor():
 	if ReMXEditor.isSnapping:
 		var rawChartPos : float = ReMXEditor.screenPosToChartPos(
 			tracks[mouseState["activeTrack"]].size, 
-			cursorPos, 
+			mouseState["yPos"], 
 			true
 			)
 		
@@ -184,6 +200,8 @@ func drawGrid(node : CanvasItem) -> void:
 		index += 1
 
 func toggleMouseActive(trackID : trackIDs, isActive : bool):
+	
+	
 	mouseState["isActive"] = isActive
 	mouseState["activeTrack"] = trackID
 
@@ -196,6 +214,65 @@ func tapTool(activeTrack : int, mouseButton : InputEventMouseButton, mouseChartP
 	match mouseButton.button_index:
 		MOUSE_BUTTON_LEFT:
 			ReMXEditor.currentChart.addMainNote(activeTrack, mouseChartPos)
+		MOUSE_BUTTON_RIGHT:
+			ReMXEditor.currentChart.removeMainNote(activeTrack, cursorChartPos, deleteThreshold)
+
+func holdTool(activeTrack : int, mouseButton : InputEventMouseButton, mouseChartPos : float):
+	if activeTrack == -1 || activeTrack < trackIDs.TRACK1:
+		return
+	
+	if mouseButton.is_pressed():
+		match mouseButton.button_index:
+			MOUSE_BUTTON_LEFT:
+				dragPos["Start"] = mouseChartPos
+				isDragging = true
+			MOUSE_BUTTON_RIGHT:
+				ReMXEditor.currentChart.removeMainNote(activeTrack, cursorChartPos, deleteThreshold)
+			_:
+				pass
+	else:
+		match mouseButton.button_index:
+			MOUSE_BUTTON_LEFT:
+				if mouseChartPos < dragPos["Start"]:
+					dragPos["End"] = dragPos["Start"]
+					dragPos["Start"] = mouseChartPos
+				else:
+					dragPos["End"] = mouseChartPos
+				
+				ReMXEditor.currentChart.addMainNote(activeTrack, dragPos["Start"], dragPos["End"])
+
+				isDragging = false
+			_:
+				pass
+
+## Triggered when user changes the currently selected tool! 
+## It changes the mouse filter of the tracks to that only the 
+## appropriate tracks are editable for the given tool
+func _onToolChanged() -> void:
+	var trackID : int = 0
+	for track in tracks:
+		match ReMXEditor.currentTool:
+			ReMXEditor.toolEnum.TAP, ReMXEditor.toolEnum.HOLD:
+				match trackID:
+					trackIDs.SCRATCH_TRACK, trackIDs.TRACKFX:
+						track.mouse_filter = Control.MOUSE_FILTER_IGNORE
+					_:
+						track.mouse_filter = Control.MOUSE_FILTER_PASS
+			ReMXEditor.toolEnum.FX_HOLD:
+				match trackID:
+					trackIDs.TRACKFX:
+						track.mouse_filter = Control.MOUSE_FILTER_PASS
+					_:
+						track.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			ReMXEditor.toolEnum.SCRATCH_HOLD, ReMXEditor.toolEnum.SUB_SCRATCH_LONG, ReMXEditor.toolEnum.SUB_SCRATCH_SHORT:
+				match trackID:
+					trackIDs.SCRATCH_TRACK:
+						track.mouse_filter = Control.MOUSE_FILTER_PASS
+					_:
+						track.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			_:
+				track.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		trackID += 1
 
 func _onChartLoadedInEditor() -> void:
 	if chartLoaded:
@@ -243,6 +320,8 @@ func _gui_input(event: InputEvent) -> void:
 		match ReMXEditor.currentTool:
 			ReMXEditor.toolEnum.TAP:
 				tapTool(mouseState["activeTrack"], mouseButton, cursorChartPos)
+			ReMXEditor.toolEnum.HOLD:
+				holdTool(mouseState["activeTrack"], mouseButton, cursorChartPos)
 	
 	if event is InputEventMouseMotion:
 		var mouseMotion : InputEventMouseMotion = event

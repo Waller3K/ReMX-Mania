@@ -12,6 +12,10 @@ func _ready() -> void:
 	gridLevelBox.value_changed.connect(_onGridLevelChanged)
 	testAddNoteButton.pressed.connect(_onTestAddNotePressed)
 	
+	# Set default values
+	_onGridLevelChanged(1)
+	toggleSnapping(false)
+	
 	gridLevelBox.visible = false
 	gridLevelLabel.visible = false
 	snappingToggle.disabled = true

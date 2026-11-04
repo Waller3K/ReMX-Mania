@@ -25,6 +25,10 @@ func drawGhostCursor():
 func _ready() -> void:
 	mouse_entered.connect(toggleMouseActive.bind(true))
 	mouse_exited.connect(toggleMouseActive.bind(false))
+	
+	# Reset chart position
+	ReMXEditor.chartPos = 0.0
+	ReMXEditor.pausedAt = 0.0
 
 func _draw() -> void:
 	if is_part_of_edited_scene():
