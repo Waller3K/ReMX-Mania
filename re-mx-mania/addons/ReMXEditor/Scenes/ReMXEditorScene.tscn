@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://btff7cka7axvo" path="res://addons/ReMXEditor/Scripts/Objects/gameplayPanel.gd" id="2_xo132"]
 [ext_resource type="Script" uid="uid://8sljtqjovd0i" path="res://addons/ReMXEditor/Scripts/Objects/audioStreamPlayer.gd" id="4_sayof"]
 [ext_resource type="Script" uid="uid://caa6fa56m5mky" path="res://addons/ReMXEditor/Scripts/Objects/noteTypePallete.gd" id="6_rys8b"]
+[ext_resource type="Script" uid="uid://dd20bh6i7csk6" path="res://addons/ReMXEditor/Scripts/Objects/inspectorContainer.gd" id="7_xa3gg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2h18k"]
 
@@ -54,7 +55,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="TopPanelContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TopPanel" unique_id=1705775039 node_paths=PackedStringArray("snappingToggle", "gridLevelLabel", "gridLevelBox", "testAddNoteButton")]
+[node name="TopPanelContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TopPanel" unique_id=1705775039 node_paths=PackedStringArray("snappingToggle", "gridLevelLabel", "gridLevelBox", "testAddNoteButton", "visibleLengthBox")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,6 +67,7 @@ snappingToggle = NodePath("SnappingToggle")
 gridLevelLabel = NodePath("GridLevelLabel")
 gridLevelBox = NodePath("GridLevelBox")
 testAddNoteButton = NodePath("AddTestNoteButton")
+visibleLengthBox = NodePath("VisibleLengthBox")
 
 [node name="SnappingToggle" type="CheckButton" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=2038531448]
 layout_mode = 2
@@ -116,6 +118,16 @@ script = ExtResource("1_eh5iu")
 [node name="Right Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=1920452729]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="VisibleLengthLabel" type="Label" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=450006169]
+layout_mode = 2
+text = "Visible Length In Seconds"
+
+[node name="VisibleLengthBox" type="SpinBox" parent="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" unique_id=912953324]
+layout_mode = 2
+step = 0.125
+value = 1.0
+suffix = "secs"
 
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer" unique_id=1276487915]
 layout_mode = 2
@@ -361,7 +373,7 @@ size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rys8b")
 
-[node name="FoldableContainer2" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=93072432 node_paths=PackedStringArray("tools")]
+[node name="NoteTypeContainer" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=93072432 node_paths=PackedStringArray("tools")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -374,11 +386,11 @@ title = "Note Type Pallete"
 script = ExtResource("6_rys8b")
 tools = [NodePath("NoteTypePanel/VBoxContainer/TapButton"), NodePath("NoteTypePanel/VBoxContainer/HoldButton"), NodePath("NoteTypePanel/VBoxContainer/FXHold"), NodePath("NoteTypePanel/VBoxContainer/ScratchHoldButton"), NodePath("NoteTypePanel/VBoxContainer/SubScratchShortButton"), NodePath("NoteTypePanel/VBoxContainer/SubScratchLongButton"), NodePath("NoteTypePanel/VBoxContainer/SelectButton")]
 
-[node name="NoteTypePanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2" unique_id=1697349847]
+[node name="NoteTypePanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer" unique_id=1697349847]
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2/NoteTypePanel" unique_id=422322408]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer/NoteTypePanel" unique_id=422322408]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -386,45 +398,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TapButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2/NoteTypePanel/VBoxContainer" unique_id=73077741]
+[node name="TapButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer/NoteTypePanel/VBoxContainer" unique_id=73077741]
 layout_mode = 2
 disabled = true
 toggle_mode = true
 button_pressed = true
 text = "Main Track Tap"
 
-[node name="HoldButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2/NoteTypePanel/VBoxContainer" unique_id=1427825864]
+[node name="HoldButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer/NoteTypePanel/VBoxContainer" unique_id=1427825864]
 layout_mode = 2
 toggle_mode = true
 text = "Main Track Hold"
 
-[node name="FXHold" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2/NoteTypePanel/VBoxContainer" unique_id=369282321]
+[node name="FXHold" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer/NoteTypePanel/VBoxContainer" unique_id=369282321]
 layout_mode = 2
 toggle_mode = true
 text = "FX Hold"
 
-[node name="ScratchHoldButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2/NoteTypePanel/VBoxContainer" unique_id=1481119520]
+[node name="ScratchHoldButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer/NoteTypePanel/VBoxContainer" unique_id=1481119520]
 layout_mode = 2
 toggle_mode = true
 text = "Scratch"
 
-[node name="SubScratchShortButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2/NoteTypePanel/VBoxContainer" unique_id=1610151474]
+[node name="SubScratchShortButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer/NoteTypePanel/VBoxContainer" unique_id=1610151474]
 layout_mode = 2
 toggle_mode = true
 text = "Subnote: Short Scratch"
 
-[node name="SubScratchLongButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2/NoteTypePanel/VBoxContainer" unique_id=1442948567]
+[node name="SubScratchLongButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer/NoteTypePanel/VBoxContainer" unique_id=1442948567]
 layout_mode = 2
 toggle_mode = true
 text = "Subnote: Long Scratch"
 
-[node name="SelectButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2/NoteTypePanel/VBoxContainer" unique_id=338298876]
+[node name="SelectButton" type="Button" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer/NoteTypePanel/VBoxContainer" unique_id=338298876]
 layout_mode = 2
 toggle_mode = true
 text = "Select"
 
-[node name="FoldableContainer" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1328238838]
-visible = false
+[node name="InspectorContainer" type="FoldableContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel" unique_id=1328238838 node_paths=PackedStringArray("vboxContainer")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -433,12 +444,22 @@ offset_top = -639.0
 offset_right = 258.0
 grow_vertical = 0
 title = "Inspector"
+script = ExtResource("7_xa3gg")
+vboxContainer = NodePath("InspectorPanel/VBoxContainer")
 
-[node name="InspectorPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer" unique_id=348943610]
+[node name="InspectorPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/InspectorContainer" unique_id=348943610]
 custom_minimum_size = Vector2(250, 600)
 layout_mode = 2
 
-[node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800 node_paths=PackedStringArray("LoadChartButton", "NewChartButton", "SaveChartButton", "CloseChartButton", "EditorFD", "SongTitleEdit", "SongTitleRomanContainer", "SongTitleRomanEdit", "ArtistNameEdit", "ArtistNameRomanContainer", "ArtistNameRomanEdit", "CharterEdit", "DifficultyNameEdit", "DifficultyConstantBox", "StartingBPMBox", "PreviewTimestampBox", "TrackCountBox", "BGMPathEdit", "ScratchPathEdit", "Track1PathEdit", "Track2PathEdit", "Track3PathEdit", "Track4PathEdit", "confirmWindow")]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/InspectorContainer/InspectorPanel" unique_id=778586516]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SongInfoPanel" type="Panel" parent="MarginContainer/VBoxContainer/HSplitContainer" unique_id=665991800 node_paths=PackedStringArray("LoadChartButton", "NewChartButton", "SaveChartButton", "CloseChartButton", "EditorFD", "SongTitleEdit", "SongTitleRomanContainer", "SongTitleRomanEdit", "ArtistNameEdit", "ArtistNameRomanContainer", "ArtistNameRomanEdit", "CharterEdit", "DifficultyNameEdit", "DifficultyConstantBox", "StartingBPMBox", "PreviewTimestampBox", "TrackCountBox", "BGMPathEdit", "BGMPathButton", "ScratchPathEdit", "ScratchPathButton", "Track1PathEdit", "Track1Button", "Track2PathEdit", "Track2Button", "Track3PathEdit", "Track3Button", "Track4PathEdit", "Track4Button", "confirmWindow")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 script = ExtResource("2_1gjrh")
@@ -460,11 +481,17 @@ StartingBPMBox = NodePath("ScrollContainer/ChartMetadata/StartingBPMBox/SpinBox"
 PreviewTimestampBox = NodePath("ScrollContainer/ChartMetadata/PreviewTimestampBox/SpinBox")
 TrackCountBox = NodePath("ScrollContainer/ChartMetadata/TrackCountBox/SpinBox")
 BGMPathEdit = NodePath("ScrollContainer/ChartMetadata/BGMPathEdit/LineEdit")
+BGMPathButton = NodePath("ScrollContainer/ChartMetadata/BGMPathEdit/Button")
 ScratchPathEdit = NodePath("ScrollContainer/ChartMetadata/ScratchPathEdit/LineEdit")
+ScratchPathButton = NodePath("ScrollContainer/ChartMetadata/ScratchPathEdit/Button")
 Track1PathEdit = NodePath("ScrollContainer/ChartMetadata/Track1PathEdit/LineEdit")
+Track1Button = NodePath("ScrollContainer/ChartMetadata/Track1PathEdit/Button")
 Track2PathEdit = NodePath("ScrollContainer/ChartMetadata/Track2PathEdit/LineEdit")
+Track2Button = NodePath("ScrollContainer/ChartMetadata/Track2PathEdit/Button")
 Track3PathEdit = NodePath("ScrollContainer/ChartMetadata/Track3PathEdit/LineEdit")
+Track3Button = NodePath("ScrollContainer/ChartMetadata/Track3PathEdit/Button")
 Track4PathEdit = NodePath("ScrollContainer/ChartMetadata/Track4PathEdit/LineEdit")
+Track4Button = NodePath("ScrollContainer/ChartMetadata/Track4PathEdit/Button")
 confirmWindow = NodePath("../../../../ConfirmationDialog")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" unique_id=1612889656]
@@ -870,7 +897,8 @@ script = ExtResource("4_sayof")
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PlayButton" to="AudioStreamPlayer" method="_onPlay"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PauseButton" to="AudioStreamPlayer" method="_onPause"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/StopButton" to="AudioStreamPlayer" method="_onStop"]
-[connection signal="toolChanged" from="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/FoldableContainer2" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel" method="_onToolChanged"]
+[connection signal="toolChanged" from="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/HBoxContainer/GameplayPanel" method="_onToolChanged"]
+[connection signal="toolChanged" from="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/NoteTypeContainer" to="MarginContainer/VBoxContainer/HSplitContainer/MainPanel/InspectorContainer" method="_onToolChanged"]
 [connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer" method="_onChartClosed"]
 [connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PlayButton" method="_onChartClosed"]
 [connection signal="chartClosed" from="MarginContainer/VBoxContainer/HSplitContainer/SongInfoPanel" to="MarginContainer/VBoxContainer/TopPanel/TopPanelContainer/PauseButton" method="_onChartClosed"]

@@ -25,12 +25,24 @@ extends Panel
 @export var StartingBPMBox : SpinBox
 @export var PreviewTimestampBox : SpinBox
 @export var TrackCountBox : SpinBox
+
 @export var BGMPathEdit : LineEdit
+@export var BGMPathButton : Button
+
 @export var ScratchPathEdit : LineEdit
+@export var ScratchPathButton : Button
+
 @export var Track1PathEdit : LineEdit
+@export var Track1Button : Button
+
 @export var Track2PathEdit : LineEdit
+@export var Track2Button : Button
+
 @export var Track3PathEdit : LineEdit
+@export var Track3Button : Button
+
 @export var Track4PathEdit : LineEdit
+@export var Track4Button : Button
 
 @export var confirmWindow : ConfirmationDialog
 
@@ -78,10 +90,15 @@ func _ready() -> void:
 	TrackCountBox.value_changed.connect(_onMetadataValueChanged.bind("trackCount"))
 	# Path Edits
 	BGMPathEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "BGMPath"))
+	
 	ScratchPathEdit.text_changed.connect(func(newText): _onMetadataTextChanged(newText, "scratchTrackPath"))
+	
 	Track1PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 0))
+	
 	Track2PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 1))
+	
 	Track3PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 2))
+	
 	Track4PathEdit.text_changed.connect(_onMetadataTextChanged.bind("trackPaths", 3))
 	
 	toggleEditable(false)
@@ -168,12 +185,20 @@ func clearChartMetadata():
 	StartingBPMBox.value = 0
 	PreviewTimestampBox.value = 0
 	TrackCountBox.value = 2
-	BGMPathEdit.text = ""
-	ScratchPathEdit.text = ""
-	Track1PathEdit.text = ""
-	Track2PathEdit.text = ""
-	Track3PathEdit.text = ""
-	Track4PathEdit.text = ""
+	BGMPathEdit.text = "BGM_Track.ogg"
+	ScratchPathEdit.text = "Scratch_Track.ogg"
+	Track1PathEdit.text = "Track_1.ogg"
+	Track2PathEdit.text = "Track_2.ogg"
+	Track3PathEdit.text = "Track_3.ogg"
+	Track4PathEdit.text = "Track_4.ogg"
+
+func setDefaultChartPaths():
+	ReMXEditor.currentChart.BGMPath = "BGM_Track.ogg"
+	ReMXEditor.currentChart.scratchTrackPath = "Scratch_Track.ogg"
+	ReMXEditor.currentChart.trackPaths[0] = "Track_1.ogg"
+	ReMXEditor.currentChart.trackPaths[1] = "Track_2.ogg"
+	ReMXEditor.currentChart.trackPaths[2] = "Track_3.ogg"
+	ReMXEditor.currentChart.trackPaths[3] = "Track_4.ogg"
 
 func _onMetadataTextChanged(newText : String, property : String, index : int = 0):
 	if property not in ReMXEditor.currentChart:
@@ -211,6 +236,7 @@ func _onNewChart():
 	ReMXEditor.currentChart = Chart.new()
 	ReMXEditor.currentChart.init()
 	clearChartMetadata()
+	setDefaultChartPaths()
 	toggleEditable(true)
 	newChart.emit()
 

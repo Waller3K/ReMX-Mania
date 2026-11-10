@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b15g1y30y44dg"
+path="res://.godot/imported/Track_4.ogg-8fe7234e1d70e57fd1621bb5e8454972.oggvorbisstr"
+
+[deps]
+
+source_file="res://Charts/One Small Step - Waller3K/Track_4.ogg"
+dest_files=["res://.godot/imported/Track_4.ogg-8fe7234e1d70e57fd1621bb5e8454972.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

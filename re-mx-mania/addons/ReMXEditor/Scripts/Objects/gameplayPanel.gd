@@ -83,6 +83,9 @@ func _process(delta : float) -> void:
 	for track : ColorRect in tracks:
 		track.queue_redraw()
 	
+	if isDragging:
+		dragPos["End"] = ReMXEditor.screenPosToChartPos(tracks[mouseState["activeTrack"]].size, mouseState["yPos"], true)
+	
 	updateCursor()
 
 func updateCursor():
@@ -171,7 +174,32 @@ func drawNotes(trackID : int, track : CanvasItem) -> void:
 		track.draw_line(Vector2(0, noteY),Vector2(track.size.x, noteY),Color(0.733, 0.049, 1.0, 1.0), 5.0)
 
 func drawCursor(mouseYPos : float, track : CanvasItem):
-	track.draw_line(Vector2(0.0, mouseYPos), Vector2(track.size.x, mouseYPos), Color(0.75, 0.0, 0.8, 0.5), 3)
+	if !isDragging:
+		track.draw_line(Vector2(0.0, mouseYPos), Vector2(track.size.x, mouseYPos), Color(0.75, 0.0, 0.8, 0.5), 3)
+		return
+	
+	var dragPosInPix = {
+		"Start" = ReMXEditor.chartPosToScreenPos(track.size, dragPos["Start"], true),
+		"End" = ReMXEditor.chartPosToScreenPos(track.size, dragPos["End"], true)
+	}
+	
+	## Top left corner of the rect
+	var rectPos : Vector2
+	## Width and height of rect
+	var rectSize : Vector2
+	
+	# If user is dragging downwards
+	if dragPosInPix["Start"] > dragPosInPix["End"]:
+		rectPos = Vector2(0.0, dragPosInPix["End"])
+		rectSize = Vector2(track.size.x, abs(dragPosInPix["Start"] - dragPosInPix["End"]))
+	else:
+		rectPos = Vector2(0.0, dragPosInPix["Start"])
+		rectSize = Vector2(track.size.x, abs(dragPosInPix["Start"] - dragPosInPix["End"]))
+	
+	var selectionRect : Rect2 = Rect2(rectPos, rectSize)
+	
+	track.draw_rect(selectionRect, Color(0.75, 0.0, 0.8, 0.5))
+	
 
 func drawTrackContainer():
 	if !chartLoaded:
@@ -245,10 +273,77 @@ func holdTool(activeTrack : int, mouseButton : InputEventMouseButton, mouseChart
 			_:
 				pass
 
+func fxHoldTool(mouseButton : InputEventMouseButton, mouseChartPos: float):
+	if mouseButton.is_pressed():
+		match mouseButton.button_index:
+			MOUSE_BUTTON_LEFT:
+				dragPos["Start"] = mouseChartPos
+				isDragging = true
+			MOUSE_BUTTON_RIGHT:
+				ReMXEditor.currentChart.removeMainNote(trackIDs.TRACKFX, cursorChartPos, deleteThreshold)
+			_:
+				pass
+	else:
+		match mouseButton.button_index:
+			MOUSE_BUTTON_LEFT:
+				if mouseChartPos < dragPos["Start"]:
+					dragPos["End"] = dragPos["Start"]
+					dragPos["Start"] = mouseChartPos
+				else:
+					dragPos["End"] = mouseChartPos
+				
+				ReMXEditor.currentChart.addFXNote(ReMXEditor.selectedFXType, dragPos["Start"], dragPos["End"])
+				isDragging = false
+
+func scratchHoldTool(mouseButton : InputEventMouseButton, mouseChartPos: float):
+	if mouseButton.is_pressed():
+		match mouseButton.button_index:
+			MOUSE_BUTTON_LEFT:
+				dragPos["Start"] = mouseChartPos
+				isDragging = true
+			MOUSE_BUTTON_RIGHT:
+				ReMXEditor.currentChart.removeMainNote(trackIDs.SCRATCH_TRACK, cursorChartPos, deleteThreshold)
+			_:
+				pass
+	else:
+		match mouseButton.button_index:
+			MOUSE_BUTTON_LEFT:
+				if mouseChartPos < dragPos["Start"]:
+					dragPos["End"] = dragPos["Start"]
+					dragPos["Start"] = mouseChartPos
+				else:
+					dragPos["End"] = mouseChartPos
+				
+				ReMXEditor.currentChart.addScratchHold(dragPos["Start"], dragPos["End"])
+				isDragging = false
+
+func subnoteShortTool(mouseButton : InputEventMouseButton, mouseChartPos : float):
+	if mouseButton.is_pressed():
+		var nearestNoteIndex : int = ReMXEditor.currentChart.nearestMainNote(trackIDs.SCRATCH_TRACK, mouseChartPos)["Index"]
+		
+		if mouseChartPos < ReMXEditor.currentChart.getNotePos(trackIDs.SCRATCH_TRACK, nearestNoteIndex):
+			nearestNoteIndex -= 1
+		
+		if nearestNoteIndex < 0:
+			return
+		
+		var testNote : Dictionary = ReMXEditor.currentChart.notes[trackIDs.SCRATCH_TRACK][nearestNoteIndex]
+		
+		if !ReMXEditor.currentChart.isInsideNote(mouseChartPos, testNote):
+			return
+		
+		match mouseButton.button_index:
+			MOUSE_BUTTON_LEFT:
+				ReMXEditor.currentChart.addSubnote(nearestNoteIndex,ReMXEditor.selectedSubnoteType, cursorChartPos)
+			MOUSE_BUTTON_RIGHT:
+				ReMXEditor.currentChart.removeMainNote(trackIDs.SCRATCH_TRACK, cursorChartPos, deleteThreshold)
+			_:
+				pass
+
 ## Triggered when user changes the currently selected tool! 
 ## It changes the mouse filter of the tracks to that only the 
 ## appropriate tracks are editable for the given tool
-func _onToolChanged() -> void:
+func _onToolChanged(_toolID) -> void:
 	var trackID : int = 0
 	for track in tracks:
 		match ReMXEditor.currentTool:
@@ -322,6 +417,12 @@ func _gui_input(event: InputEvent) -> void:
 				tapTool(mouseState["activeTrack"], mouseButton, cursorChartPos)
 			ReMXEditor.toolEnum.HOLD:
 				holdTool(mouseState["activeTrack"], mouseButton, cursorChartPos)
+			ReMXEditor.toolEnum.FX_HOLD:
+				fxHoldTool(mouseButton, cursorChartPos)
+			ReMXEditor.toolEnum.SCRATCH_HOLD:
+				scratchHoldTool(mouseButton, cursorChartPos)
+			ReMXEditor.toolEnum.SUB_SCRATCH_SHORT:
+				subnoteShortTool(mouseButton, cursorChartPos)
 	
 	if event is InputEventMouseMotion:
 		var mouseMotion : InputEventMouseMotion = event

@@ -7,10 +7,15 @@ extends HBoxContainer
 @export var gridLevelBox : SpinBox
 @export var testAddNoteButton : Button
 
+@export var visibleLengthBox : SpinBox
+
 func _ready() -> void:
 	snappingToggle.toggled.connect(toggleSnapping)
 	gridLevelBox.value_changed.connect(_onGridLevelChanged)
 	testAddNoteButton.pressed.connect(_onTestAddNotePressed)
+	
+	visibleLengthBox.value = ReMXEditor.visibleLength
+	visibleLengthBox.value_changed.connect(_onVisibleLengthChange)
 	
 	# Set default values
 	_onGridLevelChanged(1)
@@ -33,6 +38,9 @@ func _onGridLevelChanged(newGridLevel : int) -> void:
 func _onTestAddNotePressed() -> void:
 	ReMXEditor.currentChart.addMainNote(2, ReMXEditor.chartPos)
 	
+
+func _onVisibleLengthChange(newVisibleLength : float) -> void:
+	ReMXEditor.visibleLength = newVisibleLength
 
 
 func _onChartLoadedInEditor() -> void:

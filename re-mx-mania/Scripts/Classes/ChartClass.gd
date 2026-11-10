@@ -49,6 +49,9 @@ extends Resource
 func getPath() -> String:
 	return chartPath
 
+func getNotePos(trackID : int, noteIndex : int) -> float:
+	return notes[trackID][noteIndex]["Pos"]
+
 ## Returns the length of the passed in note. Takes in the note's track ID and its
 ## index.
 ## NOTE: Only works on main track notes and FX notes. Scratch track subnotes are excluded
@@ -287,6 +290,16 @@ func sortByPosition(noteA : Dictionary, noteB : Dictionary) -> bool:
 		return true
 	return false
 
+func isInsideNote(cursorPos : float, testNote : Dictionary) -> bool:
+	# if the passed in note isn't some kind of held note...
+	if !testNote.has("End"):
+		return false
+	
+	if cursorPos >= testNote["Pos"] && cursorPos <= testNote["End"]:
+		return true
+	
+	return false
+
 func addMainNote(trackID : int, pos : float, end : float = -1.0) -> void:
 	
 	if trackID < int(GlobalEnums.trackIDs.TRACK1):
@@ -306,7 +319,7 @@ func addMainNote(trackID : int, pos : float, end : float = -1.0) -> void:
 	print("Added new note: '" + str(newNote) + "' at Index: " + str(newNoteIndex))
 
 
-func nearestMainNote(trackID : int, cursorPos : float, threshold : float) -> Dictionary:
+func nearestMainNote(trackID : int, cursorPos : float, threshold : float = INF) -> Dictionary:
 	if notes[trackID].is_empty():
 		return {}
 	
@@ -367,6 +380,69 @@ func nearestMainNote(trackID : int, cursorPos : float, threshold : float) -> Dic
 	return nearestNote
 
 
+func nearestSubnote(mainNoteIndex : int, cursorPos : float, threshold : float) -> Dictionary:
+	if notes[GlobalEnums.trackIDs.SCRATCH_TRACK].is_empty():
+		return {}
+	
+	var mainNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][mainNoteIndex]
+	
+	## A dummy note used purely to allow the position to be used 
+	## in a bsearch_custom()
+	var dummyNote = {
+		"Pos" : cursorPos
+	}
+	
+	var bsearchOutcome = mainNote["Subnotes"].bsearch_custom(dummyNote, sortByPosition)
+	var nextNoteIndex = bsearchOutcome if bsearchOutcome != mainNote["Subnotes"].size() else -1 
+	
+	var nextNote = null
+	var prevNote = null
+	if nextNoteIndex != -1:
+		nextNote = mainNote["Subnotes"][nextNoteIndex]
+	if bsearchOutcome != 0:
+		prevNote = mainNote["Subnotes"][bsearchOutcome-1]
+
+	var nearestNote = {
+		"Index" : 0,
+		"Dist" : 0.0
+	}
+
+	var nextNoteDist = INF
+	var prevNoteDist = INF
+
+	# If the cursor is inside a hold note!
+	if prevNote:
+		if prevNote.has("End"):
+			if cursorPos >= prevNote["Pos"] && cursorPos <= prevNote["End"]:
+				nearestNote["Index"] = bsearchOutcome-1
+				nearestNote["Dist"] = prevNoteDist
+				return nearestNote
+
+
+	if nextNote && prevNote:
+		nextNoteDist = nextNote["Pos"] - dummyNote["Pos"]
+		prevNoteDist = dummyNote["Pos"] - prevNote["Pos"]
+
+		if nextNoteDist >= prevNoteDist:
+			nearestNote["Index"] = bsearchOutcome-1
+			nearestNote["Dist"] = prevNoteDist
+		else:
+			nearestNote["Index"] = nextNoteIndex
+			nearestNote["Dist"] = nextNoteDist
+	elif !nextNote:
+		prevNoteDist = dummyNote["Pos"] - prevNote["Pos"]
+		nearestNote["Index"] = bsearchOutcome-1
+		nearestNote["Dist"] = prevNoteDist
+	elif !prevNote:
+		nextNoteDist = nextNote["Pos"] - dummyNote["Pos"]
+		nearestNote["Index"] = nextNoteIndex
+		nearestNote["Dist"] = nextNoteDist
+	
+	if nearestNote["Dist"] > threshold:
+		return {}
+	
+	return nearestNote
+
 ## Removes the first main note that is closest to the cursor and within the threshold.
 ## Takes in the trackID, cursor position in SECONDS, and a threshold also in SECONDS.
 func removeMainNote(trackID : int, cursorPos : float, threshold : float) -> void:
@@ -385,5 +461,45 @@ func addFXNote(type: int, pos : float, end : float):
 	var newFXNote : Dictionary = {
 		"Pos" : pos,
 		"End" : end,
+		"Effect" : type
+	}
+	
+	var newNoteIndex = notes[GlobalEnums.trackIDs.TRACKFX].bsearch_custom(newFXNote, sortByPosition)
+	
+	notes[GlobalEnums.trackIDs.TRACKFX].insert(newNoteIndex, newFXNote)
+	
+	print("Added new note: '" + str(newFXNote) + "' at Index: " + str(newNoteIndex))
+
+func addScratchHold(pos: float, end : float):
+	if pos > end:
+		push_error("Scratch note end placed before note head")
+		return
+	
+	var newScratchNote : Dictionary = {
+		"Pos" : pos,
+		"End" : end,
+		"Subnotes" : []
+	}
+	
+	var newNoteIndex = notes[GlobalEnums.trackIDs.SCRATCH_TRACK].bsearch_custom(newScratchNote, sortByPosition)
+	
+	notes[GlobalEnums.trackIDs.SCRATCH_TRACK].insert(newNoteIndex, newScratchNote)
+	
+	print("Added new note: '" + str(newScratchNote) + "' at Index: " + str(newNoteIndex))
+
+
+func addSubnote(mainNoteIndex : int, type : int, pos : float, end : float = -1.0):
+	if end > pos:
+		# TODO: After adding long scratch functionality to the game, add the ability to add long subnotes to the chart
+		return
+	
+	var newSubnote : Dictionary = {
+		"Pos" : pos,
 		"Type" : type
 	}
+	
+	var newNoteIndex = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][mainNoteIndex]["Subnotes"].bsearch_custom(newSubnote, sortByPosition)
+	
+	notes[GlobalEnums.trackIDs.SCRATCH_TRACK][mainNoteIndex]["Subnotes"].insert(newNoteIndex, newSubnote)
+	
+	print("Added new note: '" + str(newSubnote) + "' at Index: " + str(newNoteIndex) + " In Scratch note at index: " + str(mainNoteIndex))

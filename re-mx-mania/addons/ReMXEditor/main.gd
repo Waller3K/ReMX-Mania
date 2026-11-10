@@ -55,7 +55,24 @@ enum toolEnum {
 
 static var currentTool : toolEnum = toolEnum.TAP
 
+## The indexes for the inspector modes
+enum inspectorMode {
+	## When nothing editable is selected
+	NONE,
+	## When selecting an FX note
+	FX,
+	## When selecting a scratch subnote
+	SCRATCH_SUBNOTE
+}
+
+static var currentIMode : inspectorMode = inspectorMode.NONE
+
+static var selectedFXType : int = 0
+
+static var selectedSubnoteType : int = 0
+
 var mainPanelInstance : Node
+
 
 
 ## Helper function that takes in the size of a node, 

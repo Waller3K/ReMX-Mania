@@ -3,7 +3,7 @@ extends FoldableContainer
 
 @export var tools : Array[Button]
 
-signal toolChanged()
+signal toolChanged(toolID : ReMXEditor.toolEnum)
 
 func _ready() -> void:
 	folded = true
@@ -34,4 +34,4 @@ func _onToolToggled( state : bool, toolID : ReMXEditor.toolEnum):
 			
 			index += 1
 		
-		toolChanged.emit()
+		toolChanged.emit(toolID)
