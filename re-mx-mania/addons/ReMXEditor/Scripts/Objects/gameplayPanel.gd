@@ -233,6 +233,19 @@ func toggleMouseActive(trackID : trackIDs, isActive : bool):
 	mouseState["isActive"] = isActive
 	mouseState["activeTrack"] = trackID
 
+func scrollScreen(buttonIndex : int):
+	if ReMXEditor.isPlaying == true || chartLoaded == false:
+		return
+	
+	if ReMXEditor.pausedAt == -1.0:
+		ReMXEditor.pausedAt = 0.0
+	
+	match buttonIndex:
+		MOUSE_BUTTON_WHEEL_UP:
+			ReMXEditor.pausedAt += 0.1
+		MOUSE_BUTTON_WHEEL_DOWN:
+			ReMXEditor.pausedAt -= 0.1
+
 # ********************* Tool Functions!!! ********************* #
 
 func tapTool(activeTrack : int, mouseButton : InputEventMouseButton, mouseChartPos : float):
@@ -411,6 +424,10 @@ func _gui_input(event: InputEvent) -> void:
 			return
 		
 		var mouseButton : InputEventMouseButton = event
+		
+		if mouseButton.button_index == MOUSE_BUTTON_WHEEL_UP || mouseButton.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			scrollScreen(mouseButton.button_index)
+			return
 		
 		match ReMXEditor.currentTool:
 			ReMXEditor.toolEnum.TAP:

@@ -96,6 +96,9 @@ func updateNextSubnote(songPosition: float) -> void:
 		return
 		
 	var currentNote = notes[GlobalEnums.trackIDs.SCRATCH_TRACK][tracks[GlobalEnums.trackIDs.SCRATCH_TRACK].nextNoteIndex]
+	if currentNote["Subnotes"].is_empty():
+		return 
+	
 	var currentSubnote = currentNote["Subnotes"][nextSubnoteIndex]
 	var notePos = currentSubnote["Pos"]
 	if songPosition > notePos * 1000 + GlobalStates.okTiming:

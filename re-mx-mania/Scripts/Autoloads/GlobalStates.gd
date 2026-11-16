@@ -31,7 +31,7 @@ const 	TICK_INTERVAL	:	float 	= 0.1 # In seconds
 ## 0.01 - 0.09 is Pre-Alpha
 ## 0.1 - 0.9 is Alpha and Beta
 ## 1.0 + is final release!
-const	VERSION	 		:	float	= 0.012 # Pre-Alpha 1.2
+const	VERSION	 		:	float	= 0.015 # Pre-Alpha 1.5
 
 var isDebug : bool = true
 
@@ -104,13 +104,13 @@ func installDefaultCharts():
 		else:
 			var version = markerFile.get_float()
 			# Using snappedf() to deal with floating point imprecision.
-			if snappedf(version, 0.0001) == GlobalStates.VERSION:
+			if is_equal_approx(snappedf(version, 0.0001), VERSION):
 				return
 			else:
 				print("Version Mismatch, Current Game Version is '"
-				+ str(GlobalStates.VERSION)
+				+ str(VERSION)
 				+ "' markerFile Version is '"
-				+ str(version)
+				+ str(snappedf(version, 0.0001))
 				+ "'. Updating charts...")
 		clearDirRecursive(GlobalStates.CHARTS_DEST)
 	
@@ -127,7 +127,10 @@ func clearDirRecursive(path : String):
 	for dir in DirAccess.get_directories_at(path):
 		clearDirRecursive(path.path_join(dir))
 	
-	for file in DirAccess.get_files_at(path):
+	var dir : DirAccess = DirAccess.open(path)
+	dir.include_hidden = true
+	
+	for file in dir.get_files():
 		DirAccess.remove_absolute(path.path_join(file))
 	
 	DirAccess.remove_absolute(path)
