@@ -190,13 +190,13 @@ top_level = true
 mesh = SubResource("PlaneMesh_upsvf")
 
 [node name="FXButtonMesh" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=2086317532]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.7845237)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.435332)
 top_level = true
 mesh = ExtResource("13_2rygx")
 script = ExtResource("14_7iy17")
 
 [node name="MainButtonMesh_1" type="MeshInstance3D" parent="GameObjects/MainTrack/NoteButtonNode" unique_id=1341266244]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.0447807)
 top_level = true
 mesh = ExtResource("15_16tym")
 script = ExtResource("14_7iy17")
@@ -214,7 +214,7 @@ mesh = SubResource("CylinderMesh_5pscq")
 script = ExtResource("18_dr58h")
 
 [node name="JudgementLine" type="MeshInstance3D" parent="GameObjects" unique_id=411110736]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, -0.34619522)
 mesh = SubResource("PlaneMesh_txxkg")
 surface_material_override/0 = SubResource("StandardMaterial3D_cijmt")
 
